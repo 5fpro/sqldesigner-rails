@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121126083937) do
+ActiveRecord::Schema.define(:version => 20121126092743) do
+
+  create_table "erds", :force => true do |t|
+    t.string   "keyword"
+    t.text     "data"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "erds", ["keyword"], :name => "index_erds_on_keyword", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
