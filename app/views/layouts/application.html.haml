@@ -1,0 +1,27 @@
+!!!
+%html
+  %head
+    = render_page_title_tag
+    = render_page_description_meta_tag
+    = render_page_keywords_meta_tag
+    = render_page_image_link_tag
+    = csrf_meta_tag
+    = stylesheet_link_tag "application"
+    = yield :stylesheets
+    %meta{:content => page_title ||  SeoHelper.configuration.site_name, :property => "og:title"}/
+    %meta{:content => page_description || SeoHelper.configuration.default_page_description, :property => "og:description"}/
+    %meta{:content => page_image ||  SeoHelper.configuration.default_page_image, :property => "og:image:url"}/
+  = render_body_tag
+  = render :partial => "common/menu"
+  .container
+    = notice_message
+    .content
+      .row
+        = yield
+        = yield (:sidebar)
+    = render :partial => "common/footer"
+  = render :partial => "common/bootstrap_modal"
+  = render :partial => "common/facebook_js"
+  = render :partial => "common/google_analytics"
+  = javascript_include_tag "application"
+  = yield :javascripts
