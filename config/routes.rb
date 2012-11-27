@@ -1,4 +1,9 @@
 SqldesignerRails::Application.routes.draw do
+
+  match '/auth/:provider/callback', :to => 'sessions#create'
+  match '/auth/failure' => 'sessions#failure'
+  match '/auth/facebook', :as => :facebook_login
+
   devise_for :users
 
   root :to => 'high_voltage/pages#show', :id => 'welcome'

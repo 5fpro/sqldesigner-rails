@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121126092743) do
+ActiveRecord::Schema.define(:version => 20121127011934) do
 
   create_table "erds", :force => true do |t|
     t.string   "keyword"
@@ -23,8 +23,10 @@ ActiveRecord::Schema.define(:version => 20121126092743) do
   add_index "erds", ["keyword"], :name => "index_erds_on_keyword", :unique => true
 
   create_table "users", :force => true do |t|
+    t.string   "name"
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "facebook_id"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -38,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20121126092743) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["facebook_id"], :name => "index_users_on_facebook_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end
