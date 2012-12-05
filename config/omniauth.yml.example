@@ -1,0 +1,10 @@
+development: &default
+  :facebook:
+    :app_id: "267188576687915"
+    :api_secret: "84f72292e1f6b299f4a668f12ed1a7f2"
+
+test:
+  <<: *default
+
+production:
+  <<: *default

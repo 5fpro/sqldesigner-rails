@@ -1,0 +1,26 @@
+%h1="ERD 列表"
+= link_to "新增", new_erd_path, :class => "btn btn-primary"    
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th="#"
+      %th="keyword"
+      %th="最後修改"
+      %th=""
+  %tbody
+    - @erds.each do |erd|
+      %tr
+        %td= erd.id
+        %td= erd.keyword
+        %td= erd.updated_at
+        %td.last
+          = link_to show_erd_path(erd), :class => "btn btn-success btn-mini" do
+            %i.icon-white.icon-info-sign
+            載入
+          = link_to edit_erd_path(erd), :class => "btn btn-mini" do
+            %i.icon-pencil
+            編輯
+          = link_to erd_path(erd), :class => "btn btn-mini btn-danger", :method => :delete, :confirm => "確認刪除" do
+            %i.icon-white.icon-remove
+            刪除
