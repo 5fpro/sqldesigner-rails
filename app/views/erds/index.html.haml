@@ -6,6 +6,7 @@
     %tr
       %th="#"
       %th="keyword"
+      %th="公開"
       %th="最後修改"
       %th=""
   %tbody
@@ -13,6 +14,7 @@
       %tr
         %td= erd.id
         %td= erd.keyword
+        %td= "是" if erd.published?
         %td= erd.updated_at
         %td.last
           = link_to erd_path(erd, :keyword => erd.keyword), :class => "btn btn-success btn-mini" do
