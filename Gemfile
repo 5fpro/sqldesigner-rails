@@ -77,3 +77,7 @@ end
 
 # To use debugger
 # gem 'debugger'
+
+gem 'haml'
+gem 'omniauth'
+gem 'omniauth-facebook'

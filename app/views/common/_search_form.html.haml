@@ -1,0 +1,3 @@
+= form_tag "/search", :class => "navbar-search", :method => :get do
+  %span.nav-toolbar-icon.nav-toolbar-icon-search
+  %input.search-query{:name => "q", :placeholder => @query_string ||   "Search", :type => "text", :value => @query_string}/
