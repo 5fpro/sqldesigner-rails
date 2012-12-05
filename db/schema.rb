@@ -11,17 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121205040158) do
+ActiveRecord::Schema.define(:version => 20121205045715) do
 
   create_table "erds", :force => true do |t|
     t.integer  "user_id"
+    t.boolean  "is_published", :default => true
     t.string   "keyword"
     t.text     "data"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
-  add_index "erds", ["keyword"], :name => "index_erds_on_keyword", :unique => true
+  add_index "erds", ["is_published"], :name => "index_erds_on_is_published"
+  add_index "erds", ["keyword", "user_id"], :name => "index_erds_on_keyword_and_user_id", :unique => true
   add_index "erds", ["user_id"], :name => "index_erds_on_user_id"
 
   create_table "users", :force => true do |t|

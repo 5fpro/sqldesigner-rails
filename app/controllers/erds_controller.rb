@@ -1,5 +1,5 @@
 class ErdsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:show, :new]
   
   def new
     render :layout => false
@@ -18,7 +18,8 @@ class ErdsController < ApplicationController
   end
 
   def show
-    if @erd = current_user.erds.find_by_keyword(CGI::unescape(params[:keyword]))
+    @erd = (User.find(params[:user_id]) || current_user).erds.find_by_keyword(CGI::unescape(params[:keyword]))
+    if @erd.published? || current_user.id == @erd.user_id
       render :text => @erd.data, :content_type => "text/xml"
     else
       render :text => "", :status => 404

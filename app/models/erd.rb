@@ -4,4 +4,9 @@ class Erd < ActiveRecord::Base
   validates_presence_of :keyword
   validates_presence_of :user_id
   belongs_to :user
+
+  def published?
+    is_published
+  end
+
 end

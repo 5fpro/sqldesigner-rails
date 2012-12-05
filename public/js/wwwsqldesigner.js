@@ -1471,8 +1471,12 @@ SQL.IO.prototype.serverload = function(e, keyword) {
 	var name = keyword || prompt(_("serverloadprompt"), this._name);
 	if (!name) { return; }
 	this._name = name;
+	var user_id = window.location.href.match(/user_id=([0-9]+)/);
+	if(user_id) {
+		user_id = user_id[1];
+	}
 	var bp = this.owner.getOption("xhrpath");
-	var url = bp + "backend/"+this.dom.backend.value+"/load?keyword="+encodeURIComponent(name);
+	var url = bp + "backend/"+this.dom.backend.value+"/load?keyword="+encodeURIComponent(name)+(user_id ? "&user_id="+user_id : "");
 	this.owner.window.showThrobber();
 	this.name = name;
 	OZ.Request(url, this.loadresponse, {xml:true});
@@ -2467,7 +2471,7 @@ SQL.Designer.prototype.init2 = function() { /* secondary init, after locale & da
 	OZ.$("erdslist").value = _("erdslist");
 
 	var url = window.location.href;
-	var r = url.match(/keyword=([^&]+)/);
+	var r = url.match(/keyword=([^&#]+)/);
 	if (r) {
 		var keyword = r[1];
 		this.io.serverload(false, keyword);
