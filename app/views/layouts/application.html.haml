@@ -6,7 +6,7 @@
     = render_page_keywords_meta_tag
     = render_page_image_link_tag
     = csrf_meta_tag
-    = stylesheet_link_tag "application"
+    = stylesheet_link_tag "/assets/application.css"
     = yield :stylesheets
     %meta{:content => page_title ||  SeoHelper.configuration.site_name, :property => "og:title"}/
     %meta{:content => page_description || SeoHelper.configuration.default_page_description, :property => "og:description"}/
@@ -23,5 +23,5 @@
   = render :partial => "common/bootstrap_modal"
   = render :partial => "common/facebook_js"
   = render :partial => "common/google_analytics"
-  = javascript_include_tag "application"
+  = javascript_include_tag "/assets/application.js"
   = yield :javascripts
