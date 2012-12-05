@@ -15,7 +15,7 @@
         %td= erd.keyword
         %td= erd.updated_at
         %td.last
-          = link_to show_erd_path(erd), :class => "btn btn-success btn-mini" do
+          = link_to erd_path(erd, :keyword => erd.keyword), :class => "btn btn-success btn-mini" do
             %i.icon-white.icon-info-sign
             載入
           = link_to edit_erd_path(erd), :class => "btn btn-mini" do

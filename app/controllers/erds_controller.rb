@@ -1,6 +1,6 @@
 class ErdsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show, :new]
-  
+  before_filter :authenticate_user!, :only => [:index, :edit, :new, :create, :update, :destroy]
+
   def new
     render :layout => false
   end
@@ -11,19 +11,19 @@ class ErdsController < ApplicationController
 
   def index
     @erds = current_user.erds
-  end
-
-  def list
-    render :text => current_user.erds.select("keyword").order("id DESC").map{ |erd| erd.keyword }.join("\n")
+    respond_to do |f|
+      f.html
+      f.xml { render_erds_list(@erds) }
+    end
   end
 
   def show
-    @erd = (User.find(params[:user_id]) || current_user).erds.find_by_keyword(CGI::unescape(params[:keyword]))
-    if @erd.published? || current_user.id == @erd.user_id
-      render :text => @erd.data, :content_type => "text/xml"
-    else
-      render :text => "", :status => 404
+    @erd = Erd.find params[:id]
+    respond_to do |f|
+      f.html { render :new, :layout => false }
+      f.xml { render_erd_xml(@erd) }
     end
+    
   end
 
   def create
@@ -48,4 +48,19 @@ class ErdsController < ApplicationController
     flash[:message] = "Deleted" if current_user.erds.find(params[:id]).destroy
     redirect_to erds_path
   end
+
+  private
+
+  def render_erd_xml(erd)
+    if erd.published? || (user_signed_in? && current_user.id == erd.user_id)
+      render :text => erd.data, :content_type => "text/xml"
+    else
+      render :text => "", :status => 404
+    end
+  end
+
+  def render_erds_list(erds)
+    render :text => erds.select("keyword").order("id DESC").map{ |erd| erd.keyword }.join("\n")
+  end
+
 end

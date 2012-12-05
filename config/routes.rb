@@ -9,10 +9,7 @@ SqldesignerRails::Application.routes.draw do
   end
   devise_for :users
 
-  resources :erds, :only => [:index, :edit, :update, :destroy]
-  match "/backend/rails/list", :to => "erds#list"
-  match "/backend/rails/save", :to => "erds#create"
-  match "/backend/rails/load", :to => "erds#show"
+  resources :erds
   root :to => "erds#new"
 
 end
