@@ -6,11 +6,9 @@
         %span.icon-bar
         %span.icon-bar
       = link_to(Setting.app_name, Setting.domain , :class => "brand" )
-      = render :partial => "common/search_form"
+      = # render :partial => "common/search_form"
       .nav-collapse
         = render_list :class => "nav" do |li|
-          - li << link_to("Link-1","#")
-          - li << link_to("Link-2","#")
-          - li << link_to("Link-3","#")
+          - # li << link_to("Link-1","#")
         = render :partial => "common/user_nav"
   = yield :submenu

@@ -1247,16 +1247,18 @@ SQL.IO.prototype.init = function(owner) {
 
 	var ids = ["saveload","clientlocalsave", "clientsave", "clientlocalload","clientload", "clientsql", 
 				"quicksave", "serversave", "serverload",
-				"serverlist", "serverimport"];
+				"serverlist", "erdslist", "serverimport"];
 	for (var i=0;i<ids.length;i++) {
 		var id = ids[i];
 		var elm = OZ.$(id);
-		this.dom[id] = elm;
-		elm.value = _(id);
+		if(elm) {
+			this.dom[id] = elm;
+			elm.value = _(id);
+		}
 	}
-	
-	this.dom.quicksave.value += " (F2)";
-
+	if(this.dom.quicksave) {
+		this.dom.quicksave.value += " (F2)";
+  }
 	var ids = ["client","server","output","backendlabel"];
 	for (var i=0;i<ids.length;i++) {
 		var id = ids[i];
@@ -1456,7 +1458,7 @@ SQL.IO.prototype.serversave = function(e, keyword) {
 	this._name = name;
 	var xml = this.owner.toXML();
 	var bp = this.owner.getOption("xhrpath");
-	var url = bp + "backend/"+this.dom.backend.value+"/save?keyword="+encodeURIComponent(name);
+	var url = bp + "erds?keyword="+encodeURIComponent(name);
 	var h = {"Content-type":"application/xml"};
 	this.owner.window.showThrobber();
 	this.owner.setTitle(name);
@@ -1471,8 +1473,17 @@ SQL.IO.prototype.serverload = function(e, keyword) {
 	var name = keyword || prompt(_("serverloadprompt"), this._name);
 	if (!name) { return; }
 	this._name = name;
+	var erd_id = window.location.href.match(/\/erds\/([0-9]+)/);
+	if(erd_id) {
+		erd_id = erd_id[1];
+	}
 	var bp = this.owner.getOption("xhrpath");
-	var url = bp + "backend/"+this.dom.backend.value+"/load?keyword="+encodeURIComponent(name);
+	var url = bp + "erds/"+erd_id+".xml"
+	var version_no = window.location.href.match(/version=([0-9]+)/);
+	if(version_no) {
+		version_no = version_no[1];
+		url = url + "?version="+version_no
+	}
 	this.owner.window.showThrobber();
 	this.name = name;
 	OZ.Request(url, this.loadresponse, {xml:true});
@@ -1480,7 +1491,7 @@ SQL.IO.prototype.serverload = function(e, keyword) {
 
 SQL.IO.prototype.serverlist = function(e) {
 	var bp = this.owner.getOption("xhrpath");
-	var url = bp + "backend/"+this.dom.backend.value+"/list";
+	var url = bp + "erds.xml";
 	this.owner.window.showThrobber();
 	OZ.Request(url, this.listresponse);
 }
@@ -2463,11 +2474,18 @@ SQL.Designer.prototype.init2 = function() { /* secondary init, after locale & da
 	this.sync();
 	
 	OZ.$("docs").value = _("docs");
-	OZ.$("logout").value = _("logout");
-	OZ.$("erdslist").value = _("erdslist");
+	if(OZ.$("logout")) {
+		OZ.$("logout").value = _("logout");
+	}
+	if(OZ.$("login")) {
+		OZ.$("login").value = _("login");
+	}
+	if(OZ.$("mypage")) {
+		OZ.$("mypage").value = _("mypage");
+	}
 
 	var url = window.location.href;
-	var r = url.match(/keyword=([^&]+)/);
+	var r = url.match(/keyword=([^&#]+)/);
 	if (r) {
 		var keyword = r[1];
 		this.io.serverload(false, keyword);

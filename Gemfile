@@ -81,3 +81,4 @@ end
 gem 'haml'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'paper_trail', '~> 2'

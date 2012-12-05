@@ -12,6 +12,6 @@ var CONFIG = {
 	RELATION_SPACING: 15,
 	RELATION_COLORS: ["#000", "#800", "#080", "#008", "#088", "#808", "#088"],
 	
-	STATIC_PATH: "",
-	XHR_PATH: ""
+	STATIC_PATH: "/",
+	XHR_PATH: "/"
 }
