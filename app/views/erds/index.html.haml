@@ -6,6 +6,7 @@
     %tr
       %th="#"
       %th="keyword"
+      %th="公開"
       %th="最後修改"
       %th=""
   %tbody
@@ -13,11 +14,14 @@
       %tr
         %td= erd.id
         %td= erd.keyword
+        %td= "是" if erd.published?
         %td= erd.updated_at
         %td.last
-          = link_to show_erd_path(erd), :class => "btn btn-success btn-mini" do
+          = link_to erd_path(erd, :keyword => erd.keyword), :class => "btn btn-success btn-mini" do
             %i.icon-white.icon-info-sign
             載入
+          = link_to revisions_erd_path(erd), :class => "btn btn-mini" do
+            版本列表
           = link_to edit_erd_path(erd), :class => "btn btn-mini" do
             %i.icon-pencil
             編輯

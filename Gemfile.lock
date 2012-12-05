@@ -106,6 +106,9 @@ GEM
       omniauth (~> 1.0)
     open_graph_helper (0.1.1)
     orm_adapter (0.4.0)
+    paper_trail (2.6.4)
+      activerecord (~> 3.0)
+      railties (~> 3.0)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -177,6 +180,7 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   open_graph_helper
+  paper_trail (~> 2)
   rails (= 3.2.8)
   sass-rails (~> 3.2.3)
   seo_helper (~> 1.0)

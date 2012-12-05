@@ -1,0 +1,24 @@
+%h1="ERD(#{@erd.keyword}) 歷史紀錄"
+= link_to "返回", erds_path, :class => "btn"
+= link_to erds_path, :class => "btn btn-success" do
+  %i.icon-white.icon-info-sign
+  = "載入目前版本"
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th="#"
+      %th="修改者"
+      %th="最後修改"
+      %th=""
+  %tbody
+    - @erds.each_with_index do |hash, i|
+      %tr
+        %td
+          = hash[:index]
+        %td= hash[:editor].name
+        %td= "#{time_ago_in_words(hash[:updated_at])} (#{hash[:updated_at]})"
+        %td.last
+          = link_to erd_path(@erd, :keyword => @erd.keyword, :version => hash[:index]), :class => "btn btn-mini btn-success" do
+            %i.icon-white.icon-info-sign
+            載入
