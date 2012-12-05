@@ -16,6 +16,7 @@
   <script type="text/javascript" src="/js/oz.js"></script>
   <script type="text/javascript" src="/js/config.js"></script>
   <script type="text/javascript" src="/js/wwwsqldesigner.js"></script>
+  <%= csrf_meta_tags %>
 </head>
 
 <body>
@@ -49,6 +50,7 @@
     
       <input type="button" id="options" />
       <a href="http://code.google.com/p/wwwsqldesigner/w/list" target="_blank"><input type="button" id="docs" value="" /></a>
+      <a href="<%= erds_path %>"><input type="button" id="erdslist" value="" /></a>
       <a href="<%= user_logout_path %>"><input type="button" id="logout" value="" /></a>
     </div>
   

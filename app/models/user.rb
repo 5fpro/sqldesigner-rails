@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   validates_presence_of :name
   validates_uniqueness_of :facebook_id, :allow_nil => true
+  has_many :erds, :order => "id DESC"
 
   def self.create_by_omniauth(hash, current_user)
     hash = ActiveSupport::HashWithIndifferentAccess.new hash

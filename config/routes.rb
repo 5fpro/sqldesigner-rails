@@ -9,18 +9,10 @@ SqldesignerRails::Application.routes.draw do
   end
   devise_for :users
 
-  namespace :backend do
-    resources :rails, :only => [:index] do
-      collection do
-        get "list"
-        post "save"
-        get "load"
-        get "import"
-      end
-    end
-  end
-
-  resources :erds
+  resources :erds, :only => [:index, :edit, :update, :destroy]
+  match "/backend/rails/list", :to => "erds#list"
+  match "/backend/rails/save", :to => "erds#create"
+  match "/backend/rails/load", :to => "erds#show"
   root :to => "erds#new"
 
 end
