@@ -1,24 +1,31 @@
 # -*- encoding : utf-8 -*-
 default_environment["PATH"] = "/opt/ruby/bin:/usr/local/bin:/usr/bin:/bin"
 
-set :application, "sqldesigner-rails"
-set :repository,  "git@github.com:example/#{application}.git"
-set :deploy_to, "/home/apps/#{application}"
+begin
+  require 'capistrano_colors'
+rescue LoadError
+  puts "`gem install capistrano_colors` to get output more userfriendly."
+end
 
-set :branch, "master"
+set :user, "passenger"
+set :group, "passenger"
+
+set :application, "sqldesigner-rails"
+set :repository,  "git@github.com:marsz/#{application}.git"
+set :deploy_to, "/home/#{user}/#{application}"
+
+set :branch, "develop"
 set :scm, :git
 
-set :user, "apps"
-set :group, "apps"
-
-set :deploy_to, "/home/apps/#{application}"
-set :runner, "apps"
+set :deploy_to, "/home/#{user}/#{application}"
+set :runner, user
 set :deploy_via, :remote_cache
 set :git_shallow_clone, 1
+set :domain, "sql.marsz.tw"
 
-role :web, "sqldesigner-rails.com"                          # Your HTTP server, Apache/etc
-role :app, "sqldesigner-rails.com"                         # This may be the same as your `Web` server
-role :db,  "sqldesigner-rails.com"   , :primary => true # This is where Rails migrations will run
+role :web, domain                          # Your HTTP server, Apache/etc
+role :app, domain                         # This may be the same as your `Web` server
+role :db,  domain   , :primary => true # This is where Rails migrations will run
 
 set :deploy_env, "production"
 set :rails_env, "production"
@@ -42,7 +49,8 @@ namespace :my_tasks do
     
     symlink_hash = {
       "#{shared_path}/config/database.yml"   => "#{release_path}/config/database.yml",
-      "#{shared_path}/config/s3.yml"   => "#{release_path}/config/s3.yml",
+      "#{shared_path}/config/config.yml"   => "#{release_path}/config/config.yml",
+      "#{shared_path}/config/omniauth.yml"   => "#{release_path}/config/omniauth.yml",
       "#{shared_path}/uploads"              => "#{release_path}/public/uploads",
     }
 

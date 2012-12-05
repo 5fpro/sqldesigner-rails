@@ -1,8 +1,9 @@
 defaults: &defaults
   app_name: "sqldesigner-rails"
   domain: "http://sqldesigner-rails.dev"    
-  facebook_app_id: 
-  facebook_secret: 
+  facebook_app_id: "267188576687915"
+  facebook_secret: "84f72292e1f6b299f4a668f12ed1a7f2"
+  facebook_perms:
   admin_emails: 
     - ""
   google_analytics_key: ""
