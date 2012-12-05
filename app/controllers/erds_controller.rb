@@ -9,6 +9,11 @@ class ErdsController < ApplicationController
     @erd = current_user.erds.find(params[:id])
   end
 
+  def revisions
+    @erd = current_user.erds.find(params[:id])
+    @erds = @erd.full_history
+  end
+
   def index
     @erds = current_user.erds
     respond_to do |f|
@@ -19,6 +24,7 @@ class ErdsController < ApplicationController
 
   def show
     @erd = Erd.find params[:id]
+    @erd = @erd.versions[params[:version].to_i].reify if params[:version]
     respond_to do |f|
       f.html { render :new, :layout => false }
       f.xml { render_erd_xml(@erd) }

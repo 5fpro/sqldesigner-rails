@@ -9,7 +9,11 @@ SqldesignerRails::Application.routes.draw do
   end
   devise_for :users
 
-  resources :erds
+  resources :erds do
+    member do
+      get :revisions
+    end
+  end
   root :to => "erds#new"
 
 end

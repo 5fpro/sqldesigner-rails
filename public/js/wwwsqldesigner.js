@@ -1479,6 +1479,11 @@ SQL.IO.prototype.serverload = function(e, keyword) {
 	}
 	var bp = this.owner.getOption("xhrpath");
 	var url = bp + "erds/"+erd_id+".xml"
+	var version_no = window.location.href.match(/version=([0-9]+)/);
+	if(version_no) {
+		version_no = version_no[1];
+		url = url + "?version="+version_no
+	}
 	this.owner.window.showThrobber();
 	this.name = name;
 	OZ.Request(url, this.loadresponse, {xml:true});
