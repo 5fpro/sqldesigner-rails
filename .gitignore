@@ -21,3 +21,4 @@ vendor/bundler_gems
 config/database.yml
 config/config.yml
 config/omniauth.yml
+config/deploy/*.rb
