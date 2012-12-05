@@ -2463,6 +2463,7 @@ SQL.Designer.prototype.init2 = function() { /* secondary init, after locale & da
 	this.sync();
 	
 	OZ.$("docs").value = _("docs");
+	OZ.$("logout").value = _("logout");
 
 	var url = window.location.href;
 	var r = url.match(/keyword=([^&]+)/);

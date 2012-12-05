@@ -99,5 +99,6 @@
 	<!-- misc -->
 	<string name="xmlerror">XML 錯誤</string>
 	<string name="docs">文件</string>
+	<string name="logout">登出</string>
 	
 </locale>

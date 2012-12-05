@@ -4,9 +4,11 @@ SqldesignerRails::Application.routes.draw do
   match '/auth/failure' => 'sessions#failure'
   match '/auth/facebook', :as => :facebook_login
 
+  devise_scope :user do
+    get "/logout" => "devise/sessions#destroy", :as => :user_logout
+  end
   devise_for :users
 
-  root :to => 'high_voltage/pages#show', :id => 'welcome'
   namespace :backend do
     resources :rails, :only => [:index] do
       collection do
@@ -17,5 +19,8 @@ SqldesignerRails::Application.routes.draw do
       end
     end
   end
+
+  resources :erds
+  root :to => "erds#new"
 
 end
