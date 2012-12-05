@@ -102,6 +102,6 @@
 	<string name="erdslist">ERD列表管理</string>
 	<string name="mypage">管理頁面</string>
 	<string name="logout">登出</string>
-	
+	<string name="login">登入/註冊</string>
 
 </locale>

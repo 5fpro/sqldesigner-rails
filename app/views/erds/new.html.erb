@@ -52,9 +52,12 @@
     
       <input type="button" id="options" />
       <a href="http://code.google.com/p/wwwsqldesigner/w/list" target="_blank"><input type="button" id="docs" value="" /></a>
+      <hr/>
       <%- if user_signed_in? %>
         <a href="<%= erds_path %>"><input type="button" id="mypage" value="" /></a>
         <a href="<%= user_logout_path %>"><input type="button" id="logout" value="" /></a>
+      <% else %>
+        <a href="<%= new_user_session_path %>"><input type="button" id="login" value="" /></a>
       <% end %>
     </div>
   

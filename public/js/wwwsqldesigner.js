@@ -2472,6 +2472,9 @@ SQL.Designer.prototype.init2 = function() { /* secondary init, after locale & da
 	if(OZ.$("logout")) {
 		OZ.$("logout").value = _("logout");
 	}
+	if(OZ.$("login")) {
+		OZ.$("login").value = _("login");
+	}
 	if(OZ.$("mypage")) {
 		OZ.$("mypage").value = _("mypage");
 	}
