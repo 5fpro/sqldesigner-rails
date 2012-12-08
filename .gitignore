@@ -22,3 +22,4 @@ config/database.yml
 config/config.yml
 config/omniauth.yml
 config/deploy/*.rb
+public/assets
