@@ -55,7 +55,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
-    devise (2.1.2)
+    devise (2.2.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (~> 3.1)
@@ -82,7 +82,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.21)
-    multi_json (1.5.1)
+    multi_json (1.6.1)
     multipart-post (1.1.5)
     mysql2 (0.3.11)
     net-scp (1.0.4)
@@ -175,7 +175,7 @@ DEPENDENCIES
   capistrano-ext
   capistrano_colors
   coffee-rails (~> 3.2.1)
-  devise
+  devise (~> 2.2.3)
   haml
   high_voltage
   jquery-rails

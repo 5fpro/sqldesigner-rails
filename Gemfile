@@ -21,7 +21,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'devise'
+gem 'devise', '~> 2.2.3'
 
 gem "seo_helper", "~> 1.0"
 gem "open_graph_helper"
