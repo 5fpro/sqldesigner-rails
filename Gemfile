@@ -53,6 +53,7 @@ group :development do
   gem "capistrano-ext"
   gem "capistrano_colors"
   gem 'rvm-capistrano'
+  gem 'venus', :git => "git@github.com:marsz/venus.git", :branch => "develop"
   # gem "cape"
   # gem "magic_encoding"
   # gem "annotate"

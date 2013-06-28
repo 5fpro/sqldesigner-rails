@@ -1,3 +1,13 @@
+GIT
+  remote: git@github.com:marsz/venus.git
+  revision: 5abca396a63c60cd0bbd954ec2d7fd7b4e79bd90
+  branch: develop
+  specs:
+    venus (0.8.1)
+      activesupport (>= 3.1.3)
+      bundler (>= 1.1)
+      railties (>= 3.1.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -207,4 +217,5 @@ DEPENDENCIES
   therubyracer
   turbo-sprockets-rails3
   uglifier (>= 1.0.3)
+  venus!
   will_paginate (= 3.0.3)
