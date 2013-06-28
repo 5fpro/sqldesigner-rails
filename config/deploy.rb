@@ -63,3 +63,5 @@ end
 
 after "deploy:finalize_update", "my_tasks:symlink"
 
+
+require 'puma/capistrano'
