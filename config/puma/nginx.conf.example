@@ -15,7 +15,7 @@
       proxy_pass http://sqldesigner-rails;
     }
 
-    location ~ ^/(assets)/  {
+    location ~ ^/(assets|styles|js|db|images|locale)/  {
       gzip_static on; # to serve pre-gzipped version
       expires max;
       add_header  Cache-Control public;
