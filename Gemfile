@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.16'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -53,7 +53,7 @@ group :development do
   gem "capistrano-ext"
   gem "capistrano_colors"
   gem 'rvm-capistrano'
-  gem 'venus', :git => "git@github.com:marsz/venus.git", :branch => "develop"
+  gem 'venus', '~> 0.8.6'
   # gem "cape"
   # gem "magic_encoding"
   # gem "annotate"
