@@ -1,7 +1,7 @@
 %ul.nav.pills.pull-right
   %li
     .social
-      = fb_like(Setting.domain)
+      = fb_like(domain)
   - if current_user
     %li.dropdown
       = link_to "/accoount" , :class => "dropdown-toggle", :data => { :toogle => "dropdown" } do
