@@ -114,7 +114,6 @@ GEM
     paper_trail (2.7.1)
       activerecord (~> 3.0)
       railties (~> 3.0)
-    pg (0.17.0)
     polyglot (0.3.3)
     puma (2.1.1)
       rack (>= 1.1, < 2.0)
@@ -204,7 +203,6 @@ DEPENDENCIES
   omniauth-facebook
   open_graph_helper
   paper_trail (~> 2)
-  pg
   puma (~> 2.1.1)
   rails (= 3.2.16)
   rvm-capistrano
