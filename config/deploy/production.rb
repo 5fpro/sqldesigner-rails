@@ -24,6 +24,7 @@ role :web,             servers + [ shadow_server ]  # for assets precompile
 role :db,              shadow_server
 role :whenever_server, shadow_server
 role :sidekiq_server,  shadow_server
+role :assets_sync_server, shadow_server
 
 # sitemap_generator
 # after "deploy", "deploy:sitemap:create"
