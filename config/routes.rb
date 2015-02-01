@@ -10,4 +10,8 @@ Rails.application.routes.draw do
   end
 
   root to: "base#index"
+
+  namespace :admin do
+    root to: "base#index"
+  end
 end
