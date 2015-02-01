@@ -47,6 +47,8 @@ defaults: &defaults
       google_oauth2:
         token: "814226609657-eluqm3esbbllu1tj70j1b1pcsej9m34j.apps.googleusercontent.com"
         secret: "1Cy-nHoMKrhU6-G5d8y7Cplv"
+  sitemap:
+    path: "sitemaps/"
 
 development:
   <<: *defaults

@@ -129,5 +129,7 @@ gem 'omniauth-oauth2', '~> 1.3.1' # for fix google oauth2
 gem 'jquery-ui-rails'
 gem 'bootstrap-sass', '~> 2.3'
 
+# SEO
 gem 'crummy'
 gem 'meta-tags', :require => 'meta_tags'
+gem 'sitemap_generator'
