@@ -124,3 +124,6 @@ gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-oauth2', '~> 1.3.1' # for fix google oauth2
+
+# front-end
+gem 'jquery-ui-rails'
