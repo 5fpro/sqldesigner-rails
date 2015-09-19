@@ -1,5 +1,7 @@
 class Admin::BaseController < ApplicationController
   layout 'admin'
+  respond_to :html, :json, :csv
+
   before_filter :authenticate_user!
   before_filter :authenticate_admin_user!
   before_filter do

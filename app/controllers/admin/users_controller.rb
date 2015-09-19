@@ -3,9 +3,11 @@ class Admin::UsersController < Admin::BaseController
   before_filter(except: [:index]){ add_crumb("Users", admin_users_path) }
 
   def index
-    @users = User.all.page(params[:page]).per(10)
     @admin_page_title = "Users"
     add_crumb @admin_page_title, "#"
+    @q = Admin::User.ransack(params[:q])
+    @users = @q.result.order("id DESC").page(params[:page]).per(30)
+    respond_with @users
   end
 
   def show

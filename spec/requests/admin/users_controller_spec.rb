@@ -3,9 +3,16 @@ require 'rails_helper'
 RSpec.describe Admin::UsersController do
   before{ signin_user }
 
-  it "GET /admin/users" do
-    get "/admin/users"
-    expect(response).to be_success
+  context "GET /admin/users" do
+    it "html" do
+      get "/admin/users"
+      expect(response).to be_success
+    end
+    it "csv" do
+      get "/admin/users.csv"
+      expect(response).to be_success
+      expect(response.body).to match(current_user.name)
+    end
   end
 
   it "GET /admin/users/new" do
