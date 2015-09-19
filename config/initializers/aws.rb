@@ -3,4 +3,4 @@ AWS.config(Setting.aws)
 # SUPPORT: SSL
 # ActionMailer::Base.default_url_options = { host: Setting.host, protocol: "https" }
 ActionMailer::Base.default_url_options = { host: Setting.host }
-ActionMailer::Base.asset_host = "http://#{Setting.carrierwave.host}"
+ActionMailer::Base.asset_host = "http://#{Setting.carrierwave.host}" # S3 not support SSL
