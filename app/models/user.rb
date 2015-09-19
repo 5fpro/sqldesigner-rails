@@ -31,4 +31,6 @@ class User < ActiveRecord::Base
   devise :async
   acts_as_taggable
   omniauthable
+
+  mount_uploader :avatar, AvatarUploader
 end

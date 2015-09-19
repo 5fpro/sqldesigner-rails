@@ -21,6 +21,7 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  admin                  :boolean          default(FALSE)
+#  avatar                 :string
 #
 
 require 'rails_helper'
@@ -30,6 +31,7 @@ RSpec.describe User, :type => :model do
 
   it "FactoryGirl" do
     expect(user).not_to be_new_record
+    expect( FactoryGirl.create(:user_with_avatar).avatar.url ).to be_present
   end
 
   it "devise async" do
