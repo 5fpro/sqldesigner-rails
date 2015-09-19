@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gem 'rails', '4.1.10'
+gem 'rails', '4.2.4'
 
 # DB
 gem 'pg'
@@ -16,9 +16,9 @@ gem 'settingslogic'
 
 # view rendering
 gem 'jbuilder', '~> 2.0'
+gem 'slim'
 # gem 'simple_form'
 # gem 'nested_form'
-# gem 'slim'
 
 # assets
 # gem 'sass-rails', '~> 4.0.3'
@@ -70,6 +70,8 @@ group :development do
   gem 'spring'
   gem 'venus', git: "git@github.com:marsz/venus.git", branch: 'v1.0'
   gem 'rename'
+  gem 'web-console', '~> 2.0'
+  gem 'byebug'
 end
 
 group :development, :test do
@@ -89,7 +91,7 @@ end
 
 gem 'kaminari'
 
-# devise 
+# devise
 gem 'devise'
 gem 'devise-async'
 
