@@ -32,6 +32,10 @@ RSpec.describe Admin::UsersController do
       follow_redirect!
       expect(response).to be_success
     end
+    it "with avatar" do
+      post "/admin/users", user: data_for(:creating_user, avatar: file_data)
+      expect( User.last.avatar.url ).to be_present
+    end
     it "fail" do
       expect{
         post "/admin/users", user: data_for(:creating_user).merge(email: "")

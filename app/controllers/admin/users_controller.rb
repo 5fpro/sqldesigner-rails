@@ -58,6 +58,6 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def user_params
-    params.fetch(:user, {}).permit(:name, :email, :password, :admin)
+    params.fetch(:user, {}).permit(:name, :email, :password, :admin, :avatar, :remove_avatar)
   end
 end

@@ -13,4 +13,8 @@ module RequestClient
   def current_user
     @current_user
   end
+
+  def file_data
+    fixture_file_upload("spec/fixtures/5fpro.png", "image/png")
+  end
 end
