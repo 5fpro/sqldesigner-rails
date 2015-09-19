@@ -91,3 +91,5 @@ First Use This Template App
   - config/deploy.rb
 - newrelic
   - congif/newrelic.yml
+- enabled SSL
+  - keywords in this repo: `SUPPORT: SSL`
