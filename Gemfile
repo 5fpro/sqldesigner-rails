@@ -16,9 +16,9 @@ gem 'settingslogic'
 
 # view rendering
 gem 'jbuilder', '~> 2.0'
+gem 'slim'
 # gem 'simple_form'
 # gem 'nested_form'
-# gem 'slim'
 
 # assets
 # gem 'sass-rails', '~> 4.0.3'
