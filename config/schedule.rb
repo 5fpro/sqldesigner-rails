@@ -20,7 +20,7 @@
 # Learn more: http://github.com/javan/whenever
 
 if @environment == "production"
-  every 1.day, :at => '5:00 am' do
+  every 1.day, at: '5:00 am' do
     # sitemap generator
     rake "-s sitemap:refresh"
     # rake "sitemap:refresh:no_ping"

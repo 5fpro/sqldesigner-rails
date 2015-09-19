@@ -134,10 +134,10 @@ SimpleForm.setup do |config|
   #   boolean: :vertical_boolean,
   # }
 
-  config.wrappers :admin, :tag => :div, :class => 'control-group' do |b|
+  config.wrappers :admin, tag: :div, class: 'control-group' do |b|
     b.use :placeholder
     b.use :label, class: 'control-label'
-    b.wrapper :tag => :div, :class => 'controls' do |ba|
+    b.wrapper tag: :div, class: 'controls' do |ba|
       ba.use :input
       ba.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
       ba.use :error, wrap_with: { tag: 'span', class: 'help-inline' }
