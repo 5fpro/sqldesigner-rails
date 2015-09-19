@@ -27,6 +27,8 @@ defaults: &defaults
     region: us-east-1
     bucket: myapp.5fpro.com
     host: myapp.5fpro.com.s3-website-us-east-1.amazonaws.com
+  mailer:
+    default_sender: "noreply@5fpro.com"
 
 development:
   <<: *defaults
