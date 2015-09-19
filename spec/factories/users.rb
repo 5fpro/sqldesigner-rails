@@ -37,10 +37,5 @@ FactoryGirl.define do
     factory :unconfirmed_user do
       confirmed_at nil
     end
-
-    factory :creating_user do
-      admin "0"
-      confirmed_at nil
-    end
   end
 end
