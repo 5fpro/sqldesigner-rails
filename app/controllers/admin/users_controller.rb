@@ -27,7 +27,9 @@ class Admin::UsersController < Admin::BaseController
     if user.save
       redirect_to admin_user_path(user), flash: { success: "user created" }
     else
-      render :new, flash: { error: user.errors.full_messages }
+      new()
+      flash.now[:error] = user.errors.full_messages
+      render :new
     end
   end
 
@@ -35,7 +37,9 @@ class Admin::UsersController < Admin::BaseController
     if user.update_attributes(user_params)
       redirect_to admin_user_path(user), flash: { success: "user updated" }
     else
-      render :edit, flash: { error: user.errors.full_messages }
+      edit()
+      flash.now[:error] = user.errors.full_messages
+      render :edit
     end
   end
 

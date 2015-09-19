@@ -29,12 +29,15 @@ RSpec.describe Admin::UsersController do
         post "/admin/users", user: data_for(:creating_user)
       }.to change{ User.count }.by(1)
       expect(response).to be_redirect
+      follow_redirect!
+      expect(response).to be_success
     end
     it "fail" do
       expect{
         post "/admin/users", user: data_for(:creating_user).merge(email: "")
       }.not_to change{ User.count }
       expect(response).not_to be_redirect
+      expect(response_flash_message("error")).to be_present
     end
   end
 
@@ -44,18 +47,24 @@ RSpec.describe Admin::UsersController do
         put "/admin/users/#{current_user.id}", user: { name: "Venus" }
       }.to change{ current_user.reload.name }.to("Venus")
       expect(response).to be_redirect
+      follow_redirect!
+      expect(response).to be_success
     end
     it "fail" do
       expect{
         put "/admin/users/#{current_user.id}", user: { email: "" }
       }.not_to change{ current_user.reload.name }
       expect(response).not_to be_redirect
+      expect(response_flash_message("error")).to be_present
     end
   end
 
   it "DELETE /admin/users/123" do
+    user = FactoryGirl.create :user
     expect{
-      delete "/admin/users/#{current_user.id}"
-    }.to change{ User.count }.to(0)
+      delete "/admin/users/#{user.id}"
+    }.to change{ User.count }.by(-1)
+    follow_redirect!
+    expect(response).to be_success
   end
 end
