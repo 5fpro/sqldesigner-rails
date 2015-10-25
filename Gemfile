@@ -107,3 +107,4 @@ gem 'rollbar'
 gem 'newrelic_rpm'
 
 gem 'slack-notifier'
+gem 'acts-as-taggable-on'

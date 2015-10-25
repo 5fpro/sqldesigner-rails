@@ -50,6 +50,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    acts-as-taggable-on (3.5.0)
+      activerecord (>= 3.2, < 5)
     addressable (2.3.8)
     annotate (2.6.10)
       activerecord (>= 3.2, <= 4.3)
@@ -318,7 +320,7 @@ GEM
     mime-types (2.6.2)
     mini_magick (4.3.3)
     mini_portile (0.6.2)
-    minitest (5.8.0)
+    minitest (5.8.1)
     multi_json (1.11.2)
     nenv (0.2.0)
     net-scp (1.2.1)
@@ -486,6 +488,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-postgis-adapter
+  acts-as-taggable-on
   annotate
   awesome_print
   aws-sdk
