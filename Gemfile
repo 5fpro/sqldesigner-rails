@@ -105,3 +105,5 @@ gem 'unicorn'
 # system mionitor
 gem 'rollbar'
 gem 'newrelic_rpm'
+
+gem 'slack-notifier'
