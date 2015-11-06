@@ -106,5 +106,8 @@ gem 'unicorn'
 gem 'rollbar'
 gem 'newrelic_rpm'
 
+# versioning
+gem 'paper_trail'
+
 gem 'slack-notifier'
 gem 'acts-as-taggable-on'
