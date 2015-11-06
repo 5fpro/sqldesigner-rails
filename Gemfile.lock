@@ -320,7 +320,7 @@ GEM
     mime-types (2.6.2)
     mini_magick (4.3.3)
     mini_portile (0.6.2)
-    minitest (5.8.1)
+    minitest (5.8.2)
     multi_json (1.11.2)
     nenv (0.2.0)
     net-scp (1.2.1)
@@ -334,6 +334,8 @@ GEM
       shellany (~> 0.0)
     oj (2.12.14)
     orm_adapter (0.5.0)
+    paranoia (2.1.4)
+      activerecord (~> 4.0)
     pg (0.18.3)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -515,6 +517,7 @@ DEPENDENCIES
   kaminari
   mini_magick
   newrelic_rpm
+  paranoia
   pg
   pry
   pry-rails
