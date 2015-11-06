@@ -27,4 +27,10 @@ RSpec.describe Category, type: :model do
       category.destroy
     }.to change{ Category.only_deleted.count }.by(1)
   end
+
+  it "has_paper_trail" do
+    expect{
+      category.update_attribute :name, "123123"
+    }.to change{ category.versions.size }.by(1)
+  end
 end

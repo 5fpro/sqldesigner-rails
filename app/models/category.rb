@@ -10,7 +10,9 @@
 #
 
 class Category < ActiveRecord::Base
+  acts_as_paranoid
+  has_paper_trail
+
   validates_presence_of :name
   validates_uniqueness_of :name
-  acts_as_paranoid
 end
