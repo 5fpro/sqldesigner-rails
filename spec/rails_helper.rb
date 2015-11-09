@@ -54,4 +54,8 @@ RSpec.configure do |config|
 
   config.before(:each){ webmock_all! }
   config.before(:each){ sidekiq_reset! }
+
+  config.after { Timecop.return }
+  # uncomment if you need specific time zone in default
+  # config.before{ Time.zone = ActiveSupport::TimeZone["Taipei"] }
 end

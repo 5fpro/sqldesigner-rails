@@ -83,6 +83,7 @@ end
 group :test do
   gem 'webmock'
   gem 'test_after_commit'
+  gem 'timecop'
 end
 
 group :doc do
