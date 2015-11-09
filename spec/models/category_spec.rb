@@ -39,16 +39,16 @@ RSpec.describe Category, type: :model do
     category
     category2 = FactoryGirl.create :category
     expect{
-      category2.insert_at(1)
-    }.to change{ described_class.where.not(sort: nil).order("sort ASC").try(:first).try(:id) }.to eq category2.id
+      category2.update_attribute :sort, :up
+    }.to change{ described_class.sorted.try(:first).try(:id) }.to eq category2.id
     expect{
-      category.reload.insert_at(1)
-    }.to change{ described_class.where.not(sort: nil).order("sort ASC").try(:first).try(:id) }.to eq category.id
+      category.reload.update_attribute :sort, :up
+    }.to change{ described_class.sorted.try(:first).try(:id) }.to eq category.id
     expect{
-      category2.reload.move_to_top
-    }.to change{ described_class.where.not(sort: nil).order("sort ASC").try(:first).try(:id) }.to eq category2.id
+      category2.reload.update_attribute :sort, :first
+    }.to change{ described_class.sorted.try(:first).try(:id) }.to eq category2.id
     expect{
-      category2.reload.remove_from_list
-    }.to change{ described_class.where.not(sort: nil).order("sort ASC").try(:first).try(:id) }.to eq category.id
+      category2.reload.update_attribute :sort, :remove
+    }.to change{ described_class.sorted.try(:first).try(:id) }.to eq category.id
   end
 end
