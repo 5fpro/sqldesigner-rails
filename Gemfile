@@ -41,7 +41,7 @@ gem 'fog'
 gem 'carrierwave_backgrounder'
 
 # soft delete
-# gem 'paranoia'
+gem 'paranoia'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -83,6 +83,7 @@ end
 group :test do
   gem 'webmock'
   gem 'test_after_commit'
+  gem 'timecop'
 end
 
 group :doc do
@@ -105,3 +106,12 @@ gem 'unicorn'
 # system mionitor
 gem 'rollbar'
 gem 'newrelic_rpm'
+
+# versioning
+gem 'paper_trail'
+
+gem 'slack-notifier'
+gem 'acts-as-taggable-on'
+
+# model sorting
+gem 'acts_as_list'

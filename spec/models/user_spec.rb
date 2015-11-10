@@ -26,7 +26,7 @@ require 'rails_helper'
 
 RSpec.describe User, :type => :model do
   let(:user){ FactoryGirl.create :user }
-  
+
   it "FactoryGirl" do
     expect(user).not_to be_new_record
   end
@@ -35,5 +35,12 @@ RSpec.describe User, :type => :model do
     expect{
       user
     }.to change_sidekiq_jobs_size_of(Devise::Async::Backend::Sidekiq)
+  end
+
+  it "acts_as_taggable" do
+    expect{
+      user.update_attribute :tag_list, ["1", "2"]
+    }.to change{ user.reload.tag_list.size }.by(2)
+    expect( Tag.count ).to eq 2
   end
 end

@@ -1,0 +1,54 @@
+# == Schema Information
+#
+# Table name: categories
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  deleted_at :datetime
+#  sort       :integer
+#
+
+require 'rails_helper'
+
+RSpec.describe Category, type: :model do
+  let(:category){ FactoryGirl.create :category }
+
+  it "FactoryGirl" do
+    expect{
+      FactoryGirl.create :category
+      FactoryGirl.create :category
+    }.to change{ Category.count }.by(2)
+  end
+
+  it "acts_as_paranoid" do
+    category
+    expect{
+      category.destroy
+    }.to change{ described_class.only_deleted.count }.by(1)
+  end
+
+  it "has_paper_trail" do
+    expect{
+      category.update_attribute :name, "123123"
+    }.to change{ category.versions.size }.by(1)
+  end
+
+  it "ranked-model" do
+    category
+    category2 = FactoryGirl.create :category
+    expect{
+      category2.update_attribute :sort, :up
+    }.to change{ described_class.sorted.try(:first).try(:id) }.to eq category2.id
+    expect{
+      category.reload.update_attribute :sort, :up
+    }.to change{ described_class.sorted.try(:first).try(:id) }.to eq category.id
+    expect{
+      category2.reload.update_attribute :sort, :first
+    }.to change{ described_class.sorted.try(:first).try(:id) }.to eq category2.id
+    expect{
+      category2.reload.update_attribute :sort, :remove
+    }.to change{ described_class.sorted.try(:first).try(:id) }.to eq category.id
+  end
+end
