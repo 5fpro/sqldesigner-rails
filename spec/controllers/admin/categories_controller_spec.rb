@@ -72,4 +72,17 @@ RSpec.describe Admin::CategoriesController, type: :request do
     expect(response).to be_success
   end
 
+  context "GET /admin/categories/123/revisions" do
+    it "empty" do
+      get "/admin/categories/#{category.id}/revisions"
+      expect( response ).to be_success
+    end
+
+    it "has revisions" do
+      Admin::Category.find(category.id).update_attribute :name, "abcdefg"
+      get "/admin/categories/#{category.id}/revisions"
+      expect( response ).to be_success
+      expect( response.body ).to match("abcdefg")
+    end
+  end
 end

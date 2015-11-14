@@ -25,6 +25,13 @@ class Admin::CategoriesController < Admin::BaseController
     add_crumb @admin_page_title, "#"
   end
 
+  def revisions
+    @admin_page_title = "##{@category.id} #{@category.name} - revisions"
+    add_crumb @category.name, admin_category_path(@category)
+    add_crumb "revisions", "#"
+    @versions = @category.versions
+  end
+
   def create
     if category.save
       redirect_to admin_category_path(category), flash: { success: "category created" }

@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "base#index"
     resources :users
-    resources :categories
+    resources :categories do
+      member do
+        get :revisions
+      end
+    end
   end
 end
