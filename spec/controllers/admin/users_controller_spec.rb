@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Admin::UsersController do
+RSpec.describe Admin::UsersController, type: :request do
   before{ signin_user }
 
   context "GET /admin/users" do

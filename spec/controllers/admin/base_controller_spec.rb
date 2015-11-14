@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Admin::BaseController do
+RSpec.describe Admin::BaseController, type: :request do
   it ".authenticate_user!" do
     get "/admin"
     expect(response).not_to be_success
