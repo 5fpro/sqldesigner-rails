@@ -1,0 +1,75 @@
+require 'rails_helper'
+
+RSpec.describe Admin::CategoriesController, type: :request do
+  let(:category){ FactoryGirl.create :category }
+
+  before{ signin_user }
+
+  context "GET /admin/categories" do
+    it "html" do
+      get "/admin/categories"
+      expect(response).to be_success
+    end
+  end
+
+  it "GET /admin/categories/new" do
+    get "/admin/categories/new"
+    expect(response).to be_success
+  end
+
+  it "GET /admin/categories/123" do
+    get "/admin/categories/#{category.id}"
+    expect(response).to be_success
+  end
+
+  it "GET /admin/categories/123/edit" do
+    get "/admin/categories/#{category.id}/edit"
+    expect(response).to be_success
+  end
+
+  context "POST /admin/categories" do
+    it "success" do
+      expect{
+        post "/admin/categories", category: data_for(:creating_category)
+      }.to change{ Category.count }.by(1)
+      expect(response).to be_redirect
+      follow_redirect!
+      expect(response).to be_success
+    end
+    it "fail" do
+      expect{
+        post "/admin/categories", category: data_for(:creating_category).merge(name: "")
+      }.not_to change{ Category.count }
+      expect(response).not_to be_redirect
+      expect(response_flash_message("error")).to be_present
+    end
+  end
+
+  context "PUT /admin/categories/123" do
+    it "success" do
+      expect{
+        put "/admin/categories/#{category.id}", category: { name: "Venus" }
+      }.to change{ category.reload.name }.to("Venus")
+      expect(response).to be_redirect
+      follow_redirect!
+      expect(response).to be_success
+    end
+    it "fail" do
+      expect{
+        put "/admin/categories/#{category.id}", category: { name: "" }
+      }.not_to change{ category.reload.name }
+      expect(response).not_to be_redirect
+      expect(response_flash_message("error")).to be_present
+    end
+  end
+
+  it "DELETE /admin/categories/123" do
+    category = FactoryGirl.create :category
+    expect{
+      delete "/admin/categories/#{category.id}"
+    }.to change{ Category.count }.by(-1)
+    follow_redirect!
+    expect(response).to be_success
+  end
+
+end

@@ -12,6 +12,15 @@ module DataMaker
     }
   end
 
+  def data_for_category
+    { name: "category haha"
+    }
+  end
+
+  def data_for_creating_category
+    data_for_category
+  end
+
   def data_for_creating_user
     data_for_user.merge(
       admin: "0"

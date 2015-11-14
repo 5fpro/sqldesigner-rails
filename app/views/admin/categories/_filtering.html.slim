@@ -1,0 +1,6 @@
+= search_form_for @q, :builder => SimpleForm::FormBuilder, html: { class: "form-horizontal" }, wrapper: :admin do |f|
+  = f.input :name_cont, label: "name contains"
+  - if Rails.env.development?
+    = f.input :created_at_eq, as: :string, input_html: { name: "", value: @q.result.to_sql }
+  .form-actions
+    = f.submit "Search", class: "btn btn-primary"
