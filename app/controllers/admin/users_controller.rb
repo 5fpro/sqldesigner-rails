@@ -11,7 +11,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def show
-    @admin_page_title = "##{user.id}"
+    @admin_page_title = "##{@user.id}"
     add_crumb @admin_page_title, "#"
   end
 

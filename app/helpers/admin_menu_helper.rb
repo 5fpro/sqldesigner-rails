@@ -9,7 +9,7 @@ module AdminMenuHelper
       },
       "Menu #2" => { url: url_for(q: 789), icon: "pencil", match: /q=789/ },
       "Users"   => { url: admin_users_path, icon: "user", match: /\/admin\/users/ },
-      "Category" => { url: admin_categories_path, icon: "category", match: /\/admin\/categories/ }
+      "Category" => { url: admin_categories_path, icon: "pencil", match: /\/admin\/categories/ }
     }
   end
 

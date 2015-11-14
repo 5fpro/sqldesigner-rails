@@ -1,6 +1,5 @@
 - content_for :btns do
-  = link_to "Edit", edit_admin_category_path(@category), class: "btn btn-large"
-  = link_to "Show", admin_category_path(@category), class: "btn btn-large"
+  = render partial: "btns", object: @category, as: :category
 
 = admin_widget_box "Revisions ( total results: #{@versions.size} )", icon: :pencil do
   .dataTables_wrapper

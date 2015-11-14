@@ -1,6 +1,5 @@
 - content_for :btns do
-  = link_to "Revisions", revisions_admin_category_path(@category), class: "btn btn-large"
-  = link_to "Back", admin_categories_path, class: "btn btn-large"
+  = render partial: "btns", object: @category, as: :category
 = admin_widget_box "Category ##{@category.id}", icon: :th do
   table.table.table-bordered.table-striped.table-hover
     tbody

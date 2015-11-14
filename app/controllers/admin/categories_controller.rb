@@ -1,9 +1,9 @@
 class Admin::CategoriesController < Admin::BaseController
   before_filter :category
-  before_filter(except: [:index]){ add_crumb("Users", admin_categories_path) }
+  before_filter(except: [:index]){ add_crumb("Categories", admin_categories_path) }
 
   def index
-    @admin_page_title = "Users"
+    @admin_page_title = "Categories"
     add_crumb @admin_page_title, "#"
     @q = Admin::Category.ransack(params[:q])
     @categories = @q.result.order("id DESC").page(params[:page]).per(30)
@@ -11,17 +11,17 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def show
-    @admin_page_title = "##{category.id}"
+    @admin_page_title = "##{@category.id} #{@category.name}"
     add_crumb @admin_page_title, "#"
   end
 
   def new
-    @admin_page_title = "New User"
+    @admin_page_title = "New Category"
     add_crumb @admin_page_title, "#"
   end
 
   def edit
-    @admin_page_title = "Edit User"
+    @admin_page_title = "Edit Category"
     add_crumb @admin_page_title, "#"
   end
 
