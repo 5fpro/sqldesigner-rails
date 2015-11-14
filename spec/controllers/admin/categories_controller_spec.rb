@@ -85,4 +85,17 @@ RSpec.describe Admin::CategoriesController, type: :request do
       expect( response.body ).to match("abcdefg")
     end
   end
+
+  context "POST /admin/categories/123/restore" do
+    it "already restored" do
+      post "/admin/categories/#{category.id}/restore"
+      expect(response).to be_redirect
+    end
+    it "succes" do
+      category.destroy
+      expect{
+        post "/admin/categories/#{category.id}/restore"
+      }.to change{ category.reload.deleted? }.to(false)
+    end
+  end
 end

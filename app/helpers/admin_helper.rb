@@ -4,6 +4,7 @@ module AdminHelper
   end
 
   def convert_changes_string(string, hstore_columns: nil)
+    return {} unless string
     hstore_columns ||= ["data"]
     diffs = YAML.load(string)
     hstore_columns.each do |hstore_col|
@@ -14,5 +15,9 @@ module AdminHelper
       end
     end
     diffs
+  end
+
+  def collection_for_delete_state
+    [["Deleted", :only_deleted], ["All", :with_deleted]]
   end
 end

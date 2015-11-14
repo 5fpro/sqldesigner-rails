@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :categories do
       member do
         get :revisions
+        post :restore
       end
     end
   end

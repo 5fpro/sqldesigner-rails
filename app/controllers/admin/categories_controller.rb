@@ -1,10 +1,9 @@
 class Admin::CategoriesController < Admin::BaseController
   before_filter :category
-  before_filter(except: [:index]){ add_crumb("Categories", admin_categories_path) }
+  before_filter{ add_crumb("Categories", admin_categories_path) }
 
   def index
     @admin_page_title = "Categories"
-    add_crumb @admin_page_title, "#"
     @q = Admin::Category.ransack(params[:q])
     @categories = @q.result.order("id DESC").page(params[:page]).per(30)
     respond_with @categories
@@ -60,10 +59,19 @@ class Admin::CategoriesController < Admin::BaseController
     end
   end
 
+  def restore
+    if category.restore
+      flash_message = { success: "category restored" }
+    else
+      flash_message = { error: "already restored" }
+    end
+    redirect_to request.referer || admin_categories_path, flash: flash_message
+  end
+
   private
 
   def category
-    @category ||= params[:id] ? Admin::Category.find(params[:id]) : Admin::Category.new(category_params)
+    @category ||= params[:id] ? Admin::Category.with_deleted.find(params[:id]) : Admin::Category.new(category_params)
   end
 
   def category_params

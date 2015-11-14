@@ -1,5 +1,6 @@
 = search_form_for @q, :builder => SimpleForm::FormBuilder, html: { class: "form-horizontal" }, wrapper: :admin, defaults: { required: false } do |f|
   = f.input :name_cont, label: "name contains"
+  = f.input :delete_state, label: "delete state", as: :select, collection: collection_for_delete_state, include_blank: "Without deleted"
   - if Rails.env.development?
     = f.input :created_at_eq, as: :string, input_html: { name: "", value: @q.result.to_sql }, label: "debug sql"
   .form-actions

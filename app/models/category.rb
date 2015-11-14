@@ -11,9 +11,9 @@
 #
 
 class Category < ActiveRecord::Base
-  acts_as_paranoid
   has_paper_trail only: [ :name, :deleted_at, :sort ]
   sortable column: :sort, add_new_at: nil
+  restorable
 
   validates_presence_of :name
   validates_uniqueness_of :name

@@ -17,10 +17,13 @@
             td= category.id
             td= category.name
             td
-              = link_to "show", admin_category_path(category), class: "btn btn-mini"
-              | &nbsp;
-              = link_to "edit", edit_admin_category_path(category), class: "btn btn-mini btn-success"
-              | &nbsp;
-              = link_to "delete", admin_category_path(category), class: "btn btn-mini btn-danger", method: :delete, "data-confirm" => "Delete?"
+              - if category.deleted?
+                = link_to "restore", restore_admin_category_path(category), class: "btn btn-mini btn-danger", method: :post, "data-confirm" => "Restore?"
+              - else
+                = link_to "show", admin_category_path(category), class: "btn btn-mini"
+                | &nbsp;
+                = link_to "edit", edit_admin_category_path(category), class: "btn btn-mini btn-success"
+                | &nbsp;
+                = link_to "delete", admin_category_path(category), class: "btn btn-mini btn-danger", method: :delete, "data-confirm" => "Delete?"
     .ui-toolbar.ui-widget-header
       = paginate @categories, theme: :admin
