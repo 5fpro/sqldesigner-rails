@@ -18,7 +18,9 @@ module DataMaker
   end
 
   def data_for_creating_category
-    data_for_category
+    data_for_category.merge(
+      tag_list: "a,b,c"
+    )
   end
 
   def data_for_creating_user

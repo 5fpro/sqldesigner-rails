@@ -6,5 +6,10 @@ init_select2 = (dom) ->
   $(dom).find("[data-select=tags]").each ->
     opts = { "width": $(@).data("width") || "80%" }
     opts.tokenSeparators = [",", " "]
-    opts.tags = true
+    tags = eval($(@).data("tags"))
+    opts.tags = tags
+    $(@).val(tags.join(","))
     $(@).select2(opts)
+
+$ ->
+  init_select2("body")

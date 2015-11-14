@@ -75,7 +75,7 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def category_params
-    params.fetch(:category, {}).permit(:name, :email, :password, :admin, :avatar, :remove_avatar)
+    params.fetch(:category, {}).permit(:name, :tag_list)
   end
 
 end

@@ -20,4 +20,8 @@ module AdminHelper
   def collection_for_delete_state
     [["Deleted", :only_deleted], ["All", :with_deleted]]
   end
+
+  def collection_for_tags
+    Tag.all.map(&:name)
+  end
 end

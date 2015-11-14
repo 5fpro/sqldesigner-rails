@@ -35,6 +35,7 @@ RSpec.describe Admin::CategoriesController, type: :request do
       expect(response).to be_redirect
       follow_redirect!
       expect(response).to be_success
+      expect(Category.last.tags.count).to be > 0
     end
     it "fail" do
       expect{
