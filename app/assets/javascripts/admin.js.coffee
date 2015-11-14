@@ -1,10 +1,9 @@
 #= require jquery
 #= require jquery_ujs
-#= require datetimepicker
-#= require nested_form
 #= require bootstrap
 #= require unicorn
 #= require_self
+#= require_tree ./admin
 
 # admin menu auto active
 $ ->

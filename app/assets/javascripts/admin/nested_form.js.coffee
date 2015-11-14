@@ -5,6 +5,7 @@ $(document).on 'nested:fieldAdded', (event) ->
   # it's a jQuery object already! Now you can find date input
   # var dateField = field.find('.date');
   # dateField.datepicker(); // and activate datepicker on it
+  init_select2(field)
   return
 $(document).on 'nested:fieldRemoved', ->
   field = event.field
