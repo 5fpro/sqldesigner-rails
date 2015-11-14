@@ -8,3 +8,5 @@
 # ActsAsTaggableOn.force_parameterize     = false
 # ActsAsTaggableOn.remove_unused_tags     = false
 # ActsAsTaggableOn.tags_counter           = true
+
+ActiveRecord::Base.send(:include, ::Taggable)
