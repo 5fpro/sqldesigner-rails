@@ -27,7 +27,7 @@ class Admin::UsersController < Admin::BaseController
 
   def create
     if user.save
-      redirect_to admin_user_path(user), flash: { success: "user created" }
+      redirect_to params[:redirect_to] || admin_user_path(user), flash: { success: "user created" }
     else
       new()
       flash.now[:error] = user.errors.full_messages
@@ -37,7 +37,7 @@ class Admin::UsersController < Admin::BaseController
 
   def update
     if user.update_attributes(user_params)
-      redirect_to admin_user_path(user), flash: { success: "user updated" }
+      redirect_to params[:redirect_to] || admin_user_path(user), flash: { success: "user updated" }
     else
       edit()
       flash.now[:error] = user.errors.full_messages
@@ -47,7 +47,7 @@ class Admin::UsersController < Admin::BaseController
 
   def destroy
     if user.destroy
-      redirect_to admin_users_path, flash: { success: "user deleted" }
+      redirect_to params[:redirect_to] || admin_users_path, flash: { success: "user deleted" }
     else
       redirect_to :back, flash: { error: user.errors.full_messages }
     end

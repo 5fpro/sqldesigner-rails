@@ -5,7 +5,7 @@ class Admin::CategoriesController < Admin::BaseController
   def index
     @admin_page_title = "Categories"
     @q = Admin::Category.ransack(params[:q])
-    @categories = @q.result.order("id DESC").page(params[:page]).per(30)
+    @categories = @q.result.sorted.page(params[:page]).per(30)
     respond_with @categories
   end
 
@@ -33,7 +33,7 @@ class Admin::CategoriesController < Admin::BaseController
 
   def create
     if category.save
-      redirect_to admin_category_path(category), flash: { success: "category created" }
+      redirect_to params[:redirect_to] || admin_category_path(category), flash: { success: "category created" }
     else
       new()
       flash.now[:error] = category.errors.full_messages
@@ -43,7 +43,7 @@ class Admin::CategoriesController < Admin::BaseController
 
   def update
     if category.update_attributes(category_params)
-      redirect_to admin_category_path(category), flash: { success: "category updated" }
+      redirect_to params[:redirect_to] || admin_category_path(category), flash: { success: "category updated" }
     else
       edit()
       flash.now[:error] = category.errors.full_messages
@@ -53,7 +53,7 @@ class Admin::CategoriesController < Admin::BaseController
 
   def destroy
     if category.destroy
-      redirect_to admin_categories_path, flash: { success: "category deleted" }
+      redirect_to params[:redirect_to] || admin_categories_path, flash: { success: "category deleted" }
     else
       redirect_to :back, flash: { error: category.errors.full_messages }
     end
@@ -75,7 +75,7 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def category_params
-    params.fetch(:category, {}).permit(:name, :tag_list)
+    params.fetch(:category, {}).permit(:name, :tag_list, :sort)
   end
 
 end

@@ -9,7 +9,7 @@ module Sortable
 
       acts_as_list(opts)
       define_column_setter!(column)
-      scope :sorted, ->{ where.not(column => nil).order("#{column} ASC") }
+      scope :sorted, ->{ order("#{column} ASC") }
     end
 
     private

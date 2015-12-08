@@ -35,8 +35,8 @@ RSpec.describe Category, type: :model do
     }.to change{ category.versions.size }.by(1)
   end
 
-  it "ranked-model" do
-    category
+  it "sortable" do
+    category.reload.update_attribute :sort, :up
     category2 = FactoryGirl.create :category
     expect{
       category2.update_attribute :sort, :up

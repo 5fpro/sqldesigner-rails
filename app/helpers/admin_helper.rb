@@ -24,4 +24,16 @@ module AdminHelper
   def collection_for_tags
     Tag.all.map(&:name)
   end
+
+  def render_admin_sorting_buttons(instance, column: :sort)
+    scope = instance.class.to_s.split("::").last.underscore
+    html = [:first, :up, :down, :last, :remove].map do |action|
+      if action == :remove && instance.try(column).nil?
+        ""
+      else
+        link_to action.to_s.camelize, send("admin_#{scope}_path", instance, "#{scope}[#{column}]" => action, redirect_to: url_for), method: :put, class: "btn btn-mini"
+      end
+    end.join(" ")
+    raw html
+  end
 end

@@ -10,12 +10,18 @@
         tr
           th= "#"
           th= "Name"
+          th= "Sort"
+          th= "Sorting"
           th= "actions"
       tbody
         - @categories.each do |category|
           tr
             td= category.id
             td= category.name
+            td= category.sort
+            td
+              - unless category.deleted?
+                = render_admin_sorting_buttons(category)
             td
               - if category.deleted?
                 = link_to "restore", restore_admin_category_path(category), class: "btn btn-mini btn-danger", method: :post, "data-confirm" => "Restore?"
