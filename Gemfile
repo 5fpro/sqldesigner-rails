@@ -45,6 +45,9 @@ gem 'paranoia'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+group :staging, :production do
+  gem 'newrelic_rpm'
+end
 
 group :development do
   # capistrano
@@ -90,6 +93,7 @@ group :doc do
   gem 'sdoc', '~> 0.4.0'
 end
 
+gem 'rollbar'
 gem 'kaminari'
 
 # devise
@@ -102,10 +106,6 @@ gem 'aws-sdk'
 
 # unicorn
 gem 'unicorn'
-
-# system mionitor
-gem 'rollbar'
-gem 'newrelic_rpm'
 
 # versioning
 gem 'paper_trail'
