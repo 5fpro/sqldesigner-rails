@@ -21,7 +21,6 @@ defaults: &defaults
     secret_access_key: abcdabcd
   sidekiq:
     url: redis://127.0.0.1:6379/0
-    namespace: myapp
   carrierwave:
     region: us-east-1
     bucket: myapp.5fpro.com
