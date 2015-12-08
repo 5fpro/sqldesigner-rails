@@ -20,7 +20,15 @@ module Restorable
             where(nil)
           end
         end
+
+      end
+      self.send :define_method, :restorable?, -> do
+        true
       end
     end
+  end
+
+  def restorable?
+    false
   end
 end

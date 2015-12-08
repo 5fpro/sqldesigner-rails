@@ -23,7 +23,7 @@ RSpec.describe Category, type: :model do
   end
 
   it "acts_as_paranoid" do
-    category
+    expect( category.restorable? ).to eq true
     expect{
       category.destroy
     }.to change{ described_class.only_deleted.count }.by(1)
@@ -50,5 +50,13 @@ RSpec.describe Category, type: :model do
     expect{
       category2.reload.update_attribute :sort, :remove
     }.to change{ described_class.sorted.try(:first).try(:id) }.to eq category.id
+
+  end
+
+  it "sortable + restorable" do
+    category.reload.update_attribute :sort, :up
+    expect{
+      category.destroy
+    }.to change{ category.reload.sort }.to(nil)
   end
 end

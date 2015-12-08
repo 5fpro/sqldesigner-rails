@@ -10,6 +10,7 @@ module Sortable
       acts_as_list(opts)
       define_column_setter!(column)
       scope :sorted, ->{ order("#{column} ASC") }
+      after_destroy :remove_from_list, if: :restorable?
     end
 
     private
@@ -39,6 +40,4 @@ module Sortable
       end
     end
   end
-
-
 end
