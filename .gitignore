@@ -19,4 +19,5 @@ config/database.yml
 /config/application.yml
 .DS_Store
 /public/assets
+/public/uploads
 /.capistrano/*
