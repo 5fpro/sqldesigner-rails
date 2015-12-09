@@ -246,6 +246,9 @@ GEM
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
     formatador (0.2.5)
+    fuubar (2.0.0)
+      rspec (~> 3.0)
+      ruby-progressbar (~> 1.4)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     guard (2.13.0)
@@ -386,6 +389,7 @@ GEM
       rspec-mocks (~> 3.4.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
+    ruby-progressbar (1.7.5)
     safe_yaml (1.0.4)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
@@ -479,6 +483,7 @@ DEPENDENCIES
   devise-async
   factory_girl_rails
   fog
+  fuubar
   guard
   guard-annotate
   http_logger

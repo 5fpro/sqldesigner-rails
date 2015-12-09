@@ -58,4 +58,6 @@ RSpec.configure do |config|
   config.after { Timecop.return }
   # uncomment if you need specific time zone in default
   # config.before{ Time.zone = ActiveSupport::TimeZone["Taipei"] }
+
+  config.fuubar_progress_bar_options = { :format => 'Progress: <%B> %p%% %a' }
 end
