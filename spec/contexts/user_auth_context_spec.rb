@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe UserAuthContext do
-  let(:user){ FactoryGirl.create :user }
+  let(:user){ FactoryGirl.create :unconfirmed_user }
   let(:omniauth_data){ omniauth_mock(:facebook) }
   let(:email){ omniauth_data['info']['email'] }
 
