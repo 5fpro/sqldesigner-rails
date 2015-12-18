@@ -1,2 +1,8 @@
 | Hello!
 - false?(123) # test `false?` method
+- if user_signed_in?
+  = link_to "Logout", destroy_user_session_path, method: :delete
+- else
+  - Setting.omniauth.providers.keys.each do |provider|
+    br/
+    = link_to "#{provider} login", send("auth_#{provider}_path")

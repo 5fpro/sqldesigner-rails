@@ -20,4 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  errors:
+    omniauth_parse_email_fail: "omniauth_parse_email_fail"
+    omniauth_already_auth: "omniauth_already_auth"
+    omniauth_email_registered: "omniauth_email_registered"

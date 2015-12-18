@@ -27,6 +27,22 @@ defaults: &defaults
     host: myapp.5fpro.com.s3-website-us-east-1.amazonaws.com
   mailer:
     default_sender: "noreply@5fpro.com"
+  omniauth:
+    providers:
+      facebook:
+        token: "267188576687915"
+        secret: "84f72292e1f6b299f4a668f12ed1a7f2"
+        options:
+          perms:
+            - "email"
+      github:
+        token: "3f9e288d55d83eee797d"
+        secret: "acc2d9185cdb236ffc227d4def846f3ade928710"
+        options:
+          scope: "user,user:email"
+      google_oauth2:
+        token: "814226609657-eluqm3esbbllu1tj70j1b1pcsej9m34j.apps.googleusercontent.com"
+        secret: "1Cy-nHoMKrhU6-G5d8y7Cplv"
 
 development:
   <<: *defaults
