@@ -117,6 +117,7 @@ gem 'paper_trail'
 
 gem 'slack-notifier'
 gem 'acts-as-taggable-on'
+gem 'ransack'
 
 # model sorting
 gem 'acts_as_list'
