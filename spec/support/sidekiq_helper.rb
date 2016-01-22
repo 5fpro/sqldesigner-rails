@@ -6,7 +6,7 @@ module SidekiqHelper
   end
 
   def fetch_sidekiq_jobs(worker_klass, method = nil, scheduled: false, queue: nil)
-    queue ||= worker_klass.get_sidekiq_options["queue"] rescue nil
+    queue ||= worker_klass.try(:get_sidekiq_options).try(:[], "queue")
     queue ||= "default"
     ( scheduled ? Sidekiq::ScheduledSet.new : Sidekiq::Queue.new(queue) ).to_a.select do |j|
       if method # delay extension
