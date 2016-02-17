@@ -17,16 +17,20 @@ gem 'settingslogic'
 # view rendering
 gem 'jbuilder', '~> 2.0'
 gem 'slim'
-# gem 'simple_form'
-# gem 'nested_form'
+gem 'simple_form'
+gem 'nested_form'
 
 # assets
-# gem 'sass-rails', '~> 4.0.3'
-# gem 'uglifier', '>= 1.3.0'
-# gem 'coffee-rails', '~> 4.0.0'
-# gem 'therubyracer',  platforms: :ruby
-# gem 'jquery-rails'
-# gem 'turbolinks'
+gem 'sass-rails', '~> 4.0.3'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'therubyracer',  platforms: :ruby
+gem 'asset_sync'
+
+# JS plugin
+gem 'jquery-rails'
+gem 'select2-rails', '~> 3'
+gem 'turbolinks'
 
 # background jobs
 gem 'sidekiq'
@@ -113,6 +117,7 @@ gem 'paper_trail'
 
 gem 'slack-notifier'
 gem 'acts-as-taggable-on'
+gem 'ransack'
 
 # model sorting
 gem 'acts_as_list'
@@ -123,3 +128,12 @@ gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-oauth2', '~> 1.3.1' # for fix google oauth2
+
+# front-end
+gem 'jquery-ui-rails'
+gem 'bootstrap-sass', '~> 2.3'
+
+# SEO
+gem 'crummy'
+gem 'meta-tags', :require => 'meta_tags'
+gem 'sitemap_generator'

@@ -10,4 +10,16 @@ Rails.application.routes.draw do
   end
 
   root to: "base#index"
+  get '/robots.txt', to: "base#robots", defaults: { format: "text" }
+
+  namespace :admin do
+    root to: "base#index"
+    resources :users
+    resources :categories do
+      member do
+        get :revisions
+        post :restore
+      end
+    end
+  end
 end

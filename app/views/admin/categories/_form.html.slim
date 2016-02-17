@@ -1,0 +1,4 @@
+= f.input :name
+= f.input :tag_list, label: "Tags", as: :string, input_html: { "data-select" => "tags", "data-tags" => collection_for_tags.to_json }
+.form-actions
+  = f.submit class: "btn btn-primary"

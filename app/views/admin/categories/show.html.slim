@@ -1,0 +1,20 @@
+- content_for :btns do
+  = render partial: "btns", object: @category, as: :category
+= admin_widget_box "Category ##{@category.id}", icon: :th do
+  table.table.table-bordered.table-striped.table-hover
+    tbody
+      tr
+        td= "ID"
+        td= @category.id
+      tr
+        td= "Name"
+        td= @category.name
+      tr
+        td= "Sort"
+        td= @category.sort
+      tr
+        td= "created at"
+        td= @category.created_at
+      tr
+        td= "updated at"
+        td= @category.updated_at

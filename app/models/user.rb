@@ -20,6 +20,7 @@
 #  unconfirmed_email      :string
 #  created_at             :datetime
 #  updated_at             :datetime
+#  admin                  :boolean          default(FALSE)
 #
 
 class User < ActiveRecord::Base
@@ -28,6 +29,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
   devise :async
-  acts_as_taggable
   omniauthable
+
+  mount_uploader :avatar, AvatarUploader
 end

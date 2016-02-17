@@ -1,0 +1,3 @@
+= admin_widget_box "New Category", icon: :pencil do
+  = simple_form_for @category, as: :category, wrapper: :admin do |f|
+    = render partial: "form", object: f, as: :f
