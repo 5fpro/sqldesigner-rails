@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: categories
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  deleted_at :datetime
+#  sort       :integer
+#
+
 require 'rails_helper'
 
 RSpec.describe Admin::CategoriesController, type: :request do
