@@ -1,4 +1,4 @@
-module Context::ErrorHandler
+module Errors::HandlerConcern
   extend ActiveSupport::Concern
 
   def errors
@@ -6,7 +6,7 @@ module Context::ErrorHandler
   end
 
   def error_messages
-    @errors.values.inject([]){ |s, messages| s + messages }
+    @errors.values.inject([]) { |a, e| a + e }
   end
 
   def has_error?
@@ -17,9 +17,11 @@ module Context::ErrorHandler
   protected
 
   def add_error(key, custom_message = nil)
+    ::Error.raise!(:error_code_not_defined, custom_message: custom_message) unless Errors::Code.exists?(key)
     @errors ||= {}
     @errors[key.to_sym] ||= []
-    @errors[key.to_sym] << custom_message || I18n.t("errors.#{key}.message", default: key.to_s)
+    @errors[key.to_sym] << (custom_message || Errors::Code.desc(key))
     false
   end
+
 end
