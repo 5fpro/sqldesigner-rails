@@ -13,50 +13,50 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  let(:category){ FactoryGirl.create :category }
+  let(:category) { FactoryGirl.create :category }
 
   it "FactoryGirl" do
-    expect{
+    expect {
       FactoryGirl.create :category
       FactoryGirl.create :category
-    }.to change{ Category.count }.by(2)
+    }.to change { Category.count }.by(2)
   end
 
   it "acts_as_paranoid" do
-    expect( category.restorable? ).to eq true
-    expect{
+    expect(category.restorable?).to eq true
+    expect {
       category.destroy
-    }.to change{ described_class.only_deleted.count }.by(1)
+    }.to change { described_class.only_deleted.count }.by(1)
   end
 
   it "has_paper_trail" do
-    expect{
+    expect {
       category.update_attribute :name, "123123"
-    }.to change{ category.versions.size }.by(1)
+    }.to change { category.versions.size }.by(1)
   end
 
   it "sortable" do
     category.reload.update_attribute :sort, :up
     category2 = FactoryGirl.create :category
-    expect{
+    expect {
       category2.update_attribute :sort, :up
-    }.to change{ described_class.sorted.try(:first).try(:id) }.to eq category2.id
-    expect{
+    }.to change { described_class.sorted.try(:first).try(:id) }.to eq category2.id
+    expect {
       category.reload.update_attribute :sort, :up
-    }.to change{ described_class.sorted.try(:first).try(:id) }.to eq category.id
-    expect{
+    }.to change { described_class.sorted.try(:first).try(:id) }.to eq category.id
+    expect {
       category2.reload.update_attribute :sort, :first
-    }.to change{ described_class.sorted.try(:first).try(:id) }.to eq category2.id
-    expect{
+    }.to change { described_class.sorted.try(:first).try(:id) }.to eq category2.id
+    expect {
       category2.reload.update_attribute :sort, :remove
-    }.to change{ described_class.sorted.try(:first).try(:id) }.to eq category.id
+    }.to change { described_class.sorted.try(:first).try(:id) }.to eq category.id
 
   end
 
   it "sortable + restorable" do
     category.reload.update_attribute :sort, :up
-    expect{
+    expect {
       category.destroy
-    }.to change{ category.reload.sort }.to(nil)
+    }.to change { category.reload.sort }.to(nil)
   end
 end

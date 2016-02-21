@@ -77,7 +77,7 @@ class UserAuthContext < BaseContext
   end
 
   def initialize_user
-    user = User.new( params_to_user_attributes )
+    user = User.new(params_to_user_attributes)
     def user.password_required?
       false
     end

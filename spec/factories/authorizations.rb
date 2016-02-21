@@ -15,9 +15,9 @@
 
 FactoryGirl.define do
   factory :authorization do
-    auth{ FactoryGirl.create :user }
-    provider{ :facebook }
-    sequence(:uid){ |n| n }
+    auth { FactoryGirl.create :user }
+    provider { :facebook }
+    sequence(:uid) { |n| n }
   end
 
 end

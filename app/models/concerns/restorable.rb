@@ -13,18 +13,16 @@ module Restorable
 
     def define_class_methods_for_restore!
       self.class.instance_eval do
-        define_method :delete_state, ->(value) do
+        define_method :delete_state, lambda { |value|
           if [:only_deleted, :with_deleted].include?(value.to_sym)
-            self.public_send(value)
+            public_send(value)
           else
             where(nil)
           end
-        end
+        }
 
       end
-      self.send :define_method, :restorable?, -> do
-        true
-      end
+      send :define_method, :restorable?, -> { true }
     end
   end
 

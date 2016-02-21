@@ -1,16 +1,16 @@
 module SidekiqHelper
 
   def sidekiq_reset!
-    Sidekiq::Stats.new.queues.keys.each{ |queue| Sidekiq::Queue.new(queue).clear }
+    Sidekiq::Stats.new.queues.keys.each { |queue| Sidekiq::Queue.new(queue).clear }
     Sidekiq::ScheduledSet.new.map(&:delete)
   end
 
   def fetch_sidekiq_jobs(worker_klass, method = nil, scheduled: false, queue: nil)
     queue ||= worker_klass.try(:get_sidekiq_options).try(:[], "queue")
     queue ||= "default"
-    ( scheduled ? Sidekiq::ScheduledSet.new : Sidekiq::Queue.new(queue) ).to_a.select do |j|
+    (scheduled ? Sidekiq::ScheduledSet.new : Sidekiq::Queue.new(queue)).to_a.select do |j|
       if method # delay extension
-        j = YAML::load(j.args.first)
+        j = YAML.load(j.args.first)
         j[0] == worker_klass && j[1].to_s == method.to_s
       else
         j.klass.to_s == worker_klass.to_s
@@ -19,11 +19,11 @@ module SidekiqHelper
   end
 
   def fetch_sidekiq_last_job(queue: "default", scheduled: false)
-    ( scheduled ? Sidekiq::ScheduledSet.new : Sidekiq::Queue.new(queue) ).to_a.first
+    (scheduled ? Sidekiq::ScheduledSet.new : Sidekiq::Queue.new(queue)).to_a.first
   end
 
   def change_sidekiq_jobs_size_of(worker_klass, method = nil, scheduled: false, queue: nil)
-    change{ fetch_sidekiq_jobs(worker_klass, method, scheduled: scheduled, queue: queue).size }
+    change { fetch_sidekiq_jobs(worker_klass, method, scheduled: scheduled, queue: queue).size }
   end
 
   def perform_sidekiq_job(sidekiq_job)

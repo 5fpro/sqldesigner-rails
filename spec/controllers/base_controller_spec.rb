@@ -11,7 +11,7 @@ RSpec.describe BaseController, type: :request do
     get "/robots.txt"
     expect(response).to be_success
     expect(response.body).not_to match("<html")
-    expect{
+    expect {
       get "/robots"
     }.to raise_error(ActionController::RoutingError)
   end

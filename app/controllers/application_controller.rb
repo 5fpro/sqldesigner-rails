@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include MetaTagHelper
 
-  before_filter :http_auth_for_staging
+  before_action :http_auth_for_staging
 
   def default_url_options
     # SUPPORT: SSL

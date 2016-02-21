@@ -1,6 +1,6 @@
 # ref: https://github.com/plataformatec/simple_form/wiki/Adding-custom-input-components
 class PicPreviewInput < SimpleForm::Inputs::FileInput
-  def input(wrapper_options = nil)
+  def input(_wrapper_options = nil)
     # :version is a custom attribute from :input_html hash, so you can pick custom sizes
     version = input_html_options.delete(:version)
     out = ActiveSupport::SafeBuffer.new
@@ -10,7 +10,7 @@ class PicPreviewInput < SimpleForm::Inputs::FileInput
       out << "<br />".html_safe
       out << "<label>#{remove_chk} remove</label>".html_safe # TRANSLATION: I18n here
       out << "<br />".html_safe
-      out << template.image_tag(object.send(attribute_name).tap {|o| break o.send(version) if version}.send('url'))
+      out << template.image_tag(object.send(attribute_name).tap { |o| break o.send(version) if version }.send('url'))
     end
     out
   end

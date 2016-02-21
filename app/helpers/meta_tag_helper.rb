@@ -17,9 +17,9 @@ module MetaTagHelper
     }
     data[:og][:image] = data[:image] if data[:image]
     set_meta_tags(data.merge(
-      reverse:   default_meta[:reverse],
-      separator: default_meta[:separator],
-      canonical: url
+                    reverse:   default_meta[:reverse],
+                    separator: default_meta[:separator],
+                    canonical: url
     ))
   end
 

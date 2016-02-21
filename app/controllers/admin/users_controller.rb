@@ -1,6 +1,6 @@
 class Admin::UsersController < Admin::BaseController
-  before_filter :user
-  before_filter(except: [:index]){ add_crumb("Users", admin_users_path) }
+  before_action :user
+  before_action(except: [:index]) { add_crumb("Users", admin_users_path) }
 
   def index
     @admin_page_title = "Users"
@@ -29,7 +29,7 @@ class Admin::UsersController < Admin::BaseController
     if user.save
       redirect_to params[:redirect_to] || admin_user_path(user), flash: { success: "user created" }
     else
-      new()
+      new
       flash.now[:error] = user.errors.full_messages
       render :new
     end
@@ -39,7 +39,7 @@ class Admin::UsersController < Admin::BaseController
     if user.update_attributes(user_params)
       redirect_to params[:redirect_to] || admin_user_path(user), flash: { success: "user updated" }
     else
-      edit()
+      edit
       flash.now[:error] = user.errors.full_messages
       render :edit
     end

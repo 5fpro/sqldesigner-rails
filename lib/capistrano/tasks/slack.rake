@@ -7,7 +7,7 @@ namespace :load do
     set :slack_channel,      -> { '#general' }
     set :slack_username,     -> { 'myapp' }
     set :slack_msg_updating, -> { "#{fetch :slack_deploy_user} has started deploying branch #{fetch :branch} of #{fetch :application} to #{fetch :stage, 'an unknown stage'}" }
-    set :slack_msg_reverting,-> { "#{fetch :slack_deploy_user} has started rolling back branch #{fetch :branch} of #{fetch :application} to #{fetch :stage, 'an unknown stage'}" }
+    set :slack_msg_reverting, -> { "#{fetch :slack_deploy_user} has started rolling back branch #{fetch :branch} of #{fetch :application} to #{fetch :stage, 'an unknown stage'}" }
     set :slack_msg_updated,  -> { "#{fetch :slack_deploy_user} has finished deploying branch #{fetch :branch} of #{fetch :application} to #{fetch :stage, 'an unknown stage'}" }
     set :slack_msg_reverted, -> { "#{fetch :slack_deploy_user} has finished rolling back branch of #{fetch :application} to #{fetch :stage, 'an unknown stage'}" }
     set :slack_msg_failed,   -> { "#{fetch :slack_deploy_user} has failed to #{fetch(:slack_deploy_or_rollback) || 'deploy'} branch #{fetch :branch} of #{fetch :application} to #{fetch :stage, 'an unknown stage'}" }

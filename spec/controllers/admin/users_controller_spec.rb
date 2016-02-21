@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Admin::UsersController, type: :request do
-  before{ signin_user }
+  before { signin_user }
 
   context "GET /admin/users" do
     it "html" do
@@ -32,21 +32,21 @@ RSpec.describe Admin::UsersController, type: :request do
 
   context "POST /admin/users" do
     it "success" do
-      expect{
+      expect {
         post "/admin/users", user: data_for(:creating_user)
-      }.to change{ User.count }.by(1)
+      }.to change { User.count }.by(1)
       expect(response).to be_redirect
       follow_redirect!
       expect(response).to be_success
     end
     it "with avatar" do
       post "/admin/users", user: data_for(:creating_user, avatar: file_data)
-      expect( User.last.avatar.url ).to be_present
+      expect(User.last.avatar.url).to be_present
     end
     it "fail" do
-      expect{
+      expect {
         post "/admin/users", user: data_for(:creating_user).merge(email: "")
-      }.not_to change{ User.count }
+      }.not_to change { User.count }
       expect(response).not_to be_redirect
       expect(response_flash_message("error")).to be_present
     end
@@ -54,17 +54,17 @@ RSpec.describe Admin::UsersController, type: :request do
 
   context "PUT /admin/users/123" do
     it "success" do
-      expect{
+      expect {
         put "/admin/users/#{current_user.id}", user: { name: "Venus" }
-      }.to change{ current_user.reload.name }.to("Venus")
+      }.to change { current_user.reload.name }.to("Venus")
       expect(response).to be_redirect
       follow_redirect!
       expect(response).to be_success
     end
     it "fail" do
-      expect{
+      expect {
         put "/admin/users/#{current_user.id}", user: { email: "" }
-      }.not_to change{ current_user.reload.name }
+      }.not_to change { current_user.reload.name }
       expect(response).not_to be_redirect
       expect(response_flash_message("error")).to be_present
     end
@@ -72,9 +72,9 @@ RSpec.describe Admin::UsersController, type: :request do
 
   it "DELETE /admin/users/123" do
     user = FactoryGirl.create :user
-    expect{
+    expect {
       delete "/admin/users/#{user.id}"
-    }.to change{ User.count }.by(-1)
+    }.to change { User.count }.by(-1)
     follow_redirect!
     expect(response).to be_success
   end

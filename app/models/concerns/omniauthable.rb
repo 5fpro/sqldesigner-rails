@@ -3,7 +3,7 @@ module Omniauthable
 
   module ClassMethods
     def omniauthable
-      has_many :authorizations, :dependent => :destroy, :as => :auth
+      has_many :authorizations, dependent: :destroy, as: :auth
     end
   end
 

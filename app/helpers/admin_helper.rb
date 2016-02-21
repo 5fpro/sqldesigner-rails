@@ -8,10 +8,9 @@ module AdminHelper
     hstore_columns ||= ["data"]
     diffs = YAML.load(string)
     hstore_columns.each do |hstore_col|
-      if data = diffs.delete(hstore_col)
-        HashDiff.diff(data[0] || {}, data[1] || {}).each do |diff|
-          diffs[diff[1]] = [ diff[2], diff[3] ] if diff[0] == "~"
-        end
+      next unless data = diffs.delete(hstore_col)
+      HashDiff.diff(data[0] || {}, data[1] || {}).each do |diff|
+        diffs[diff[1]] = [diff[2], diff[3]] if diff[0] == "~"
       end
     end
     diffs

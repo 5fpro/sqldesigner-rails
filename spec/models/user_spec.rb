@@ -26,16 +26,16 @@
 
 require 'rails_helper'
 
-RSpec.describe User, :type => :model do
-  let(:user){ FactoryGirl.create :user }
+RSpec.describe User, type: :model do
+  let(:user) { FactoryGirl.create :user }
 
   it "FactoryGirl" do
     expect(user).not_to be_new_record
-    expect( FactoryGirl.create(:user_with_avatar).avatar.url ).to be_present
+    expect(FactoryGirl.create(:user_with_avatar).avatar.url).to be_present
   end
 
   it "devise async" do
-    expect{
+    expect {
       FactoryGirl.create :unconfirmed_user
     }.to change_sidekiq_jobs_size_of(Devise::Async::Backend::Sidekiq)
   end

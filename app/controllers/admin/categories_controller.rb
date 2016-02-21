@@ -1,6 +1,6 @@
 class Admin::CategoriesController < Admin::BaseController
-  before_filter :category
-  before_filter{ add_crumb("Categories", admin_categories_path) }
+  before_action :category
+  before_action { add_crumb("Categories", admin_categories_path) }
 
   def index
     @admin_page_title = "Categories"
@@ -35,7 +35,7 @@ class Admin::CategoriesController < Admin::BaseController
     if category.save
       redirect_to params[:redirect_to] || admin_category_path(category), flash: { success: "category created" }
     else
-      new()
+      new
       flash.now[:error] = category.errors.full_messages
       render :new
     end
@@ -45,7 +45,7 @@ class Admin::CategoriesController < Admin::BaseController
     if category.update_attributes(category_params)
       redirect_to params[:redirect_to] || admin_category_path(category), flash: { success: "category updated" }
     else
-      edit()
+      edit
       flash.now[:error] = category.errors.full_messages
       render :edit
     end
@@ -60,11 +60,11 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def restore
-    if category.restore
-      flash_message = { success: "category restored" }
-    else
-      flash_message = { error: "already restored" }
-    end
+    flash_message = if category.restore
+                      { success: "category restored" }
+                    else
+                      { error: "already restored" }
+                    end
     redirect_to request.referer || admin_categories_path, flash: flash_message
   end
 

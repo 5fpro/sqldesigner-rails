@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Admin::CategoriesController, type: :request do
-  let(:category){ FactoryGirl.create :category }
+  let(:category) { FactoryGirl.create :category }
 
-  before{ signin_user }
+  before { signin_user }
 
   context "GET /admin/categories" do
     it "html" do
@@ -29,18 +29,18 @@ RSpec.describe Admin::CategoriesController, type: :request do
 
   context "POST /admin/categories" do
     it "success" do
-      expect{
+      expect {
         post "/admin/categories", category: data_for(:creating_category)
-      }.to change{ Category.count }.by(1)
+      }.to change { Category.count }.by(1)
       expect(response).to be_redirect
       follow_redirect!
       expect(response).to be_success
       expect(Category.last.tags.count).to be > 0
     end
     it "fail" do
-      expect{
+      expect {
         post "/admin/categories", category: data_for(:creating_category).merge(name: "")
-      }.not_to change{ Category.count }
+      }.not_to change { Category.count }
       expect(response).not_to be_redirect
       expect(response_flash_message("error")).to be_present
     end
@@ -48,17 +48,17 @@ RSpec.describe Admin::CategoriesController, type: :request do
 
   context "PUT /admin/categories/123" do
     it "success" do
-      expect{
+      expect {
         put "/admin/categories/#{category.id}", category: { name: "Venus" }
-      }.to change{ category.reload.name }.to("Venus")
+      }.to change { category.reload.name }.to("Venus")
       expect(response).to be_redirect
       follow_redirect!
       expect(response).to be_success
     end
     it "fail" do
-      expect{
+      expect {
         put "/admin/categories/#{category.id}", category: { name: "" }
-      }.not_to change{ category.reload.name }
+      }.not_to change { category.reload.name }
       expect(response).not_to be_redirect
       expect(response_flash_message("error")).to be_present
     end
@@ -66,9 +66,9 @@ RSpec.describe Admin::CategoriesController, type: :request do
 
   it "DELETE /admin/categories/123" do
     category = FactoryGirl.create :category
-    expect{
+    expect {
       delete "/admin/categories/#{category.id}"
-    }.to change{ Category.count }.by(-1)
+    }.to change { Category.count }.by(-1)
     follow_redirect!
     expect(response).to be_success
   end
@@ -76,14 +76,14 @@ RSpec.describe Admin::CategoriesController, type: :request do
   context "GET /admin/categories/123/revisions" do
     it "empty" do
       get "/admin/categories/#{category.id}/revisions"
-      expect( response ).to be_success
+      expect(response).to be_success
     end
 
     it "has revisions" do
       Admin::Category.find(category.id).update_attribute :name, "abcdefg"
       get "/admin/categories/#{category.id}/revisions"
-      expect( response ).to be_success
-      expect( response.body ).to match("abcdefg")
+      expect(response).to be_success
+      expect(response.body).to match("abcdefg")
     end
   end
 
@@ -94,9 +94,9 @@ RSpec.describe Admin::CategoriesController, type: :request do
     end
     it "succes" do
       category.destroy
-      expect{
+      expect {
         post "/admin/categories/#{category.id}/restore"
-      }.to change{ category.reload.deleted? }.to(false)
+      }.to change { category.reload.deleted? }.to(false)
     end
   end
 end
