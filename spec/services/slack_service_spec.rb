@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SlackService, :type => :model do
+RSpec.describe SlackService, type: :service do
   it ".notify" do
     described_class.notify("haha")
   end
