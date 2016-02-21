@@ -5,7 +5,7 @@ gem 'rails', '4.2.5.1'
 gem 'pg'
 gem 'activerecord-postgis-adapter'
 gem 'redis'
-gem 'redis-objects', :require => "redis/objects"
+gem 'redis-objects', require: "redis/objects"
 
 # stores
 gem 'dalli'
@@ -24,7 +24,7 @@ gem 'nested_form'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'therubyracer',  platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 gem 'asset_sync'
 
 # JS plugin
@@ -34,7 +34,7 @@ gem 'turbolinks'
 
 # background jobs
 gem 'sidekiq'
-gem 'sinatra', '>= 1.3.0', :require => nil
+gem 'sinatra', '>= 1.3.0', require: nil
 gem 'sidekiq-limit_fetch'
 gem 'whenever'
 
@@ -79,6 +79,7 @@ group :development do
   gem 'rename'
   gem 'web-console', '~> 2.0'
   gem 'byebug'
+  gem 'rubocop'
 end
 
 group :development, :test do
@@ -135,5 +136,5 @@ gem 'bootstrap-sass', '~> 2.3'
 
 # SEO
 gem 'crummy'
-gem 'meta-tags', :require => 'meta_tags'
+gem 'meta-tags', require: 'meta_tags'
 gem 'sitemap_generator'
