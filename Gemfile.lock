@@ -65,12 +65,12 @@ GEM
       unf
     ast (2.2.0)
     awesome_print (1.6.1)
-    aws-sdk (2.2.18)
-      aws-sdk-resources (= 2.2.18)
-    aws-sdk-core (2.2.18)
+    aws-sdk (2.2.19)
+      aws-sdk-resources (= 2.2.19)
+    aws-sdk-core (2.2.19)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.2.18)
-      aws-sdk-core (= 2.2.18)
+    aws-sdk-resources (2.2.19)
+      aws-sdk-core (= 2.2.19)
     aws-sdk-v1 (1.66.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
@@ -192,7 +192,7 @@ GEM
       fog-core (~> 1.22)
       fog-json
       inflecto (~> 0.0.2)
-    fog-core (1.35.0)
+    fog-core (1.36.0)
       builder
       excon (~> 0.45)
       formatador (~> 0.2)
@@ -547,7 +547,7 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
-    webmock (1.24.0)
+    webmock (1.24.1)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
