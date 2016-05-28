@@ -15,7 +15,7 @@ module Taggable
       self.class.instance_eval do
         define_method :tagged, lambda { |*tags|
           tags.select!(&:present?)
-          tags.size > 0 ? tagged_with(tags, any: true) : where(nil)
+          !tags.empty? ? tagged_with(tags, any: true) : where(nil)
         }
       end
     end

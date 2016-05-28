@@ -27,8 +27,7 @@ module Sortable
                      down: :move_lower,
                      first: :move_to_top,
                      last: :move_to_bottom,
-                     remove: :remove_from_list
-                   }[value.to_sym]
+                     remove: :remove_from_list }[value.to_sym]
           send(method) if method
         elsif orig_value
           remove_from_list

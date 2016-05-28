@@ -30,8 +30,7 @@ class UserAuthContext < BaseContext
 
   def responds
     { user: @user,
-      authorization: @authorization
-    }
+      authorization: @authorization }
   end
 
   def find_authorization

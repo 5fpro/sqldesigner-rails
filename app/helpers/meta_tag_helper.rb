@@ -32,7 +32,6 @@ module MetaTagHelper
       separator: " | ",
       reverse: true,
       og_type: "website",
-      site: "5Fpro"
-    }
+      site: "5Fpro" }
   end
 end

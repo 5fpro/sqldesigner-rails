@@ -8,13 +8,11 @@ module DataMaker
   def data_for_user
     { name: "5Fpro",
       email: "user@5fpro.com", # TODO: sequence
-      password: "12341234"
-    }
+      password: "12341234" }
   end
 
   def data_for_category
-    { name: "category haha"
-    }
+    { name: "category haha" }
   end
 
   def data_for_creating_category

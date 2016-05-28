@@ -11,7 +11,7 @@ module Errors::HandlerConcern
 
   def has_error?
     return false unless @errors
-    @errors.size > 0
+    !@errors.empty?
   end
 
   protected
