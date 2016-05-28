@@ -1,5 +1,5 @@
 def connect_to_redis!
-  Redis.current = Redis.new(Setting.redis)
+  Redis.current = Redis.new(Setting.redis.symbolize_keys)
   Redis.current.client.reconnect
 end
 
