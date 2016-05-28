@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gem 'rails', '4.2.5.1'
+gem 'rails', '4.2.6'
 
 # DB
 gem 'pg'
@@ -78,7 +78,6 @@ group :development do
   gem 'venus', git: "git@github.com:marsz/venus.git", branch: 'v1.0'
   gem 'rename'
   gem 'web-console', '~> 2.0'
-  gem 'byebug'
   gem 'rubocop'
 end
 
@@ -86,6 +85,7 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'byebug'
 end
 
 group :test do
