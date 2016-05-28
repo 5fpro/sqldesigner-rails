@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   include MetaTagHelper
 
   before_action :http_auth_for_staging
+  before_action :set_paper_trail_whodunnit
 
   def default_url_options
     # SUPPORT: SSL
