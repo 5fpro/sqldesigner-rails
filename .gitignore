@@ -22,3 +22,4 @@
 /public/uploads
 /.capistrano/*
 /.rubocop_todo.yml
+/.byebug_history
