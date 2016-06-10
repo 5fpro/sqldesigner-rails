@@ -76,7 +76,7 @@ ALTER USER "your_name" WITH SUPERUSER;
 First Use This Template App
 ================================
 
-- `rails g rename:app_to your_new_app_name`
+- search keywords `myapp` & `Myapp` and replace to your new name.
 - configs
   - config/application.yml
   - config/database.yml
@@ -101,3 +101,4 @@ First Use This Template App
   - config/deploy/production.rb (just uncomment)
 - staging http auth
   - app/controllers/application_controller.rb
+- remove this block from README.md

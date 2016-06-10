@@ -77,7 +77,6 @@ group :development do
   gem 'http_logger'
   gem 'spring'
   gem 'venus', git: "git@github.com:marsz/venus.git", branch: 'v1.0'
-  gem 'rename'
   gem 'web-console', '~> 2.0'
   gem 'rubocop'
 end
