@@ -148,6 +148,7 @@ GEM
       safe_yaml (~> 1.0.0)
     crummy (1.8.0)
     dalli (2.7.6)
+    database_cleaner (1.5.3)
     debug_inspector (0.0.2)
     devise (3.5.10)
       bcrypt (~> 3.0)
@@ -637,6 +638,7 @@ DEPENDENCIES
   connection_pool
   crummy
   dalli
+  database_cleaner
   devise
   devise-async
   factory_girl_rails
