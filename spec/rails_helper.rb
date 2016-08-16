@@ -57,6 +57,7 @@ RSpec.configure do |config|
 
   config.before(:each){ webmock_all! }
   config.before(:each){ sidekiq_reset! }
+  config.before(:each){ Redis.current.flushdb }
 
   config.after { Timecop.return }
   # uncomment if you need specific time zone in default
