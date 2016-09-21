@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.4.0'
+lock '3.5.0'
 
 set :application, 'myapp'
 set :repo_url, 'git@github.com:5fpro/rails4-template.git'
@@ -12,6 +12,8 @@ set :repo_url, 'git@github.com:5fpro/rails4-template.git'
 
 # Default value for :scm is :git
 set :scm, :git
+
+set :rvm_ruby_version, IO.read('./.ruby-version')
 
 # Default value for :format is :pretty
 # set :format, :pretty
