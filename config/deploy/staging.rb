@@ -14,7 +14,6 @@ server = "myapp.5fpro.com"
 role :app,                server
 role :web,                server
 role :db,                 server
-role :whenever_server,    server
 role :sidekiq_server,     server
 role :assets_sync_server, server
 

@@ -37,7 +37,6 @@ gem 'sidekiq'
 gem 'sinatra', '>= 1.3.0', require: nil
 gem 'sidekiq-limit_fetch'
 gem 'sidetiq'
-gem 'whenever'
 
 # file upload
 gem 'carrierwave'

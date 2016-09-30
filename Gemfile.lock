@@ -134,7 +134,6 @@ GEM
       timers (>= 4.1.1)
     celluloid-supervision (0.20.6)
       timers (>= 4.1.1)
-    chronic (0.10.2)
     coderay (1.1.1)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -601,8 +600,6 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
-    whenever (0.9.7)
-      chronic (>= 0.6.3)
     xml-simple (1.1.5)
     xray-rails (0.2.0)
       rails (>= 3.1.0)
@@ -691,7 +688,6 @@ DEPENDENCIES
   venus!
   web-console (~> 2.0)
   webmock
-  whenever
   xray-rails
 
 BUNDLED WITH
