@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.5.0'
+lock '3.6.1'
 
 set :application, 'myapp'
 set :repo_url, 'git@github.com:5fpro/rails4-template.git'
@@ -7,7 +7,7 @@ set :repo_url, 'git@github.com:5fpro/rails4-template.git'
 set :rvm_ruby_version, IO.read('./.ruby-version').split("\n")[0]
 
 # Default branch is :master
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
+ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, '/var/www/my_app_name'
