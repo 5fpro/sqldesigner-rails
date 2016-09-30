@@ -24,14 +24,6 @@ module MetaTagHelper
   end
 
   def default_meta
-    { title: "My app",
-      description: "5Fpro awesome!",
-      keywords: "5fpro",
-      fb_app_id: "12341234",
-      fb_admin_ids: "1234,123",
-      separator: " | ",
-      reverse: true,
-      og_type: "website",
-      site: "5Fpro" }
+    SeoSettings.defaults
   end
 end
