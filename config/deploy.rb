@@ -4,6 +4,8 @@ lock '3.5.0'
 set :application, 'myapp'
 set :repo_url, 'git@github.com:5fpro/rails4-template.git'
 
+set :rvm_ruby_version, IO.read('./.ruby-version').split("\n")[0]
+
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
