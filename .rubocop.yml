@@ -105,3 +105,12 @@ Metrics/AbcSize:
 
 Metrics/PerceivedComplexity:
   Max: 30
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Rails/OutputSafety:
+  Enabled: false
