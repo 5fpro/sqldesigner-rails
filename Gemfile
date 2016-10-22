@@ -24,7 +24,6 @@ gem 'nested_form'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'therubyracer', platforms: :ruby
 gem 'asset_sync'
 
 # JS plugin
@@ -56,7 +55,7 @@ end
 group :development do
   # capistrano
   gem 'capistrano-rails'
-  gem 'capistrano-rvm'
+  gem 'capistrano-rbenv'
   gem 'capistrano-sidekiq'
   # unicorn
   gem 'capistrano3-unicorn'
