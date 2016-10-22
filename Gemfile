@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gem 'rails', '4.2.6'
+gem 'rails', '4.2.7.1'
 
 # DB
 gem 'pg'
@@ -62,19 +62,9 @@ group :development do
   # slack
   gem 'slackistrano', require: false
 
-  gem 'guard-annotate'
   gem 'annotate'
-  gem 'awesome_print'
   gem 'xray-rails'
-  gem 'pry'
-  gem 'pry-rails'
-  gem 'pry-remote'
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'guard'
   gem 'http_logger'
-  gem 'spring'
-  gem 'venus', git: "git@github.com:marsz/venus.git", branch: 'v1.0'
   gem 'web-console', '~> 2.0'
   gem 'rubocop'
 end
