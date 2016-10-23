@@ -114,3 +114,9 @@ Style/NumericPredicate:
 
 Rails/OutputSafety:
   Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Rails/HttpPositionalArguments:
+  Enabled: false
