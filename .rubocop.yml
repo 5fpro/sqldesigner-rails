@@ -48,12 +48,6 @@ Style/IfUnlessModifier:
 Style/Semicolon:
   AllowAsExpressionSeparator: true
 
-Style/StringLiterals:
-  Enabled: false
-
-Style/StringLiteralsInInterpolation:
-  Enabled: false
-
 Style/ClassAndModuleChildren:
   Enabled: false
 
@@ -120,3 +114,11 @@ Style/AsciiComments:
 
 Rails/HttpPositionalArguments:
   Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+  Enabled: true
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: single_quotes
+  Enabled: true
