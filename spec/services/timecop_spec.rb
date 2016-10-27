@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Timecop, type: :service do
-  it "" do
+  it '' do
     Timecop.freeze Time.now
     time1 = Time.now
     Timecop.freeze time1 + 1.hour

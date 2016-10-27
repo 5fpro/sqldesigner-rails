@@ -6,24 +6,24 @@ module DataMaker
   private
 
   def data_for_user
-    { name: "5Fpro",
-      email: "user@5fpro.com", # TODO: sequence
-      password: "12341234" }
+    { name: '5Fpro',
+      email: 'user@5fpro.com', # TODO: sequence
+      password: '12341234' }
   end
 
   def data_for_category
-    { name: "category haha" }
+    { name: 'category haha' }
   end
 
   def data_for_creating_category
     data_for_category.merge(
-      tag_list: "a,b,c"
+      tag_list: 'a,b,c'
     )
   end
 
   def data_for_creating_user
     data_for_user.merge(
-      admin: "0"
+      admin: '0'
     )
   end
 end

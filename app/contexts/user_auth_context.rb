@@ -48,7 +48,7 @@ class UserAuthContext < BaseContext
 
   def email_uniqueness?
     scope = User.where(email: @email)
-    scope = scope.where("id != ?", @user.id)
+    scope = scope.where('id != ?', @user.id)
     return add_error(:omniauth_email_registered) unless scope.count == 0
   end
 

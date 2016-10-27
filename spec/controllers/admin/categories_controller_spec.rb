@@ -17,66 +17,66 @@ RSpec.describe Admin::CategoriesController, type: :request do
 
   before { signin_user }
 
-  context "GET /admin/categories" do
-    it "html" do
-      get "/admin/categories"
+  context 'GET /admin/categories' do
+    it 'html' do
+      get '/admin/categories'
       expect(response).to be_success
     end
   end
 
-  it "GET /admin/categories/new" do
-    get "/admin/categories/new"
+  it 'GET /admin/categories/new' do
+    get '/admin/categories/new'
     expect(response).to be_success
   end
 
-  it "GET /admin/categories/123" do
+  it 'GET /admin/categories/123' do
     get "/admin/categories/#{category.id}"
     expect(response).to be_success
   end
 
-  it "GET /admin/categories/123/edit" do
+  it 'GET /admin/categories/123/edit' do
     get "/admin/categories/#{category.id}/edit"
     expect(response).to be_success
   end
 
-  context "POST /admin/categories" do
-    it "success" do
+  context 'POST /admin/categories' do
+    it 'success' do
       expect {
-        post "/admin/categories", category: data_for(:creating_category)
+        post '/admin/categories', category: data_for(:creating_category)
       }.to change { Category.count }.by(1)
       expect(response).to be_redirect
       follow_redirect!
       expect(response).to be_success
       expect(Category.last.tags.count).to be > 0
     end
-    it "fail" do
+    it 'fail' do
       expect {
-        post "/admin/categories", category: data_for(:creating_category).merge(name: "")
+        post '/admin/categories', category: data_for(:creating_category).merge(name: '')
       }.not_to change { Category.count }
       expect(response).not_to be_redirect
-      expect(response_flash_message("error")).to be_present
+      expect(response_flash_message('error')).to be_present
     end
   end
 
-  context "PUT /admin/categories/123" do
-    it "success" do
+  context 'PUT /admin/categories/123' do
+    it 'success' do
       expect {
-        put "/admin/categories/#{category.id}", category: { name: "Venus" }
-      }.to change { category.reload.name }.to("Venus")
+        put "/admin/categories/#{category.id}", category: { name: 'Venus' }
+      }.to change { category.reload.name }.to('Venus')
       expect(response).to be_redirect
       follow_redirect!
       expect(response).to be_success
     end
-    it "fail" do
+    it 'fail' do
       expect {
-        put "/admin/categories/#{category.id}", category: { name: "" }
+        put "/admin/categories/#{category.id}", category: { name: '' }
       }.not_to change { category.reload.name }
       expect(response).not_to be_redirect
-      expect(response_flash_message("error")).to be_present
+      expect(response_flash_message('error')).to be_present
     end
   end
 
-  it "DELETE /admin/categories/123" do
+  it 'DELETE /admin/categories/123' do
     category = FactoryGirl.create :category
     expect {
       delete "/admin/categories/#{category.id}"
@@ -85,26 +85,26 @@ RSpec.describe Admin::CategoriesController, type: :request do
     expect(response).to be_success
   end
 
-  context "GET /admin/categories/123/revisions" do
-    it "empty" do
+  context 'GET /admin/categories/123/revisions' do
+    it 'empty' do
       get "/admin/categories/#{category.id}/revisions"
       expect(response).to be_success
     end
 
-    it "has revisions" do
-      Admin::Category.find(category.id).update_attribute :name, "abcdefg"
+    it 'has revisions' do
+      Admin::Category.find(category.id).update_attribute :name, 'abcdefg'
       get "/admin/categories/#{category.id}/revisions"
       expect(response).to be_success
-      expect(response.body).to match("abcdefg")
+      expect(response.body).to match('abcdefg')
     end
   end
 
-  context "POST /admin/categories/123/restore" do
-    it "already restored" do
+  context 'POST /admin/categories/123/restore' do
+    it 'already restored' do
       post "/admin/categories/#{category.id}/restore"
       expect(response).to be_redirect
     end
-    it "succes" do
+    it 'succes' do
       category.destroy
       expect {
         post "/admin/categories/#{category.id}/restore"

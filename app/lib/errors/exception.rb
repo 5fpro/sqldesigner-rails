@@ -7,7 +7,7 @@ class Errors::Exception < ::RuntimeError
   end
 
   def message
-    info.delete(:message) || (Errors::Code.desc(key) + (Rails.env.production? ? "" : info.inspect))
+    info.delete(:message) || (Errors::Code.desc(key) + (Rails.env.production? ? '' : info.inspect))
   end
 
   def to_hash

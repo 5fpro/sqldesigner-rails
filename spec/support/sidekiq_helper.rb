@@ -6,8 +6,8 @@ module SidekiqHelper
   end
 
   def fetch_sidekiq_jobs(worker_klass, method = nil, scheduled: false, queue: nil)
-    queue ||= worker_klass.try(:get_sidekiq_options).try(:[], "queue")
-    queue ||= "default"
+    queue ||= worker_klass.try(:get_sidekiq_options).try(:[], 'queue')
+    queue ||= 'default'
     (scheduled ? Sidekiq::ScheduledSet.new : Sidekiq::Queue.new(queue)).to_a.select do |j|
       if method # delay extension
         j = YAML.load(j.args.first)
@@ -18,7 +18,7 @@ module SidekiqHelper
     end
   end
 
-  def fetch_sidekiq_last_job(queue: "default", scheduled: false)
+  def fetch_sidekiq_last_job(queue: 'default', scheduled: false)
     (scheduled ? Sidekiq::ScheduledSet.new : Sidekiq::Queue.new(queue)).to_a.first
   end
 

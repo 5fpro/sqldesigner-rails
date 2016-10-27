@@ -5,7 +5,7 @@ gem 'rails', '4.2.7.1'
 gem 'pg'
 gem 'activerecord-postgis-adapter'
 gem 'redis'
-gem 'redis-objects', require: "redis/objects"
+gem 'redis-objects', require: 'redis/objects'
 
 # stores
 gem 'dalli'

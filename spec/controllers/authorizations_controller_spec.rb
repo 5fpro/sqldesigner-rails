@@ -16,10 +16,10 @@
 require 'rails_helper'
 
 describe AuthorizationsController, type: :request do
-  context "#callback" do
-    let(:fb_auth) { get "/authorizations/facebook/callback", nil, "omniauth.auth" => omniauth_mock(:facebook) }
-    let(:google_auth) { get "/authorizations/google_oauth2/callback", nil, "omniauth.auth" => omniauth_mock(:google_oauth2) }
-    it "success" do
+  context '#callback' do
+    let(:fb_auth) { get '/authorizations/facebook/callback', nil, 'omniauth.auth' => omniauth_mock(:facebook) }
+    let(:google_auth) { get '/authorizations/google_oauth2/callback', nil, 'omniauth.auth' => omniauth_mock(:google_oauth2) }
+    it 'success' do
       expect {
         fb_auth
       }.to change { User.count }.by(1)
@@ -28,21 +28,21 @@ describe AuthorizationsController, type: :request do
       expect(response).to be_success
     end
 
-    context "user auth fb & signed in" do
+    context 'user auth fb & signed in' do
       let(:user2) { FactoryGirl.create :user, email: omniauth_mock(:facebook)[:info][:email] }
       before { fb_auth }
       before { follow_redirect! }
       before { @user = User.last }
 
-      it "auth google" do
+      it 'auth google' do
         expect {
           google_auth
         }.not_to change { User.count }
         expect(@user.authorizations.count).to eq 2
       end
 
-      it "fail case" do
-        @user.update_column :email, "test@test.com"
+      it 'fail case' do
+        @user.update_column :email, 'test@test.com'
         expect {
           google_auth
           follow_redirect!

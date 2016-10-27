@@ -15,27 +15,27 @@ require 'rails_helper'
 RSpec.describe Category, type: :model do
   let(:category) { FactoryGirl.create :category }
 
-  it "FactoryGirl" do
+  it 'FactoryGirl' do
     expect {
       FactoryGirl.create :category
       FactoryGirl.create :category
     }.to change { Category.count }.by(2)
   end
 
-  it "acts_as_paranoid" do
+  it 'acts_as_paranoid' do
     expect(category.restorable?).to eq true
     expect {
       category.destroy
     }.to change { described_class.only_deleted.count }.by(1)
   end
 
-  it "has_paper_trail" do
+  it 'has_paper_trail' do
     expect {
-      category.update_attribute :name, "123123"
+      category.update_attribute :name, '123123'
     }.to change { category.versions.size }.by(1)
   end
 
-  it "sortable" do
+  it 'sortable' do
     category.reload.update_attribute :sort, :up
     category2 = FactoryGirl.create :category
     expect {
@@ -53,7 +53,7 @@ RSpec.describe Category, type: :model do
 
   end
 
-  it "sortable + restorable" do
+  it 'sortable + restorable' do
     category.reload.update_attribute :sort, :up
     expect {
       category.destroy
