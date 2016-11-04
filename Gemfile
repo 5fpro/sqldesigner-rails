@@ -21,7 +21,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'devise', '~> 2.2.3'
+gem 'devise', '2.2.3'
 
 gem "seo_helper", "~> 1.0"
 gem "open_graph_helper"
@@ -32,8 +32,8 @@ gem "open_graph_helper"
 
 gem "settingslogic"
 
-gem "anjlab-bootstrap-rails", ">= 2.1", :require => "bootstrap-rails"
-gem "bootstrap_helper", ">= 2.1.2"
+gem "anjlab-bootstrap-rails", "2.3.0.0", :require => "bootstrap-rails"
+gem "bootstrap_helper", '2.1.2.1'
 gem "simple_form", "2.0.3"
 gem "will_paginate", "3.0.3"
 

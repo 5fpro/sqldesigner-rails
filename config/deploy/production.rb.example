@@ -1,16 +1,7 @@
-set :domain, "sqldesigner.com"
-set :user, "apps"
-set :group, "apps"
+set :rails_env, 'production'
 
-set :application, "sqldesigner-rails"
-set :repository,  "git@github.com:marsz/#{application}.git"
-set :deploy_to, "/home/#{user}/#{application}"
+role :app, %w{apps@sql.5fpro.com}
+role :web, %w{apps@sql.5fpro.com}
+role :db, %w{apps@sql.5fpro.com}
 
-set :branch, "master"
-set :deploy_env, "production"
-set :rails_env, "production"
-
-set :runner, user
-role :web, domain                          # Your HTTP server, Apache/etc
-role :app, domain                         # This may be the same as your `Web` server
-role :db,  domain   , :primary => true # This is where Rails migrations will run
+set :rvm_ruby_version, File.read('.ruby-version').strip

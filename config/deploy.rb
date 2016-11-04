@@ -2,8 +2,8 @@
 lock '3.6.1'
 
 set :application, 'gh-musou'
-set :repo_url, 'git@github.com:5fpro/gh-musou.git'
-set :deploy_to, '/home/apps/gh-musou'
+set :repo_url, 'git@github.com:5fpro/sqldesigner-rails.git'
+set :deploy_to, '/home/apps/sqldesigner-rails'
 set :ssh_options, {
   user: 'apps',
   forward_agent: true
@@ -48,3 +48,5 @@ namespace :deploy do
     invoke 'unicorn:legacy_restart'
   end
 end
+
+set :rvm_ruby_version, File.read('.ruby-version').strip
