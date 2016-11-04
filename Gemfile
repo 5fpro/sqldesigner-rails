@@ -6,7 +6,7 @@ gem 'rails', '3.2.16'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-
+gem 'activerecord-mysql2-adapter'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -15,9 +15,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platforms => :ruby
   gem 'execjs'
-  gem 'turbo-sprockets-rails3'
 
   gem 'uglifier', '>= 1.0.3'
 end
@@ -48,12 +46,15 @@ group :assets do
   # gem "compass-rails"
 end
 
-group :development do 
-  gem "capistrano"
-  gem "capistrano-ext"
-  gem "capistrano_colors"
-  gem 'rvm-capistrano'
-  gem 'venus', '~> 0.8.6'
+group :development, :test do
+  gem 'test-unit'
+end
+
+group :development do
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  gem 'capistrano'
+  gem 'capistrano3-unicorn'
   # gem "cape"
   # gem "magic_encoding"
   # gem "annotate"
@@ -69,7 +70,7 @@ end
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
@@ -81,4 +82,3 @@ gem 'haml'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'paper_trail', '~> 2'
-gem 'puma', '~> 2.1.1'

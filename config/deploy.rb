@@ -1,67 +1,50 @@
-# -*- encoding : utf-8 -*-
-# default_environment["PATH"] = "/opt/ruby/bin:/usr/local/bin:/usr/bin:/bin"
+# config valid only for Capistrano 3.1
+lock '3.6.1'
 
-begin
-  require 'capistrano_colors'
-rescue LoadError
-  puts "`gem install capistrano_colors` to get output more userfriendly."
-end
+set :application, 'gh-musou'
+set :repo_url, 'git@github.com:5fpro/gh-musou.git'
+set :deploy_to, '/home/apps/gh-musou'
+set :ssh_options, {
+  user: 'apps',
+  forward_agent: true
+}
 
-require "rvm/capistrano"
-set :rvm_type, :system
+set :default_env, {
+  'EXECJS_RUNTIME' => 'Node'
+}
+# Default branch is :master
+ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
-require 'capistrano/ext/multistage'
-set :stages,        %w(production)
-set :default_stage, "production"
+# Default deploy_to directory is /var/www/my_app
+# set :deploy_to, '/var/www/my_app'
 
-require 'bundler/capistrano'
-
+# Default value for :scm is :git
 set :scm, :git
 
-# set :deploy_via, :remote_cache
-set :git_shallow_clone, 1
+# Default value for :format is :pretty
+# set :format, :pretty
 
-set :scm_verbose, true
-set :use_sudo, false
+# Default value for :log_level is :debug
+# set :log_level, :debug
 
+# Default value for :pty is false
+# set :pty, true
 
+# Default value for :linked_files is []
+set :linked_files, %w{config/database.yml config/config.yml}
+
+# Default value for linked_dirs is []
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/uploads}
+
+# Default value for default_env is {}
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+
+# Default value for keep_releases is 5
+set :keep_releases, 5
+
+after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
-
-  desc "Restart passenger process"
-  task :restart, :roles => [:web], :except => { :no_release => true } do
-    run "touch #{current_path}/tmp/restart.txt"
+  task :restart do
+    invoke 'unicorn:legacy_restart'
   end
 end
-
-
-namespace :my_tasks do
-  task :symlink, :roles => [:web] do
-    run "mkdir -p #{deploy_to}/shared/log"
-    run "mkdir -p #{deploy_to}/shared/pids"
-    
-    symlink_hash = {
-      "#{shared_path}/config/database.yml"   => "#{release_path}/config/database.yml",
-      "#{shared_path}/config/config.yml"   => "#{release_path}/config/config.yml",
-      "#{shared_path}/uploads"              => "#{release_path}/public/uploads",
-    }
-
-    symlink_hash.each do |source, target|
-      run "ln -sf #{source} #{target}"
-    end
-  end
-
-end
-
-
-
-namespace :remote_rake do
-  desc "Run a task on remote servers, ex: cap staging rake:invoke task=cache:clear"
-  task :invoke do
-    run "cd #{deploy_to}/current; RAILS_ENV=#{rails_env} bundle exec rake #{ENV['task']}"
-  end
-end
-
-after "deploy:finalize_update", "my_tasks:symlink"
-
-
-require 'puma/capistrano'
