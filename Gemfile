@@ -18,9 +18,11 @@ group :assets do
   gem 'execjs'
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'turbo-sprockets-rails3'
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'devise', '2.2.3'
 
 gem "seo_helper", "~> 1.0"

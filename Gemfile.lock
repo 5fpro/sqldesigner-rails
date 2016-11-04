@@ -89,6 +89,8 @@ GEM
     jquery-rails (3.1.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (5.0.5)
+      railties (>= 3.2.16)
     json (1.8.3)
     jwt (1.5.6)
     kgio (2.10.0)
@@ -175,6 +177,9 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    turbo-sprockets-rails3 (0.3.14)
+      railties (> 3.2.8, < 4.0.0)
+      sprockets (>= 2.2.0)
     tzinfo (0.3.52)
     uglifier (3.0.3)
       execjs (>= 0.3.0, < 3)
@@ -202,6 +207,7 @@ DEPENDENCIES
   haml
   high_voltage
   jquery-rails
+  jquery-ui-rails
   mysql2
   omniauth
   omniauth-facebook
@@ -213,9 +219,10 @@ DEPENDENCIES
   settingslogic
   simple_form (= 2.0.3)
   test-unit
+  turbo-sprockets-rails3
   uglifier (>= 1.0.3)
   unicorn
   will_paginate (= 3.0.3)
 
 BUNDLED WITH
-   1.13.2
+   1.13.6
