@@ -1,14 +1,14 @@
 default: &default
   defaults:
-    title: "My app"
-    description: "5Fpro awesome!"
-    keywords: "5fpro"
+    title: "5FPRO"
+    description: "5FPRO awesome!"
+    keywords: "5FPRO"
     fb_app_id: "12341234"
     fb_admin_ids: "1234,123"
     separator: " | "
     reverse: true
     og_type: "website"
-    site: "5Fpro"
+    site: "5FPRO"
 
 development:
   <<: *default

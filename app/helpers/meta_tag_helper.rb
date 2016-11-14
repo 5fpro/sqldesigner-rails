@@ -24,6 +24,11 @@ module MetaTagHelper
   end
 
   def default_meta
-    SeoSettings.defaults
+    h = SeoSettings.defaults
+    h[:icon] ||= [
+      { href: ActionController::Base.helpers.asset_path('fav-icon.png'), type: 'image/png' },
+      { href: ActionController::Base.helpers.asset_path('fav-icon.png'), type: 'image/png', rel: 'apple-touch-icon apple-touch-icon-precomposed' }
+    ]
+    h
   end
 end
