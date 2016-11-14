@@ -1,18 +1,18 @@
 development: &default
-  adapter: 'postgis'
-  encoding: 'unicode'
-  database: 'myapp_development'
-  host: '127.0.0.1'
-  username: 'root'
-  password: ''
+  adapter: postgis
+  encoding: unicode
+  database: myapp_development
+  host: 127.0.0.1
+  username: root
+  password:
   postgis_extension: true
-  schema_search_path: 'public, postgis'
+  schema_search_path: public, postgis
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 test: &TEST
   <<: *default
-  database: 'myapp_test'
+  database: myapp_test
 
 production:
   <<: *default
-  database: 'myapp_production'
-
+  database: myapp_production
