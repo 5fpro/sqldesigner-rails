@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gem 'rails', '4.2.7.1'
+gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 
 # DB
 gem 'pg'
@@ -21,19 +21,19 @@ gem 'simple_form'
 gem 'nested_form'
 
 # assets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.2'
 gem 'asset_sync'
 
 # JS plugin
 gem 'jquery-rails'
 gem 'select2-rails', '~> 3'
-gem 'turbolinks'
+gem 'turbolinks', '~> 5'
 
 # background jobs
 gem 'sidekiq'
-gem 'sinatra', '>= 1.3.0', require: nil
+gem 'sinatra'
 gem 'sidekiq-limit_fetch'
 gem 'sidetiq'
 
@@ -65,8 +65,12 @@ group :development do
   gem 'annotate'
   gem 'xray-rails'
   gem 'http_logger'
-  gem 'web-console', '~> 2.0'
+  gem 'web-console'
+  gem 'listen', '~> 3.0.5'
   gem 'rubocop'
+
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :development, :test do
@@ -116,11 +120,11 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
-gem 'omniauth-oauth2', '~> 1.3.1' # for fix google oauth2
+gem 'omniauth-oauth2'
 
 # front-end
 gem 'jquery-ui-rails'
-gem 'bootstrap-sass', '~> 2.3'
+gem 'bootstrap-sass'
 
 # SEO
 gem 'crummy'
