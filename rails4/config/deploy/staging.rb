@@ -1,5 +1,5 @@
 set :deploy_to, '/home/apps/myapp'
-set :rails_env, 'staging'
+set :rails_env, 'production'
 set :ssh_options, {
   user: 'apps'
 }
