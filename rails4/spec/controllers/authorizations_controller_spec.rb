@@ -17,8 +17,8 @@ require 'rails_helper'
 
 describe AuthorizationsController, type: :request do
   context '#callback' do
-    let(:fb_auth) { get '/authorizations/facebook/callback', nil, 'omniauth.auth' => omniauth_mock(:facebook) }
-    let(:google_auth) { get '/authorizations/google_oauth2/callback', nil, 'omniauth.auth' => omniauth_mock(:google_oauth2) }
+    let(:fb_auth) { get '/authorizations/facebook/callback', env: { 'omniauth.auth' => omniauth_mock(:facebook) } }
+    let(:google_auth) { get '/authorizations/google_oauth2/callback', env: { 'omniauth.auth' => omniauth_mock(:google_oauth2) } }
     it 'success' do
       expect {
         fb_auth

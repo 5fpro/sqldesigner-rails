@@ -1,5 +1,5 @@
 - content_for :btns do
-  = link_to "export to CSV", url_for(params.merge(format: :csv)), class: "btn btn-large"
+  = link_to "export to CSV", url_for(request.params.merge(format: :csv)), class: "btn btn-large"
 = admin_widget_box "Filtering", icon: :pencil do
   = render partial: "filtering", as: :q, object: @q
 = admin_widget_box "Users", icon: :pencil do

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/robots.txt', to: 'base#robots', defaults: { format: 'text' }
 
   namespace :admin do
-    root to: 'base#index'
+    root to: 'base#index', as: :root
     resources :users
     resources :categories do
       member do

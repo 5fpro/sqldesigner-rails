@@ -21,7 +21,7 @@ module Errors::HandlerConcern
     @errors ||= {}
     @errors[key.to_sym] ||= []
     @errors[key.to_sym] << (custom_message || Errors::Code.desc(key))
-    false
+    throw(:abort)
   end
 
 end
