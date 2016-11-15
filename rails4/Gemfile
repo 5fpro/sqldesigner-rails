@@ -95,7 +95,6 @@ gem 'kaminari'
 
 # devise
 gem 'devise'
-gem 'devise-async'
 
 # aws
 gem 'aws-sdk-v1'

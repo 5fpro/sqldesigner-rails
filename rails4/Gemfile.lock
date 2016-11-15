@@ -146,8 +146,6 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
-    devise-async (0.7.0)
-      devise (>= 2.2)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     excon (0.54.0)
@@ -585,7 +583,6 @@ DEPENDENCIES
   dalli
   database_cleaner
   devise
-  devise-async
   factory_girl_rails
   fog
   http_logger

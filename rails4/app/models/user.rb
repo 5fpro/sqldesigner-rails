@@ -29,7 +29,6 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
-  devise :async
   omniauthable
 
   mount_uploader :avatar, AvatarUploader
