@@ -6,7 +6,7 @@ module Errors::HandlerConcern
   end
 
   def error_messages
-    @errors.values.inject([]) { |a, e| a + e }
+    @errors.values.inject([]) { |acc, elem| acc + elem }
   end
 
   def has_error?
