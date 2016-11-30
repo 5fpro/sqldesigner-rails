@@ -434,10 +434,6 @@ GEM
       rgeo (~> 0.3)
     rollbar (2.13.3)
       multi_json
-    rspec (3.5.0)
-      rspec-core (~> 3.5.0)
-      rspec-expectations (~> 3.5.0)
-      rspec-mocks (~> 3.5.0)
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -523,7 +519,7 @@ GEM
     thread_safe (0.3.5)
     tilt (2.0.5)
     timecop (0.8.1)
-    timers (4.1.1)
+    timers (4.1.2)
       hitimes
     trollop (2.1.2)
     turbolinks (5.0.1)
@@ -608,7 +604,6 @@ DEPENDENCIES
   redis
   redis-objects
   rollbar
-  rspec
   rspec-rails
   rubocop
   sass-rails (~> 5.0)
