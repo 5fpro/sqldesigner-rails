@@ -71,6 +71,9 @@ group :development do
 
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # rename app name
+  # gem 'rails-rename'
 end
 
 group :development, :test do
