@@ -10,7 +10,7 @@ class SlackService
     end
 
     def notify_async(message, channel: '#general', name: 'slackbot', icon_url: DEFAULT_ICON_URL, webhook: nil)
-      delay.notify(message, channel: channel, name: name, icon_url: icon_url, webhook: webhook)
+      SlackNotifyJob.perform_later(message, channel: channel, name: name, icon_url: icon_url, webhook: webhook)
     end
 
     # see more message formating:
