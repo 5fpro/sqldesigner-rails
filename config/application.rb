@@ -28,5 +28,7 @@ module Myapp
     config.generators.javascripts = false
     config.generators.helper = false
     config.generators.helper_specs = false
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end
