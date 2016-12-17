@@ -13,7 +13,7 @@ server = "myapp.5fpro.com"
 role :app,                server
 role :web,                server
 role :db,                 server
-role :sidekiq_server,     server
+role :worker,             server
 role :assets_sync_server, server
 
 # Extended Server Syntax
