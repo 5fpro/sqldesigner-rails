@@ -1,5 +1,5 @@
-#= require jquery-ui/datepicker
-#= require jquery-ui/slider
+#= require jquery-ui/widgets/datepicker
+#= require jquery-ui/widgets/slider
 #= require jquery.timepicker
 
 $(document).ready ->
