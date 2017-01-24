@@ -128,3 +128,7 @@ Metrics/BlockLength:
 
 Rails/SkipsModelValidations:
   Enabled: false
+
+Security/YAMLLoad:
+  Exclude:
+    - 'spec/**/**'
