@@ -2,29 +2,29 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.7.1'
 
 # DB
-gem 'pg'
 gem 'activerecord-postgis-adapter'
+gem 'pg'
 gem 'redis'
 gem 'redis-objects', require: 'redis/objects'
 
 # stores
-gem 'dalli'
 gem 'connection_pool'
+gem 'dalli'
 
 # ENV
 gem 'settingslogic'
 
 # view rendering
 gem 'jbuilder', '~> 2.0'
-gem 'slim'
-gem 'simple_form'
 gem 'nested_form'
+gem 'simple_form'
+gem 'slim'
 
 # assets
+gem 'asset_sync'
+gem 'coffee-rails', '~> 4.0.0'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
-gem 'asset_sync'
 
 # JS plugin
 gem 'jquery-rails'
@@ -33,15 +33,15 @@ gem 'turbolinks'
 
 # background jobs
 gem 'sidekiq'
-gem 'sinatra', '>= 1.3.0', require: nil
 gem 'sidekiq-limit_fetch'
 gem 'sidetiq'
+gem 'sinatra', '>= 1.3.0', require: nil
 
 # file upload
 gem 'carrierwave'
-gem 'mini_magick'
-gem 'fog'
 gem 'carrierwave_backgrounder'
+gem 'fog'
+gem 'mini_magick'
 
 # soft delete
 gem 'paranoia'
@@ -63,40 +63,40 @@ group :development do
   gem 'slackistrano', require: false
 
   gem 'annotate'
-  gem 'xray-rails'
   gem 'http_logger'
-  gem 'web-console', '~> 2.0'
   gem 'rubocop'
+  gem 'web-console', '~> 2.0'
+  gem 'xray-rails'
 end
 
 group :development, :test do
+  gem 'byebug'
+  gem 'factory_girl_rails'
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
-  gem 'byebug'
 end
 
 group :test do
-  gem 'webmock'
+  gem 'database_cleaner'
   gem 'test_after_commit'
   gem 'timecop'
-  gem 'database_cleaner'
+  gem 'webmock'
 end
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
 end
 
-gem 'rollbar'
 gem 'kaminari'
+gem 'rollbar'
 
 # devise
 gem 'devise'
 gem 'devise-async'
 
 # aws
-gem 'aws-sdk-v1'
 gem 'aws-sdk'
+gem 'aws-sdk-v1'
 
 # unicorn
 gem 'unicorn'
@@ -104,9 +104,9 @@ gem 'unicorn'
 # versioning
 gem 'paper_trail'
 
-gem 'slack-notifier'
 gem 'acts-as-taggable-on'
 gem 'ransack'
+gem 'slack-notifier'
 
 # model sorting
 gem 'acts_as_list'
@@ -119,8 +119,8 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-oauth2', '~> 1.3.1' # for fix google oauth2
 
 # front-end
-gem 'jquery-ui-rails'
 gem 'bootstrap-sass', '~> 2.3'
+gem 'jquery-ui-rails'
 
 # SEO
 gem 'crummy'

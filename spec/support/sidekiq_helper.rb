@@ -10,7 +10,7 @@ module SidekiqHelper
     queue ||= 'default'
     (scheduled ? Sidekiq::ScheduledSet.new : Sidekiq::Queue.new(queue)).to_a.select do |j|
       if method # delay extension
-        j = YAML.load(j.args.first)
+        j = YAML.safe_load(j.args.first)
         j[0] == worker_klass && j[1].to_s == method.to_s
       else
         j.klass.to_s == worker_klass.to_s

@@ -40,7 +40,7 @@ FactoryGirl.define do
     end
 
     factory :user_with_avatar do
-      avatar { File.open("#{Rails.root}/spec/fixtures/5fpro.png") }
+      avatar { File.open(Rails.root.join('spec', 'fixtures', '5fpro.png')) }
     end
   end
 end

@@ -12,7 +12,7 @@ set :ssh_options, {
 
 require "aws-sdk-v1"
 require "aws-sdk"
-aws_conf = YAML.load(IO.read("./config/application.yml"))["development"]["aws"].symbolize_keys
+aws_conf = YAML.safe_load(IO.read("./config/application.yml"))["development"]["aws"].symbolize_keys
 AWS.config(aws_conf)
 lb_name = "lb.5fpro.com"
 servers = AWS::ELB.new.load_balancers[lb_name].instances.map(&:ip_address)
