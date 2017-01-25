@@ -10,7 +10,7 @@ class UserAuthContext < BaseContext
 
   # params should be env["omniauth.auth"] in controller
   def initialize(params, current_user = nil)
-    @params = ActionController::Parameters.new(params)
+    @params = params.with_indifferent_access
     @provider = @params[:provider]
     @user = current_user
     @authorization = nil
@@ -85,9 +85,8 @@ class UserAuthContext < BaseContext
 
   def params_to_user_attributes
     case @provider.to_sym
-    when :facebook      then { email: @params[:info][:email], name: @params[:info][:name] }
-    when :google_oauth2 then { email: @params[:info][:email], name: @params[:info][:name] }
-    when :github        then { email: @params[:info][:email], name: @params[:info][:name] }
+    when :facebook, :google_oauth2, :github
+      { email: @params[:info][:email], name: @params[:info][:name] }
     end
   end
 

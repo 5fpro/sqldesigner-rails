@@ -47,16 +47,16 @@ RSpec.configure do |config|
   #
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
+  ActiveJob::Base.queue_adapter = :test
+
   config.infer_spec_type_from_file_location!
   config.include Util
   config.include Webmock
-  config.include SidekiqHelper
   config.include DataMaker
   config.include RequestClient, type: :request
   config.include HtmlMatchers, type: :request
 
   config.before(:each){ webmock_all! }
-  config.before(:each){ sidekiq_reset! }
   config.before(:each){ Redis.current.flushdb }
 
   config.after { Timecop.return }

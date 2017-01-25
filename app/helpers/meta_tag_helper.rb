@@ -1,6 +1,6 @@
 module MetaTagHelper
   def set_meta(data = {})
-    url = data[:url] || url_for(params.merge(host: Setting.host))
+    url = data[:url] || url_for(request.params.merge(host: Setting.host))
     data[:title] ||= default_meta[:title]
     data[:description] ||= default_meta[:description]
     data[:keywords] ||= default_meta[:keywords]

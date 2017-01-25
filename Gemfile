@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gem 'rails', '4.2.7.1'
+gem 'rails', '~> 5.0.1'
 
 # DB
 gem 'activerecord-postgis-adapter'
@@ -22,20 +22,20 @@ gem 'slim'
 
 # assets
 gem 'asset_sync'
-gem 'coffee-rails', '~> 4.0.0'
-gem 'sass-rails', '~> 4.0.3'
+gem 'coffee-rails', '~> 4.2'
+gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 
 # JS plugin
 gem 'jquery-rails'
 gem 'select2-rails', '~> 3'
-gem 'turbolinks'
+gem 'turbolinks', '~> 5'
 
 # background jobs
 gem 'sidekiq'
 gem 'sidekiq-limit_fetch'
 gem 'sidetiq'
-gem 'sinatra', '>= 1.3.0', require: nil
+gem 'sinatra', '~> 2.0.0.beta2'
 
 # file upload
 gem 'carrierwave'
@@ -78,7 +78,6 @@ end
 
 group :test do
   gem 'database_cleaner'
-  gem 'test_after_commit'
   gem 'timecop'
   gem 'webmock'
 end
@@ -92,7 +91,6 @@ gem 'rollbar'
 
 # devise
 gem 'devise'
-gem 'devise-async'
 
 # aws
 gem 'aws-sdk'
@@ -116,10 +114,10 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
-gem 'omniauth-oauth2', '~> 1.3.1' # for fix google oauth2
+gem 'omniauth-oauth2'
 
 # front-end
-gem 'bootstrap-sass', '~> 2.3'
+gem 'bootstrap-sass'
 gem 'jquery-ui-rails'
 
 # SEO

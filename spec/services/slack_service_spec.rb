@@ -6,8 +6,7 @@ RSpec.describe SlackService, type: :service do
   end
 
   it '.notify_async' do
-    expect {
-      described_class.notify_async('haha')
-    }.to change_sidekiq_jobs_size_of(SlackService, :notify)
+    described_class.notify_async('haha')
+    expect(SlackNotifyJob).to have_been_enqueued
   end
 end
