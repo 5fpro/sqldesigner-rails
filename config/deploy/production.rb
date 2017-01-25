@@ -12,16 +12,16 @@ set :ssh_options, {
 
 require "aws-sdk-v1"
 require "aws-sdk"
-aws_conf = YAML.load(IO.read("./config/application.yml"))["development"]["aws"].symbolize_keys
+aws_conf = YAML.safe_load(IO.read("./config/application.yml"))["development"]["aws"].symbolize_keys
 AWS.config(aws_conf)
 lb_name = "lb.5fpro.com"
 servers = AWS::ELB.new.load_balancers[lb_name].instances.map(&:ip_address)
 
 shadow_server = "myapp.5fpro.com"
-role :app,             servers
-role :web,             servers + [ shadow_server ]  # for assets precompile
-role :db,              shadow_server
-role :sidekiq_server,  shadow_server
+role :app,                servers
+role :web,                servers
+role :db,                 shadow_server
+role :worker,             shadow_server
 role :assets_sync_server, shadow_server
 
 # sitemap_generator

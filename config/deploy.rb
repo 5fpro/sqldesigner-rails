@@ -76,3 +76,5 @@ end
 #     end
 #   end
 # end
+
+set :assets_roles, [:web, :worker, :assets_sync_server]

@@ -6,7 +6,7 @@ module AdminHelper
   def convert_changes_string(string, hstore_columns: nil)
     return {} unless string
     hstore_columns ||= ['data']
-    diffs = YAML.load(string)
+    diffs = YAML.safe_load(string)
     hstore_columns.each do |hstore_col|
       next unless data = diffs.delete(hstore_col)
       HashDiff.diff(data[0] || {}, data[1] || {}).each do |diff|

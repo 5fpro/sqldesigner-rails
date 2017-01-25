@@ -122,3 +122,13 @@ Style/StringLiterals:
 Style/StringLiteralsInInterpolation:
   EnforcedStyle: single_quotes
   Enabled: true
+
+Metrics/BlockLength:
+  Max: 150
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Security/YAMLLoad:
+  Exclude:
+    - 'spec/**/**'

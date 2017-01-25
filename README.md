@@ -76,29 +76,4 @@ ALTER USER "your_name" WITH SUPERUSER;
 First Use This Template App
 ================================
 
-- search keywords `myapp` & `Myapp` and replace to your new name.
-- configs
-  - config/application.yml
-  - config/database.yml
-- Setup deploy
-  - lib/capistrano/tasks/salck.rake
-  - config/deploy.rb
-  - config/deploy/production.rb
-  - config/deploy/staging.rb
-  - config/unicorn/nginx.conf.example
-- rollbar
-  - config/initializers/rollbar.rb
-  - config/deploy.rb
-- newrelic
-  - congif/newrelic.yml
-- enabled SSL
-  - keywords in this repo: `SUPPORT: SSL`
-- admin sidebar menu
-  - app/helpers/admin_menu_helper.rb
-- SEO
-  - app/helpers/meta_tag_helper.rb
-  - config/schedule.rb (just uncomment)
-  - config/deploy/production.rb (just uncomment)
-- staging http auth
-  - app/controllers/application_controller.rb
-- remove this block from README.md
+- rails g rename NewAppName
