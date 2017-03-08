@@ -86,7 +86,8 @@ class UserAuthContext < BaseContext
   def params_to_user_attributes
     case @provider.to_sym
     when :facebook, :google_oauth2, :github
-      { email: @params[:info][:email], name: @params[:info][:name] }
+      info = @params[:info] || {}
+      { email: info[:email], name: info[:name] }
     end
   end
 

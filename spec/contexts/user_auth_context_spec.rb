@@ -93,4 +93,9 @@ describe UserAuthContext, type: :context do
       }.to change { user.authorizations.count }.by(1)
     end
   end
+
+  context 'no email' do
+    before { omniauth_data.delete(:info) }
+    it { expect { described_class.new(omniauth_data).perform }.not_to change { User.count } }
+  end
 end
