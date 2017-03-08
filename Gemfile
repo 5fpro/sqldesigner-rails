@@ -72,9 +72,9 @@ end
 group :development, :test do
   gem 'byebug'
   gem 'factory_girl_rails'
+  gem 'listen'
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'listen'
 end
 
 group :test do
