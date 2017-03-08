@@ -15,6 +15,7 @@ common: &default_settings
   # You must specify the license key associated with your New Relic
   # account.  This key binds your Agent's data to your account in the
   # New Relic service.
+  # Config@initial
   license_key: 'abcdabcd'
 
   # Agent Enabled (Ruby/Rails Only)

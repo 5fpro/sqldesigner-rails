@@ -1,3 +1,4 @@
+# Config@initial
 default: &default
   defaults:
     title: "5FPRO"

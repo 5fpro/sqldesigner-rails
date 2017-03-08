@@ -77,3 +77,8 @@ First Use This Template App
 ================================
 
 - rails g rename NewAppName
+
+Configuation checklist
+================================
+
+- Search `Config@initial` in this repo files.

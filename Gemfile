@@ -75,6 +75,7 @@ group :development, :test do
   gem 'listen'
   gem 'rspec'
   gem 'rspec-rails'
+  # gem 'rename'
 end
 
 group :test do
