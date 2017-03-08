@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
-Sitemap: http://<%= Setting.assets_host %>/<%= Setting.sitemap.path %>sitemap.xml.gz
+Sitemap: <%= Setting.default_protocol %>://<%= Setting.assets_host %>/<%= Setting.sitemap.path %>sitemap.xml.gz

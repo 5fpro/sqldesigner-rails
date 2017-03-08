@@ -8,9 +8,7 @@ class ApplicationController < ActionController::Base
   before_action :set_paper_trail_whodunnit
 
   def default_url_options
-    # SUPPORT: SSL
-    # { protocol: "https" }
-    {}
+    { protocol: Setting.default_protocol }
   end
 
   private
