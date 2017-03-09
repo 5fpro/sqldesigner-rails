@@ -27,7 +27,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { create :user }
+  let(:user) { create(:user) }
 
   it 'FactoryGirl' do
     expect(user).not_to be_new_record
