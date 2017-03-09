@@ -29,7 +29,7 @@ describe AuthorizationsController, type: :request do
     end
 
     context 'user auth fb & signed in' do
-      let(:user2) { FactoryGirl.create :user, email: omniauth_mock(:facebook)[:info][:email] }
+      let(:user2) { create(:user, email: omniauth_mock(:facebook)[:info][:email]) }
       before { fb_auth }
       before { follow_redirect! }
       before { @user = User.last }
