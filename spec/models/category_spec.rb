@@ -13,12 +13,12 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  let(:category) { FactoryGirl.create :category }
+  let(:category) { create :category }
 
   it 'FactoryGirl' do
     expect {
-      FactoryGirl.create :category
-      FactoryGirl.create :category
+      create :category
+      create :category
     }.to change { Category.count }.by(2)
   end
 
@@ -37,7 +37,7 @@ RSpec.describe Category, type: :model do
 
   it 'sortable' do
     category.reload.update_attribute :sort, :up
-    category2 = FactoryGirl.create :category
+    category2 = create :category
     expect {
       category2.update_attribute :sort, :up
     }.to change { described_class.sorted.try(:first).try(:id) }.to eq category2.id

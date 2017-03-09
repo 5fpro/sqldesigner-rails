@@ -13,7 +13,7 @@
 require 'rails_helper'
 
 RSpec.describe Admin::CategoriesController, type: :request do
-  let(:category) { FactoryGirl.create :category }
+  let(:category) { create :category }
 
   before { signin_user }
 
@@ -77,7 +77,7 @@ RSpec.describe Admin::CategoriesController, type: :request do
   end
 
   it 'DELETE /admin/categories/123' do
-    category = FactoryGirl.create :category
+    category = create :category
     expect {
       delete "/admin/categories/#{category.id}"
     }.to change { Category.count }.by(-1)

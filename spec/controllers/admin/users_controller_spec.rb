@@ -97,7 +97,7 @@ RSpec.describe Admin::UsersController, type: :request do
   end
 
   it 'DELETE /admin/users/123' do
-    user = FactoryGirl.create :user
+    user = create :user
     expect {
       delete "/admin/users/#{user.id}"
     }.to change { User.count }.by(-1)

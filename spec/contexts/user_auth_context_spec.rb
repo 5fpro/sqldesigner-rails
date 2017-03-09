@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe UserAuthContext, type: :context do
-  let(:user) { FactoryGirl.create :unconfirmed_user }
+  let(:user) { create :unconfirmed_user }
   let(:omniauth_data) { omniauth_mock(:facebook) }
   let!(:email) { omniauth_data['info']['email'] }
 
@@ -23,7 +23,7 @@ describe UserAuthContext, type: :context do
       end
     end
     it 'user2 has the same email' do
-      FactoryGirl.create :user, email: email
+      create :user, email: email
       expect {
         @result = subject
       }.not_to change { user.reload.authorizations.count }
@@ -55,7 +55,7 @@ describe UserAuthContext, type: :context do
       end
     end
     context 'already bind to user2' do
-      let!(:user2) { FactoryGirl.create :user, email: email }
+      let!(:user2) { create :user, email: email }
       before { described_class.new(omniauth_data, user2).perform }
 
       it 'authorizations count' do
