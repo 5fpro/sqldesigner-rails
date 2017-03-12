@@ -23,4 +23,10 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  # error pages
+  match '/400', to: 'errors#not_found', via: :all
+  match '/500', to: 'errors#internal_server_error', via: :all
+  # must put this line to bottom of routes.rb
+  match '*not_found', to: 'errors#not_found', via: :all
 end

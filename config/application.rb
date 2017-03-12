@@ -31,5 +31,8 @@ module Myapp
     config.generators.helper_specs = false
 
     config.active_job.queue_adapter = :sidekiq
+
+    # serve error pages from the Rails app itself (routes.rb)
+    config.exceptions_app = self.routes
   end
 end
