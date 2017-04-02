@@ -1,4 +1,6 @@
-link href=("#{asset_path 'favicon/apple-touch-icon.png'}") rel="apple-touch-icon" sizes="76x76" /
+- [57, 60, 72, 76, 114, 120, 144, 152, 180].each do |size|
+  link href=("#{asset_path "favicon/apple-touch-icon-#{size}x#{size}.png"}") rel="apple-touch-icon" sizes="#{size}x#{size}" /
+  link href=("#{asset_path "favicon/apple-touch-icon-#{size}x#{size}-precomposed.png"}") rel="apple-touch-icon-precomposed" sizes="#{size}x#{size}" /
 link href=("#{asset_path 'favicon/favicon-32x32.png'}") rel="icon" sizes="32x32" type="image/png" /
 link href=("#{asset_path 'favicon/favicon-16x16.png'}") rel="icon" sizes="16x16" type="image/png" /
 link href=("#{asset_path 'favicon/manifest.json'}") rel="manifest" /
