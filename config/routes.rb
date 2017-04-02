@@ -1,8 +1,6 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  mount Sidekiq::Web => '/sidekiq'
-
   devise_for :users
   get '/authorizations/:provider/callback', to: 'authorizations#callback'
   get '/authorizations/failure' => 'authorizations#failue', as: :auth_failure
@@ -27,6 +25,11 @@ Rails.application.routes.draw do
   # error pages
   match '/400', to: 'errors#not_found', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all
+
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   # must put this line to bottom of routes.rb
   match '*not_found', to: 'errors#not_found', via: :all
 end
