@@ -53,7 +53,7 @@ end
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
   task :restart do
-    invoke 'unicorn:legacy_restart'
+    invoke 'unicorn:restart'
     # invoke 'unicorn:restart'
 
     # passenger
