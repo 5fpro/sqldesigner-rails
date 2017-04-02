@@ -13,7 +13,7 @@ ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 set :rbenv_type, :user
 set :rbenv_ruby, File.read('.ruby-version').strip
-set :rbenv_map_bins, %w{rake gem bundle ruby rails unicorn}
+set :rbenv_map_bins, %w{rake gem bundle ruby rails unicorn sidekiq}
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
