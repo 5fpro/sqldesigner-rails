@@ -70,6 +70,8 @@ group :development do
 
   gem 'spring'
   gem 'spring-commands-rspec'
+
+  gem 'rails_real_favicon'
 end
 
 group :development, :test do

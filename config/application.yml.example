@@ -1,5 +1,6 @@
 defaults: &defaults
   SECRET_KEY_BASE: daskdjaslkjdsalkdj12341234
+  app_name: '5FPRO'
   host: localhost
   assets_host: localhost:3000
   asset_sync:
