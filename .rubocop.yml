@@ -132,3 +132,9 @@ Rails/SkipsModelValidations:
 Security/YAMLLoad:
   Exclude:
     - 'spec/**/**'
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+Style/SymbolArray:
+  EnforcedStyle: brackets

@@ -1,4 +1,3 @@
-# encoding: utf-8
 class BaseUploader < CarrierWave::Uploader::Base
   include ::CarrierWave::Backgrounder::Delay
 
