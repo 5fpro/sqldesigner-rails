@@ -35,4 +35,3 @@ require_relative 'lib/capistrano/deploy_messaging'
 require 'capistrano/sidekiq'
 require 'rollbar/capistrano3'
 require 'capistrano/sitemap_generator'
-
