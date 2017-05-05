@@ -1,5 +1,5 @@
 require 'dotenv'
-Dotenv::Railtie.load
+Dotenv.load
 
 # see more
 #   https://github.com/tablexi/capistrano3-unicorn/blob/master/examples/unicorn.rb
