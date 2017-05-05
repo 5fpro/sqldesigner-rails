@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
+
 gem 'rails', '~> 5.0.2'
+
 gem 'dotenv-rails', require: 'dotenv/rails-now'
 
 # DB
