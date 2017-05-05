@@ -1,4 +1,4 @@
-set :deploy_to, '/home/apps/myapp'
+set :deploy_to, "/home/apps/#{fetch(:application)}"
 set :rails_env, 'production'
 set :ssh_options, {
   user: 'apps',
