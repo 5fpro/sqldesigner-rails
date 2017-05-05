@@ -1,3 +1,3 @@
 set :slackistrano,   channel: '#notify-deploy',
-                     webhook: 'web hook url',
+                     webhook: ENV['DEPLOY_SLACK_WEBHOOK'],
                      klass: Capistrano::DeployMessaging

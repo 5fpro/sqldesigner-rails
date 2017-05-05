@@ -16,7 +16,7 @@ common: &default_settings
   # account.  This key binds your Agent's data to your account in the
   # New Relic service.
   # Config@initial
-  license_key: 'abcdabcd'
+  license_key: '<%= ENV['NEWRELIC_LICENSE_KEY'] %>'
 
   # Agent Enabled (Ruby/Rails Only)
   # Use this setting to force the agent to run or not run.
