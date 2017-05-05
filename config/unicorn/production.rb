@@ -1,3 +1,6 @@
+require 'dotenv'
+Dotenv::Railtie.load
+
 # see more
 #   https://github.com/tablexi/capistrano3-unicorn/blob/master/examples/unicorn.rb
 app_path = "/home/apps/#{ENV['APP_NAME']}"
