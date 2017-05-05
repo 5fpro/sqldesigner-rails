@@ -1,9 +1,12 @@
+require 'dotenv'
+Dotenv.load
+
 # see more
 #   https://github.com/tablexi/capistrano3-unicorn/blob/master/examples/unicorn.rb
-app_path = "/home/apps/myapp"
+app_path = "/home/apps/#{ENV['APP_NAME']}"
 working_directory "#{app_path}/current"
 pid "#{app_path}/current/tmp/pids/unicorn.pid"
-listen '/tmp/unicorn.myapp.sock'
+listen "/tmp/unicorn.#{ENV['APP_NAME']}.sock"
 
 # log rotate config example
 #   https://github.com/defunkt/unicorn/blob/master/examples/logrotate.conf

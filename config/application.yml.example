@@ -1,18 +1,14 @@
 defaults: &defaults
-  SECRET_KEY_BASE: daskdjaslkjdsalkdj12341234
-  app_name: '5FPRO'
-  host: localhost
-  assets_host: localhost:3000
-  asset_sync:
-    bucket: myapp.5fpro.com
-    region: us-east-1
+  host: <%= ENV['APP_HOST'] %>
+  default_protocol: 'https'
+  assets_host: <%= ENV['ASSET_HOST'] %>
   redis:
-    url: redis://127.0.0.1:6379/0
+    url: <%= ENV['REDIS_URL'] %>
   dalli:
     servers:
-    - 127.0.0.1
+    - "<%= ENV['MEMCACHED_SERVER'] %>"
     options:
-      namespace: myapp
+      namespace: "<%= ENV['APP_NAME'] %>"
       expires_in: 0
       threadsafe: true
       failover: true
@@ -22,33 +18,33 @@ defaults: &defaults
       password:
       pool_size: 1
   aws:
-    access_key_id: abcdabcd
-    secret_access_key: abcdabcd
-    region: "ap-northeast-1"
+    access_key_id: "<%= ENV['AWS_ACCESS_KEY_ID'] %>"
+    secret_access_key: "<%= ENV['AWS_SECRET_ACCESS_KEY'] %>"
+    region: "<%= ENV['AWS_REGION'] %>"
   sidekiq:
-    url: redis://127.0.0.1:6379/0
+    url: "<%= ENV['REDIS_URL'] %>"
   carrierwave:
-    region: us-east-1
-    bucket: myapp.5fpro.com
-    host: myapp.5fpro.com.s3-website-us-east-1.amazonaws.com
+    region: "<%= ENV['AWS_REGION'] %>"
+    bucket: "<%= ENV['ASSET_AWS_BUCKET'] %>"
+    host: "<%= ENV['ASSET_HOST'] %>"
   mailer:
-    default_sender: "noreply@5fpro.com"
+    default_sender: "<%= ENV['MAILER_SENDER'] %>"
   omniauth:
     providers:
       facebook:
-        token: "267188576687915"
-        secret: "84f72292e1f6b299f4a668f12ed1a7f2"
+        token: "<%= ENV['OAUTH_FB_TOKEN'] %>"
+        secret: "<%= ENV['OAUTH_FB_SECRET'] %>"
         options:
           perms:
             - "email"
       github:
-        token: "3f9e288d55d83eee797d"
-        secret: "acc2d9185cdb236ffc227d4def846f3ade928710"
+        token: "<%= ENV['OAUTH_GITHUB_TOKEN'] %>"
+        secret: "<%= ENV['OAUTH_GITHUB_SECRET'] %>"
         options:
           scope: "user,user:email"
       google_oauth2:
-        token: "814226609657-eluqm3esbbllu1tj70j1b1pcsej9m34j.apps.googleusercontent.com"
-        secret: "1Cy-nHoMKrhU6-G5d8y7Cplv"
+        token: "<%= ENV['OAUTH_GOOGLE_TOKEN'] %>"
+        secret: "<%= ENV['OAUTH_GOOGLE_SECRET'] %>"
   sitemap:
     path: "sitemaps/"
 
