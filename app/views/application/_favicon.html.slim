@@ -6,8 +6,8 @@ link href=("#{asset_path 'favicon/favicon-16x16.png'}") rel="icon" sizes="16x16"
 link href=("#{asset_path 'favicon/manifest.json'}") rel="manifest" /
 link color="#3a2b84" href=("#{asset_path 'favicon/safari-pinned-tab.svg'}") rel="mask-icon" /
 link href=("#{asset_path 'favicon/favicon.ico'}") rel=("shortcut icon") /
-meta content="#{Setting.app_name}" name="apple-mobile-web-app-title" /
-meta content="#{Setting.app_name}" name="application-name" /
+meta content="#{ENV['APP_NAME']}" name="apple-mobile-web-app-title" /
+meta content="#{ENV['APP_NAME']}" name="application-name" /
 meta content="#ffffff" name="msapplication-TileColor" /
 meta content=("#{asset_path 'favicon/browserconfig.xml'}") name="msapplication-config" /
 meta content="#ffffff" name="theme-color" /

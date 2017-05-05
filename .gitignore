@@ -15,11 +15,15 @@
 /log/*.log
 /tmp
 
-/config/database.yml
 /config/application.yml
+/config/application.staging.yml
+/config/application.production.yml
 .DS_Store
 /public/assets
 /public/uploads
 /.capistrano/*
 /.rubocop_todo.yml
 /.byebug_history
+/.env
+/.env.staging
+/.env.production
