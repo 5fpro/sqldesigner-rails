@@ -36,17 +36,6 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-namespace :deploy do
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
-  end
-end
-
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
   task :restart do
@@ -56,30 +45,6 @@ namespace :deploy do
     # passenger
     # execute :mkdir, '-p', release_path.join('tmp')
     # execute :touch, release_path.join('tmp/restart.txt')
-  end
-
-  task :upload_dotenv do
-    on roles(:all) do |host|
-      upload!("./.env.#{fetch(:stage)}", "#{shared_path}/.env")
-    end
-  end
-
-  task :download_dotenv do
-    on roles(:all) do |host|
-      download!("#{shared_path}/.env", "./.env.#{fetch(:stage)}")
-    end
-  end
-
-  task :upload_yml do
-    on roles(:all) do |host|
-      upload!("./config/application.#{fetch(:stage)}.yml", "#{shared_path}/config/application.yml")
-    end
-  end
-
-  task :download_yml do
-    on roles(:all) do |host|
-      download!("#{shared_path}/config/application.yml", "./config/application.#{fetch(:stage)}.yml")
-    end
   end
 end
 
