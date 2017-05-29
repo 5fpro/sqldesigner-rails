@@ -13,7 +13,7 @@ namespace :load do
   end
 end
 
-namespace :sideiq do
+namespace :sidekiq do
   task :restart do
     invoke 'sidekiq:stop'
     # invoke 'sidekiq:start'
