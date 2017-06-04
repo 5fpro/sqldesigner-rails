@@ -134,3 +134,6 @@ gem 'jquery-ui-rails'
 gem 'crummy'
 gem 'meta-tags', require: 'meta_tags'
 gem 'sitemap_generator'
+
+# middleware
+gem 'rack-cors', require: 'rack/cors'

@@ -22,6 +22,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    root to: 'base#index', as: :root
+  end
+
   # error pages
   match '/400', to: 'errors#not_found', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all

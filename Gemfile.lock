@@ -408,6 +408,7 @@ GEM
     powerpack (0.1.1)
     public_suffix (2.0.5)
     rack (2.0.1)
+    rack-cors (0.4.1)
     rack-protection (2.0.0.rc2)
       rack
     rack-test (0.6.3)
@@ -645,6 +646,7 @@ DEPENDENCIES
   paper_trail
   paranoia
   pg
+  rack-cors
   rails (~> 5.0.2)
   rails_real_favicon
   ransack
@@ -678,4 +680,4 @@ DEPENDENCIES
   xray-rails
 
 BUNDLED WITH
-   1.14.6
+   1.15.0
