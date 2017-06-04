@@ -8,8 +8,9 @@ describe ErrorHandler, type: :concern do
     end
   end
 
+  before { Klass = klass unless defined?(Klass) }
+
   it '#has_error?' do
-    Klass = klass
     instance = Klass.new
     instance.errors.add :base, :taken
     instance.errors.add :name, :taken
@@ -22,7 +23,6 @@ describe ErrorHandler, type: :concern do
   end
 
   it '#errors=' do
-    Klass = klass
     instance = Klass.new
     instance.errors.add :base, :taken
     instance2 = Klass.new

@@ -4,8 +4,14 @@ module Api
     before_action :accept_cors
     before_action :set_default_format
 
+    include ::Api::ErrorResponseHandler
+
     def index
       render json: { ok: true, params: params.permit(params.keys).to_h }
+    end
+
+    def error
+      Error.raise!(params.require(:error), messages: 'Error object test', data: params.permit(params.keys).to_h)
     end
 
     private

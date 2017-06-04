@@ -18,9 +18,4 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  errors:
-    omniauth_parse_email_fail: "omniauth_parse_email_fail"
-    omniauth_already_auth: "omniauth_already_auth"
-    omniauth_email_registered: "omniauth_email_registered"
