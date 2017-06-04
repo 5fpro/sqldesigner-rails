@@ -368,7 +368,6 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (4.1.0)
     netrc (0.11.0)
-    newrelic_rpm (4.2.0.334)
     nio4r (2.1.0)
     nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
@@ -641,7 +640,6 @@ DEPENDENCIES
   meta-tags
   mini_magick
   nested_form
-  newrelic_rpm
   omniauth
   omniauth-facebook
   omniauth-github
@@ -684,4 +682,4 @@ DEPENDENCIES
   xray-rails
 
 BUNDLED WITH
-   1.15.0
+   1.15.1
