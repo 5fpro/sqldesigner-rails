@@ -10,7 +10,7 @@
 #  sort       :integer
 #
 
-class Category < ActiveRecord::Base
+class Category < ApplicationRecord
   has_paper_trail only: [:name, :deleted_at, :sort]
   sortable column: :sort, add_new_at: nil
   restorable

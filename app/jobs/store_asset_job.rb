@@ -1,4 +1,4 @@
-class StoreAssetJob < ActiveJob::Base
+class StoreAssetJob < ApplicationJob
   include ::CarrierWave::Workers::StoreAssetMixin
 
   def when_not_ready
