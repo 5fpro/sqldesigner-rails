@@ -1,6 +1,6 @@
 CAP_CONFIG_FILES = [
   '.env',
-  'config/application.yml',
+  'config/application.yml'
 ].freeze
 
 namespace :config do

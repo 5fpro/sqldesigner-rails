@@ -1,4 +1,4 @@
-class ProcessAssetJob < ActiveJob::Base
+class ProcessAssetJob < ApplicationJob
   include ::CarrierWave::Workers::ProcessAssetMixin
 
   def when_not_ready

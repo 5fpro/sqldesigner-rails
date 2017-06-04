@@ -13,7 +13,7 @@
 #  updated_at :datetime         not null
 #
 
-class Authorization < ActiveRecord::Base
+class Authorization < ApplicationRecord
   enum provider: [:facebook, :github, :google_oauth2]
 
   validates :provider, :uid, :auth, presence: true
