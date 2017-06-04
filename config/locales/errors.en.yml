@@ -1,9 +1,6 @@
 en:
   errors:
     error_code_not_defined: "Error code not defined"
-    omniauth_parse_email_fail: "Omniauth can't get email"
-    omniauth_already_auth: "Omniauth already authed"
-    omniauth_email_registered: "Email exists"
     params_required: "Parameters required"
     data_not_found: "Data not found"
     data_create_fail: "Create fail"

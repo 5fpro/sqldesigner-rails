@@ -36,5 +36,13 @@ module Myapp
 
     # serve error pages from the Rails app itself (routes.rb)
     config.exceptions_app = self.routes
+
+    # rack-cors
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :post, :put, :delete, :options]
+      end
+    end
   end
 end

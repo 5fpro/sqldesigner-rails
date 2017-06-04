@@ -1,20 +1,16 @@
 class Errors::Exception < ::RuntimeError
-  attr_accessor :key, :info
+  attr_accessor :name, :info
 
-  def initialize(key, info = {})
-    self.key = key
-    self.info = info
+  def initialize(name, info = {})
+    @name = name
+    @info = info
   end
 
   def message
-    info.delete(:message) || (Errors::Code.desc(key) + (Rails.env.production? ? '' : info.inspect))
+    info.delete(:message) || Errors::Code.desc(@name)
   end
 
-  def to_hash
-    {
-      message:  message,
-      info:     info,
-      key:      key
-    }
+  def status
+    Errors::Code.status(@name)
   end
 end

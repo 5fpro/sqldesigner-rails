@@ -1,12 +1,12 @@
 class UserAuthContext < BaseContext
-  before_perform :find_authorization
-  before_perform :parse_email!
   before_perform :already_auth?, if: :current_user?
   before_perform :email_uniqueness?, if: :current_user?
   before_perform :find_or_create_user, unless: :current_user?
-  before_perform :bind_authorization_to_user
+  before_perform :bind_authorization_to_user, unless: :has_authorization?
   after_perform :update_user_omniauth_data
   after_perform :user_confirm!
+
+  attr_reader :email, :authorization
 
   # params should be env["omniauth.auth"] in controller
   def initialize(params, current_user = nil)
@@ -17,6 +17,9 @@ class UserAuthContext < BaseContext
   end
 
   def perform
+    @authorization = find_authorization
+    @email = parse_email
+    return false if error?
     run_callbacks :perform do
       if @authorization
         responds
@@ -34,22 +37,32 @@ class UserAuthContext < BaseContext
   end
 
   def find_authorization
-    @authorization = Authorization.find_by(provider: Authorization.providers[@provider], uid: @params[:uid])
+    Authorization.find_by(provider: Authorization.providers[@provider], uid: @params[:uid])
   end
 
-  def parse_email!
-    @email = params_to_user_attributes[:email]
-    add_error(:omniauth_parse_email_fail) unless @email
+  def has_authorization?
+    @authorization
+  end
+
+  def parse_email
+    email = params_to_user_attributes[:email]
+    errors.add(:email, :not_found) unless email
+    email
   end
 
   def already_auth?
-    return add_error(:omniauth_already_auth) if @authorization
+    if @authorization
+      errors.add(:authorization, :taken)
+      throw :abort
+    end
   end
 
   def email_uniqueness?
-    scope = User.where(email: @email)
-    scope = scope.where('id != ?', @user.id)
-    return add_error(:omniauth_email_registered) unless scope.count == 0
+    query = User.where(email: @email).where('id != ?', @user.id)
+    unless query.count == 0
+      errors.add(:email, :taken)
+      throw :abort
+    end
   end
 
   def find_or_create_user
@@ -58,7 +71,8 @@ class UserAuthContext < BaseContext
   end
 
   def bind_authorization_to_user
-    @authorization = @user.authorizations.create!(uid: @params[:uid], provider: @provider, auth_data: @params) unless @authorization
+    @authorization = @user.authorizations.new(uid: @params[:uid], provider: @provider, auth_data: @params)
+    self.errors = @authorization.errors unless @authorization.save
   end
 
   def update_user_omniauth_data
@@ -66,9 +80,7 @@ class UserAuthContext < BaseContext
   end
 
   def user_confirm!
-    if @user.confirmable? && !@user.confirmed?
-      @user.confirm
-    end
+    @user.confirm if @user.confirmable? && !@user.confirmed?
   end
 
   def current_user?

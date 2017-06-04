@@ -1,10 +1,10 @@
 class SlackService
-  WEBHOOK = 'https://hooks.slack.com/services/xxxxx/xxxx'.freeze
   DEFAULT_ICON_URL = 'https://slack-assets2.s3-us-west-2.amazonaws.com/5504/img/emoji/1f680.png'.freeze
 
   class << self
     def notify(message, channel: '#general', name: 'slackbot', icon_url: DEFAULT_ICON_URL, webhook: nil)
-      notify = Slack::Notifier.new(webhook || WEBHOOK, channel: channel, username: name)
+      webhook ||= ENV['SLACK_WEBHOOK']
+      notify = Slack::Notifier.new(webhook, channel: channel, username: name)
       message = "[#{Rails.env}] #{message}" unless Rails.env.production?
       notify.ping(message, icon_url: icon_url)
     end
