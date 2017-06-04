@@ -8,7 +8,7 @@ bundle install
 ```
 
 ```
-cp config/database.yml.example config/database.yml
+cp .env.example .env
 cp config/application.yml.example config/application.yml
 ```
 
