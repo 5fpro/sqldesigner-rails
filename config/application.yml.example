@@ -8,7 +8,7 @@ defaults: &defaults
     servers:
     - "<%= ENV['MEMCACHED_SERVER'] %>"
     options:
-      namespace: "<%= ENV['APP_NAME'] %>"
+      namespace: "<%= ENV['MEMCACHED_NAMESPACE'] %>"
       expires_in: 0
       threadsafe: true
       failover: true
@@ -55,4 +55,7 @@ test:
   <<: *defaults
 
 production:
+  <<: *defaults
+
+staging:
   <<: *defaults

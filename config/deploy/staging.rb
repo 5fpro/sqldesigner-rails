@@ -1,5 +1,5 @@
 set :deploy_to, "/home/apps/#{fetch(:application)}"
-set :rails_env, 'production'
+set :rails_env, 'staging'
 set :ssh_options, {
   user: 'apps',
   forward_agent: true

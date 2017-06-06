@@ -16,3 +16,7 @@ test: &TEST
 production:
   <<: *default
   database: '<%= ENV['DB_NAME'] %>'
+
+staging:
+  <<: *default
+  database: '<%= ENV['DB_NAME'] %>'
