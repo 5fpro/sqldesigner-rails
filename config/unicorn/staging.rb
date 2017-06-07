@@ -1,5 +1,5 @@
 require 'dotenv'
-Dotenv.load
+Dotenv.overload
 
 # see more
 #   https://github.com/tablexi/capistrano3-unicorn/blob/master/examples/unicorn.rb
@@ -16,6 +16,7 @@ stdout_path 'log/unicorn.log'
 worker_processes 1
 
 before_exec do |server|
+  Dotenv.overload
   ENV['BUNDLE_GEMFILE'] = "#{app_path}/current/Gemfile"
 end
 
