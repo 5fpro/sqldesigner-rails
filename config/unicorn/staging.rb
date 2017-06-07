@@ -19,7 +19,7 @@ before_exec do |server|
   ENV['BUNDLE_GEMFILE'] = "#{app_path}/current/Gemfile"
 end
 
-rails_env = ENV['RAILS_ENV'] || 'production'
+rails_env = ENV['RAILS_ENV'] || 'staging'
 
 preload_app true
 
