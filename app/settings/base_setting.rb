@@ -1,6 +1,6 @@
 require 'singleton'
 
-class BaseSettings
+class BaseSetting
 
   attr_reader :settings
 
