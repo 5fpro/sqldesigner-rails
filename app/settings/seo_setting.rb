@@ -1,0 +1,2 @@
+class SeoSetting < BaseSetting
+end
