@@ -24,7 +24,7 @@ module Myapp
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    config.action_mailer.delivery_method = :amazon_ses
+    config.action_mailer.delivery_method = :aws_sdk
 
     # Disable some file generators
     config.generators.stylesheets = false

@@ -1,6 +1,6 @@
 class BaseNotifier < ApplicationMailer
   def notify
-    mail(to: 'test@5fpro.com', subject: format_subject('Hello!'))
+    mail(to: 'hi@5fpro.com', subject: format_subject('Hello!'))
   end
 
   protected
