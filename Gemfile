@@ -103,8 +103,7 @@ gem 'rollbar'
 gem 'devise'
 
 # aws
-gem 'aws-sdk'
-gem 'aws-sdk-v1'
+gem 'aws-sdk-rails'
 
 # unicorn
 gem 'unicorn'

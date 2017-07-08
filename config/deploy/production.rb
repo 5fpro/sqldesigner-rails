@@ -5,12 +5,7 @@ set :ssh_options, {
   forward_agent: true
 }
 
-require 'aws-sdk-v1'
-require 'aws-sdk'
-aws_conf = YAML.load(IO.read('./config/application.yml'))['development']['aws'].symbolize_keys
-AWS.config(aws_conf)
-lb_name = 'lb.5fpro.com' # Config@initial
-servers = AWS::ELB.new.load_balancers[lb_name].instances.map(&:ip_address)
+servers = ['127.0.0.1']
 
 shadow_server = 'myapp.5fpro.com'
 role :app,                servers
