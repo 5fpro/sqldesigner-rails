@@ -1,14 +1,14 @@
 Build Project
 =======
 
-See [BUILD.md](BUILD.md).
+See [BUILD.md](doc/BUILD.md).
 
 Deploy
 =======
 
-See [DEPLOY.md](DEPLOY.md).
+See [DEPLOY.md](doc/DEPLOY.md).
 
 TODO
 =======
 
-See [TODO.md](TODO.md).
+See [TODO.md](doc/TODO.md).
