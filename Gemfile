@@ -68,7 +68,7 @@ group :development do
   gem 'annotate'
   gem 'http_logger'
   gem 'rubocop'
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 3.0'
   gem 'xray-rails'
 
   gem 'spring'
