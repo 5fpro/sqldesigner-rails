@@ -473,7 +473,7 @@ GEM
     rgeo-activerecord (5.1.0)
       activerecord (~> 5.0)
       rgeo (~> 0.3)
-    rollbar (2.14.1)
+    rollbar (2.15.0)
       multi_json
     rspec (3.6.0)
       rspec-core (~> 3.6.0)
