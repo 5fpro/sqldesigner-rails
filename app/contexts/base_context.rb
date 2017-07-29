@@ -8,6 +8,6 @@ class BaseContext
   private
 
   def permit_params(params, *cols)
-    ActionController::Parameters.new(params).permit(cols)
+    ActionController::Parameters.new(params.to_h.with_indifferent_access).permit(cols)
   end
 end
