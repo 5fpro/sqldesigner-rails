@@ -17,8 +17,9 @@ module MetaTagHelper
     }
     data[:og][:image] = data[:image] if data[:image]
     data[:og][:image] = default_og_image unless data[:og][:image]
-    data[:nofollow] = true if options[:nofollow] == true
-    data[:noindex] = true if options[:noindex] == true
+    data[:nofollow] = true if data[:nofollow] == true
+    data[:noindex] = true if data[:noindex] == true
+
     set_meta_tags(data.merge(
                     reverse:   default_meta[:reverse],
                     separator: default_meta[:separator],
