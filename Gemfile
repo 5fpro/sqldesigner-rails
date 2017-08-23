@@ -43,7 +43,7 @@ gem 'sinatra', '~> 2.0.0.beta2'
 # file upload
 gem 'carrierwave'
 gem 'carrierwave_backgrounder', git: 'git@github.com:lardawge/carrierwave_backgrounder.git'
-gem 'fog'
+gem 'fog-aws'
 gem 'mini_magick'
 
 # soft delete
