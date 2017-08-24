@@ -4,11 +4,18 @@ default: &default
     title: "5FPRO"
     description: "5FPRO awesome!"
     keywords: "5FPRO"
-    fb_app_id: "12341234"
-    fb_admin_ids: "1234,123"
+    fb:
+      app_id: "12341234"
+      admin_ids: "1234,123"
     separator: " | "
     reverse: true
-    og_type: "website"
+    og:
+      type: "website"
+      image:
+        url: "<%= ActionController::Base.helpers.asset_path('icon-300px.png') %>"
+        type: "image/png"
+        width: "300"
+        height: "300"
     site: "5FPRO"
 
 development:
