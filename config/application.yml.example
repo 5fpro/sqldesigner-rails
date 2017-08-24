@@ -47,6 +47,7 @@ defaults: &defaults
         secret: "<%= ENV['OAUTH_GOOGLE_SECRET'] %>"
   sitemap:
     path: "sitemaps/"
+  ga_id: "<%= ENV['GA_ID'] %>"
 
 development:
   <<: *defaults
