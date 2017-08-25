@@ -15,9 +15,7 @@ module MetaTagHelper
       app_id: default_meta.fb.app_id,
       admins: default_meta.fb.admin_ids
     }
-    data[:og][:image] = data[:image] if data[:image].present?
-    data[:og][:image] = default_og_image unless data[:og][:image]
-    data[:og][:image] = append_og_image_protocol(data[:og][:image])
+    data[:og][:image] = append_og_image_protocol(data[:image] || default_og_image)
     data[:nofollow] = true if data[:nofollow] == true
     data[:noindex] = true if data[:noindex] == true
 
