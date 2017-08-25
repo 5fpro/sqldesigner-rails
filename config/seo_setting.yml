@@ -1,6 +1,7 @@
 # Config@initial
 default: &default
   defaults:
+    site: "5FPRO"
     title: "5FPRO"
     description: "5FPRO awesome!"
     keywords: "5FPRO"
@@ -16,7 +17,6 @@ default: &default
         type: "image/png"
         width: "300"
         height: "300"
-    site: "5FPRO"
 
 development:
   <<: *default

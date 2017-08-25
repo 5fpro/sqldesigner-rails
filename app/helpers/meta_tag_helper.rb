@@ -1,46 +1,35 @@
 module MetaTagHelper
   def set_meta(data = {})
-    url = data[:url] || url_for(request.params.merge(host: Setting.host))
-    data[:title] ||= default_meta.title
-    data[:description] ||= default_meta.description
-    data[:keywords] ||= default_meta.keywords
-    data[:site] ||= default_meta.site
-    data[:og] = {
-      title:       (data[:title] || data[:site]),
-      description: data[:description],
-      url:         url,
-      type:        data[:og_type] || default_meta.og.type
-    }
-    data[:fb] = {
-      app_id: default_meta.fb.app_id,
-      admins: default_meta.fb.admin_ids
-    }
-    data[:og][:image] = append_og_image_protocol(data[:image] || default_og_image)
-    data[:nofollow] = true if data[:nofollow] == true
-    data[:noindex] = true if data[:noindex] == true
-
-    set_meta_tags(data.merge(
-                    reverse:   default_meta.reverse,
-                    separator: default_meta.separator,
-                    canonical: url
-    ))
+    data.deep_symbolize_keys!
+    default_data = default_meta
+    url = data.delete(:url) || data.delete(:canonical)
+    image = append_og_image_protocol(data.delete(:image) || data.delete(:image_src))
+    data.select! { |_k, v| v.present? }
+    default_data[:canonical] = url || default_data[:canonical]
+    default_data[:image_src] = image || default_data[:image_src]
+    default_data[:og][:image] = image || default_data[:og][:image]
+    set_meta_tags(default_data.deep_merge(data))
   end
 
   def default_meta
-    SeoSetting.defaults
+    data = SeoSetting.defaults.to_h.deep_symbolize_keys
+    data[:og].merge!(
+      title: :title,
+      site_name: :site,
+      description: :description
+    )
+    data[:canonical] = url_for(request.params.merge(host: Setting.host))
+    data[:image_src] = data[:og][:image][:url] = default_og_image_url
+    data
   end
 
-  def default_og_image
-    default_meta.og.image
+  def default_og_image_url
+    append_og_image_protocol(SeoSetting.defaults.og.image.url)
   end
 
-  def append_og_image_protocol(image)
-    url = image.is_a?(Hash) ? image.symbolize_keys[:url] : image
-    if url[0, 2] == '//'
-      url = "#{Setting.default_protocol}:#{url}"
-      return image.symbolize_keys.merge(url: url) if image.is_a?(Hash)
-      return url
-    end
-    image
+  def append_og_image_protocol(url)
+    return if url.blank?
+    return "#{Setting.default_protocol}:#{url}" if url[0, 2] == '//'
+    url
   end
 end
