@@ -4,7 +4,7 @@ module MetaTagHelper
     default_data = default_meta
     url = data.delete(:url) || data.delete(:canonical)
     image = append_og_image_protocol(data.delete(:image) || data.delete(:image_src))
-    data.select! { |k, v| v.present? }
+    data.select! { |_k, v| v.present? }
     default_data[:canonical] = url || default_data[:canonical]
     default_data[:image_src] = image || default_data[:image_src]
     default_data[:og][:image] = image || default_data[:og][:image]
