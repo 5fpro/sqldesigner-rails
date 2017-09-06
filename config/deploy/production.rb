@@ -9,7 +9,7 @@ servers = ['127.0.0.1']
 
 shadow_server = 'myapp.5fpro.com'
 role :app,                servers
-role :web,                servers
+role :web,                servers + [shadow_server]
 role :db,                 shadow_server
 role :worker,             shadow_server
 role :assets_sync_server, shadow_server
