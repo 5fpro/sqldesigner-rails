@@ -1,4 +1,6 @@
 class ErrorsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def not_found
     respond_to do |format|
       format.json { render json: { message: 'Page not found' }, status: 404 }

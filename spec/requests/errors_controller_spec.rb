@@ -27,5 +27,10 @@ RSpec.describe ErrorsController, type: :request do
       post '/api'
       expect(response.status).to eq(404)
     end
+
+    it 'js no xhr' do
+      get '/_dwr/interface/WbmemberDWR.js'
+      expect(response.status).to eq(404)
+    end
   end
 end
