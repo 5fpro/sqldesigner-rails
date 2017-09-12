@@ -20,5 +20,12 @@ RSpec.describe ErrorsController, type: :request do
       expect(response.status).to eq(404)
       expect(response.body).to include('Page not found')
     end
+
+    it 'root' do
+      post '/'
+      expect(response.status).to eq(404)
+      post '/api'
+      expect(response.status).to eq(404)
+    end
   end
 end
