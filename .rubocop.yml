@@ -13,6 +13,12 @@ AllCops:
     - Guardfile
     - .gems/**/*
 
+Metrics/BlockLength:
+  Max: 250
+
+Metrics/ClassLength:
+  Max: 150
+
 Rails:
   Enabled: true
 
@@ -21,7 +27,7 @@ Metrics/ModuleLength:
   Max: 100
   Enabled: false
 
-Style/AccessorMethodName:
+Naming/AccessorMethodName:
   Enabled: false
 
 Style/AndOr:
@@ -82,7 +88,7 @@ Style/BlockDelimiters:
 Style/RegexpLiteral:
   AllowInnerSlashes: true
 
-Style/PredicateName:
+Naming/PredicateName:
   Enabled: false
 
 Metrics/MethodLength:
@@ -123,9 +129,6 @@ Style/StringLiteralsInInterpolation:
   EnforcedStyle: single_quotes
   Enabled: true
 
-Metrics/BlockLength:
-  Max: 150
-
 Rails/SkipsModelValidations:
   Enabled: false
 
@@ -138,3 +141,6 @@ Lint/AmbiguousBlockAssociation:
 
 Style/SymbolArray:
   EnforcedStyle: brackets
+
+Lint/RescueWithoutErrorClass:
+  Enabled: false
