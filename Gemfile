@@ -37,7 +37,7 @@ gem 'turbolinks', '~> 5'
 # background jobs
 gem 'sidekiq'
 gem 'sidekiq-limit_fetch'
-gem 'sidetiq'
+gem 'sidekiq-scheduler'
 gem 'sinatra', '~> 2.0.0.beta2'
 
 # file upload
