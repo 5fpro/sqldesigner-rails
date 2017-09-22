@@ -101,6 +101,7 @@ gem 'rollbar'
 
 # devise
 gem 'devise'
+gem 'devise-async'
 
 # aws
 gem 'aws-sdk-rails'

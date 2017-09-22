@@ -33,4 +33,13 @@ RSpec.describe User, type: :model do
     expect(user).not_to be_new_record
     expect(create(:user_with_avatar).avatar.url).to be_present
   end
+
+  it 'devise async' do
+    expect {
+      FactoryGirl.create :unconfirmed_user
+    }.to enqueue_job(ActionMailer::DeliveryJob)
+    expect {
+      user
+    }.not_to have_enqueued_job(ActionMailer::DeliveryJob)
+  end
 end
