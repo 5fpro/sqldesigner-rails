@@ -42,5 +42,9 @@ FactoryGirl.define do
     factory :user_with_avatar do
       avatar { File.open(Rails.root.join('spec', 'fixtures', '5fpro.png')) }
     end
+
+    trait :admin_creation do
+      confirmed_at nil
+    end
   end
 end
