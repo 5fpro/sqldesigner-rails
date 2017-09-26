@@ -31,15 +31,15 @@ FactoryGirl.define do
     password '12341234'
     confirmed_at Time.now
 
-    factory :admin_user do
+    trait :admin do
       admin true
     end
 
-    factory :unconfirmed_user do
+    trait :unconfirmed do
       confirmed_at nil
     end
 
-    factory :user_with_avatar do
+    trait :with_avatar do
       avatar { File.open(Rails.root.join('spec', 'fixtures', '5fpro.png')) }
     end
 

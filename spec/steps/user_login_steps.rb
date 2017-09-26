@@ -9,6 +9,6 @@ placeholder :user do
   end
 
   match /管理者/ do
-    create(:admin_user)
+    create(:user, :admin)
   end
 end
