@@ -4,6 +4,7 @@ module Api
 
     included do
       rescue_from StandardError do |e|
+        Rollbar.error(e)
         respond_error_by_exception(:internal_error, e, status: 500)
       end
 
