@@ -6,5 +6,3 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 end
 
 OmniAuth.config.path_prefix = "/authorizations"
-
-ActiveRecord::Base.send(:include, ::Omniauthable)
