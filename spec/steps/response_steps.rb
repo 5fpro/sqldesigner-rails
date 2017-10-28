@@ -28,6 +28,10 @@ step '頁面轉跳' do
   expect(response).to be_redirect
 end
 
+step '頁面轉跳至 :path' do |path|
+  expect(response).to redirect_to(path)
+end
+
 step '頁面包含 :content' do |content|
   expect(response.body).to include(content)
 end
