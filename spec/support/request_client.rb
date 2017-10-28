@@ -5,7 +5,7 @@ module RequestClient
   end
 
   def signin_user(user = nil)
-    user ||= create(:admin_user)
+    user ||= create(:user, :admin)
     post '/users/sign_in', params: { user: { email: user.email, password: user.password } }
     @current_user = user if response.status == 302
   end

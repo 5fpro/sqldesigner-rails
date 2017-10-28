@@ -144,3 +144,6 @@ Style/SymbolArray:
 
 Lint/RescueWithoutErrorClass:
   Enabled: false
+
+Lint/AmbiguousRegexpLiteral:
+  Enabled: false

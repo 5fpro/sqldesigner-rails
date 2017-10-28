@@ -1,11 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Api::BaseController, type: :request do
-  it 'GET /api' do
-    get '/api', params: { test: true }, xhr: true
-    expect(response).to be_success
-    expect(JSON.parse(response.body)['params']['test']).to eq('true')
-  end
 
   context 'GET /error' do
     it 'standard' do
@@ -26,11 +21,5 @@ RSpec.describe Api::BaseController, type: :request do
       expect(response.status).to eq(400)
     end
 
-  end
-
-  it 'page not found' do
-    get '/api/asdasda', xhr: true
-    expect(JSON.parse(response.body)['name']).to eq('page_not_found')
-    expect(response.status).to eq(404)
   end
 end

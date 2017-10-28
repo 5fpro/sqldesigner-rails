@@ -46,12 +46,12 @@ class UserAuthContext < BaseContext
 
   def parse_email
     email = params_to_user_attributes[:email]
-    errors.add(:email, :not_found) unless email
+    errors.add(:email, :not_found) if email.blank?
     email
   end
 
   def already_auth?
-    if @authorization
+    if @authorization.present? && @authorization.auth != @user
       errors.add(:authorization, :taken)
       throw :abort
     end

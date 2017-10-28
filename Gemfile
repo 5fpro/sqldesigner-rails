@@ -89,6 +89,7 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'timecop'
+  gem 'turnip'
   gem 'webmock'
 end
 

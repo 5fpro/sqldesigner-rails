@@ -31,12 +31,12 @@ RSpec.describe User, type: :model do
 
   it 'FactoryGirl' do
     expect(user).not_to be_new_record
-    expect(create(:user_with_avatar).avatar.url).to be_present
+    expect(create(:user, :with_avatar).avatar.url).to be_present
   end
 
   it 'devise async' do
     expect {
-      FactoryGirl.create :unconfirmed_user
+      create :user, :unconfirmed
     }.to enqueue_job(ActionMailer::DeliveryJob)
     expect {
       user
