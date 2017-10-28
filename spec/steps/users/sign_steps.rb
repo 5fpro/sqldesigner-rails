@@ -62,8 +62,8 @@ def auth_mock(auth_provider, table)
   uid = provider_data[:uid]
   name = provider_data[:name]
   mock_data = omniauth_mock(auth_provider.to_sym)
-  mock_data[:info][:email] = email.gsub(' ', '') if email.is_a?(String)
-  mock_data[:uid] = uid.gsub(' ', '') if uid.is_a?(String)
+  mock_data[:info][:email] = email.delete(' ') if email.is_a?(String)
+  mock_data[:uid] = uid.delete(' ') if uid.is_a?(String)
   mock_data[:info][:name] = name if name.present?
-  { 'omniauth.auth' =>  mock_data }
+  { 'omniauth.auth' => mock_data }
 end

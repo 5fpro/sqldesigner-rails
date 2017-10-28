@@ -51,7 +51,7 @@ class UserAuthContext < BaseContext
   end
 
   def already_auth?
-    if @authorization && @authorization.auth != @user
+    if @authorization.present? && @authorization.auth != @user
       errors.add(:authorization, :taken)
       throw :abort
     end
