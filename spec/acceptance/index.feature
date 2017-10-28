@@ -10,7 +10,7 @@ Feature: 基本頁面
     When 前往 /robots
       Then 頁面回應 404
   Scenario: 各種 404
-    When 對 首頁 打 POST
+    When 打 POST 到 首頁
       Then 頁面回應 404
     When 前往 /_dwr/interface/WbmemberDWR.js
       Then 頁面回應 404

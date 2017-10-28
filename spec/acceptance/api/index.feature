@@ -4,7 +4,7 @@ Feature: 首頁
       Then 頁面回應 正常
       And 回應格式為 JSON
   Scenario: 各種 404
-    When 對 API首頁 打 POST
+    When 打 POST 到 API首頁
       Then 頁面回應 404
     When 前往 /_dwr/interface/WbmemberDWR.js
       Then 頁面回應 404
