@@ -3,31 +3,37 @@ html
   head
     = display_meta_tags
     meta content="width=device-width, initial-scale=1.0" name="viewport"
+    - admin_stylesheet_links.each do |link|
+      = stylesheet_link_tag    link, media: 'all'
     = stylesheet_link_tag    "admin", media: 'all'
-    = javascript_include_tag "admin"
+
     = csrf_meta_tags
-  body
-    #header
-      h1= link_to "Unicorn Admin", admin_root_path
-    #user-nav.navbar.navbar-inverse
-      = render partial: "admin/base/nav"
-    #sidebar
-      = render partial: "admin/base/sidebar_menu" if user_signed_in?
-
-    #content
-      #content-header
-        h1= @admin_page_title
-        .btn-group= yield :btns
-      #breadcrumb
-        = render_crumbs separator: ' '
-
-      .container-fluid
-        .row-fluid
-          - flash.each do |k, message|
-            div class= "alert fade in alert-#{k}"
-              a.close data-dismiss="alert" href="#"
-              = message
+  body.nav-md
+    .container.body
+      .main_container
+        .col-md-3.left_col
+          .left_col.scroll-view
+            = render partial: "admin/base/leftnav" if user_signed_in?
+        .top_nav
+          .nav_menu
+            nav
+              = render partial: 'admin/base/topnav'
+        .right_col role="main"
+          div
+            .page-title
+              .title_left
+                h3= @admin_page_title
+              .title_right
+                = yield :btns
+            .clearfix
+            = render_crumbs separator: ' > '
+            .clearfix
+            br/
+            = render partial: 'admin/base/flash'
           = yield
-        .row-fluid
-          #footer.span12
-            | Footer
+        footer
+          = render partial: "admin/base/footer"
+
+    = javascript_include_tag "admin"
+    - admin_javascript_links.each do |link|
+      = javascript_include_tag link

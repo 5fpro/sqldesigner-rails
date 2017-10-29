@@ -1,0 +1,24 @@
+li.dropdown[role="presentation"]
+  a.dropdown-toggle.info-number[href="#" data-toggle="dropdown" aria-expanded="false"]
+    i.fa.fa-envelope-o
+    span.badge.bg-green
+      | 6
+  ul#menu1.dropdown-menu.list-unstyled.msg_list[role="menu"]
+    - 3.times do
+      li
+        = link_to '#' do
+          span.image
+            = image_tag 'icon-100px.png'
+          span
+            span
+              | John Smith
+            span.time
+              | 3 mins ago
+          span.message
+            |  Film festivals used to be do-or-die moments for movie makers. They were where...
+    li
+      .text-center
+        = link_to '#' do
+          strong
+            | See All Alerts
+          i.fa.fa-angle-right

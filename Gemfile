@@ -128,7 +128,6 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-oauth2'
 
 # front-end
-gem 'bootstrap-sass'
 gem 'jquery-ui-rails'
 
 # SEO
