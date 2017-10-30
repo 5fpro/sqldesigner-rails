@@ -1,7 +1,7 @@
 - content_for :btns do
   = render partial: "btns", object: @user, as: :user
 
-= admin_widget_box "User ##{@user.id}", icon: :th do
+= admin_widget_box "User ##{@user.id}" do
   table.table.table-bordered.table-striped.table-hover
     tbody
       tr
