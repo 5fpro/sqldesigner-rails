@@ -1,6 +1,6 @@
 - content_for :btns do
   = render partial: "btns", object: @category, as: :category
-= admin_widget_box "Category ##{@category.id}", icon: :th do
+= admin_widget_box "Category ##{@category.id}" do
   table.table.table-bordered.table-striped.table-hover
     tbody
       tr
