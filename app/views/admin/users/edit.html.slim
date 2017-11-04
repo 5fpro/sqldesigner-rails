@@ -2,5 +2,5 @@
   = render partial: "btns", object: @user, as: :user
 
 = admin_widget_box "Edit User" do
-  = simple_form_for @user, as: :user, wrapper: :admin do |f|
+  = admin_form_for @user, as: :user, wrapper: :admin do |f|
     = render partial: "form", object: f, as: :f

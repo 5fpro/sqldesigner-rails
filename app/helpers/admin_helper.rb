@@ -55,6 +55,8 @@ module AdminHelper
       'https://colorlib.com/polygon/vendors/font-awesome/css/font-awesome.min.css',
       'https://colorlib.com/polygon/vendors/nprogress/nprogress.css',
       'https://colorlib.com/polygon/vendors/bootstrap-daterangepicker/daterangepicker.css',
+      'https://colorlib.com/polygon/vendors/switchery/dist/switchery.min.css',
+      'https://colorlib.com/polygon/vendors/iCheck/skins/flat/green.css',
       'https://colorlib.com/polygon/build/css/custom.min.css'
     ]
   end
@@ -74,9 +76,24 @@ module AdminHelper
       'https://colorlib.com/polygon/vendors/flot.orderbars/js/jquery.flot.orderBars.js',
       'https://colorlib.com/polygon/vendors/flot-spline/js/jquery.flot.spline.min.js',
       'https://colorlib.com/polygon/vendors/DateJS/build/date.js',
+      'https://colorlib.com/polygon/vendors/iCheck/icheck.min.js',
       'https://colorlib.com/polygon/vendors/moment/min/moment.min.js',
       'https://colorlib.com/polygon/vendors/bootstrap-daterangepicker/daterangepicker.js',
+      'https://colorlib.com/polygon/vendors/switchery/dist/switchery.min.js',
       'https://colorlib.com/polygon/build/js/custom.min.js'
+
     ]
+  end
+
+  def admin_search_form_for(obj, options, &block)
+    options ||= {}
+    options.deep_merge!(builder: AdminFormBuilder, html: { class: 'form-horizontal' }, wrapper: :admin, defaults: { required: false })
+    search_form_for(obj, options, &block)
+  end
+
+  def admin_form_for(obj, options, &block)
+    options ||= {}
+    options.deep_merge!(builder: AdminFormBuilder, html: { class: 'form-horizontal' }, wrapper: :admin, defaults: { required: false })
+    simple_form_for(obj, options, &block)
   end
 end
