@@ -1,18 +1,18 @@
 - append_page_button('Export', url_for(request.params.merge(format: :csv)))
 - append_page_button('New User', new_admin_user_path)
 
-= admin_widget_box "Filtering" do
-  = render partial: "filtering", as: :q, object: @q
+= admin_widget_box 'Filtering' do
+  = render partial: 'filtering', as: :q, object: @q
 
-= admin_widget_box "Users" do
+= admin_widget_box 'Users' do
   = render_admin_data_table(data: @users) do
     thead
       tr
-        th= "#"
-        th= "Name"
-        th= "Email"
-        th= "Confirmed"
-        th= "actions"
+        th= '#'
+        th= 'Name'
+        th= 'Email'
+        th= 'Confirmed'
+        th= 'actions'
     tbody
       - @users.each do |user|
         tr class="pointer #{cycle('odd', 'even')}"
@@ -20,7 +20,7 @@
           td= user.name
           td= user.email
           td
-            = "Y" if user.try(:confirmed?)
+            = 'Y' if user.try(:confirmed?)
           td
             = link_to 'Show', admin_user_path(user)
             | &nbsp; | &nbsp;

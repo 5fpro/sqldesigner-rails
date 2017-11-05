@@ -1,7 +1,7 @@
 = admin_search_form_for @q, nil do |f|
-  = f.input :has_avatar, as: :switch, label: "has avatar"
-  = f.input :name_cont, label: "name contains"
-  = f.input :email_cont, label: "email contains"
+  = f.input :has_avatar, as: :switch, label: 'has avatar'
+  = f.input :name_cont, label: 'name contains'
+  = f.input :email_cont, label: 'email contains'
   - if Rails.env.development?
-    = f.input :created_at_eq, as: :string, input_html: { name: "", value: @q.result.to_sql }, label: "debug sql"
+    = f.input :created_at_eq, as: :string, input_html: { name: '', value: @q.result.to_sql }, label: 'debug sql'
   = f.submit_cancel 'Search'

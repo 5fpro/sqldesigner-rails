@@ -106,13 +106,14 @@ module AdminHelper
     render partial: 'admin/base/pagination', as: :collection, object: collection
   end
 
-  def render_admin_data_table(data: nil, bordered: true, striped: true, hover: true, &block)
+  def render_admin_data_table(data: nil, total: nil, bordered: true, striped: true, hover: true, &block)
     locals = {
       body: capture(&block),
       data: data,
       bordered: bordered,
       striped: striped,
-      hover: hover
+      hover: hover,
+      total: total
     }
     render partial: 'admin/base/data_table', locals: locals
   end
