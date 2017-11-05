@@ -26,7 +26,7 @@ html
               .title_right
                 = yield :btns
             .clearfix
-            = render_crumbs separator: ' > '
+            = render_breadcrumbs builder: AdminBreadcrumbsBuilder
             .clearfix
             br/
             = render partial: 'admin/base/flash'

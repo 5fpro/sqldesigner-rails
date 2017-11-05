@@ -131,7 +131,7 @@ gem 'omniauth-oauth2'
 gem 'jquery-ui-rails'
 
 # SEO
-gem 'crummy'
+gem 'breadcrumbs_on_rails'
 gem 'meta-tags', require: 'meta_tags'
 gem 'sitemap_generator'
 

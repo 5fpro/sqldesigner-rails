@@ -6,9 +6,7 @@ class Admin::BaseController < ApplicationController
   before_action :authenticate_admin_user!
   before_action :set_meta
 
-  before_action do
-    add_crumb 'Admin', admin_root_path
-  end
+  add_breadcrumb 'Admin', :admin_root_path
 
   def index
     @admin_page_title = 'Admin'

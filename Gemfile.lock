@@ -81,6 +81,7 @@ GEM
     aws-sigv4 (1.0.2)
     bcrypt (3.1.11)
     bindex (0.5.0)
+    breadcrumbs_on_rails (3.0.1)
     builder (3.2.3)
     byebug (9.1.0)
     capistrano (3.9.1)
@@ -117,7 +118,6 @@ GEM
     connection_pool (2.2.1)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
-    crummy (1.8.0)
     dalli (2.7.6)
     database_cleaner (1.6.1)
     devise (4.3.0)
@@ -470,6 +470,7 @@ DEPENDENCIES
   annotate
   asset_sync
   aws-sdk-rails
+  breadcrumbs_on_rails
   byebug
   capistrano-rails
   capistrano-rbenv
@@ -479,7 +480,6 @@ DEPENDENCIES
   carrierwave_backgrounder!
   coffee-rails (~> 4.2)
   connection_pool
-  crummy
   dalli
   database_cleaner
   devise

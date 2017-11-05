@@ -1,6 +1,9 @@
 class Admin::CategoriesController < Admin::BaseController
   before_action :category
-  before_action { add_crumb('Categories', admin_categories_path) }
+  add_breadcrumb('Categories', :admin_categories_path)
+  before_action do
+    add_breadcrumb(@category.name, admin_category_path(@category)) if @category.try(:id)
+  end
 
   def index
     @admin_page_title = 'Categories'
@@ -11,23 +14,21 @@ class Admin::CategoriesController < Admin::BaseController
 
   def show
     @admin_page_title = "##{@category.id} #{@category.name}"
-    add_crumb @admin_page_title, '#'
   end
 
   def new
-    @admin_page_title = 'New Category'
-    add_crumb @admin_page_title, '#'
+    @admin_page_title = 'New'
+    add_breadcrumb @admin_page_title
   end
 
   def edit
-    @admin_page_title = 'Edit Category'
-    add_crumb @admin_page_title, '#'
+    @admin_page_title = 'Edit'
+    add_breadcrumb @admin_page_title
   end
 
   def revisions
     @admin_page_title = "##{@category.id} #{@category.name} - revisions"
-    add_crumb @category.name, admin_category_path(@category)
-    add_crumb 'revisions', '#'
+    add_breadcrumb 'Revisions'
     @versions = @category.versions
   end
 
