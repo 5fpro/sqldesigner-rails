@@ -21,7 +21,13 @@ defaults: &defaults
         -
           icon: 'users'
           label: 'Users'
-          link: admin_users
+          subitems:
+            -
+              label: 'List'
+              link: admin_users
+            -
+              label: 'New'
+              link: new_admin_user
         -
           icon: 'wheelchair'
           label: 'Categories'

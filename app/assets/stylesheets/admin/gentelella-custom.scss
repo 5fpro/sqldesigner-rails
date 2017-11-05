@@ -14,3 +14,13 @@
 form.form-horizontal .checkbox > label {
   padding-left: 0px;
 }
+
+.parsley-error input, .parsley-error select, .parsley-error textarea {
+  background: #FAEDEC;
+  border: 1px solid #E85445
+}
+
+.parsley-errors-list {
+  color: #E74C3C;
+  padding-left: 0;
+}
