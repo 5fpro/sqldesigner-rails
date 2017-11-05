@@ -5,8 +5,5 @@
 /    total_pages  : total number of pages
 /    per_page     : number of items to fetch per page
 /    remote       : data-remote
-- if current_page.last?
-  a.next.ui-state-disabled.fg-button.ui-button.ui-state-default
-    == t 'views.pagination.next'
-- else
-  == link_to t('views.pagination.next').html_safe, url, rel: 'next', remote: remote, class: "next fg-button ui-button ui-state-default"
+li.paginate_button.next class="#{'disabled' if current_page.last?}"
+  == link_to t('views.pagination.next').html_safe, url, rel: 'next', remote: remote

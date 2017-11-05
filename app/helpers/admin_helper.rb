@@ -52,6 +52,11 @@ module AdminHelper
   def admin_stylesheet_links
     [
       'https://colorlib.com/polygon/vendors/bootstrap/dist/css/bootstrap.min.css',
+      'https://colorlib.com/polygon/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css',
+      'https://colorlib.com/polygon/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css',
+      'https://colorlib.com/polygon/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css',
+      'https://colorlib.com/polygon/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css',
+      'https://colorlib.com/polygon/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css',
       'https://colorlib.com/polygon/vendors/font-awesome/css/font-awesome.min.css',
       'https://colorlib.com/polygon/vendors/nprogress/nprogress.css',
       'https://colorlib.com/polygon/vendors/bootstrap-daterangepicker/daterangepicker.css',
@@ -95,5 +100,20 @@ module AdminHelper
     options ||= {}
     options.deep_merge!(builder: AdminFormBuilder, html: { class: 'form-horizontal' }, wrapper: :admin, defaults: { required: false })
     simple_form_for(obj, options, &block)
+  end
+
+  def render_admin_pagination(collection)
+    render partial: 'admin/base/pagination', as: :collection, object: collection
+  end
+
+  def render_admin_data_table(data: nil, bordered: true, striped: true, hover: true, &block)
+    locals = {
+      body: capture(&block),
+      data: data,
+      bordered: bordered,
+      striped: striped,
+      hover: hover
+    }
+    render partial: 'admin/base/data_table', locals: locals
   end
 end

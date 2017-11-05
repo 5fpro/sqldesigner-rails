@@ -6,7 +6,7 @@ class Admin::UsersController < Admin::BaseController
     @admin_page_title = 'Users'
     add_crumb @admin_page_title, '#'
     @q = Admin::User.ransack(params[:q])
-    @users = @q.result.order('id DESC').page(params[:page]).per(30)
+    @users = @q.result.order('id DESC').page(params[:page]).per(1)
     respond_with @users
   end
 

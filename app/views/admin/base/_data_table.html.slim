@@ -1,0 +1,10 @@
+.dataTables_wrapper
+  = render_admin_pagination data if data
+  .table-responsive
+    - bordered = bordered ? 'table-bordered' : ''
+    - striped = striped ? 'table-striped' : ''
+    - hover = hover ? 'table-hover' : ''
+    - jambo = data ? 'jambo_table' : ''
+    table.table class="#{bordered} #{striped} #{hover} #{jambo}"
+      == body
+  = render_admin_pagination data if data

@@ -1,0 +1,7 @@
+.row
+  .col-sm-4
+    .dataTables_info
+      = "Total: #{collection.total_count}"
+  .col-sm-8
+    .dataTables_paginate.paging_simple_numbers
+      = paginate collection, theme: :admin
