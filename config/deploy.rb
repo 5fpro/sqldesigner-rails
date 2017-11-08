@@ -42,6 +42,8 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 # set :keep_releases, 5
 
 after 'deploy:publishing', 'deploy:restart'
+after 'deploy:published', 'bundler:clean'
+
 namespace :deploy do
   task :restart do
     invoke 'unicorn:restart'
