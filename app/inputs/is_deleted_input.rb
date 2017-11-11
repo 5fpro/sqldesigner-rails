@@ -1,13 +1,5 @@
-class IsDeletedInput < SimpleForm::Inputs::CollectionRadioButtonsInput
+class IsDeletedInput < BtnGroupInput
   # TODO: i18n
-  def input(wrapper_options = nil)
-    wrapper_options = (wrapper_options || {}).merge(
-      include_blank: false,
-      wrapper: :admin_radio
-    )
-    @input_type = 'radio_buttons'
-    super(wrapper_options)
-  end
 
   private
 

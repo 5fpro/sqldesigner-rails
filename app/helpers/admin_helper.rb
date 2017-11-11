@@ -24,10 +24,6 @@ module AdminHelper
     diffs
   end
 
-  def collection_for_delete_state
-    [['Deleted', :only_deleted], ['All', :with_deleted]]
-  end
-
   def render_admin_sorting_buttons(instance, column: :sort, html_attrs: nil)
     scope = instance.class.to_s.split('::').last.underscore
     html = [:first, :up, :down, :last, :remove].map do |action|
@@ -35,8 +31,7 @@ module AdminHelper
         ''
       else
         html_opts = {
-          method: :put,
-
+          method: :put
         }.merge(html_attrs || {})
         link_to action.to_s.camelize, send("admin_#{scope}_path", instance, "#{scope}[#{column}]" => action, redirect_to: url_for), html_opts
       end
@@ -119,5 +114,24 @@ module AdminHelper
       total: total
     }
     render partial: 'admin/base/data_table', locals: locals
+  end
+
+  def admin_link_to(text, link, icon: nil, size: nil, color: nil, round: false, **html_opts)
+    html_opts ||= {}
+    classes = html_opts[:class].to_s.split(' ')
+    classes << 'btn'
+    classes << { l: 'btn-lg', m: 'btn-sm', s: 'btn-xs' }[size.to_sym] if size
+    classes << 'btn-round' if round
+    classes << "btn-#{color}" if color
+    html_opts[:class] = classes.select(&:present?).join(' ')
+    link_to link, html_opts do
+      text = "<i class=\"fa fa-#{icon}\"></i>&nbsp;#{text}" if icon
+      text.html_safe
+    end
+  end
+
+  def admin_app_button_to(text, link, icon: , **html_opts)
+    html_opts ||= {}
+    admin_link_to(text, link, icon: icon, class: "btn-app #{html_opts.delete(:class)}", **html_opts)
   end
 end
