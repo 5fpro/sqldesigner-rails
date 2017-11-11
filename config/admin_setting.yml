@@ -53,7 +53,7 @@ defaults: &defaults
             name: 'Hot!'
             style: 'success'
         -
-          icon: 'error'
+          icon: 'bell'
           label: Erorr Page
           link: admin_error
 
