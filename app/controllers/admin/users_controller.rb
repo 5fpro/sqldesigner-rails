@@ -6,24 +6,24 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def index
-    @admin_page_title = 'Users'
+    @page_title = 'Users'
     @q = Admin::User.ransack(params[:q])
     @users = @q.result.order('id DESC').page(params[:page]).per(30)
     respond_with @users
   end
 
   def show
-    @admin_page_title = "##{@user.id}"
+    @page_title = "##{@user.id}"
   end
 
   def new
-    @admin_page_title = 'New'
-    add_breadcrumb @admin_page_title
+    @page_title = 'New'
+    add_breadcrumb @page_title
   end
 
   def edit
-    @admin_page_title = 'Edit'
-    add_breadcrumb @admin_page_title
+    @page_title = 'Edit'
+    add_breadcrumb @page_title
   end
 
   def create

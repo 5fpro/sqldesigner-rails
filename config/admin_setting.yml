@@ -39,11 +39,8 @@ defaults: &defaults
                   label: 'List'
                   link: admin_categories
                 -
-                  label: 'Create'
+                  label: 'New'
                   link: '/admin/categories/new'
-                -
-                  label: 'Bug2-3'
-                  link: '/bug2-3'
 
     -
       title: Live On
@@ -55,6 +52,10 @@ defaults: &defaults
           tag:
             name: 'Hot!'
             style: 'success'
+        -
+          icon: 'error'
+          label: Erorr Page
+          link: admin_error
 
 development:
   <<: *defaults

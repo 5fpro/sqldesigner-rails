@@ -9,13 +9,19 @@ class Admin::BaseController < ApplicationController
   add_breadcrumb 'Admin', :admin_root_path
 
   def index
-    @admin_page_title = 'Admin'
+    @page_title = 'Admin'
     set_meta(title: "#{ENV['APP_NAME']} Admin")
   end
 
-  def example
-    @admin_page_title = 'Template Examples'
-    set_meta(title: @admin_page_title)
+  def examples
+    @page_title = 'Template Examples'
+    add_breadcrumb 'Examples'
+    set_meta(title: @page_title)
+  end
+
+  def error
+    @page_title = '404 Not Found'
+    render layout: 'error'
   end
 
   private

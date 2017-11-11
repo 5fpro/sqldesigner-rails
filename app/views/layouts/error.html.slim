@@ -1,0 +1,21 @@
+doctype 5
+html
+  head
+    = display_meta_tags
+    meta content="width=device-width, initial-scale=1.0" name="viewport"
+    - admin_stylesheet_links.each do |link|
+      = stylesheet_link_tag    link, media: 'all'
+    = stylesheet_link_tag    "admin", media: 'all'
+
+    = csrf_meta_tags
+  body.nav-md
+    .container.body
+      .main_container
+        .col-md-12
+          .col-middle
+            .text-center
+              h1.error-number= @page_title
+              = yield
+    = javascript_include_tag "admin"
+    - admin_javascript_links.each do |link|
+      = javascript_include_tag link
