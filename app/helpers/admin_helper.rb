@@ -94,7 +94,7 @@ module AdminHelper
     search_form_for(obj, options, &block)
   end
 
-  def admin_form_for(obj, options, &block)
+  def admin_form_for(obj, options = {}, &block)
     options ||= {}
     options.deep_merge!(builder: AdminFormBuilder, html: { class: 'form-horizontal' }, wrapper: :admin, defaults: { required: false })
     simple_form_for(obj, options, &block)
@@ -106,7 +106,7 @@ module AdminHelper
 
   def render_admin_data_table(data: nil, total: nil, bordered: true, striped: true, hover: true, &block)
     locals = {
-      body: capture(&block),
+      body: capture(data, &block),
       data: data,
       bordered: bordered,
       striped: striped,
@@ -133,5 +133,15 @@ module AdminHelper
   def admin_app_button_to(text, link, icon: , **html_opts)
     html_opts ||= {}
     admin_link_to(text, link, icon: icon, class: "btn-app #{html_opts.delete(:class)}", **html_opts)
+  end
+
+  def admin_accordion(hash_data, &block)
+    parent_id = 'accordion-parent' + hash_data.to_s.hash.to_s
+    value = hash_data.map do |title, value|
+      body = capture(title, value, &block)
+      id = 'accordion' + "#{title}#{value}".hash.to_s
+      render partial: 'admin/base/templates/accordion_item', locals: { title: title, body: body, id: id, parent_id: parent_id }
+    end.join.html_safe
+    render partial: 'admin/base/templates/accordion', locals: { content: value, id: parent_id }
   end
 end

@@ -1,4 +1,34 @@
+h3= 'admin_link_to'
 = admin_link_to 'See more examples', 'https://colorlib.com/polygon/gentelella/', target: '_blank', size: 'l', color: :primary, icon: :reply, round: true, class: 'zzz', rel: 'no-follow' do
 
 h3= 'admin_app_button_to'
-= admin_app_button_to 'Go To Google', 'https://google.com', icon: :pencil
+= admin_app_button_to 'Go To Google', 'https://google.com', icon: :pencil, target: '_blank'
+
+h3= 'admin_accordion'
+= admin_accordion 'User' => User.new, 'Category' => Category.new do |title, value|
+  div= value.inspect
+
+h3= 'admin_form_for'
+= admin_form_for User.new(name: 'a'), url: admin_root_path do |f|
+  = f.input :name, as: :select2, collection: ['a', 'b']
+  = f.input :name, as: :btn_group, collection: ['a', 'b']
+  = f.input :name, as: :radios, collection: ['a', 'b']
+  = f.input :name, as: :switch
+  = f.input :name, as: :tags
+  = f.submit_cancel 'Go', cancel: root_path
+
+h3= 'admin_widget_box'
+= admin_widget_box 'Hi' do
+  = 'Aloha'
+
+h3= 'render_admin_data_table'
+= render_admin_data_table(data: [User.new, Category.new]) do |data|
+  thead
+    tr
+      th Class
+      th Actions
+  tbody
+    - data.each do |obj|
+      tr
+        td= obj.class
+        td
