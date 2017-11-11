@@ -15,7 +15,7 @@ class DebugSqlInput < SimpleForm::Inputs::StringInput
     :created_at_eq
   end
 
-  def label_text(*args)
+  def label_text(*_args)
     'Debug SQL'
   end
 end

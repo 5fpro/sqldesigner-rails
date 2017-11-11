@@ -7,7 +7,7 @@ class IsDeletedInput < BtnGroupInput
     [['Not Deleted', ''], ['Deleted', :only_deleted], ['All', :with_deleted]]
   end
 
-  def label_text(*args)
+  def label_text(*_args)
     'Deleted'
   end
 end

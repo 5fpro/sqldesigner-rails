@@ -13,7 +13,7 @@ class AdminBreadcrumbsBuilder < BreadcrumbsOnRails::Breadcrumbs::Builder
   def render_element(element)
     last = element == @elements.last
     @context.content_tag(:li, class: "breadcrumb-item #{'active' if last}") do
-      if element.path == nil || last
+      if element.path.nil? || last
         compute_name(element)
       else
         @context.link_to_unless_current(compute_name(element), compute_path(element), element.options)
