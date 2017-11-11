@@ -23,10 +23,10 @@
               = render_admin_sorting_buttons(category)
           td
             - if category.deleted?
-              = link_to 'restore', restore_admin_category_path(category), method: :post, 'data-confirm' => 'Restore?'
+              = link_to 'Restore', restore_admin_category_path(category), method: :post, 'data-confirm' => 'Restore?'
             - else
-              = link_to 'show', admin_category_path(category)
+              = link_to 'Show', admin_category_path(category)
               | &nbsp; | &nbsp;
-              = link_to 'edit', edit_admin_category_path(category)
+              = link_to 'Edit', edit_admin_category_path(category)
               | &nbsp; | &nbsp;
-              = link_to 'delete', admin_category_path(category), method: :delete, 'data-confirm' => 'Delete?'
+              = link_to 'Delete', admin_category_path(category), method: :delete, 'data-confirm' => 'Delete?'

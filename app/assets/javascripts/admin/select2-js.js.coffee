@@ -1,15 +1,13 @@
-#= require select2
-
 init_select2 = (dom) ->
-  $(dom).find("select[data-select]").each ->
+  $(dom).find("select.js-select2").each ->
     $(@).select2({ "width": $(@).data("width") || "80%", "allowClear": true })
-  $(dom).find("[data-select=tags]").each ->
-    opts = { "width": $(@).data("width") || "80%" }
-    opts.tokenSeparators = [",", " "]
-    tags = eval($(@).data("tags"))
-    opts.tags = tags
-    $(@).val(tags.join(","))
-    $(@).select2(opts)
+  $(dom).find("select.js-select2-tags").each ->
+    opts =
+      tokenSeparators: [',', ' ']
+      tags: true
+      with: '80%'
+    console.log(opts)
+    $(@).attr('multiple', true).select2(opts)
 
 $ ->
   init_select2("body")

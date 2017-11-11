@@ -28,3 +28,11 @@ form.form-horizontal .checkbox > label {
 .table {
   margin-bottom: 5px;
 }
+
+.checkbox label, .radio label {
+  padding-left: 0px;
+}
+
+.form-horizontal .checkbox, .form-horizontal .checkbox-inline, .form-horizontal .radio, .form-horizontal .radio-inline {
+  padding-top: 4px;
+}

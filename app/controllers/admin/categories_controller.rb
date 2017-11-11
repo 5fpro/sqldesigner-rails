@@ -76,7 +76,7 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def category_params
-    params.fetch(:category, {}).permit(:name, :tag_list, :sort)
+    params.fetch(:category, {}).permit([:name, { tag_list: [] }, :sort])
   end
 
 end

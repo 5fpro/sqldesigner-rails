@@ -13,6 +13,11 @@ class Admin::BaseController < ApplicationController
     set_meta(title: "#{ENV['APP_NAME']} Admin")
   end
 
+  def example
+    @admin_page_title = 'Template Examples'
+    set_meta(title: @admin_page_title)
+  end
+
   private
 
   def authenticate_admin_user!

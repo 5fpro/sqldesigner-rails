@@ -28,19 +28,19 @@ module AdminHelper
     [['Deleted', :only_deleted], ['All', :with_deleted]]
   end
 
-  def collection_for_tags
-    Tag.all.map(&:name)
-  end
-
-  def render_admin_sorting_buttons(instance, column: :sort)
+  def render_admin_sorting_buttons(instance, column: :sort, html_attrs: nil)
     scope = instance.class.to_s.split('::').last.underscore
     html = [:first, :up, :down, :last, :remove].map do |action|
       if action == :remove && instance.try(column).nil?
         ''
       else
-        link_to action.to_s.camelize, send("admin_#{scope}_path", instance, "#{scope}[#{column}]" => action, redirect_to: url_for), method: :put, class: 'btn btn-mini'
+        html_opts = {
+          method: :put,
+
+        }.merge(html_attrs || {})
+        link_to action.to_s.camelize, send("admin_#{scope}_path", instance, "#{scope}[#{column}]" => action, redirect_to: url_for), html_opts
       end
-    end.join(' ')
+    end.select(&:present?).join(' | ')
     raw html
   end
 
@@ -51,41 +51,44 @@ module AdminHelper
 
   def admin_stylesheet_links
     [
-      'https://colorlib.com/polygon/vendors/bootstrap/dist/css/bootstrap.min.css',
-      'https://colorlib.com/polygon/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css',
-      'https://colorlib.com/polygon/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css',
-      'https://colorlib.com/polygon/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css',
-      'https://colorlib.com/polygon/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css',
-      'https://colorlib.com/polygon/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css',
-      'https://colorlib.com/polygon/vendors/font-awesome/css/font-awesome.min.css',
-      'https://colorlib.com/polygon/vendors/nprogress/nprogress.css',
-      'https://colorlib.com/polygon/vendors/bootstrap-daterangepicker/daterangepicker.css',
-      'https://colorlib.com/polygon/vendors/switchery/dist/switchery.min.css',
-      'https://colorlib.com/polygon/vendors/iCheck/skins/flat/green.css',
-      'https://colorlib.com/polygon/build/css/custom.min.css'
+      '//colorlib.com/polygon/vendors/bootstrap/dist/css/bootstrap.min.css',
+      '//colorlib.com/polygon/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css',
+      '//colorlib.com/polygon/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css',
+      '//colorlib.com/polygon/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css',
+      '//colorlib.com/polygon/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css',
+      '//colorlib.com/polygon/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css',
+      '//colorlib.com/polygon/vendors/font-awesome/css/font-awesome.min.css',
+      '//colorlib.com/polygon/vendors/nprogress/nprogress.css',
+      '//colorlib.com/polygon/vendors/bootstrap-daterangepicker/daterangepicker.css',
+      '//colorlib.com/polygon/vendors/switchery/dist/switchery.min.css',
+      '//colorlib.com/polygon/vendors/iCheck/skins/flat/green.css',
+      '//colorlib.com/polygon/vendors/select2/dist/css/select2.min.css',
+      '//colorlib.com/polygon/build/css/custom.min.css'
     ]
   end
 
   def admin_javascript_links
     [
-      'https://colorlib.com/polygon/vendors/bootstrap/dist/js/bootstrap.min.js',
-      'https://colorlib.com/polygon/vendors/fastclick/lib/fastclick.js',
-      'https://colorlib.com/polygon/vendors/nprogress/nprogress.js',
-      'https://colorlib.com/polygon/vendors/Chart.js/dist/Chart.min.js',
-      'https://colorlib.com/polygon/vendors/jquery-sparkline/dist/jquery.sparkline.min.js',
-      'https://colorlib.com/polygon/vendors/Flot/jquery.flot.js',
-      'https://colorlib.com/polygon/vendors/Flot/jquery.flot.pie.js',
-      'https://colorlib.com/polygon/vendors/Flot/jquery.flot.time.js',
-      'https://colorlib.com/polygon/vendors/Flot/jquery.flot.stack.js',
-      'https://colorlib.com/polygon/vendors/Flot/jquery.flot.resize.js',
-      'https://colorlib.com/polygon/vendors/flot.orderbars/js/jquery.flot.orderBars.js',
-      'https://colorlib.com/polygon/vendors/flot-spline/js/jquery.flot.spline.min.js',
-      'https://colorlib.com/polygon/vendors/DateJS/build/date.js',
-      'https://colorlib.com/polygon/vendors/iCheck/icheck.min.js',
-      'https://colorlib.com/polygon/vendors/moment/min/moment.min.js',
-      'https://colorlib.com/polygon/vendors/bootstrap-daterangepicker/daterangepicker.js',
-      'https://colorlib.com/polygon/vendors/switchery/dist/switchery.min.js',
-      'https://colorlib.com/polygon/build/js/custom.min.js'
+      '//colorlib.com/polygon/vendors/bootstrap/dist/js/bootstrap.min.js',
+      '//colorlib.com/polygon/vendors/fastclick/lib/fastclick.js',
+      '//colorlib.com/polygon/vendors/nprogress/nprogress.js',
+      '//colorlib.com/polygon/vendors/Chart.js/dist/Chart.bundle.min.js',
+      '//colorlib.com/polygon/vendors/Chart.js/dist/Chart.min.js',
+      '//colorlib.com/polygon/vendors/jquery-sparkline/dist/jquery.sparkline.min.js',
+      '//colorlib.com/polygon/vendors/Flot/jquery.flot.js',
+      '//colorlib.com/polygon/vendors/Flot/jquery.flot.pie.js',
+      '//colorlib.com/polygon/vendors/Flot/jquery.flot.time.js',
+      '//colorlib.com/polygon/vendors/Flot/jquery.flot.stack.js',
+      '//colorlib.com/polygon/vendors/Flot/jquery.flot.resize.js',
+      '//colorlib.com/polygon/vendors/flot.orderbars/js/jquery.flot.orderBars.js',
+      '//colorlib.com/polygon/vendors/flot-spline/js/jquery.flot.spline.min.js',
+      '//colorlib.com/polygon/vendors/DateJS/build/date.js',
+      '//colorlib.com/polygon/vendors/iCheck/icheck.min.js',
+      '//colorlib.com/polygon/vendors/moment/min/moment.min.js',
+      '//colorlib.com/polygon/vendors/bootstrap-daterangepicker/daterangepicker.js',
+      '//colorlib.com/polygon/vendors/switchery/dist/switchery.min.js',
+      '//colorlib.com/polygon/vendors/select2/dist/js/select2.full.min.js',
+      '//colorlib.com/polygon/build/js/custom.min.js'
 
     ]
   end

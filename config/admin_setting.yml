@@ -50,10 +50,10 @@ defaults: &defaults
       items:
         -
           icon: 'bar-chart-o'
-          label: Charts
-          link: '/charts'
+          label: Examples
+          link: admin_examples
           tag:
-            name: 'Coming Soon'
+            name: 'Hot!'
             style: 'success'
 
 development:

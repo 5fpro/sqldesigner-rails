@@ -8,6 +8,15 @@
       th Name
       td= @category.name
     tr
+      th Tags
+      td
+        - @category.tag_list.each do |tag_name|
+          - class_name = cycle('default', 'primary', 'success', 'info', 'warning', 'danger')
+          = link_to admin_categories_path(q: { tagged: [tag_name] }) do
+            span.label class="label-#{class_name}"
+              = tag_name
+          | &nbsp;
+    tr
       th Sort
       td= @category.sort
     tr
