@@ -1,25 +1,26 @@
 = render partial: 'btns', object: @user, as: :user
 
-= admin_widget_box "User ##{@user.id}" do
-  = render_admin_data_table(bordered: false) do
-    tr
-      th width="20%" ID
-      td= @user.id
-    tr
-      th Name
-      td= @user.name
-    tr
-      th Email
-      td= @user.email
-    tr
-      th Is Admin
-      td= "Y" if @user.admin?
-    tr
-      th Is Confirmed
-      td= "Y" if @user.confirmed?
-    tr
-      th Last Sign In
-      td= @user.last_sign_in_at
-    tr
-      th Last IP
-      td= @user.last_sign_in_ip
+.row
+  = admin_widget_box "User ##{@user.id}" do
+    = render_admin_data_table(bordered: false) do
+      tr
+        th width="20%" ID
+        td= @user.id
+      tr
+        th Name
+        td= @user.name
+      tr
+        th Email
+        td= @user.email
+      tr
+        th Is Admin
+        td= "Y" if @user.admin?
+      tr
+        th Is Confirmed
+        td= "Y" if @user.confirmed?
+      tr
+        th Last Sign In
+        td= @user.last_sign_in_at
+      tr
+        th Last IP
+        td= @user.last_sign_in_ip

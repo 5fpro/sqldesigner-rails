@@ -1,32 +1,34 @@
 - append_page_button 'New Category', new_admin_category_path, class: 'btn-primary'
 
-= admin_widget_box 'Filtering' do
-  = render partial: 'filtering', as: :q, object: @q
+.row
+  = admin_widget_box 'Filtering' do
+    = render partial: 'filtering', as: :q, object: @q
 
-= admin_widget_box 'Categories' do
-  = render_admin_data_table(data: @categories) do
-    thead
-      tr
-        th= '#'
-        th= 'Name'
-        th= 'Sort'
-        th= 'Sorting'
-        th= 'actions'
-    tbody
-      - @categories.each do |category|
+.row
+  = admin_widget_box 'Categories' do
+    = render_admin_data_table(data: @categories) do
+      thead
         tr
-          td= category.id
-          td= category.name
-          td= category.sort
-          td
-            - unless category.deleted?
-              = render_admin_sorting_buttons(category)
-          td
-            - if category.deleted?
-              = link_to 'Restore', restore_admin_category_path(category), method: :post, 'data-confirm' => 'Restore?'
-            - else
-              = link_to 'Show', admin_category_path(category)
-              | &nbsp; | &nbsp;
-              = link_to 'Edit', edit_admin_category_path(category)
-              | &nbsp; | &nbsp;
-              = link_to 'Delete', admin_category_path(category), method: :delete, 'data-confirm' => 'Delete?'
+          th= '#'
+          th= 'Name'
+          th= 'Sort'
+          th= 'Sorting'
+          th= 'actions'
+      tbody
+        - @categories.each do |category|
+          tr
+            td= category.id
+            td= category.name
+            td= category.sort
+            td
+              - unless category.deleted?
+                = render_admin_sorting_buttons(category)
+            td
+              - if category.deleted?
+                = link_to 'Restore', restore_admin_category_path(category), method: :post, 'data-confirm' => 'Restore?'
+              - else
+                = link_to 'Show', admin_category_path(category)
+                | &nbsp; | &nbsp;
+                = link_to 'Edit', edit_admin_category_path(category)
+                | &nbsp; | &nbsp;
+                = link_to 'Delete', admin_category_path(category), method: :delete, 'data-confirm' => 'Delete?'

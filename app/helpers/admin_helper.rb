@@ -1,6 +1,10 @@
 module AdminHelper
-  def admin_widget_box(title, &block)
-    render partial: 'admin/base/widget_box', locals: { body: capture(&block), title: title }
+  def admin_widget_box(title, sizes: [], &block)
+    sizes ||= []
+    sizes[0] ||= 12
+    sizes[1] ||= 12
+    sizes[2] ||= 12
+    render partial: 'admin/base/widget_box', locals: { body: capture(&block), title: title, sizes: sizes }
   end
 
   def append_page_button(body, link, options = {})
