@@ -1,6 +1,6 @@
 class ChartsPresenter
 
-  CHART_TYPES = %w[ bar bubble doughnut horizontal_bar line pie polar_area radar scatter ]
+  CHART_TYPES = %w[bar bubble doughnut horizontal_bar line pie polar_area radar scatter].freeze
 
   class << self
     private
@@ -29,7 +29,7 @@ class ChartsPresenter
   private
 
   def to_js
-    <<-END.squish.html_safe
+    <<-JSBLOCK.squish.html_safe
     (function() {
           var initChart = function() {
             var ctx = document.getElementById(#{@element_id.to_json});
@@ -53,7 +53,7 @@ class ChartsPresenter
             }
           }
         })();
-    END
+    JSBLOCK
   end
 
   def canvas
@@ -81,7 +81,7 @@ class ChartsPresenter
       end
       '[' + array_elements.join(',') + ']'
     when String
-      if element.match(/^\s*function.*}\s*$/m)
+      if element =~ /^\s*function.*}\s*$/m
         # Raw-copy function definitions to the output without surrounding quotes.
         element
       else
