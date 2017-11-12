@@ -1,0 +1,59 @@
+h3= 'admin_link_to'
+= admin_link_to 'See more examples', 'https://colorlib.com/polygon/gentelella/', target: '_blank', size: 'l', color: :primary, icon: :reply, round: true, class: 'zzz', rel: 'no-follow' do
+
+h3= 'admin_app_button_to'
+= admin_app_button_to 'Go To Google', 'https://google.com', icon: :pencil, target: '_blank'
+
+h3= 'admin_accordion'
+= admin_accordion 'User' => User.new, 'Category' => Category.new do |title, value|
+  div= value.inspect
+
+h3= 'admin_form_for'
+= admin_form_for User.new(name: 'a'), url: admin_root_path do |f|
+  = f.input :name, as: :select2, collection: ['a', 'b']
+  = f.input :name, as: :btn_group, collection: ['a', 'b']
+  = f.input :name, as: :radios, collection: ['a', 'b']
+  = f.input :name, as: :switch
+  = f.input :name, as: :tags
+  = f.submit_cancel 'Go', cancel: root_path
+
+h3= 'admin_widget_box'
+.row
+  = admin_widget_box 'Hi', sizes: [4, 6, 12] do
+    = 'Aloha'
+  = admin_widget_box 'Hi 2', sizes: [4, 6, 12] do
+    = 'Aloha2'
+  = admin_widget_box 'Hi 3', sizes: [4, 6, 12] do
+    = 'Aloha3'
+
+h3= 'render_admin_data_table'
+= render_admin_data_table(data: [User.new, Category.new]) do |data|
+  thead
+    tr
+      th Class
+      th Actions
+  tbody
+    - data.each do |obj|
+      tr
+        td= obj.class
+        td
+
+h3= 'render_line_chart'
+- options = { width: '100%', height: '100px', responsive: true }
+- labels = (4.days.ago.to_date..(Time.now.to_date)).map(&:to_s)
+- datasets = 3.times.map { |i| { label: "data-#{i+1}", data: 5.times.map { (1..100).to_a.sample }, background_color: 'rgba(0,0,0,0)', border_color: "rgba(#{100*i},#{100*i},#{100*i}, 1)" } }
+= admin_widget_box 'Line', sizes: [6] do
+  = render_line_chart({ labels: labels, datasets: datasets }, options)
+= admin_widget_box 'Radar', sizes: [6] do
+  = render_radar_chart({ labels: labels, datasets: datasets }, options)
+= admin_widget_box 'Bar', sizes: [6] do
+  - datasets = datasets.map { |d| d.merge(background_color: "##{d[:data][0]}#{d[:data][0]}#{d[:data][0]}") }
+  = render_bar_chart({ labels: labels, datasets: datasets }, options)
+= admin_widget_box 'Pie', sizes: [6] do
+  - datasets = [{ data: 5.times.map { |i| (1..100).to_a.sample }, background_color: 5.times.map { |i| "##{i*24}#{i*24}#{i*24}" } }]
+  - labels = 5.times.map { |i| "pie-#{i+1}" }
+  = render_pie_chart({ labels: labels, datasets: datasets }, options)
+= admin_widget_box 'Doughnut', sizes: [6] do
+  = render_doughnut_chart({ labels: labels, datasets: datasets }, options)
+= admin_widget_box 'Polar Area', sizes: [6] do
+  = render_polar_area_chart({ labels: labels, datasets: datasets }, options)

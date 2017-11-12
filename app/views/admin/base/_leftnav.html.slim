@@ -1,0 +1,42 @@
+.navbar.nav_title
+  = link_to admin_root_path, class: 'site_title' do
+    = image_tag 'icon-100px.png', size: '22x22'
+    | &nbsp;
+    = "5FPRO Admin"
+.clearfix
+
+.profile.clearfix
+  .profile_pic
+    = image_tag 'icon-100px.png', class: 'img-circle profile_img', size: '56x56'
+  .profile_info
+    span Welcome,
+    h2= current_user.name
+
+br/
+
+#sidebar-menu.main_menu_side.hidden-print.main_menu
+  - AdminSetting.nav_items.each do |section|
+    .menu_section
+      h3= section.title
+      ul.nav.side-menu
+        - section.items.each do |item|
+          li
+            - if item['subitems']
+              a
+                i.fa class="fa-#{item.icon}"
+                = item.label
+                span.fa.fa-chevron-down
+              ul.nav.child_menu
+                - item.subitems.each do |subitem|
+                  = render partial: 'leftnav_subitem', object: subitem, as: :subitem
+            - else
+              = link_to menu_link(item.link) do
+                i.fa class="fa-#{item.icon}"
+                = item.label
+                - if item['tag']
+                  span.label.pull-right class="label-#{item.tag.style}"
+                    = item.tag.name
+
+.sidebar-footer.hidden-small
+  = link_to destroy_user_session_path, data: { toggle: 'tooltip', placement: 'top' }, title: 'Logout' do
+    span.glyphicon.glyphicon-off[aria-hidden="true"]

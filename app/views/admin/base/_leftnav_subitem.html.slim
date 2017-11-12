@@ -1,0 +1,11 @@
+- if subitem['link']
+  li
+    = link_to subitem.label, menu_link(subitem.link), target: subitem['target']
+- elsif subitem['subitems']
+  li
+    a
+      = subitem.label
+      span.fa.fa-chevron-down
+    ul.nav.child_menu
+      - subitem.subitems.each_with_index do |subsubitem, i|
+        = render partial: 'leftnav_subitem', object: subsubitem, as: :subitem

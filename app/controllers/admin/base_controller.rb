@@ -6,13 +6,22 @@ class Admin::BaseController < ApplicationController
   before_action :authenticate_admin_user!
   before_action :set_meta
 
-  before_action do
-    add_crumb 'Admin', admin_root_path
-  end
+  add_breadcrumb 'Admin', :admin_root_path
 
   def index
-    @admin_page_title = 'Admin'
+    @page_title = 'Admin'
     set_meta(title: "#{ENV['APP_NAME']} Admin")
+  end
+
+  def examples
+    @page_title = 'Template Examples'
+    add_breadcrumb 'Examples'
+    set_meta(title: @page_title)
+  end
+
+  def error
+    @page_title = '404 Not Found'
+    render layout: 'error'
   end
 
   private

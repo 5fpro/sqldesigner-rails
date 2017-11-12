@@ -1,6 +1,6 @@
-- content_for :btns do
-  = render partial: "btns", object: @user, as: :user
+= render partial: 'btns', object: @user, as: :user
 
-= admin_widget_box "Edit User", icon: :pencil do
-  = simple_form_for @user, as: :user, wrapper: :admin do |f|
-    = render partial: "form", object: f, as: :f
+.row
+  = admin_widget_box "Edit User" do
+    = admin_form_for @user, as: :user, wrapper: :admin do |f|
+      = render partial: "form", object: f, as: :f

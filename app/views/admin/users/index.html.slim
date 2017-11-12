@@ -1,33 +1,31 @@
-- content_for :btns do
-  = link_to "export to CSV", url_for(request.params.merge(format: :csv)), class: "btn btn-large"
-= admin_widget_box "Filtering", icon: :pencil do
-  = render partial: "filtering", as: :q, object: @q
-= admin_widget_box "Users", icon: :pencil do
-  .dataTables_wrapper
-    div
-      .dataTables_length
-        = link_to "New User", new_admin_user_path, class: "btn btn-primary btn-mini"
-    table.table.table-bordered.table-striped.table-hover
+- append_page_button('Export', url_for(request.params.merge(format: :csv)))
+- append_page_button('New User', new_admin_user_path)
+
+.row
+  = admin_widget_box 'Filtering' do
+    = render partial: 'filtering', as: :q, object: @q
+
+.row
+  = admin_widget_box 'Users' do
+    = render_admin_data_table(data: @users) do
       thead
         tr
-          th= "#"
-          th= "Name"
-          th= "Email"
-          th= "Confirmed"
-          th= "actions"
+          th= '#'
+          th= 'Name'
+          th= 'Email'
+          th= 'Confirmed'
+          th= 'actions'
       tbody
         - @users.each do |user|
-          tr
+          tr class="pointer #{cycle('odd', 'even')}"
             td= user.id
             td= user.name
             td= user.email
             td
-              = "Y" if user.try(:confirmed?)
+              = 'Y' if user.try(:confirmed?)
             td
-              = link_to "show", admin_user_path(user), class: "btn btn-mini"
-              | &nbsp;
-              = link_to "edit", edit_admin_user_path(user), class: "btn btn-mini btn-success"
-              | &nbsp;
-              = link_to "delete", admin_user_path(user), class: "btn btn-mini btn-danger", method: :delete, "data-confirm" => "Delete?"
-    .ui-toolbar.ui-widget-header
-      = paginate @users, theme: :admin
+              = link_to 'Show', admin_user_path(user)
+              | &nbsp; | &nbsp;
+              = link_to 'Edit', edit_admin_user_path(user)
+              | &nbsp; | &nbsp;
+              = link_to 'Delete', admin_user_path(user), method: :delete, 'data-confirm' => 'Delete?'

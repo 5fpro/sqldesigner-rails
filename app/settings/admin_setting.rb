@@ -1,0 +1,2 @@
+class AdminSetting < BaseSetting
+end

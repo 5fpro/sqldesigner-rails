@@ -147,3 +147,6 @@ Lint/RescueWithoutErrorClass:
 
 Lint/AmbiguousRegexpLiteral:
   Enabled: false
+
+Metrics/ParameterLists:
+  Max: 8

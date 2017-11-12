@@ -1,8 +1,6 @@
-= search_form_for @q, :builder => SimpleForm::FormBuilder, html: { class: "form-horizontal" }, wrapper: :admin, defaults: { required: false } do |f|
-  = f.input :has_avatar, as: :boolean, label: "has avatar"
-  = f.input :name_cont, label: "name contains"
-  = f.input :email_cont, label: "email contains"
-  - if Rails.env.development?
-    = f.input :created_at_eq, as: :string, input_html: { name: "", value: @q.result.to_sql }, label: "debug sql"
-  .form-actions
-    = f.submit "Search", class: "btn btn-primary"
+= admin_search_form_for @q, nil do |f|
+  = f.input :has_avatar, as: :switch, label: 'Has avatar'
+  = f.input :name_cont, label: 'Name contains'
+  = f.input :email_cont, label: 'Email contains'
+  = f.input :sql, as: :debug_sql
+  = f.submit_cancel 'Search'

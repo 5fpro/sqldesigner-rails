@@ -1,0 +1,69 @@
+defaults: &defaults
+  assets:
+    cdn_host: 'assets.5fpro.com'
+  nav_items:
+    # to see more icons: https://colorlib.com/polygon/gentelella/icons.html
+    -
+      title: General
+      items:
+        -
+          icon: 'home'
+          label: 'Home'
+          subitems:
+            -
+              label: '前台首頁'
+              link: root
+            -
+              label: '後台首頁'
+              link: admin_root
+            -
+              label: 'Sidekiq 後台'
+              link: '/sidekiq'
+              target: '_blank'
+        -
+          icon: 'users'
+          label: 'Users'
+          subitems:
+            -
+              label: 'List'
+              link: admin_users
+            -
+              label: 'New'
+              link: new_admin_user
+        -
+          icon: 'wheelchair'
+          label: 'Categories'
+          subitems:
+            -
+              label: 'Categories'
+              subitems:
+                -
+                  label: 'List'
+                  link: admin_categories
+                -
+                  label: 'New'
+                  link: '/admin/categories/new'
+
+    -
+      title: Live On
+      items:
+        -
+          icon: 'bar-chart-o'
+          label: Examples
+          link: admin_examples
+          tag:
+            name: 'Hot!'
+            style: 'success'
+        -
+          icon: 'bell'
+          label: Erorr Page
+          link: admin_error
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

@@ -1,8 +1,6 @@
-= search_form_for @q, :builder => SimpleForm::FormBuilder, html: { class: "form-horizontal" }, wrapper: :admin, defaults: { required: false } do |f|
-  = f.input :name_cont, label: "name contains"
-  = f.input :delete_state, label: "delete state", as: :select, collection: collection_for_delete_state, include_blank: "Without deleted"
-  = f.input :tagged, label: "tagged with", as: :select, collection: collection_for_tags, input_html: { "data-select" => true, multiple: true }
-  - if Rails.env.development?
-    = f.input :created_at_eq, as: :string, input_html: { name: "", value: @q.result.to_sql }, label: "debug sql"
-  .form-actions
-    = f.submit "Search", class: "btn btn-primary"
+= admin_search_form_for @q, nil do |f|
+  = f.input :name_cont, label: 'Name contains'
+  = f.input :delete_state, as: :is_deleted
+  = f.input :tagged, label: 'Tagged with', as: :tags
+  = f.input :sql, as: :debug_sql
+  = f.submit_cancel 'Search'

@@ -31,7 +31,6 @@ gem 'uglifier', '>= 1.3.0'
 
 # JS plugin
 gem 'jquery-rails'
-gem 'select2-rails', '~> 3'
 gem 'turbolinks', '~> 5'
 
 # background jobs
@@ -128,11 +127,10 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-oauth2'
 
 # front-end
-gem 'bootstrap-sass'
 gem 'jquery-ui-rails'
 
 # SEO
-gem 'crummy'
+gem 'breadcrumbs_on_rails'
 gem 'meta-tags', require: 'meta_tags'
 gem 'sitemap_generator'
 

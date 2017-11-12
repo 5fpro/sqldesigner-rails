@@ -1,6 +1,6 @@
-- content_for :btns do
-  = render partial: "btns", object: @category, as: :category
+= render partial: 'btns', object: @category, as: :category
 
-= admin_widget_box "Edit Category", icon: :pencil do
-  = simple_form_for @category, as: :category, wrapper: :admin do |f|
-    = render partial: "form", object: f, as: :f
+.row
+  = admin_widget_box 'Edit Category' do
+    = admin_form_for @category, as: :category do |f|
+      = render partial: 'form', object: f, as: :f

@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'base#index', as: :root
+    get '/examples', to: 'base#examples', as: :examples
+    get '/error', to: 'base#error', as: :error
     resources :users
     resources :categories do
       member do

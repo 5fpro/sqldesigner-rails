@@ -1,33 +1,34 @@
 class Admin::CategoriesController < Admin::BaseController
   before_action :category
-  before_action { add_crumb('Categories', admin_categories_path) }
+  add_breadcrumb('Categories', :admin_categories_path)
+  before_action do
+    add_breadcrumb(@category.name, admin_category_path(@category)) if @category.try(:id)
+  end
 
   def index
-    @admin_page_title = 'Categories'
+    @page_title = 'Categories'
     @q = Admin::Category.ransack(params[:q])
     @categories = @q.result.sorted.page(params[:page]).per(30)
     respond_with @categories
   end
 
   def show
-    @admin_page_title = "##{@category.id} #{@category.name}"
-    add_crumb @admin_page_title, '#'
+    @page_title = "##{@category.id} #{@category.name}"
   end
 
   def new
-    @admin_page_title = 'New Category'
-    add_crumb @admin_page_title, '#'
+    @page_title = 'New'
+    add_breadcrumb @page_title
   end
 
   def edit
-    @admin_page_title = 'Edit Category'
-    add_crumb @admin_page_title, '#'
+    @page_title = 'Edit'
+    add_breadcrumb @page_title
   end
 
   def revisions
-    @admin_page_title = "##{@category.id} #{@category.name} - revisions"
-    add_crumb @category.name, admin_category_path(@category)
-    add_crumb 'revisions', '#'
+    @page_title = "##{@category.id} #{@category.name} - revisions"
+    add_breadcrumb 'Revisions'
     @versions = @category.versions
   end
 
@@ -75,7 +76,7 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def category_params
-    params.fetch(:category, {}).permit(:name, :tag_list, :sort)
+    params.fetch(:category, {}).permit([:name, { tag_list: [] }, :sort])
   end
 
 end

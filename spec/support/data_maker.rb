@@ -17,7 +17,7 @@ module DataMaker
 
   def data_for_creating_category
     data_for_category.merge(
-      tag_list: 'a,b,c'
+      tag_list: ['a', 'b', 'c']
     )
   end
 

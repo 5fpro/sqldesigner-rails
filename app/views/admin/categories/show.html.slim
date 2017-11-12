@@ -1,20 +1,28 @@
-- content_for :btns do
-  = render partial: "btns", object: @category, as: :category
-= admin_widget_box "Category ##{@category.id}", icon: :th do
-  table.table.table-bordered.table-striped.table-hover
-    tbody
+= render partial: 'btns', object: @category, as: :category
+.row
+  = admin_widget_box "Category ##{@category.id}" do
+    = render_admin_data_table(bordered: false) do
       tr
-        td= "ID"
+        th ID
         td= @category.id
       tr
-        td= "Name"
+        th Name
         td= @category.name
       tr
-        td= "Sort"
+        th Tags
+        td
+          - @category.tag_list.each do |tag_name|
+            - class_name = cycle('default', 'primary', 'success', 'info', 'warning', 'danger')
+            = link_to admin_categories_path(q: { tagged: [tag_name] }) do
+              span.label class="label-#{class_name}"
+                = tag_name
+            | &nbsp;
+      tr
+        th Sort
         td= @category.sort
       tr
-        td= "created at"
+        th Created at
         td= @category.created_at
       tr
-        td= "updated at"
+        th Updated at
         td= @category.updated_at

@@ -1,18 +1,19 @@
-= admin_widget_box "Filtering", icon: :pencil do
-  = render partial: "filtering", as: :q, object: @q
-= admin_widget_box "Categories", icon: :pencil do
-  .dataTables_wrapper
-    div
-      .dataTables_length
-        = link_to "New Category", new_admin_category_path, class: "btn btn-primary btn-mini"
-    table.table.table-bordered.table-striped.table-hover
+- append_page_button 'New Category', new_admin_category_path, class: 'btn-primary'
+
+.row
+  = admin_widget_box 'Filtering' do
+    = render partial: 'filtering', as: :q, object: @q
+
+.row
+  = admin_widget_box 'Categories' do
+    = render_admin_data_table(data: @categories) do
       thead
         tr
-          th= "#"
-          th= "Name"
-          th= "Sort"
-          th= "Sorting"
-          th= "actions"
+          th= '#'
+          th= 'Name'
+          th= 'Sort'
+          th= 'Sorting'
+          th= 'actions'
       tbody
         - @categories.each do |category|
           tr
@@ -24,12 +25,10 @@
                 = render_admin_sorting_buttons(category)
             td
               - if category.deleted?
-                = link_to "restore", restore_admin_category_path(category), class: "btn btn-mini btn-danger", method: :post, "data-confirm" => "Restore?"
+                = link_to 'Restore', restore_admin_category_path(category), method: :post, 'data-confirm' => 'Restore?'
               - else
-                = link_to "show", admin_category_path(category), class: "btn btn-mini"
-                | &nbsp;
-                = link_to "edit", edit_admin_category_path(category), class: "btn btn-mini btn-success"
-                | &nbsp;
-                = link_to "delete", admin_category_path(category), class: "btn btn-mini btn-danger", method: :delete, "data-confirm" => "Delete?"
-    .ui-toolbar.ui-widget-header
-      = paginate @categories, theme: :admin
+                = link_to 'Show', admin_category_path(category)
+                | &nbsp; | &nbsp;
+                = link_to 'Edit', edit_admin_category_path(category)
+                | &nbsp; | &nbsp;
+                = link_to 'Delete', admin_category_path(category), method: :delete, 'data-confirm' => 'Delete?'

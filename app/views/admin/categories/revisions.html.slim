@@ -1,23 +1,20 @@
-- content_for :btns do
-  = render partial: "btns", object: @category, as: :category
+= render partial: 'btns', object: @category, as: :category
 
-= admin_widget_box "Revisions ( total results: #{@versions.size} )", icon: :pencil do
-  .dataTables_wrapper
-    div
-      .dataTables_length
-    table.table.table-bordered.table-striped.table-hover
+.row
+  = admin_widget_box "Revisions (Total versions: #{@versions.size} )" do
+    = render_admin_data_table(data: @versions) do
       thead
         tr
-          th= "Event"
-          th= "When"
-          th= "Who"
-          th= "What"
+          th= 'Event'
+          th= 'When'
+          th= 'Who'
+          th= 'What'
       tbody
         - @versions.reverse.each do |version|
           tr
             td= version.event
             td= version.created_at
-            td= User.find(version.whodunnit).name rescue version.whodunnit
+            td= User&.find_by(id: version.whodunnit)&.name
             td
               - convert_changes_string(version.object_changes).each do |column, diffs|
                 .diff= "#{column}: #{diffs[0].nil? ? "NULL" : diffs[0]} -> #{diffs[1].nil? ? "NULL" : diffs[1]}"
