@@ -48,48 +48,45 @@ module AdminHelper
     public_send("#{link}_path")
   end
 
-  def admin_stylesheet_links
+  def load_admin_stylesheets
+    host = AdminSetting.assets.cdn_host
     [
-      '//colorlib.com/polygon/vendors/bootstrap/dist/css/bootstrap.min.css',
-      '//colorlib.com/polygon/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css',
-      '//colorlib.com/polygon/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css',
-      '//colorlib.com/polygon/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css',
-      '//colorlib.com/polygon/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css',
-      '//colorlib.com/polygon/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css',
-      '//colorlib.com/polygon/vendors/font-awesome/css/font-awesome.min.css',
-      '//colorlib.com/polygon/vendors/nprogress/nprogress.css',
-      '//colorlib.com/polygon/vendors/bootstrap-daterangepicker/daterangepicker.css',
-      '//colorlib.com/polygon/vendors/switchery/dist/switchery.min.css',
-      '//colorlib.com/polygon/vendors/iCheck/skins/flat/green.css',
-      '//colorlib.com/polygon/vendors/select2/dist/css/select2.min.css',
-      '//colorlib.com/polygon/build/css/custom.min.css'
-    ]
+      "//#{host}/vendors/bootstrap/dist/css/bootstrap.min.css",
+      "//#{host}/vendors/bootstrap-daterangepicker/daterangepicker.css",
+      "//#{host}/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css",
+      "//#{host}/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css",
+      "//#{host}/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css",
+      "//#{host}/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css",
+      "//#{host}/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css",
+      "//#{host}/vendors/font-awesome/css/font-awesome.min.css",
+      "//#{host}/vendors/nprogress/nprogress.css",
+      "//#{host}/vendors/switchery/dist/switchery.min.css",
+      "//#{host}/vendors/iCheck/skins/flat/green.css",
+      "//#{host}/vendors/select2/dist/css/select2.min.css",
+      "//#{host}/build/css/custom.min.css",
+      'admin'
+    ].map { |link| stylesheet_link_tag(link, media: 'all') }.join.html_safe
   end
 
-  def admin_javascript_links
+  def load_admin_javascripts
+    host = AdminSetting.assets.cdn_host
     [
-      '//colorlib.com/polygon/vendors/bootstrap/dist/js/bootstrap.min.js',
-      '//colorlib.com/polygon/vendors/fastclick/lib/fastclick.js',
-      '//colorlib.com/polygon/vendors/nprogress/nprogress.js',
-      '//colorlib.com/polygon/vendors/Chart.js/dist/Chart.bundle.min.js',
-      '//colorlib.com/polygon/vendors/Chart.js/dist/Chart.min.js',
-      '//colorlib.com/polygon/vendors/jquery-sparkline/dist/jquery.sparkline.min.js',
-      '//colorlib.com/polygon/vendors/Flot/jquery.flot.js',
-      '//colorlib.com/polygon/vendors/Flot/jquery.flot.pie.js',
-      '//colorlib.com/polygon/vendors/Flot/jquery.flot.time.js',
-      '//colorlib.com/polygon/vendors/Flot/jquery.flot.stack.js',
-      '//colorlib.com/polygon/vendors/Flot/jquery.flot.resize.js',
-      '//colorlib.com/polygon/vendors/flot.orderbars/js/jquery.flot.orderBars.js',
-      '//colorlib.com/polygon/vendors/flot-spline/js/jquery.flot.spline.min.js',
-      '//colorlib.com/polygon/vendors/DateJS/build/date.js',
-      '//colorlib.com/polygon/vendors/iCheck/icheck.min.js',
-      '//colorlib.com/polygon/vendors/moment/min/moment.min.js',
-      '//colorlib.com/polygon/vendors/bootstrap-daterangepicker/daterangepicker.js',
-      '//colorlib.com/polygon/vendors/switchery/dist/switchery.min.js',
-      '//colorlib.com/polygon/vendors/select2/dist/js/select2.full.min.js',
-      '//colorlib.com/polygon/build/js/custom.min.js'
-
-    ]
+      'admin',
+      "//#{host}/vendors/autosize/dist/autosize.min.js",
+      "//#{host}/vendors/bootstrap/dist/js/bootstrap.min.js",
+      "//#{host}/vendors/bootstrap-daterangepicker/daterangepicker.js",
+      "//#{host}/vendors/fastclick/lib/fastclick.js",
+      "//#{host}/vendors/nprogress/nprogress.js",
+      "//#{host}/vendors/Chart.js/dist/Chart.bundle.min.js",
+      "//#{host}/vendors/Chart.js/dist/Chart.min.js",
+      "//#{host}/vendors/jquery-sparkline/dist/jquery.sparkline.min.js",
+      "//#{host}/vendors/iCheck/icheck.min.js",
+      "//#{host}/vendors/moment/min/moment.min.js",
+      "//#{host}/vendors/nprogress/nprogress.js",
+      "//#{host}/vendors/switchery/dist/switchery.min.js",
+      "//#{host}/vendors/select2/dist/js/select2.full.min.js",
+      "//#{host}/build/js/custom.min.js"
+    ].map { |link| javascript_include_tag(link) }.join.html_safe
   end
 
   def admin_search_form_for(obj, options, &block)
