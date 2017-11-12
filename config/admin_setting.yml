@@ -1,6 +1,6 @@
 defaults: &defaults
   assets:
-    cdn_host: 'colorlib.com/polygon'
+    cdn_host: 'assets.5fpro.com'
   nav_items:
     # to see more icons: https://colorlib.com/polygon/gentelella/icons.html
     -

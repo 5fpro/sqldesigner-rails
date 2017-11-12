@@ -63,7 +63,7 @@ module AdminHelper
       "//#{host}/vendors/switchery/dist/switchery.min.css",
       "//#{host}/vendors/iCheck/skins/flat/green.css",
       "//#{host}/vendors/select2/dist/css/select2.min.css",
-      "//#{host}/build/css/custom.min.css",
+      "//#{host}/vendors/gentelella/css/custom.min.css",
       'admin'
     ].map { |link| stylesheet_link_tag(link, media: 'all') }.join.html_safe
   end
@@ -77,7 +77,6 @@ module AdminHelper
       "//#{host}/vendors/bootstrap-daterangepicker/daterangepicker.js",
       "//#{host}/vendors/fastclick/lib/fastclick.js",
       "//#{host}/vendors/nprogress/nprogress.js",
-      "//#{host}/vendors/Chart.js/dist/Chart.bundle.min.js",
       "//#{host}/vendors/Chart.js/dist/Chart.min.js",
       "//#{host}/vendors/jquery-sparkline/dist/jquery.sparkline.min.js",
       "//#{host}/vendors/iCheck/icheck.min.js",
@@ -85,7 +84,7 @@ module AdminHelper
       "//#{host}/vendors/nprogress/nprogress.js",
       "//#{host}/vendors/switchery/dist/switchery.min.js",
       "//#{host}/vendors/select2/dist/js/select2.full.min.js",
-      "//#{host}/build/js/custom.min.js"
+      "//#{host}/vendors/gentelella/js/custom.min.js"
     ].map { |link| javascript_include_tag(link) }.join.html_safe
   end
 
