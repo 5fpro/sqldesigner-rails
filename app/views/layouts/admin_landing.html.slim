@@ -5,12 +5,11 @@ html
     meta content="width=device-width, initial-scale=1.0" name="viewport"
     = load_admin_stylesheets
     = csrf_meta_tags
-  body.nav-md
-    .container.body
-      .main_container
-        .col-md-12
-          .col-middle
-            .text-center
-              h1.error-number= meta_tags[:title]
-              = yield
+  body.admin-landing
+    .login_wrapper
+      .login_form
+        section.login_content
+          h1= meta_tags[:title]
+          = render partial: 'admin/base/flash'
+          = yield
     = load_admin_javascripts

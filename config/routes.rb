@@ -2,7 +2,15 @@ require 'sidekiq/web'
 require 'sidekiq-scheduler/web'
 
 Rails.application.routes.draw do
-  devise_for :users
+
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    confirmations: 'users/confirmations',
+    passwords: 'users/passwords',
+    registrations: 'users/registrations',
+    unlocks: 'users/unlocks'
+  }
+
   get '/authorizations/:provider/callback', to: 'authorizations#callback'
   get '/authorizations/failure' => 'authorizations#failue', as: :auth_failure
   Setting.omniauth.providers.keys.each do |provider|

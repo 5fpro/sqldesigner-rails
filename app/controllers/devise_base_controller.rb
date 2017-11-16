@@ -5,11 +5,17 @@ class DeviseBaseController < ApplicationController
 
   private
 
+  def flash_if_has_error
+    unless resource.errors.empty?
+      flash.now[:error] = resource.errors.full_messages.to_sentence
+    end
+  end
+
   def layout_by_resource
-    # if resource_name == :user
-    #
-    # else
-    'application'
-    # end
+    if resource_name == :user
+      'admin_landing'
+    else
+      'application'
+    end
   end
 end
