@@ -1,6 +1,35 @@
 defaults: &defaults
   assets:
     cdn_host: 'assets.5fpro.com'
+    javascripts:
+      - "/vendors/autosize/dist/autosize.min.js"
+      - "/vendors/bootstrap/dist/js/bootstrap.min.js"
+      - "/vendors/bootstrap-daterangepicker/daterangepicker.js"
+      - "/vendors/fastclick/lib/fastclick.js"
+      - "/vendors/nprogress/nprogress.js"
+      - "/vendors/Chart.js/dist/Chart.min.js"
+      - "/vendors/jquery-sparkline/dist/jquery.sparkline.min.js"
+      - "/vendors/iCheck/icheck.min.js"
+      - "/vendors/moment/min/moment.min.js"
+      - "/vendors/nprogress/nprogress.js"
+      - "/vendors/switchery/dist/switchery.min.js"
+      - "/vendors/select2/dist/js/select2.full.min.js"
+      - "/vendors/gentelella/js/custom.min.js"
+    stylesheets:
+      - "/vendors/bootstrap/dist/css/bootstrap.min.css"
+      - "/vendors/bootstrap-daterangepicker/daterangepicker.css"
+      - "/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css"
+      - "/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
+      - "/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
+      - "/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css"
+      - "/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
+      - "/vendors/font-awesome/css/font-awesome.min.css"
+      - "/vendors/nprogress/nprogress.css"
+      - "/vendors/switchery/dist/switchery.min.css"
+      - "/vendors/iCheck/skins/flat/green.css"
+      - "/vendors/select2/dist/css/select2.min.css"
+      - "/vendors/gentelella/css/custom.min.css"
+
   nav_items:
     # to see more icons: https://colorlib.com/polygon/gentelella/icons.html
     -

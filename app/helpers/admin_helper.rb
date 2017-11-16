@@ -49,43 +49,13 @@ module AdminHelper
   end
 
   def load_admin_stylesheets
-    host = AdminSetting.assets.cdn_host
-    [
-      "//#{host}/vendors/bootstrap/dist/css/bootstrap.min.css",
-      "//#{host}/vendors/bootstrap-daterangepicker/daterangepicker.css",
-      "//#{host}/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css",
-      "//#{host}/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css",
-      "//#{host}/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css",
-      "//#{host}/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css",
-      "//#{host}/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css",
-      "//#{host}/vendors/font-awesome/css/font-awesome.min.css",
-      "//#{host}/vendors/nprogress/nprogress.css",
-      "//#{host}/vendors/switchery/dist/switchery.min.css",
-      "//#{host}/vendors/iCheck/skins/flat/green.css",
-      "//#{host}/vendors/select2/dist/css/select2.min.css",
-      "//#{host}/vendors/gentelella/css/custom.min.css",
-      'admin'
-    ].map { |link| stylesheet_link_tag(link, media: 'all') }.join.html_safe
+    files = AdminSetting.assets.stylesheets.map { |path| "//#{AdminSetting.assets.cdn_host}#{path}" } + ['admin']
+    files.map { |link| stylesheet_link_tag(link, media: 'all') }.join.html_safe
   end
 
   def load_admin_javascripts
-    host = AdminSetting.assets.cdn_host
-    [
-      'admin',
-      "//#{host}/vendors/autosize/dist/autosize.min.js",
-      "//#{host}/vendors/bootstrap/dist/js/bootstrap.min.js",
-      "//#{host}/vendors/bootstrap-daterangepicker/daterangepicker.js",
-      "//#{host}/vendors/fastclick/lib/fastclick.js",
-      "//#{host}/vendors/nprogress/nprogress.js",
-      "//#{host}/vendors/Chart.js/dist/Chart.min.js",
-      "//#{host}/vendors/jquery-sparkline/dist/jquery.sparkline.min.js",
-      "//#{host}/vendors/iCheck/icheck.min.js",
-      "//#{host}/vendors/moment/min/moment.min.js",
-      "//#{host}/vendors/nprogress/nprogress.js",
-      "//#{host}/vendors/switchery/dist/switchery.min.js",
-      "//#{host}/vendors/select2/dist/js/select2.full.min.js",
-      "//#{host}/vendors/gentelella/js/custom.min.js"
-    ].map { |link| javascript_include_tag(link) }.join.html_safe
+    files = ['admin'] + AdminSetting.assets.javascripts.map { |path| "//#{AdminSetting.assets.cdn_host}#{path}" }
+    files.map { |link| javascript_include_tag(link) }.join.html_safe
   end
 
   def admin_search_form_for(obj, options, &block)
