@@ -5,7 +5,7 @@ class NestedSwitchInput < SimpleForm::Inputs::BooleanInput
     outs << build_hidden_field_for_checkbox
     outs << template.label_tag(nil, class: 'checkbox') do
       (build_check_box_without_hidden_field(merged_input_options) +
-      '&nbsp;'.html_safe  +
+      '&nbsp;'.html_safe +
       label_text)
     end
     outs.join('').html_safe
