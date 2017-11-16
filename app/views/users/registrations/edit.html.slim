@@ -1,0 +1,14 @@
+= admin_form_for resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, wrapper: :admin_landing do |f|
+  = f.input :email, placeholder: 'Email', required: true, autofocus: true
+
+  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+    p= "Currently waiting confirmation for: #{resource.unconfirmed_email}"
+  = f.input :password, placeholder: 'New password', autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false
+  = f.input :password_confirmation, placeholder: 'New password confirmation', required: false
+  = f.input :current_password, placeholder: 'Current password', hint: "we need your current password to confirm your changes", required: true
+  = f.full_size_submit '更新'
+
+.row
+  = admin_app_button_to '刪除帳號', registration_path(resource_name), icon: 'bomb', data: { confirm: '確定?' }, method: :delete
+  = admin_app_button_to "回前頁", :back, icon: 'hand-o-left'
+
