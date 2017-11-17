@@ -3,8 +3,6 @@ class DeviseBaseController < ApplicationController
 
   layout :layout_by_resource
 
-  force_ssl
-
   private
 
   def flash_if_has_error
