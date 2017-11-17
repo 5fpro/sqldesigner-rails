@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.9.1'
+lock '3.10.0'
 
 # Config@initial
 set :application, ENV.fetch('APP_NAME') { '5FPRO' }

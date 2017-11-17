@@ -37,7 +37,7 @@ gem 'turbolinks', '~> 5'
 gem 'sidekiq'
 gem 'sidekiq-limit_fetch'
 gem 'sidekiq-scheduler'
-gem 'sinatra', '~> 2.0.0.beta2'
+gem 'sinatra', '~> 2.0'
 
 # file upload
 gem 'carrierwave'
@@ -78,7 +78,7 @@ end
 
 group :development, :test do
   gem 'byebug'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'listen'
   gem 'rspec'
   gem 'rspec-rails'

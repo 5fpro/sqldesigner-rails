@@ -7,10 +7,6 @@ class ApplicationController < ActionController::Base
   before_action :http_auth_for_staging
   before_action :set_paper_trail_whodunnit
 
-  def default_url_options
-    { protocol: Setting.default_protocol }
-  end
-
   private
 
   def http_auth_for_staging

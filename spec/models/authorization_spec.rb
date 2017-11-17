@@ -16,7 +16,7 @@
 require 'rails_helper'
 
 RSpec.describe Authorization, type: :model do
-  it 'FactoryGirl' do
+  it 'Factory' do
     expect(create(:authorization)).not_to be_new_record
   end
 end
