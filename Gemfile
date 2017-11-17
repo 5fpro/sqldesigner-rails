@@ -37,7 +37,7 @@ gem 'turbolinks', '~> 5'
 gem 'sidekiq'
 gem 'sidekiq-limit_fetch'
 gem 'sidekiq-scheduler'
-gem 'sinatra', '~> 2.0.0.beta2'
+gem 'sinatra', '~> 2.0'
 
 # file upload
 gem 'carrierwave'
