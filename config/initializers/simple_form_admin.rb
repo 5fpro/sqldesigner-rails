@@ -14,6 +14,12 @@ SimpleForm.setup do |config|
     end
   end
 
+  config.wrappers :admin_landing, tag: :div, class: '', error_class: 'parsley-error' do |b|
+    b.use :placeholder
+    # b.use :label, class: ''
+    b.use :input, class: 'form-control', wrap_with: nil, error_class: 'parsley-error'
+  end
+
   config.wrappers :admin_boolean, tag: :div, class: 'form-group', error_class: 'parsley-error' do |b|
     b.use :label, class: 'control-label col-md-3 col-sm-3 col-xs-12'
     b.wrapper tag: :div, class: 'col-md-9 col-sm-9 col-xs-12' do |ba|

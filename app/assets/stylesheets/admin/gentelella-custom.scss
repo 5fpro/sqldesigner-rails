@@ -40,3 +40,26 @@ form.form-horizontal .checkbox > label {
 .icheckbox_flat-green, .iradio_flat-green {
   margin-right: 5px;
 }
+
+.admin-landing {
+  background: #F7F7F7;
+  .login_content {
+    h1:before, h1:after {
+      top: 44px;
+    }
+    a.btn:hover {
+      text-decoration: none;
+    }
+    form input[type=submit] {
+      float: none;
+      margin: auto;
+    }
+    .alert.alert-dismissible {
+      text-shadow: none;
+    }
+  }
+}
+
+form .nested_switch {
+  margin: 0 0 20px;
+}

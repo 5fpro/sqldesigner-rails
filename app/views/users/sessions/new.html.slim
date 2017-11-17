@@ -1,0 +1,7 @@
+= admin_form_for resource, as: resource_name, url: session_path(resource_name), wrapper: :admin_landing do |f|
+  = f.input :email, placeholder: 'Email', required: false, autofocus: true
+  = f.input :password, placeholder: '密碼', required: false
+  = f.input :remember_me, as: :nested_switch, label: '記住我' if devise_mapping.rememberable?
+  = f.full_size_submit '登入'
+
+= render partial: 'users/shared/links'

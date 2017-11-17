@@ -6,28 +6,28 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def index
-    @page_title = 'Categories'
     @q = Admin::Category.ransack(params[:q])
     @categories = @q.result.sorted.page(params[:page]).per(30)
+    set_meta(title: 'Categories')
     respond_with @categories
   end
 
   def show
-    @page_title = "##{@category.id} #{@category.name}"
+    set_meta(title: "##{@category.id} #{@category.name}")
   end
 
   def new
-    @page_title = 'New'
-    add_breadcrumb @page_title
+    set_meta(title: 'New Category')
+    add_breadcrumb 'New'
   end
 
   def edit
-    @page_title = 'Edit'
-    add_breadcrumb @page_title
+    set_meta(title: 'Edit Category')
+    add_breadcrumb 'Edit'
   end
 
   def revisions
-    @page_title = "##{@category.id} #{@category.name} - revisions"
+    set_meta(title: "##{@category.id} #{@category.name} - revisions")
     add_breadcrumb 'Revisions'
     @versions = @category.versions
   end

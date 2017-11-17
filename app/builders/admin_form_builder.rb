@@ -19,4 +19,11 @@ class AdminFormBuilder < SimpleForm::FormBuilder
     end
     out
   end
+
+  def full_size_submit(text = nil)
+    out = ActiveSupport::SafeBuffer.new
+    out << template.content_tag(:div) do
+      button :submit, text, class: 'btn btn-primary col-md-12 col-sm-12 col-xs-12'
+    end
+  end
 end
