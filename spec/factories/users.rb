@@ -24,7 +24,7 @@
 #  avatar                 :string
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
     name '5Fpro'
     sequence(:email) { |n| "user#{n}@5fpro.com" }

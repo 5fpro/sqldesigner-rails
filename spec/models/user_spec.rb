@@ -29,7 +29,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) { create(:user) }
 
-  it 'FactoryGirl' do
+  it 'Factory' do
     expect(user).not_to be_new_record
     expect(create(:user, :with_avatar).avatar.url).to be_present
   end

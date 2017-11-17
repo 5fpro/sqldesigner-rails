@@ -15,7 +15,7 @@ require 'rails_helper'
 RSpec.describe Category, type: :model do
   let(:category) { create(:category) }
 
-  it 'FactoryGirl' do
+  it 'Factory' do
     expect {
       create(:category)
       create(:category)

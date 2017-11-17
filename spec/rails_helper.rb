@@ -54,7 +54,7 @@ RSpec.configure do |config|
   config.include Webmock
   config.include RequestClient, type: :request
   config.include HtmlMatchers, type: :request
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
   config.before(:each){ webmock_all! }
   config.before(:each){ Redis.current.flushdb }

@@ -13,9 +13,9 @@
 #  updated_at :datetime         not null
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :authorization do
-    auth { FactoryGirl.create :user }
+    auth { create :user }
     provider { :facebook }
     sequence(:uid) { |n| n }
   end
