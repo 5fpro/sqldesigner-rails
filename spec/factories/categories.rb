@@ -13,6 +13,14 @@
 FactoryGirl.define do
   factory :category do
     sequence(:name) { |n| "category #{n}" }
+
+    trait :admin_creating do
+      tag_list { ['tag1', 'tag2', 'tag3'] }
+    end
+
+    trait :admin_creating_fail do
+      name ''
+    end
   end
 
 end

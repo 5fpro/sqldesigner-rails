@@ -42,7 +42,7 @@ RSpec.describe Admin::CategoriesController, type: :request do
   context 'POST /admin/categories' do
     it 'success' do
       expect {
-        post '/admin/categories', params: { category: data_for(:creating_category) }
+        post '/admin/categories', params: { category: attributes_for(:category, :admin_creating) }
       }.to change { Category.count }.by(1)
       expect(response).to be_redirect
       follow_redirect!
@@ -51,7 +51,7 @@ RSpec.describe Admin::CategoriesController, type: :request do
     end
     it 'fail' do
       expect {
-        post '/admin/categories', params: { category: data_for(:creating_category).merge(name: '') }
+        post '/admin/categories', params: { category: attributes_for(:category, :admin_creating_fail) }
       }.not_to change { Category.count }
       expect(response).not_to be_redirect
       expect(response_flash_message('error')).to be_present
