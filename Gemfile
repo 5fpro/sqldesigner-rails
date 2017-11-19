@@ -97,6 +97,7 @@ group :doc do
 end
 
 gem 'kaminari'
+gem 'lograge', require: true
 gem 'rollbar'
 
 # devise
