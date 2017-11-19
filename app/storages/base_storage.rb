@@ -39,7 +39,7 @@ class BaseStorage
     end
 
     def redis_key(id)
-      "storages-#{self.to_s.underscore}-#{id}"
+      "storages-#{to_s.underscore}-#{id}"
     end
 
     def set(id, data, ex)
@@ -81,8 +81,6 @@ class BaseStorage
   private
 
   def generate_id!
-    begin
-      @id = SecureRandom.random_number.to_s[2..-1]
-    end while self.class.exists?(@id)
+    @id = SecureRandom.random_number.to_s[2..-1] until @id && !self.class.exists?(@id)
   end
 end

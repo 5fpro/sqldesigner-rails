@@ -19,12 +19,12 @@ describe ApplicationLogger, type: :logger do
       file_path Rails.root.join('log', 'example.log')
     end
 
-    before { File.delete(file) if File.exists?(file) }
+    before { File.delete(file) if File.exist?(file) }
 
     it do
       expect {
         ExampleLogger.debug(ha: 1)
-      }.to change { File.exists?(file) }.to(true)
+      }.to change { File.exist?(file) }.to(true)
       File.delete(file)
     end
   end

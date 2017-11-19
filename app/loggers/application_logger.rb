@@ -15,7 +15,7 @@ class ApplicationLogger < BaseLogger
   end
 
   LOG_LEVELS.each do |log_level|
-    class_eval(<<-EOT, __FILE__, __LINE__ + 1)
+    class_eval(<<-LOG_LEVEL_METHOD, __FILE__, __LINE__ + 1)
       def #{log_level}(*args)
         if args[0].is_a?(Hash)
           log(args[0].merge(log_level: '#{log_level}'))
@@ -23,7 +23,7 @@ class ApplicationLogger < BaseLogger
           super(*args)
         end
       end
-    EOT
+    LOG_LEVEL_METHOD
   end
 
   private

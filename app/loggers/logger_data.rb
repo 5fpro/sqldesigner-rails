@@ -62,7 +62,7 @@ class LoggerData
       fullpath: env['ORIGINAL_FULLPATH'],
       ip: env['REMOTE_ADDR'],
       query_params: Rack::Utils.parse_nested_query(env['QUERY_STRING']).to_json,
-      raw_body: escape_text(env['rack.input'].read),
+      raw_body: escape_text(env['rack.input'].read)
     }.merge(parse_exception(exception, backtrace: need_backtrace?(exception)))
   end
 
@@ -75,7 +75,7 @@ class LoggerData
       exception_class: exception.class.to_s,
       exception_message: exception.message
     }
-    h.merge!(exception_backtrace: escape_text(exception.backtrace.to_json)) if backtrace
+    h[:exception_backtrace] = escape_text(exception.backtrace.to_json) if backtrace
     h
   end
 end

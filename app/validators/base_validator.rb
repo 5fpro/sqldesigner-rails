@@ -1,6 +1,6 @@
 class BaseValidator < ActiveModel::Validator
 
-  def validate(instance)
-    fail NotImplementedError
+  def validate(_instance)
+    raise NotImplementedError
   end
 end

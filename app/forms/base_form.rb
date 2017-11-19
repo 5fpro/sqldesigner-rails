@@ -4,7 +4,7 @@ class BaseForm
   # validates_with ExampleValidator
 
   def save
-    fail NotImplementedError
+    raise NotImplementedError
   end
 
   def valid?

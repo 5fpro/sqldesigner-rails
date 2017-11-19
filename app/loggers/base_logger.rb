@@ -3,17 +3,17 @@ class BaseLogger < ::Logger
   class << self
 
     def default
-      @default ||= self.new
+      @default ||= new
     end
 
     private
 
     def file_path(path)
-      @file_path = path
+      @log_file_path = path
     end
 
     def get_file_path
-      @file_path
+      @log_file_path
     end
   end
 
@@ -25,7 +25,6 @@ class BaseLogger < ::Logger
 
   private
 
-  def after_init
-  end
+  def after_init; end
 
 end

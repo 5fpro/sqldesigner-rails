@@ -3,7 +3,7 @@ require 'rails_helper'
 describe BaseValidator, type: :validator do
   class ExampleValidator < BaseValidator
     def validate(form)
-      form.errors.add(:base, 'Name can\'t be blank.') unless form.name.present?
+      form.errors.add(:base, 'Name can\'t be blank.') if form.name.blank?
     end
   end
 
