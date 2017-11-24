@@ -23,6 +23,10 @@ class BaseLogger < ::Logger
     after_init
   end
 
+  def file_path
+    @file_path ||= self.class.send(:get_file_path) || Rails.root.join('log', "#{Rails.env}.log")
+  end
+
   private
 
   def after_init; end
