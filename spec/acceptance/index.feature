@@ -12,7 +12,10 @@ Feature: 基本頁面
   Scenario: 各種 404
     When 打 POST 到 首頁
       Then 頁面回應 404
+      And 回應格式為 html
     When 前往 /_dwr/interface/WbmemberDWR.js
       Then 頁面回應 404
+      And 回應格式為 javascript
     When 前往 /asdasads
       Then 頁面回應 404
+      And 回應格式為 html

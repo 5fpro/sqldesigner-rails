@@ -21,4 +21,4 @@ Feature: 從後台新增 user
     When 後台建立使用者:
          | name | marsz123 |
          | avatar | y |
-    Then 使用者(marsz123)有頭像
+    Then User(marsz123) 有頭像

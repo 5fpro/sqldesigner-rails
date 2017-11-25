@@ -1,27 +1,5 @@
-step ':model_finder 設為未驗證' do |user|
-  user.update(confirmed_at: nil)
-end
-
-step ':model_finder 狀態為已驗證' do |user|
-  expect(user.confirmed?).to eq(true)
-end
-
 step ':model_finder 已綁定 :auth_provider :count 筆' do |user, auth_provider, count|
   expect(user.authorizations.where(provider: auth_provider).count).to eq(count.to_i)
-end
-
-step '使用者登出' do
-  delete '/users/sign_out'
-end
-
-step '使用者已登入' do
-  get '/users/sign_in'
-  expect(response).to be_redirect
-end
-
-step '使用者未登入' do
-  get '/users/sign_in'
-  expect(response).to be_success
 end
 
 step ':model_finder 的 :auth_provider 資料為:' do |user, auth_provider, table|
@@ -31,18 +9,6 @@ step ':model_finder 的 :auth_provider 資料為:' do |user, auth_provider, tabl
   provider_data.each do |key, value|
     expect(authorization.auth_data.with_indifferent_access[:info][key]).to eq(value)
   end
-end
-
-step '使用者登入' do
-  @current_user = @user || @users.try(:first) || @current_user || create(:user)
-  post '/users/sign_in', params: { user: { email: @current_user.email, password: @current_user.password } }
-  expect(response).to redirect_to('/')
-end
-
-step '使用者登入:' do |table|
-  @current_user = create(:user, table.rows_hash.symbolize_keys)
-  post '/users/sign_in', params: { user: { email: @current_user.email, password: @current_user.password } }
-  expect(response).to redirect_to('/')
 end
 
 step ':model_finder 綁定 :auth_provider' do |user, auth_provider, table|
