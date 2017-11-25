@@ -1,8 +1,4 @@
 en:
   errors:
-    error_code_not_defined: "Error code not defined"
-    params_required: "Parameters required"
-    data_not_found: "Data not found"
-    data_create_fail: "Create fail"
-    data_update_fail: "Update fail"
-    data_delete_fail: "Delete fail"
+    base:
+      message: 'Base error message'
