@@ -58,6 +58,7 @@ RSpec.configure do |config|
 
   config.before(:each){ webmock_all! }
   config.before(:each){ Redis.current.flushdb }
+  config.before(:each){ Rails.cache.clear }
 
   config.after { Timecop.return }
   # uncomment if you need specific time zone in default
