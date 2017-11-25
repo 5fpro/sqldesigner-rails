@@ -1,5 +1,5 @@
 module Api
-  class RespondError < ::Api::BaseError
+  class RespondError < BaseError
 
     def notify?
       false

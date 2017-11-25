@@ -1,5 +1,5 @@
 module Api
-  class ClientAuthError < ::Api::BaseError
+  class ClientAuthError < BaseError
     def notify?
       false
     end

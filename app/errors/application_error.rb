@@ -1,4 +1,4 @@
-class BaseError < ::Exception
+class ApplicationError < ::Exception
   class << self
     private
 
@@ -89,7 +89,7 @@ class BaseError < ::Exception
 
   def original_to_h
     return nil unless @original
-    if @original.is_a?(::BaseError)
+    if @original.is_a?(ApplicationError)
       @original.to_h
     else
       {

@@ -1,4 +1,4 @@
-class RoutingError < ::BaseError
+class RoutingError < ApplicationError
 
   private
 

@@ -1,5 +1,5 @@
 module Api
-  class BaseError < ::BaseError
+  class BaseError < ApplicationError
 
     # Override method
     def notify?

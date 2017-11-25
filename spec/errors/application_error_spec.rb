@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe BaseError, type: :error do
+describe ApplicationError, type: :error do
   let(:exception) { described_class.new(message: message, context: context, original: original) }
   let(:message) { 'test message' }
   let(:context) { { haha: Time.now } }
@@ -22,7 +22,7 @@ describe BaseError, type: :error do
     class ExampleLogger < ApplicationLogger
     end
 
-    class ExampleError < BaseError
+    class ExampleError < ApplicationError
       logger ExampleLogger
 
       private

@@ -1,5 +1,5 @@
 module Api
-  class ControllerRescuedError < ::Api::BaseError
+  class ControllerRescuedError < BaseError
 
     def notify?
       true

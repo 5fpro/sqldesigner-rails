@@ -1,6 +1,6 @@
 en:
   errors:
-    base:
+    application:
       message: 'Base error message'
     routing:
       message: 'Routing error'
