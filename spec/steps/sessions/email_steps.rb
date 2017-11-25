@@ -14,4 +14,3 @@ step '使用者登入:' do |table|
   post '/users/sign_in', params: { user: { email: @current_user.email, password: @current_user.password } }
   expect(response).to redirect_to('/')
 end
-

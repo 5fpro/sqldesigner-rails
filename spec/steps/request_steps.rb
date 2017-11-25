@@ -8,11 +8,7 @@ end
 
 step '打 :request_method 到 :page' do |request_method, page, *args|
   body = args[0]
-  params = body.present? ? JSON.parse(body) : {}
-  if params.key?(:params)
-    options = params
-  else
-    options = { params: params }
-  end
+  options = params = body.present? ? JSON.parse(body) : {}
+  options = { params: params } unless params.key?(:params)
   public_send request_method, page, options
 end
