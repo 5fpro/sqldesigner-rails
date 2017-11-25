@@ -4,22 +4,17 @@ RSpec.describe Api::BaseController, type: :request do
 
   context 'GET /error' do
     it 'standard' do
-      get '/api/error', params: { error: 'data_create_fail' }, xhr: true
-      expect(response.status).to eq(400)
-      expect(JSON.parse(response.body)['name']).to eq('data_create_fail')
+      get '/api/error', xhr: true
+      expect(response.status).to eq(401)
+      expect(JSON.parse(response.body)['error']['class_name']).to eq('Api::ClientAuthError')
+      expect(JSON.parse(response.body)['error']['message']).to include('authenticate fail')
     end
 
     it '404' do
-      get '/api/error', params: { error: 'data_not_found' }, xhr: true
+      get '/api/haha', xhr: true
       expect(response.status).to eq(404)
+      expect(JSON.parse(response.body)['error']['class_name']).to eq('RoutingError')
+      expect(JSON.parse(response.body)['error']['original']['request']['full_path']).to include('/haha')
     end
-
-    it 'error name not exists' do
-      get '/api/error', params: { error: 'dasdasd' }, xhr: true
-      expect(JSON.parse(response.body)['name']).to eq('error_code_not_defined')
-      expect(JSON.parse(response.body)['debug']['info']['ori_error_name']).to eq('dasdasd')
-      expect(response.status).to eq(400)
-    end
-
   end
 end

@@ -2,3 +2,8 @@ en:
   errors:
     base:
       message: 'Base error message'
+    routing:
+      message: 'Routing error'
+    api:
+      client_auth:
+        message: 'Client authenticate fail'

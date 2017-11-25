@@ -1,5 +1,5 @@
 class BaseForm
-  include ActiveModel::Model
+  include ObjectErrorsConcern
 
   # validates_with ExampleValidator
 

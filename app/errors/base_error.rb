@@ -26,7 +26,11 @@ class BaseError < ::Exception
   end
 
   def original_message
-    @original&.message
+    @original&.message || message
+  end
+
+  def original_backtrace
+    @original&.backtrace || backtrace
   end
 
   def notify
@@ -85,10 +89,14 @@ class BaseError < ::Exception
 
   def original_to_h
     return nil unless @original
-    {
-      class_name: @original.class.to_s,
-      message: @original.message,
-      backtrace: @original.backtrace
-    }
+    if @original.is_a?(::BaseError)
+      @original.to_h
+    else
+      {
+        class_name: @original.class.to_s,
+        message: @original.message,
+        backtrace: @original.backtrace
+      }
+    end
   end
 end
