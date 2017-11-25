@@ -10,6 +10,7 @@ class BaseLogger < ::Logger
 
     def file_path(path)
       @log_file_path = path
+      @default = nil
     end
 
     def get_file_path
