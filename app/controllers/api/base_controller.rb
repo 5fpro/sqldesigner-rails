@@ -11,7 +11,7 @@ module Api
     end
 
     def error
-      raise Api::ClientAuthError.new
+      raise Api::ClientAuthError
     end
 
     def respond_404

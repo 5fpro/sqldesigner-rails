@@ -7,9 +7,7 @@ module Api
     end
 
     # Override method
-    def status
-      @status
-    end
+    attr_reader :status
 
     private
 

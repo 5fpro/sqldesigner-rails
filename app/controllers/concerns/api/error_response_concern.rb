@@ -35,7 +35,7 @@ module Api
     end
 
     def respond_error(message: nil, status: 200, **context)
-      fail Api::RespondError.new(context: context, message: message, status: status)
+      raise Api::RespondError.new(context: context, message: message, status: status)
     end
 
   end

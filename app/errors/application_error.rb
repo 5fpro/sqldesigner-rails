@@ -1,4 +1,4 @@
-class ApplicationError < ::Exception
+class ApplicationError < RuntimeError
   class << self
     private
 
@@ -17,7 +17,7 @@ class ApplicationError < ::Exception
     @message = message
     @context = context || {}
     @original = original
-    super(message())
+    super(message)
     custom_initialize(**args)
   end
 
@@ -53,7 +53,7 @@ class ApplicationError < ::Exception
       context: safe_to_h(@context),
       logger: {
         class_name: logger.class.to_s,
-        file_path: logger.file_path.to_s,
+        file_path: logger.file_path.to_s
       },
       original: original_to_h
     }.deep_merge(safe_to_h(custom_to_h)).with_indifferent_access
@@ -71,8 +71,7 @@ class ApplicationError < ::Exception
   end
 
   # you can overwrite this
-  def custom_initialize(*args)
-  end
+  def custom_initialize(*args); end
 
   def safe_to_h(h)
     JSON.parse(h.to_json).with_indifferent_access
