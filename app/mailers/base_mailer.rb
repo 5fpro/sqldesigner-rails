@@ -1,4 +1,4 @@
-class BaseNotifier < ApplicationMailer
+class BaseMailer < ApplicationMailer
   def notify
     mail(to: 'hi@5fpro.com', subject: format_subject('Hello!'))
   end
