@@ -7,3 +7,7 @@ placeholder :page_caller do
     ->(u) { "/admin/users/#{u.id}/edit" }
   end
 end
+
+step '前往 :model_finder 的 :page_caller' do |model_finder, page_caller|
+  get page_caller.call(model_finder)
+end

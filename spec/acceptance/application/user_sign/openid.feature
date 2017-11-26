@@ -1,6 +1,6 @@
 Feature: Open ID 註冊 / 登入
   Background:
-    Given 已註冊 users:
+    Given 已有 已註冊使用者:
           | name  | email           |
           | marsz | marsz@5fpro.com |
   Scenario: Email 為空
@@ -38,7 +38,7 @@ Feature: Open ID 註冊 / 登入
      When 使用者登入
      Then 使用者已登入
   Scenario: 已登入下，該 Open ID 已綁定在其他 user 身上時，無法進行綁定
-    Given 已註冊 users:
+    Given 已有 已註冊使用者:
           | name  | email           |
           | venus | venus@5fpro.com |
       And User(venus) 綁定 facebook
@@ -48,7 +48,7 @@ Feature: Open ID 註冊 / 登入
           | uid   | 1234            |
      Then User(marsz) 已綁定 facebook 0 筆
   Scenario: 已登入下，相同 Email 的不同 Open ID 已綁定(註冊)在其他 user 身上時，則無法進行綁定。
-    Given 已註冊 users:
+    Given 已有 已註冊使用者:
           | name  | email           |
           | venus | venus@5fpro.com |
       And User(venus) 綁定 facebook

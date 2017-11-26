@@ -1,7 +1,7 @@
 Feature: 從後台新增 user
   Background:
     Given 管理者 登入
-      And 已註冊 users:
+      And 已有 已註冊使用者:
           | email  |
           | marsz@5fpro.com  |
   Scenario: 新增頁面可正常載入
