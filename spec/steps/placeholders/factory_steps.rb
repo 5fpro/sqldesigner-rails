@@ -8,27 +8,32 @@ end
 
 placeholder :factory do
 
-  def get_factory_name(name)
-    (FACTORY_NAME_MAP[name.to_sym] || name).to_s
+  def get_factory(name)
+    factory = FACTORY_NAME_MAP[name.to_sym] || name
+    factory = [factory] unless factory.is_a?(Array)
+    factory
   end
 
   match /[^\(\)]+/ do |name|
-    name = get_factory_name(name)
+    factory = get_factory(name)
+    name = factory.first.to_s
     {
       name: name.pluralize,
-      factory: [name.singularize]
+      factory: factory
     }
   end
 
   match /([^\(\)]+)\((.+)\)/ do |name, traits|
-    name = get_factory_name(name)
+    factory = get_factory(name)
+    name = factory.first.to_s
     {
       name: name.pluralize,
-      factory: [name.singularize] + traits.split(',')
+      factory: factory + traits.split(',')
     }
   end
 end
 
 FACTORY_NAME_MAP = {
-  '已註冊使用者': :user
+  '已註冊使用者': :user,
+  '分類': :category
 }.freeze

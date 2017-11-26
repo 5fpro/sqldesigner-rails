@@ -5,6 +5,6 @@ Feature: 從後台更新 user
           | name | email  |
           | marsz | marsz@5fpro.com  |
   Scenario: 刪除使用者
-    When 後台刪除使用者 User(marsz)
+    When 後台刪除 使用者(marsz)
     Then 頁面轉跳
-     And User(marsz@5fpro.com) 不存在
+     And 使用者(marsz@5fpro.com) 不存在

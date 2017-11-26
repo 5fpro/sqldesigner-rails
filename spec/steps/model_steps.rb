@@ -11,3 +11,11 @@ end
 step ':model_finder 不存在' do |instance|
   expect(instance).to eq(false)
 end
+
+step ':model_name 數 :count_changed' do |model_name, changed|
+  expect(get_previous_count(model_name) + changed).to eq(to_klass(model_name).count)
+end
+
+step ':model_finder :have標籤 :tag_name' do |instance, have, tag_name|
+  expect(instance.tag_list.include?(tag_name.to_s.downcase)).to eq(have)
+end

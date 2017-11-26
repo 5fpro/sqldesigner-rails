@@ -5,20 +5,22 @@ Feature: 從後台新增 user
           | email  |
           | marsz@5fpro.com  |
   Scenario: 新增頁面可正常載入
-    When 前往 後台新增使用者頁面
+    When 到後台 /users/new
     Then 頁面回應 正常
   Scenario: 不能新增重複 Email 的 user
-    When 後台建立使用者:
-         | email | marsz@5fpro.com |
+    When 後台建立 使用者:
+         | email |
+         | marsz@5fpro.com |
     Then 頁面回應 正常
-     And 使用者數 不變
+     And 使用者 數 不變
   Scenario: 成功建立 user
-    When 後台建立使用者:
-         | email | marsz123@5fpro.com |
+    When 後台建立 使用者:
+         | email |
+         | marsz123@5fpro.com |
     Then 頁面轉跳
-     And 使用者數 +1
+     And 使用者 數 +1
   Scenario: 夾帶檔案（頭像）測試
-    When 後台建立使用者:
-         | name | marsz123 |
-         | avatar | y |
+    When 後台建立 使用者:
+         | name     | avatar |
+         | marsz123 | file_data |
     Then User(marsz123) 有頭像

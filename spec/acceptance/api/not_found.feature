@@ -23,7 +23,7 @@ Feature: 各種 404
         }
         """
   Scenario: 錯誤的路徑與 format
-    When 前往API /_dwr/interface/WbmemberDWR.js
+    When 打API /_dwr/interface/WbmemberDWR.js
       Then 頁面回應 404
       And 回應格式為 JSON
       And 回應內容符合
@@ -47,7 +47,7 @@ Feature: 各種 404
         }
         """
   Scenario: 錯誤的路徑
-    When 前往API /asdasads
+    When 打API /asdasads
       Then 頁面回應 404
       And 回應格式為 JSON
       And 回應內容符合
