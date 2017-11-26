@@ -22,3 +22,10 @@ step '後台刪除 :model_finder' do |instance|
   instance_variable_set("@#{model_name}", instance)
   delete Bdd::AdminRouter.build_url("/#{model_name.to_s.pluralize}/#{instance.id}")
 end
+
+step '後台還原 :model_finder' do |instance|
+  sign_in_admin
+  model_name = to_model_name(instance.class)
+  instance_variable_set("@#{model_name}", instance)
+  post Bdd::AdminRouter.build_url("/#{model_name.to_s.pluralize}/#{instance.id}/restore")
+end
