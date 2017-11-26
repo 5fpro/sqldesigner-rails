@@ -32,7 +32,7 @@ module Bdd
 
   class AdminRouter < BaseRouter
     def build_url(path)
-      "/admin/#{path}"
+      "/admin#{path}"
     end
 
     def build_env(options)
@@ -42,7 +42,7 @@ module Bdd
 
   class ApiRouter < BaseRouter
     def build_url(path)
-      "/api/#{path}"
+      "/api#{path}"
     end
 
     def build_env(options)
