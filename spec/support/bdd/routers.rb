@@ -8,11 +8,11 @@ module Bdd
       end
     end
 
-    def build_url(path)
+    def build_url(_path)
       raise NotImplementedError
     end
 
-    def build_env(options)
+    def build_env(_options)
       raise NotImplementedError
     end
 

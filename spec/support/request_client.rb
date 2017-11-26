@@ -19,7 +19,7 @@ module RequestClient
   end
 
   def sign_in_admin
-    unless current_user && current_user.admin?
+    unless current_user&.admin?
       signin_user(create(:user, :admin))
     end
   end
@@ -34,7 +34,11 @@ module RequestClient
 
   def parse_body(body)
     return {} unless body
-    YAML.load(body) rescue JSON.parse(body)
+    begin
+      YAML.load(body)
+    rescue
+      JSON.parse(body)
+    end
   end
 
   def build_params(model_name, hash, traits: [])
