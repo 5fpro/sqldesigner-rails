@@ -17,4 +17,10 @@ module RequestClient
   def file_data
     fixture_file_upload('spec/fixtures/5fpro.png', 'image/png')
   end
+
+  def sign_in_admin
+    unless current_user && current_user.admin?
+      signin_user(create(:user, :admin))
+    end
+  end
 end
