@@ -10,6 +10,7 @@ describe BaseLogger, type: :logger do
     expect(described_class.info('haha')).to be_present
     expect(described_class.debug(a: 1, b: 2)).to be_present
     expect(described_class.debug('haha')).to be_present
+    expect(described_class.debug(a: "a\nb")).not_to include("\n")
   end
 
   describe 'ExampleLogger' do
