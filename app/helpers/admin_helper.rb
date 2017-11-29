@@ -60,13 +60,13 @@ module AdminHelper
 
   def admin_search_form_for(obj, options, &block)
     options ||= {}
-    options.deep_merge!(builder: AdminFormBuilder, html: { class: 'form-horizontal' }, wrapper: (options[:wrapper] || :admin), defaults: { required: false })
+    options.deep_merge!(builder: AdminFormBuilder, html: { class: 'form-horizontal' }, wrapper: (options[:wrapper] || :admin))
     search_form_for(obj, options, &block)
   end
 
   def admin_form_for(obj, options = {}, &block)
     options ||= {}
-    options.deep_merge!(builder: AdminFormBuilder, html: { class: 'form-horizontal' }, wrapper: (options[:wrapper] || :admin), defaults: { required: false })
+    options.deep_merge!(builder: AdminFormBuilder, html: { class: 'form-horizontal' }, wrapper: (options[:wrapper] || :admin))
     simple_form_for(obj, options, &block)
   end
 
