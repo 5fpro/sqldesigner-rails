@@ -7,7 +7,7 @@ class ApplicationError < RuntimeError
     end
 
     def get_logger
-      @logger ||= ApplicationLogger.default
+      @logger ||= BaseLogger.default
     end
   end
 

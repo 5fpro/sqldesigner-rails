@@ -19,7 +19,7 @@ describe ApplicationError, type: :error do
   end
 
   context 'Override Class' do
-    class ExampleLogger < ApplicationLogger
+    class ExampleLogger < BaseLogger
     end
 
     class ExampleError < ApplicationError

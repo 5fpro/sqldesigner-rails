@@ -29,6 +29,6 @@ end
 # ref: https://github.com/roidrage/lograge/issues/146#issuecomment-255337408
 class ActionDispatch::DebugExceptions
   def log_error(env, wrapper)
-    ApplicationLogger.fatal(wrapper)
+    BaseLogger.fatal(wrapper)
   end
 end

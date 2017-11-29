@@ -1,40 +1,35 @@
-class ApplicationLogger < BaseLogger
-
-  LOG_LEVELS = Logger::Severity.constants.map(&:to_s).map(&:downcase)
+class ApplicationLogger < ::Logger
 
   class << self
-    delegate :log, *LOG_LEVELS, to: :default
+
+    def default
+      @default ||= new
+    end
+
+    private
+
+    def file_path(path)
+      @log_file_path = path
+      @default = nil
+    end
+
+    def get_file_path
+      @log_file_path
+    end
   end
 
-  def log(data = {}, merged_data = {})
-    data = nomalize_data(data, merged_data)
-    log_level = data.delete(:log_level) || ::Lograge.log_level
-    formatted_message = log_formatter.call(data)
-    public_send(log_level, formatted_message)
-    formatted_message
+  def initialize(*args)
+    args[0] ||= self.class.send(:get_file_path) || Rails.root.join('log', "#{Rails.env}.log")
+    super(*args)
+    after_init
   end
 
-  LOG_LEVELS.each do |log_level|
-    class_eval(<<-LOG_LEVEL_METHOD, __FILE__, __LINE__ + 1)
-      def #{log_level}(*args)
-        if args[0].is_a?(Hash)
-          log(args[0].merge(log_level: '#{log_level}'))
-        else
-          super(*args)
-        end
-      end
-    LOG_LEVEL_METHOD
+  def file_path
+    @file_path ||= self.class.send(:get_file_path) || Rails.root.join('log', "#{Rails.env}.log")
   end
 
   private
 
-  def log_formatter
-    @log_formatter ||= Lograge::Formatters::KeyValue.new
-  end
+  def after_init; end
 
-  def nomalize_data(data, merged_data)
-    data = LogData.new(data).to_h unless data.is_a?(Hash)
-    data = { logger: self.class.to_s }.merge(data) if self.class != ::ApplicationLogger
-    data.with_indifferent_access.merge(merged_data)
-  end
 end
