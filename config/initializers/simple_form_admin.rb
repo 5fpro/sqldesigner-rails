@@ -38,17 +38,9 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :admin_radios, tag: :div, class: 'form-group', error_class: 'parsley-error' do |b|
-    b.use :label, class: 'control-label'
-    b.wrapper tag: :div, class: '' do |ba|
-      ba.use :input, class: 'flat', wrap_with: { tag: 'div', class: 'radio' }
-    end
-  end
-
   config.wrapper_mappings = {
     boolean: :admin_boolean,
-    switch: :admin_boolean_switch,
-    radios: :admin_radios
+    switch: :admin_boolean_switch
   }
 end
 

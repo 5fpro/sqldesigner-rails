@@ -1,4 +1,5 @@
 class BtnGroupInput < SimpleForm::Inputs::CollectionRadioButtonsInput
+  include AdminRadiosInputConcern
 
   # https://github.com/plataformatec/simple_form/blob/master/lib/simple_form/inputs/collection_radio_buttons_input.rb
   def input(_wrapper_options = nil)

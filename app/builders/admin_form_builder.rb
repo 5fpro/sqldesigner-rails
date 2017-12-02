@@ -1,5 +1,5 @@
 class AdminFormBuilder < SimpleForm::FormBuilder
-
+  attr_reader :label_wrapper_class
   # admin_form_for(...., rwd: [11, 11, 12])
   def initialize(*)
     super
