@@ -47,7 +47,7 @@ class AdminFormBuilder < SimpleForm::FormBuilder
     class_name = class_name.join(' ') if class_name.is_a?(Array)
     append = append.join(' ') if append.is_a?(Array)
     class_name = "#{class_name} #{append}"
-    class_name.split(' ').map { |s| s.gsub(' ', '') }.select(&:present?).uniq
+    class_name.split(' ').map { |s| s.delete(' ') }.select(&:present?).uniq
   end
 
   def merge_args_options(args, opts)
