@@ -1,5 +1,12 @@
 class BaseUploader < CarrierWave::Uploader::Base
-  include ::CarrierWave::Backgrounder::Delay
+  class << self
+    private
+
+    def enable_background_upload!
+      include ::CarrierWave::Backgrounder::Delay
+    end
+  end
+
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick

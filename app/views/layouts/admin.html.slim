@@ -4,6 +4,7 @@ html
     = display_meta_tags
     meta content="width=device-width, initial-scale=1.0" name="viewport"
     = load_admin_stylesheets
+    = load_redactor2_css
     = csrf_meta_tags
   body.nav-md
     .container.body
@@ -32,3 +33,4 @@ html
         footer
           = render partial: "admin/base/footer"
     = load_admin_javascripts
+    = load_redactor2_js

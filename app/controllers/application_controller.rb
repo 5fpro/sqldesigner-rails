@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   include MetaTagHelper
+  include Redactor2Concern
 
   before_action :http_auth_for_staging
   before_action :set_paper_trail_whodunnit
