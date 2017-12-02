@@ -9,6 +9,6 @@ class Select2Input < SimpleForm::Inputs::CollectionSelectInput
 
   # TODO: more attrs for select2
   def input_html_options
-    super.merge(class: 'js-select2')
+    super.merge(class: CssClass.new(super[:class]).add('js-select2').to_a)
   end
 end

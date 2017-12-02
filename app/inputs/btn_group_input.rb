@@ -3,7 +3,6 @@ class BtnGroupInput < SimpleForm::Inputs::CollectionRadioButtonsInput
   # https://github.com/plataformatec/simple_form/blob/master/lib/simple_form/inputs/collection_radio_buttons_input.rb
   def input(_wrapper_options = nil)
     label_method, value_method = detect_collection_methods
-
     template.content_tag(:div, class: 'btn-group', 'data-toggle' => 'buttons') do
       collection.map do |item|
         value = item.send(value_method)

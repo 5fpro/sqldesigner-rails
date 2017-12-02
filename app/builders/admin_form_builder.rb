@@ -7,7 +7,8 @@ class AdminFormBuilder < SimpleForm::FormBuilder
   end
 
   def label(*args)
-    super(*merge_args_options(args, class: to_classes(args.extract_options![:class], @label_wrapper_class).join(' ')))
+    class_name = CssClass.new(args.extract_options![:class]).add(@label_wrapper_class).to_s
+    super(*merge_args_options(args, class: class_name))
   end
 
   def submit_cancel(*args, &block)
@@ -43,13 +44,6 @@ class AdminFormBuilder < SimpleForm::FormBuilder
 
   private
 
-  def to_classes(class_name, append = nil)
-    class_name = class_name.join(' ') if class_name.is_a?(Array)
-    append = append.join(' ') if append.is_a?(Array)
-    class_name = "#{class_name} #{append}"
-    class_name.split(' ').map { |s| s.delete(' ') }.select(&:present?).uniq
-  end
-
   def merge_args_options(args, opts)
     if args.last.is_a?(Hash)
       args[-1].deep_merge!(opts)
@@ -62,8 +56,8 @@ class AdminFormBuilder < SimpleForm::FormBuilder
   def handle_rwd_with!
     max = 12
     rwd_width = options.delete(:rwd) || [9, 9, max]
-    @label_wrapper_class = to_classes(options[:label_wrapper_class], "col-md-#{max - rwd_width[0]} col-sm-#{max - rwd_width[1]} col-xs-#{rwd_width[2] == max ? max : max - rwd_width[2]}")
-    @input_wrapper_class = to_classes(options[:input_wrapper_class], "col-md-#{rwd_width[0]} col-sm-#{rwd_width[1]} col-xs-#{rwd_width[2]}")
+    @label_wrapper_class = CssClass.new(options[:label_wrapper_class]).add("col-md-#{max - rwd_width[0]}", "col-sm-#{max - rwd_width[1]}", "col-xs-#{rwd_width[2] == max ? max : max - rwd_width[2]}").to_a
+    @input_wrapper_class = CssClass.new(options[:input_wrapper_class]).add("col-md-#{rwd_width[0]}", "col-sm-#{rwd_width[1]}", "col-xs-#{rwd_width[2]}").to_a
     wrapper.find(nil).defaults.merge!(class: @input_wrapper_class)
   end
 end
