@@ -10,5 +10,5 @@ $(function () {
         fileUploadFields: params
     };
     // Initialize Redactor
-    $('.redactor').redactor();
+    $('.js-redactor').redactor();
 });
