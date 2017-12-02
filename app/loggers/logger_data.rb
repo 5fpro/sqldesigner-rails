@@ -21,7 +21,6 @@ class LoggerData
   private
 
   def controller
-    byebug
     data = {
       host: @obj.request.host,
       user_id: @obj.try(:current_user).try(:id),

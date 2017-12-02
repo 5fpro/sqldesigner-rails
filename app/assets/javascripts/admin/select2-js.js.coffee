@@ -1,12 +1,16 @@
 init_select2 = (dom) ->
   $(dom).find("select.js-select2").each ->
-    $(@).select2({ "width": $(@).data("width") || "80%", "allowClear": true })
+    first_otp = $($(@).find('option')[0])
+    allowClear = first_otp.val() == ''
+    $(@).select2
+      width: $(@).data("width") || "80%"
+      allowClear: allowClear
+      placeholder: if allowClear then first_otp.html() else null
   $(dom).find("select.js-select2-tags").each ->
     opts =
       tokenSeparators: [',', ' ']
       tags: true
       with: '80%'
-    console.log(opts)
     $(@).attr('multiple', true).select2(opts)
 
 $ ->
