@@ -1,8 +1,8 @@
 class BooleanInput < SimpleForm::Inputs::BooleanInput
 
-  def input(_wrapper_options = nil)
+  def input(*args)
     template.content_tag(:div, class: 'checkbox') do
-      super(_wrapper_options)
+      super(*args)
     end
   end
 
