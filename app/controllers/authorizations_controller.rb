@@ -6,7 +6,7 @@ class AuthorizationsController < ApplicationController
       sign_in(result[:user])
       redirect_to root_path(host: Setting.host), flash: { success: 'oauth signed in' }
     else
-      redirect_to root_path(host: Setting.host), flash: { error: context.error_messages.join("\n") }
+      redirect_to root_path(host: Setting.host), flash: { error: context.error_message }
     end
   end
 

@@ -1,0 +1,7 @@
+h2= @error.message
+h3= @error.original_message
+table
+  - @error.to_h.each do |key, value|
+    tr
+      td= key
+      td= value.inspect

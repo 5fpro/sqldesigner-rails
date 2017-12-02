@@ -150,3 +150,7 @@ Lint/AmbiguousRegexpLiteral:
 
 Metrics/ParameterLists:
   Max: 8
+
+Security/Eval:
+  Exclude:
+    - 'spec/steps/api/data_format_matcher_steps.rb'

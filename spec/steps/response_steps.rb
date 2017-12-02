@@ -4,14 +4,6 @@ step '頁面回應 :http_status' do |http_status|
   end
 end
 
-placeholder :http_status do
-  match /正常/ do
-    200
-  end
-
-  match /\d+/, &:to_i
-end
-
 step '回應內容:is_matched \':matched_content\'' do |is_matched, matched_content|
   if is_matched == '不含'
     expect(response.body).not_to include(matched_content)

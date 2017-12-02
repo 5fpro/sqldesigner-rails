@@ -3,7 +3,7 @@ class BaseContext
   define_model_callbacks :perform
 
   include Rails.application.routes.url_helpers
-  include ErrorHandler
+  include ObjectErrorsConcern
 
   private
 
