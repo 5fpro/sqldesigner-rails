@@ -1,4 +1,4 @@
-class SwitchInput < SimpleForm::Inputs::BooleanInput
+class BooleanInput < SimpleForm::Inputs::BooleanInput
 
   def input(_wrapper_options = nil)
     template.content_tag(:div, class: 'checkbox') do
@@ -9,7 +9,7 @@ class SwitchInput < SimpleForm::Inputs::BooleanInput
   private
 
   def input_html_options
-    super.merge(class: CssClass.new(super[:class]).add('js-switch').to_a)
+    super.merge(class: CssClass.new(super[:class]).add('flat').to_a)
   end
 
 end

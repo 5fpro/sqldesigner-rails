@@ -19,28 +19,5 @@ SimpleForm.setup do |config|
     # b.use :label, class: ''
     b.use :input, class: 'form-control', wrap_with: nil, error_class: 'parsley-error'
   end
-
-  config.wrappers :admin_boolean, tag: :div, class: 'form-group', error_class: 'parsley-error' do |b|
-    b.use :label, class: 'control-label'
-    b.wrapper tag: :div, class: '' do |ba|
-      ba.wrapper tag: :div, class: 'checkbox' do |bba|
-        bba.use :input, class: 'flat'
-      end
-    end
-  end
-
-  config.wrappers :admin_boolean_switch, tag: :div, class: 'form-group', error_class: 'parsley-error' do |b|
-    b.use :label, class: 'control-label'
-    b.wrapper tag: :div, class: '' do |ba|
-      ba.wrapper tag: :div, class: 'checkbox' do |bba|
-        bba.use :input, class: 'js-switch'
-      end
-    end
-  end
-
-  config.wrapper_mappings = {
-    boolean: :admin_boolean,
-    switch: :admin_boolean_switch
-  }
 end
 

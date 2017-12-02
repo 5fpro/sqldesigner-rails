@@ -20,6 +20,7 @@ h3= 'admin_form_for'
 = admin_form_for User.new(name: 'a'), url: admin_root_path, rwd: [11, 10, 12] do |f|
   = f.input :name, as: :redactor2
   = f.input :name, as: :switch
+  = f.input :name, as: :boolean
   = f.input :name, as: :tags
   = f.submit_cancel 'Go', cancel: root_path
 
