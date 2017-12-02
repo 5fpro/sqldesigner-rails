@@ -38,5 +38,5 @@ br/
                     = item.tag.name
 
 .sidebar-footer.hidden-small
-  = link_to destroy_user_session_path, data: { toggle: 'tooltip', placement: 'top' }, title: 'Logout' do
+  = link_to destroy_user_session_path, method: :delete, data: { toggle: 'tooltip', placement: 'top' }, title: 'Logout' do
     span.glyphicon.glyphicon-off[aria-hidden="true"]

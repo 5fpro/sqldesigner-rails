@@ -1,7 +1,8 @@
 class Select2Input < SimpleForm::Inputs::CollectionSelectInput
 
   def input_options
-    super.merge(include_blank: false)
+    return super.merge(include_blank: false) if multiple?
+    super
   end
 
   private
