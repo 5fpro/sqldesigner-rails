@@ -21,19 +21,24 @@ class LoggerData
   private
 
   def controller
+    byebug
     data = {
       host: @obj.request.host,
       user_id: @obj.try(:current_user).try(:id),
       fullpath: @obj.request.original_fullpath,
       ip: @obj.request.remote_ip,
       query_params: @obj.request.query_parameters.to_json,
-      raw_body: escape_text(@obj.request.raw_post),
+      raw_body: file_upload?(@obj) ? '[file upload]' : escape_text(@obj.request.raw_post),
       controller_params: @obj.params.permit!.to_h.except('controller', 'action').to_s
     }
     if @obj.response.status.to_s[0] == '3'
       data[:redirect_to] = @obj.response.location
     end
     data
+  end
+
+  def file_upload?(controller)
+    controller.request.params.values.select { |v| v.is_a?(ActionDispatch::Http::UploadedFile) }.present?
   end
 
   def rack_request
@@ -48,7 +53,7 @@ class LoggerData
   end
 
   def escape_text(text)
-    text.to_s.gsub("\n", '\n').gsub("\r", '\r')
+    text.to_s.force_encoding('UTF-8').gsub("\n", '\n').gsub("\r", '\r')
   end
 
   def exception_wrapper
