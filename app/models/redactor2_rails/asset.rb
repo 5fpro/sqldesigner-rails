@@ -16,9 +16,9 @@
 #  updated_at        :datetime         not null
 #
 
-class Redactor2Rails::Asset < ActiveRecord::Base
+class Redactor2Rails::Asset < ApplicationRecord
   include Redactor2Rails::Orm::ActiveRecord::AssetBase
 
   delegate :url, :current_path, :size, :content_type, :filename, to: :data
-  validates_presence_of :data
+  validates :data, presence: true
 end

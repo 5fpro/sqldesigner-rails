@@ -7,7 +7,6 @@ class BaseUploader < CarrierWave::Uploader::Base
     end
   end
 
-
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
