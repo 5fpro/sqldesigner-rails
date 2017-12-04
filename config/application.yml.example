@@ -51,6 +51,10 @@ defaults: &defaults
 
 development:
   <<: *defaults
+  carrierwave:
+    region: "<%= ENV['AWS_REGION'] %>"
+    bucket: "<%= ENV['ASSET_AWS_BUCKET'] %>"
+    host: "assets-demo-5fpro-com.s3.amazonaws.com"
 
 test:
   <<: *defaults

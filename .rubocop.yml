@@ -154,3 +154,7 @@ Metrics/ParameterLists:
 Security/Eval:
   Exclude:
     - 'spec/steps/api/data_format_matcher_steps.rb'
+
+Lint/Debugger:
+  Exclude:
+    - 'spec/steps/util_steps.rb'

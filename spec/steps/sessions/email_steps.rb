@@ -1,16 +1,7 @@
-step ':user_role 登入' do |user|
-  @current_user ||= user
-  signin_user(@current_user)
+step ':user_role 登入' do |role|
+  signin_user(role) if role.is_a?(User)
 end
 
-step '使用者登入' do
-  @current_user = @user || @users.try(:first) || @current_user || create(:user)
-  post '/users/sign_in', params: { user: { email: @current_user.email, password: @current_user.password } }
-  expect(response).to redirect_to('/')
-end
-
-step '使用者登入:' do |table|
-  @current_user = create(:user, table.rows_hash.symbolize_keys)
-  post '/users/sign_in', params: { user: { email: @current_user.email, password: @current_user.password } }
-  expect(response).to redirect_to('/')
+step ':model_finder 登入' do |role|
+  signin_user(role) if role.is_a?(User)
 end

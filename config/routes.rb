@@ -3,6 +3,7 @@ require 'sidekiq-scheduler/web'
 
 Rails.application.routes.draw do
 
+  mount Redactor2Rails::Engine => '/redactor2_rails'
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     confirmations: 'users/confirmations',

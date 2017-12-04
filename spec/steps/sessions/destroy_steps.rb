@@ -1,3 +1,3 @@
-step '使用者登出' do
-  delete '/users/sign_out'
+step ':role_class 登出' do |klass|
+  delete "/#{klass.to_s.underscore.pluralize}/sign_out"
 end

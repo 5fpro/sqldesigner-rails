@@ -6,8 +6,8 @@ SimpleForm.setup do |config|
 
   config.wrappers :admin, tag: :div, class: 'form-group', error_class: 'parsley-error' do |b|
     b.use :placeholder
-    b.use :label, class: 'control-label col-md-3 col-sm-3 col-xs-12'
-    b.wrapper tag: :div, class: 'col-md-9 col-sm-9 col-xs-12' do |ba|
+    b.use :label, class: 'control-label'
+    b.wrapper tag: :div, class: '' do |ba|
       ba.use :input, class: 'form-control', wrap_with: nil, error_class: 'parsley-error'
       # ba.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
       ba.use :error, wrap_with: { tag: 'span', class: 'parsley-errors-list filled' }
@@ -19,36 +19,5 @@ SimpleForm.setup do |config|
     # b.use :label, class: ''
     b.use :input, class: 'form-control', wrap_with: nil, error_class: 'parsley-error'
   end
-
-  config.wrappers :admin_boolean, tag: :div, class: 'form-group', error_class: 'parsley-error' do |b|
-    b.use :label, class: 'control-label col-md-3 col-sm-3 col-xs-12'
-    b.wrapper tag: :div, class: 'col-md-9 col-sm-9 col-xs-12' do |ba|
-      ba.wrapper tag: :div, class: 'checkbox' do |bba|
-        bba.use :input, class: 'flat'
-      end
-    end
-  end
-
-  config.wrappers :admin_boolean_switch, tag: :div, class: 'form-group', error_class: 'parsley-error' do |b|
-    b.use :label, class: 'control-label col-md-3 col-sm-3 col-xs-12'
-    b.wrapper tag: :div, class: 'col-md-9 col-sm-9 col-xs-12' do |ba|
-      ba.wrapper tag: :div, class: 'checkbox' do |bba|
-        bba.use :input, class: 'js-switch'
-      end
-    end
-  end
-
-  config.wrappers :admin_radios, tag: :div, class: 'form-group', error_class: 'parsley-error' do |b|
-    b.use :label, class: 'control-label col-md-3 col-sm-3 col-xs-12'
-    b.wrapper tag: :div, class: 'col-md-9 col-sm-9 col-xs-12' do |ba|
-      ba.use :input, class: 'flat', wrap_with: { tag: 'div', class: 'radio' }
-    end
-  end
-
-  config.wrapper_mappings = {
-    boolean: :admin_boolean,
-    switch: :admin_boolean_switch,
-    radios: :admin_radios
-  }
 end
 
