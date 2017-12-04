@@ -12,10 +12,7 @@ step ':model_finder 的 :auth_provider 資料為:' do |user, auth_provider, tabl
 end
 
 step ':model_finder 綁定 :auth_provider' do |user, auth_provider, table|
-  delete '/users/sign_out'
-  post '/users/sign_in', params: { user: { email: user.email, password: user.password || '12341234' } }
-  get "/authorizations/#{auth_provider}/callback", env: auth_mock(auth_provider, table)
-  delete '/users/sign_out'
+  create(:authorization, auth: user, provider: auth_provider, uid: table.rows_hash.symbolize_keys[:uid])
 end
 
 step ':auth_provider 登入' do |auth_provider, table|

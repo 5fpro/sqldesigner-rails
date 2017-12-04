@@ -1,5 +1,5 @@
 placeholder :user_role do
-  match /user/ do
+  match /(user|使用者)/ do
     @role_user = create(:user) unless @role_user && User.exists?(@role_user.id)
     @role_user
   end

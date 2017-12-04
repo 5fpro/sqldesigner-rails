@@ -6,12 +6,16 @@ module RequestClient
 
   def signin_user(user = nil)
     user ||= create(:user, :admin)
-    post '/users/sign_in', params: { user: { email: user.email, password: user.password } }
+    post '/users/sign_in', params: { user: { email: user.email, password: user.password || default_password } }
     @current_user = user if response.status == 302
   end
 
   def current_user
     @current_user
+  end
+
+  def default_password
+    '12341234'
   end
 
   def file_data
