@@ -8,6 +8,11 @@ Deploy
 
 See [DEPLOY.md](doc/DEPLOY.md).
 
+Development Guide
+=======
+
+See [Development](doc/development).
+
 TODO
 =======
 
