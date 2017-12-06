@@ -17,3 +17,7 @@ step ':page_router :request_method :model_finder 的 :page_caller' do |router, r
   page = page_caller.call(instance)
   send_request_by_router(router, request_method, page, args[0])
 end
+
+step '跟隨頁面轉跳' do
+  follow_redirect!
+end
