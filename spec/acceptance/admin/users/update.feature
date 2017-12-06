@@ -13,10 +13,10 @@ Feature: 從後台更新 user
          | email |
          | venus@5fpro.com |
     Then 頁面回應 200
-     And 使用者(marsz) 的 email 無更新
+     And 使用者(marsz) 的 email 為 'marsz@5fpro.com'
   Scenario: 成功更新 user
     When 後台更新 使用者(marsz):
          | name |
          | jupiter |
     Then 頁面轉跳
-     And 使用者(marsz@5fpro.com) 的 name 更新為 'jupiter'
+     And 使用者(marsz@5fpro.com) 的 name 為 'jupiter'

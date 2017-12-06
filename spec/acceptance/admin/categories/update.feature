@@ -13,19 +13,19 @@ Feature: 從後台更新分類
          | name |
          | venus |
     Then 頁面回應 200
-     And 分類(marsz) 的 name 無更新
+     And 分類(marsz) 的 name 為 'marsz'
   Scenario: 不能把 name 更新為空白字串
     When 後台更新 分類(marsz):
          | name |
          | |
     Then 頁面回應 200
-     And 分類(marsz) 的 name 無更新
+     And 分類(marsz) 的 name 為 'marsz'
   Scenario: 成功更新分類
     When 後台更新 分類(marsz):
          | name |
          | jupiter |
     Then 頁面轉跳
-     And 分類(jupiter) 的 name 更新為 'jupiter'
+     And 分類(jupiter) 的 name 為 'jupiter'
   Scenario: 更新後會有版本記錄
     Given 後台更新 分類(marsz):
          | name |
