@@ -53,7 +53,6 @@ RSpec.configure do |config|
   config.include Util
   config.include Webmock
   config.include RequestClient, type: :request
-  config.include HtmlMatchers, type: :request
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::ControllerHelpers, type: :controller
 
