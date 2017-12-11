@@ -6,4 +6,8 @@ placeholder :page do
   match /\/.+/ do |page|
     page
   end
+
+  match /.{0}/ do
+    ''
+  end
 end

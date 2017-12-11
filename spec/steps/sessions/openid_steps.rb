@@ -3,7 +3,7 @@ step ':model_finder 已綁定 :auth_provider :count 筆' do |user, auth_provider
 end
 
 step ':model_finder 的 :auth_provider 資料為:' do |user, auth_provider, table|
-  provider_data = table.rows_hash.symbolize_keys
+  provider_data = table.hashes[0].symbolize_keys
   uid = provider_data.delete(:uid)
   authorization = user.authorizations.where(provider: auth_provider, uid: uid).first
   provider_data.each do |key, value|
@@ -12,7 +12,7 @@ step ':model_finder 的 :auth_provider 資料為:' do |user, auth_provider, tabl
 end
 
 step ':model_finder 綁定 :auth_provider' do |user, auth_provider, table|
-  create(:authorization, auth: user, provider: auth_provider, uid: table.rows_hash.symbolize_keys[:uid])
+  create(:authorization, auth: user, provider: auth_provider, uid: table.hashes[0].symbolize_keys[:uid])
 end
 
 step ':auth_provider 登入' do |auth_provider, table|
@@ -20,7 +20,7 @@ step ':auth_provider 登入' do |auth_provider, table|
 end
 
 def auth_mock(auth_provider, table)
-  provider_data = table.rows_hash.symbolize_keys
+  provider_data = table.hashes[0].symbolize_keys
   email = provider_data[:email]
   uid = provider_data[:uid]
   name = provider_data[:name]

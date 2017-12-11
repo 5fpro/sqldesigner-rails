@@ -4,7 +4,7 @@ module Users
 
     # GET /resource/sign_in
     def new
-      set_meta(title: '登入')
+      set_meta(title: '登入', description: '登入頁面')
       super
     end
 

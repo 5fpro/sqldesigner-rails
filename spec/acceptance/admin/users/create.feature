@@ -17,7 +17,7 @@ Feature: 從後台新增 user
     When 後台建立 使用者:
          | email |
          | marsz123@5fpro.com |
-    Then 頁面轉跳
+    Then 頁面 轉跳
      And 使用者 數 +1
   Scenario: 夾帶檔案（頭像）測試
     When 後台建立 使用者:
