@@ -18,5 +18,5 @@ Feature: 從後台更新 user
     When 後台更新 使用者(marsz):
          | name |
          | jupiter |
-    Then 頁面轉跳
+    Then 頁面 轉跳
      And 使用者(marsz@5fpro.com) 的 name 為 'jupiter'

@@ -17,7 +17,7 @@ Feature: 從後台新增分類
     When 後台建立 分類:
          | name |
          | marsz123 |
-    Then 頁面轉跳
+    Then 頁面 轉跳
      And 分類 數 +1
   Scenario: 不同參數
     When 後台建立 分類:

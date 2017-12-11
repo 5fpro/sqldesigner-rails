@@ -6,7 +6,7 @@ Feature: 從後台更新分類
           | marsz |
   Scenario: 刪除分類
     When 後台刪除 分類(marsz)
-    Then 頁面轉跳
+    Then 頁面 轉跳
      And 分類(marsz) 不存在
   Scenario: 刪除後可再後台還原
     Given 後台刪除 分類(marsz)

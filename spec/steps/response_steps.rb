@@ -16,12 +16,14 @@ step '回應格式為 :format' do |format|
   expect(response.headers['Content-Type']).to include(format.to_s.downcase)
 end
 
-step '頁面轉跳' do
-  expect(response).to be_redirect
+step '頁面 轉跳(至 ):page' do |path|
+  if path.present?
+    expect(response).to redirect_to(path)
+  else
+    expect(response).to be_redirect
+  end
 end
 
-step '頁面轉跳至 :path' do |path|
-  expect(response).to redirect_to(path)
 end
 
 step '頁面包含 :content' do |content|
