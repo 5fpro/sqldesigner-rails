@@ -154,6 +154,15 @@ Metrics/ParameterLists:
 Security/Eval:
   Exclude:
     - 'spec/steps/api/data_format_matcher_steps.rb'
+    - 'spec/steps/response_steps.rb'
+
+Lint/UnusedBlockArgument:
+  Exclude:
+    - 'spec/steps/response_steps.rb'
+
+Lint/UselessAssignment:
+  Exclude:
+    - 'spec/steps/response_steps.rb'
 
 Lint/Debugger:
   Exclude:

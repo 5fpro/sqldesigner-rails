@@ -32,4 +32,4 @@ Feature: 從後台更新分類
          | jupiter |
     When 到後台 GET 分類(jupiter) 的 分類版本記錄頁面
     Then 頁面回應 200
-     And 頁面包含 marsz
+     And 頁面 包含 marsz

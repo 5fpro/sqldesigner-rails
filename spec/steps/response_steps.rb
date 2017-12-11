@@ -24,12 +24,17 @@ step '頁面 轉跳(至 ):page' do |path|
   end
 end
 
+step ':response_body_type :string_matcher( ):str_value' do |body_type, matcher_bind_str, value|
+  str = BodyExtractor.new(response.body).extract(body_type)
+  eval(matcher_bind_str)
 end
 
-step '頁面包含 :content' do |content|
-  expect(response.body).to include(content)
-end
+placeholder :str_value do
+  match /.+/ do |str|
+    str
+  end
 
-step '頁面不包含 :content' do |content|
-  expect(response.body).not_to include(content)
+  match /.{0}/ do
+    ''
+  end
 end
