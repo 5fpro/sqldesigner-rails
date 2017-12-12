@@ -55,4 +55,17 @@ describe CacheStorage, type: :value do
             change { described_class.find_by(tag: :bb).size }
     end
   end
+
+  it '.fetch_or_cache' do
+    value = described_class.fetch_or_cache(key1, json: true, tags: [:aa]) do
+      { a: 1 }
+    end
+    expect(value[:a]).to eq(1)
+    expect(described_class.find_by(tag: :aa).size).to eq(1)
+    value = described_class.fetch_or_cache(key1, json: true, tags: [:aa]) do
+      { a: 1 }
+    end
+    expect(value[:a]).to eq(1)
+    expect(described_class.find_by(tag: :aa).size).to eq(1)
+  end
 end
