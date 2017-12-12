@@ -23,6 +23,10 @@ describe Api::ErrorResponseConcern, type: :controller do
     def render_error
       respond_error(message: 'qq', status: 401, haha: 'haha', type: '123')
     end
+
+    def routing_error
+      raise RoutingError.new(request: request)
+    end
   end
 
   before {
@@ -31,6 +35,7 @@ describe Api::ErrorResponseConcern, type: :controller do
       get 'record_not_found' => 'example#record_not_found'
       get 'error_500' => 'example#error_500'
       get 'respond_error' => 'example#render_error'
+      get 'routing_error' => 'example#routing_error'
     }
   }
 
@@ -59,13 +64,18 @@ describe Api::ErrorResponseConcern, type: :controller do
   end
 
   describe 'StandardError' do
-    before { get :error_500, format: :json }
     it do
+      get :error_500, format: :json
       expect(response.status).to eq(500)
       expect(data[:error][:class_name]).to be_present
       expect(data[:error][:original]).to be_present
       expect(data[:error][:backtrace]).to be_present
       expect(data[:error][:message]).to be_present
+    end
+
+    it 'notified' do
+      expect_any_instance_of(Api::ControllerRescuedError).to receive(:notify)
+      get :error_500, format: :json
     end
   end
 
@@ -76,6 +86,20 @@ describe Api::ErrorResponseConcern, type: :controller do
       expect(data[:error][:context][:haha]).to eq('haha')
       expect(data[:error][:class_name]).to be_present
       expect(data[:error][:message]).to be_present
+    end
+  end
+
+  describe 'routing_error' do
+    it do
+      get :routing_error, format: :json
+      expect(response.status).to eq(404)
+      expect(data[:error][:class_name]).to be_present
+      expect(data[:error][:message]).to be_present
+    end
+
+    it 'not notified' do
+      expect_any_instance_of(Api::ControllerRescuedError).not_to receive(:notify)
+      get :routing_error, format: :json
     end
   end
 

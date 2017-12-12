@@ -1,8 +1,12 @@
 module Api
   class ControllerRescuedError < BaseError
+    DONT_NOTIFIED_ERRORS = [
+      ::RoutingError,
+      ActionController::ParameterMissing
+    ].freeze
 
     def notify?
-      true
+      !DONT_NOTIFIED_ERRORS.include?(@original.class)
     end
 
     def status
