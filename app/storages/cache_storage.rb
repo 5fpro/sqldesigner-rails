@@ -46,6 +46,17 @@ class CacheStorage
       Rails.cache.exist?(key)
     end
 
+    def fetch_or_cache(key, expires_in: 1.day, tags: nil, json: true)
+      if exist?(key)
+        value = fetch(key)
+        value = JSON.parse(value).with_indifferent_access if json
+      else
+        value = yield
+        new(key, json ? value.to_json : value, expires_in: expires_in, tags: tags).save
+      end
+      value
+    end
+
     private
 
     def find_by_tag(tag)
