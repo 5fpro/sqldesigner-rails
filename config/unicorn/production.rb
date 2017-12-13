@@ -8,10 +8,11 @@ working_directory "#{app_path}/current"
 pid "#{app_path}/current/tmp/pids/unicorn.pid"
 listen "/tmp/unicorn.#{ENV['APP_NAME']}.sock"
 
+# default would be stderr_path
 # log rotate config example
 #   https://github.com/defunkt/unicorn/blob/master/examples/logrotate.conf
-stderr_path 'log/unicorn.error.log'
-stdout_path 'log/unicorn.log'
+stderr_path "#{app_path}/current/log/unicorn.log"
+stdout_path "#{app_path}/current/log/unicorn.log"
 
 worker_processes 1
 
