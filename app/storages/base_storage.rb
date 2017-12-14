@@ -1,5 +1,8 @@
 class BaseStorage
   include ActiveModel::AttributeAssignment
+  extend ActiveModel::Callbacks
+
+  define_model_callbacks :save, :destroy
 
   attr_accessor :id
 
@@ -59,13 +62,17 @@ class BaseStorage
   end
 
   def save(ex = nil)
-    generate_id! if id.blank?
-    self.class.send(:set, id, attributes.except(:id), ex)
-    id
+    run_callbacks :save do
+      generate_id! if id.blank?
+      self.class.send(:set, id, attributes.except(:id), ex)
+      id
+    end
   end
 
   def destroy
-    self.class.send(:del, id)
+    run_callbacks :destroy do
+      self.class.send(:del, id)
+    end
   end
 
   # TODO: assing new expires
