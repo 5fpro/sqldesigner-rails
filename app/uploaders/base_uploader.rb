@@ -5,11 +5,11 @@ class BaseUploader < CarrierWave::Uploader::Base
     def enable_background_upload!
       include ::CarrierWave::Backgrounder::Delay
     end
-  end
 
-  # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
-  include CarrierWave::MiniMagick
+    def enable_image_processor!
+      include CarrierWave::MiniMagick
+    end
+  end
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
@@ -48,18 +48,28 @@ class BaseUploader < CarrierWave::Uploader::Base
   # end
 
   def filename
-    "#{secure_token}.#{file.extension}" if original_filename.present?
+    if original_filename.present?
+      "#{secure_token}#{file.extension.present? ? '.' + file.extension : ''}"
+    end
   end
 
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{id_partition(model)}"
+    if model?
+      "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{id_partition(model)}"
+    else
+      "uploads/#{self.class.to_s.underscore}"
+    end
   end
 
   private
 
   def secure_token
-    var = :"@#{mounted_as}_secure_token"
-    model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.uuid)
+    if model?
+      var = :"@#{mounted_as}_secure_token"
+      model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.uuid)
+    else
+      SecureRandom.uuid
+    end
   end
 
   def id_partition(attachment)
@@ -71,4 +81,7 @@ class BaseUploader < CarrierWave::Uploader::Base
     end
   end
 
+  def model?
+    model.respond_to?(:id)
+  end
 end
