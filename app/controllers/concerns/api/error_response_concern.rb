@@ -30,7 +30,7 @@ module Api
     def respond_with_error(error)
       @error = error
       @error.log
-      @error.notify(original: true) if @error.notify?
+      @error.notify if @error.notify?
       render 'api/base/error', status: @error.status
     end
 

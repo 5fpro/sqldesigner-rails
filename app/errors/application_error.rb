@@ -33,8 +33,8 @@ class ApplicationError < RuntimeError
     @original&.backtrace || backtrace
   end
 
-  def notify(original: false)
-    Rollbar.error(original ? @original || self : self, to_h)
+  def notify
+    Rollbar.error(original || self, to_h)
   end
 
   def mail_deliver
