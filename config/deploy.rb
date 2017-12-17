@@ -55,4 +55,5 @@ namespace :deploy do
   end
 end
 
+# capistrano-rails => https://github.com/capistrano/rails/blob/master/lib/capistrano/tasks/assets.rake
 set :assets_roles, [:web, :worker, :assets_sync_server]
