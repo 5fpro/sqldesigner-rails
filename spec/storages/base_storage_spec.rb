@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe BaseStorage, type: :storage do
   class ExampleStorage < BaseStorage
-    default_expires 10.seconds
+    default_expires 20.seconds
     attr_accessor :name
   end
 
@@ -18,9 +18,16 @@ describe BaseStorage, type: :storage do
     expect {
       instance.update(name: 'QQ')
     }.to change { klass.find(@id).name }.to('QQ')
+
+    expect(instance.ttl).to be > 0
+
     expect {
       instance.destroy
     }.to change { klass.all.count }.to(0)
+
+    base = BaseStorage.new
+    base.save
+    expect(base.ttl).to eq(-1)
   end
 
   describe 'Callbacks' do

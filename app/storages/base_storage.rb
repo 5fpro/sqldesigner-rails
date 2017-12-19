@@ -33,10 +33,6 @@ class BaseStorage
       @ex = value
     end
 
-    def ex
-      @ex = 1.hour
-    end
-
     def redis
       @redis ||= Redis.current
     end
@@ -53,6 +49,10 @@ class BaseStorage
     def del(id)
       return false if id.blank?
       redis.del(redis_key(id))
+    end
+
+    def ttl(id)
+      redis.ttl(redis_key(id))
     end
   end
 
@@ -83,6 +83,10 @@ class BaseStorage
 
   def attributes
     as_json.with_indifferent_access
+  end
+
+  def ttl
+    self.class.send(:ttl, id)
   end
 
   private
