@@ -1,5 +1,6 @@
 class Redactor2RailsImageUploader < BaseUploader
   include Redactor2Rails::Backend::CarrierWave
+  enable_image_processor!
 
   process :read_dimensions
 
