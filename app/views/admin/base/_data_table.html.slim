@@ -4,7 +4,7 @@
     - bordered = bordered ? 'table-bordered' : ''
     - striped = striped ? 'table-striped' : ''
     - hover = hover ? 'table-hover' : ''
-    - jambo = data ? 'jambo_table' : ''
-    table.table class="#{bordered} #{striped} #{hover} #{jambo}"
+    - datatable_class = datatable ? 'js-datatable' : ''
+    table.table.nowrap class="#{bordered} #{striped} #{hover} #{datatable_class}" data-table-options="#{datatable ? datatable.to_json : ''}"
       == body
   = render_admin_pagination data if data

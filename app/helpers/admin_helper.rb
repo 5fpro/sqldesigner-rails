@@ -74,16 +74,33 @@ module AdminHelper
     render partial: 'admin/base/pagination', as: :collection, object: collection
   end
 
-  def render_admin_data_table(data: nil, total: nil, bordered: true, striped: true, hover: true, &block)
+  def render_admin_table(data: nil, total: nil, bordered: true, striped: true, hover: true, datatable: nil, &block)
     locals = {
       body: capture(data, &block),
       data: data,
       bordered: bordered,
       striped: striped,
       hover: hover,
-      total: total
+      total: total,
+      datatable: datatable.nil? ? nil : default_datatable_options.merge(datatable)
     }
     render partial: 'admin/base/data_table', locals: locals
+  end
+
+  def render_admin_data_table(opts = {}, &block)
+    opts[:datatable] ||= {}
+    render_admin_table(opts, &block)
+  end
+
+  # more: https://datatables.net/reference/option/
+  def default_datatable_options
+    {
+      responsive: true,
+      ordering: false,
+      paging: false,
+      searching: false,
+      info: false
+    }
   end
 
   def admin_link_to(text, link, icon: nil, size: nil, color: nil, round: false, **html_opts)
