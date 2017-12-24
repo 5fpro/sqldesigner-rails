@@ -1,5 +1,8 @@
 class BaseStorage
   include ActiveModel::AttributeAssignment
+  extend ActiveModel::Callbacks
+
+  define_model_callbacks :save, :destroy
 
   attr_accessor :id
 
@@ -30,10 +33,6 @@ class BaseStorage
       @ex = value
     end
 
-    def ex
-      @ex = 1.hour
-    end
-
     def redis
       @redis ||= Redis.current
     end
@@ -51,6 +50,10 @@ class BaseStorage
       return false if id.blank?
       redis.del(redis_key(id))
     end
+
+    def ttl(id)
+      redis.ttl(redis_key(id))
+    end
   end
 
   def initialize(attrs = {})
@@ -59,13 +62,17 @@ class BaseStorage
   end
 
   def save(ex = nil)
-    generate_id! if id.blank?
-    self.class.send(:set, id, attributes.except(:id), ex)
-    id
+    run_callbacks :save do
+      generate_id! if id.blank?
+      self.class.send(:set, id, attributes.except(:id), ex)
+      id
+    end
   end
 
   def destroy
-    self.class.send(:del, id)
+    run_callbacks :destroy do
+      self.class.send(:del, id)
+    end
   end
 
   # TODO: assing new expires
@@ -76,6 +83,10 @@ class BaseStorage
 
   def attributes
     as_json.with_indifferent_access
+  end
+
+  def ttl
+    self.class.send(:ttl, id)
   end
 
   private
