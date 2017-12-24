@@ -1,9 +1,8 @@
 class BaseContext
-  extend ActiveModel::Callbacks
-  define_model_callbacks :perform
-
   include Rails.application.routes.url_helpers
   include ObjectErrorsConcern
+
+  define_model_callbacks :perform
 
   private
 
