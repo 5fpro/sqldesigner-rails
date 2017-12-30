@@ -37,12 +37,40 @@ h3= 'render_admin_data_table'
 = render_admin_data_table(data: [User.new, Category.new]) do |data|
   thead
     tr
-      th Class
+      - 20.times.each do
+        th Class
       th Actions
   tbody
     - data.each do |obj|
       tr
-        td= obj.class
+        - 20.times.each do
+          td= obj.class
+        td
+= render_admin_data_table(data: [User.new, Category.new], datatable: { searching: true, paging: true, ordering: true }) do |data|
+  thead
+    tr
+      - 20.times.each do |i|
+        th Class
+      th Actions
+  tbody
+    - data.each do |obj|
+      tr
+        - 20.times.each do |i|
+          td= "#{i}-#{obj.class}"
+        td
+
+h3= 'render_admin_table'
+= render_admin_table(data: [User.new, Category.new]) do |data|
+  thead
+    tr
+      - 20.times.each do
+        th Class
+      th Actions
+  tbody
+    - data.each do |obj|
+      tr
+        - 20.times.each do
+          td= obj.class
         td
 
 h3= 'render_line_chart'
