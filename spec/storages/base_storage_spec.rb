@@ -28,6 +28,9 @@ describe BaseStorage, type: :storage do
     base = BaseStorage.new
     base.save
     expect(base.ttl).to eq(-1)
+    expect {
+      BaseStorage.clear
+    }.to change { BaseStorage.all.count }.to(0)
   end
 
   describe 'Callbacks' do
@@ -72,6 +75,64 @@ describe BaseStorage, type: :storage do
       expect(instance.destroy).to eq(false)
       expect(instance.aloha).to eq(nil)
       expect(klass.exists?(@id)).to eq(true)
+    end
+  end
+
+  describe 'storage types' do
+    describe 'set' do
+      class SetStorage < BaseStorage
+        store_type :set
+      end
+
+      let(:klass) { SetStorage }
+
+      it do
+        instance = klass.new(id: '123')
+        instance2 = klass.new
+        expect(instance.save).to eq('123')
+        expect(instance2.save).to be_present
+        expect(klass.all.count).to eq(2)
+        expect(klass.exists?('123')).to eq(true)
+        expect(klass.exists?('456')).to eq(false)
+        expect(klass.exists?(instance2.id)).to eq(true)
+        expect(klass.find('123').id).to eq('123')
+        expect {
+          instance2.destroy
+        }.to change { klass.all.count }.by(-1)
+        expect {
+          klass.clear
+        }.to change { klass.all.count }.to(0)
+      end
+    end
+
+    describe 'hash' do
+      class HashStorage < BaseStorage
+        store_type :hash
+        attr_accessor :name
+      end
+
+      let(:klass) { HashStorage }
+
+      it do
+        instance = klass.new(id: '123', name: 'aloha')
+        instance2 = klass.new
+        expect(instance.save).to eq('123')
+        expect(instance2.save).to be_present
+        expect(klass.all.count).to eq(2)
+        expect(klass.exists?('123')).to eq(true)
+        expect(klass.exists?('456')).to eq(false)
+        expect(klass.exists?(instance2.id)).to eq(true)
+        expect(klass.find('123').name).to eq('aloha')
+        expect {
+          instance2.destroy
+        }.to change { klass.all.count }.by(-1)
+        expect {
+          instance.update(name: 'abc')
+        }.to change { klass.find('123').name }.to('abc')
+        expect {
+          klass.clear
+        }.to change { klass.all.count }.to(0)
+      end
     end
   end
 end

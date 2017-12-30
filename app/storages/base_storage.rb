@@ -9,14 +9,13 @@ class BaseStorage
   class << self
 
     def all
-      prefix = redis_key('')
-      redis.keys.select { |key| key.index(prefix) == 0 }.map do |key|
-        find(key.gsub(prefix, ''))
+      get_all_ids.map do |id|
+        find(id)
       end.select(&:present?)
     end
 
     def find(id)
-      data = JSON.parse(redis.get(redis_key(id)).to_s)
+      data = JSON.parse(get_value(id).to_s)
       new(data.merge(id: id))
     rescue JSON::ParserError
       nil
@@ -24,7 +23,21 @@ class BaseStorage
 
     def exists?(id)
       return false if id.blank?
-      redis.exists(redis_key(id))
+      case @store_type
+      when 'set' then redis.sismember(redis_key, id)
+      when 'hash' then redis.hexists(redis_key, id)
+      else
+        redis.exists(redis_key(id))
+      end
+    end
+
+    def clear
+      case @store_type
+      when 'set' then redis.del(redis_key)
+      when 'hash' then redis.del(redis_key)
+      else
+        get_all_ids.each { |id| del(id) }
+      end
     end
 
     private
@@ -33,22 +46,58 @@ class BaseStorage
       @ex = value
     end
 
+    # target: 'set'|'hash'
+    def store_type(target)
+      @store_type = target.to_s
+    end
+
     def redis
       @redis ||= Redis.current
     end
 
-    def redis_key(id)
-      "storages-#{to_s.underscore}-#{id}"
+    def redis_key(id = nil)
+      id = "-#{id}" if id.present?
+      "storages-#{to_s.underscore}#{id}"
     end
 
     def set(id, data, ex)
       return false if id.blank?
-      redis.set(redis_key(id), data.to_json, ex: ex || @ex)
+      case @store_type
+      when 'set' then redis.sadd(redis_key, id)
+      when 'hash' then redis.hset(redis_key, id, data.to_json)
+      else
+        redis.set(redis_key(id), data.to_json, ex: ex || @ex)
+      end
     end
 
     def del(id)
       return false if id.blank?
-      redis.del(redis_key(id))
+      case @store_type
+      when 'set' then redis.srem(redis_key, id)
+      when 'hash' then redis.hdel(redis_key, id)
+      else
+        redis.del(redis_key(id))
+      end
+    end
+
+    def get_value(id)
+      return false if id.blank?
+      case @store_type
+      when 'set' then redis.sismember(redis_key, id) ? {}.to_json : nil
+      when 'hash' then redis.hget(redis_key, id)
+      else
+        redis.get(redis_key(id))
+      end
+    end
+
+    def get_all_ids
+      case @store_type
+      when 'set' then redis.smembers(redis_key)
+      when 'hash' then redis.hkeys(redis_key)
+      else
+        prefix = "#{redis_key}-"
+        redis.keys.select { |key| key.index(prefix) == 0 }.map { |key| key.gsub(prefix, '') }
+      end
     end
 
     def ttl(id)
