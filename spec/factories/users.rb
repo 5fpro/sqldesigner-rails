@@ -20,7 +20,6 @@
 #  unconfirmed_email      :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  admin                  :boolean          default(FALSE)
 #  avatar                 :string
 #
 
@@ -30,10 +29,6 @@ FactoryBot.define do
     sequence(:email) { |n| "user#{n}@5fpro.com" }
     password '12341234'
     confirmed_at Time.now
-
-    trait :admin do
-      admin true
-    end
 
     trait :unconfirmed do
       confirmed_at nil

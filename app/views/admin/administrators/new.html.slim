@@ -1,0 +1,4 @@
+.row
+  = admin_widget_box 'New Administrator' do
+    = admin_form_for @administrator, as: :administrator do |f|
+      = render partial: 'form', object: f, as: :f

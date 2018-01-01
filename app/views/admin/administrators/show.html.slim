@@ -1,0 +1,23 @@
+= render partial: 'btns', object: @administrator, as: :administrator
+
+.row
+  = admin_widget_box "Administrator ##{@administrator.id}" do
+    = render_admin_table(bordered: true) do
+      tr
+        th width="20%" ID
+        td= @administrator.id
+      tr
+        th Name
+        td= @administrator.name
+      tr
+        th Email
+        td= @administrator.email
+      tr
+        th Avatar
+        td= image_tag(@administrator.gavatar_url(200), size: '200x200')
+      tr
+        th Last Sign In
+        td= @administrator.last_sign_in_at
+      tr
+        th Last IP
+        td= @administrator.last_sign_in_ip

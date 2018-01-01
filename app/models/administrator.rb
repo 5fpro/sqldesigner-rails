@@ -1,9 +1,10 @@
 # == Schema Information
 #
-# Table name: users
+# Table name: administrators
 #
 #  id                     :integer          not null, primary key
 #  name                   :string
+#  root                   :boolean          default(FALSE)
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
@@ -20,28 +21,11 @@
 #  unconfirmed_email      :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  avatar                 :string
 #
 
-class Admin::User < ::User
+class Administrator < ApplicationRecord
+  devise :database_authenticatable, :trackable, :validatable, :async
 
-  class << self
-    def ransackable_scopes(_auth_object = nil)
-      [:has_avatar]
-    end
-
-    def has_avatar(_boolean = true)
-      where.not(avatar: nil)
-    end
-
-    def to_csv(opts = {})
-      CSV.generate(opts) do |csv|
-        csv << ['ID', 'Name', 'Email']
-        offset(0).limit(relation.count).all.find_each do |o| # reset pagination
-          csv << [o.id, o.name, o.email]
-        end
-      end
-    end
+  def gavatar_url(size = 50)
   end
-
 end

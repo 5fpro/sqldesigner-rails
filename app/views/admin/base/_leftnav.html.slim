@@ -7,10 +7,11 @@
 
 .profile.clearfix
   .profile_pic
-    = image_tag 'icon-100px.png', class: 'img-circle profile_img', size: '56x56'
+    = link_to admin_account_path do
+      = image_tag current_administrator.gavatar_url, class: 'img-circle profile_img', size: '56x56'
   .profile_info
     span Welcome,
-    h2= current_user.name
+    h2= current_administrator.name
 
 br/
 
@@ -38,5 +39,11 @@ br/
                     = item.tag.name
 
 .sidebar-footer.hidden-small
-  = link_to destroy_user_session_path, method: :delete, data: { toggle: 'tooltip', placement: 'top' }, title: 'Logout' do
+  = link_to destroy_administrator_session_path, method: :delete, data: { toggle: 'tooltip', placement: 'top', confirm: 'Logout?' }, title: 'Logout' do
     span.glyphicon.glyphicon-off[aria-hidden="true"]
+  = link_to admin_root_path, data: { toggle: 'tooltip', placement: 'top' }, title: 'Home' do
+    span.glyphicon.glyphicon-home[aria-hidden="true"]
+  = link_to root_path, data: { toggle: 'tooltip', placement: 'top' }, title: 'Web Site', target: '_blank' do
+    span.glyphicon.glyphicon-globe[aria-hidden="true"]
+  = link_to admin_account_path, data: { toggle: 'tooltip', placement: 'top' }, title: 'Account' do
+    span.glyphicon.glyphicon-user[aria-hidden="true"]
