@@ -27,5 +27,6 @@ class Administrator < ApplicationRecord
   devise :database_authenticatable, :trackable, :validatable, :async
 
   def gavatar_url(size = 50)
+    Gavatar.new(email).to_s(size)
   end
 end
