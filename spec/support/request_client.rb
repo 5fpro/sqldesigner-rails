@@ -49,7 +49,7 @@ module RequestClient
     traits = [traits] if traits && !traits.is_a?(Array)
     params = attributes_for(model_name, *traits, hash.symbolize_keys)
     params.each { |k, v| params[k] = public_send(v) if data_methods.include?(v.to_s.to_sym) }
-    params = { model_name.to_sym => params }
+    params
   end
 
   def data_methods
