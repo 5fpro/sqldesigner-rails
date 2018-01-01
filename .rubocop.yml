@@ -167,3 +167,6 @@ Lint/UselessAssignment:
 Lint/Debugger:
   Exclude:
     - 'spec/steps/util_steps.rb'
+
+Rails/UnknownEnv:
+  Environments: development, test, production, staging
