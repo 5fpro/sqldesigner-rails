@@ -2,7 +2,7 @@
 
 .row
   = admin_widget_box "User ##{@user.id}" do
-    = render_admin_data_table(bordered: false) do
+    = render_admin_table(bordered: true) do
       tr
         th width="20%" ID
         td= @user.id
@@ -12,9 +12,6 @@
       tr
         th Email
         td= @user.email
-      tr
-        th Is Admin
-        td= "Y" if @user.admin?
       tr
         th Is Confirmed
         td= "Y" if @user.confirmed?

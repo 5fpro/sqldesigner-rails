@@ -12,7 +12,7 @@ class DeviseBaseController < ApplicationController
   end
 
   def layout_by_resource
-    if resource_name == :user
+    if [:user, :administrator].include?(resource_name)
       'admin_landing'
     else
       'application'

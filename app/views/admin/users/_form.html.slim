@@ -1,6 +1,5 @@
 = f.input :name
 = f.input :email, required: true
 = f.input :password, as: :password, required: true if f.object.new_record?
-= f.input :admin, as: :boolean
 = f.input :avatar, as: :pic_preview, input_html: { version: :thumb }
 = f.submit_cancel cancel: admin_users_path

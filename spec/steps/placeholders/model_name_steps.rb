@@ -1,6 +1,7 @@
 MODEL_NAME_MAP = {
   '使用者': :user,
-  '分類': :category
+  '分類': :category,
+  '管理員': :administrator
 }.freeze
 
 def find_model_name(name)

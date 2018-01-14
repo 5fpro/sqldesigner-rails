@@ -1,17 +1,17 @@
 module RequestClient
-  def signout_user
-    delete '/users/sign_out'
-    @current_user = nil
-  end
 
-  def signin_user(user = nil)
-    user ||= create(:user, :admin)
-    post '/users/sign_in', params: { user: { email: user.email, password: user.password || default_password } }
-    @current_user = user if response.status == 302
+  def signin(role)
+    role_name = role.class.to_s.underscore
+    post "/#{role_name.pluralize}/sign_in", params: { role_name => { email: role.email, password: role.password || default_password } }
+    instance_variable_set("@current_#{role_name}", role) if response.status == 302
   end
 
   def current_user
     @current_user
+  end
+
+  def current_administrator
+    @current_administrator
   end
 
   def default_password
@@ -23,8 +23,8 @@ module RequestClient
   end
 
   def sign_in_admin
-    unless current_user&.admin?
-      signin_user(create(:user, :admin))
+    unless current_administrator
+      signin(create(:administrator))
     end
   end
 
@@ -49,7 +49,7 @@ module RequestClient
     traits = [traits] if traits && !traits.is_a?(Array)
     params = attributes_for(model_name, *traits, hash.symbolize_keys)
     params.each { |k, v| params[k] = public_send(v) if data_methods.include?(v.to_s.to_sym) }
-    params = { model_name.to_sym => params }
+    params
   end
 
   def data_methods

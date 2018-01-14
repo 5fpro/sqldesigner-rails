@@ -3,6 +3,7 @@ module ObjectErrorsConcern
 
   included do
     extend  ActiveModel::Callbacks
+    include ActiveModel::Model
     include ActiveModel::AttributeAssignment
     include ActiveModel::Validations
     include ActiveModel::Validations::Callbacks

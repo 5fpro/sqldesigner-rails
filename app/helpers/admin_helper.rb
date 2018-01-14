@@ -106,7 +106,7 @@ module AdminHelper
   def admin_link_to(text, link, icon: nil, size: nil, color: nil, round: false, **html_opts)
     html_opts ||= {}
     classes = html_opts[:class].to_s.split(' ')
-    classes << 'btn'
+    classes << 'btn btn-default'
     classes << { l: 'btn-lg', m: 'btn-sm', s: 'btn-xs' }[size.to_sym] if size
     classes << 'btn-round' if round
     classes << "btn-#{color}" if color

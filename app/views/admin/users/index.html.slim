@@ -24,8 +24,6 @@
             td
               = 'Y' if user.try(:confirmed?)
             td
-              = link_to 'Show', admin_user_path(user)
-              | &nbsp; | &nbsp;
-              = link_to 'Edit', edit_admin_user_path(user)
-              | &nbsp; | &nbsp;
-              = link_to 'Delete', admin_user_path(user), method: :delete, 'data-confirm' => 'Delete?'
+              = admin_link_to 'Show', admin_user_path(user)
+              = admin_link_to 'Edit', edit_admin_user_path(user), color: 'success'
+              = admin_link_to 'Delete', admin_user_path(user), method: :delete, 'data-confirm': 'Delete?', color: 'danger'

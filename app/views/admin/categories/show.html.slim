@@ -1,7 +1,7 @@
 = render partial: 'btns', object: @category, as: :category
 .row
   = admin_widget_box "Category ##{@category.id}" do
-    = render_admin_data_table(bordered: false) do
+    = render_admin_table(bordered: true) do
       tr
         th ID
         td= @category.id

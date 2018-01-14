@@ -11,7 +11,7 @@ html
       .main_container
         .col-md-3.left_col
           .left_col.scroll-view
-            = render partial: "admin/base/leftnav" if user_signed_in?
+            = render partial: "admin/base/leftnav" if administrator_signed_in?
         .top_nav
           .nav_menu
             nav

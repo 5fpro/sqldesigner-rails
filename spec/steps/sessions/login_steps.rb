@@ -1,9 +1,9 @@
 step ':user_role 登入' do |role|
-  signin_user(role) if role.is_a?(User)
+  signin(role)
 end
 
 step ':model_finder 登入' do |role|
-  signin_user(role) if role.is_a?(User)
+  signin(role)
 end
 
 step ':model_name 已登入' do |klass|

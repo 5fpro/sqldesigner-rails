@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     unlocks: 'users/unlocks'
   }
+  devise_for :administrators, controllers: {
+    sessions: 'administrators/sessions'
+  }
 
   get '/authorizations/:provider/callback', to: 'authorizations#callback'
   get '/authorizations/failure' => 'authorizations#failue', as: :auth_failure
@@ -25,7 +28,9 @@ Rails.application.routes.draw do
     root to: 'base#index', as: :root
     get '/examples', to: 'base#examples', as: :examples
     get '/error', to: 'base#error', as: :error
+    resource  :account, only: [:show, :update]
     resources :users
+    resources :administrators
     resources :categories do
       member do
         get :revisions
@@ -44,7 +49,7 @@ Rails.application.routes.draw do
   match '/400', to: 'errors#not_found', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all
 
-  authenticate :user, lambda { |u| u.admin? } do
+  authenticate :administrator, lambda { |a| a.present? } do
     mount Sidekiq::Web => '/sidekiq'
   end
 

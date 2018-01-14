@@ -2,8 +2,7 @@ class Admin::BaseController < ApplicationController
   layout 'admin'
   respond_to :html, :json, :csv
 
-  before_action :authenticate_user!
-  before_action :authenticate_admin_user!
+  before_action :authenticate_administrator!
   before_action :set_meta
 
   add_breadcrumb 'Admin', :admin_root_path
@@ -24,7 +23,9 @@ class Admin::BaseController < ApplicationController
 
   private
 
-  def authenticate_admin_user!
-    redirect_to root_path unless current_user.admin?
+  def authenticate_root_administrator!
+    unless current_administrator&.root?
+      redirect_to admin_root_path, flash: { error: 'No permission.' }
+    end
   end
 end

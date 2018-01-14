@@ -1,0 +1,6 @@
+= render partial: 'btns', object: @administrator, as: :administrator
+
+.row
+  = admin_widget_box "Edit Administrator" do
+    = admin_form_for @administrator, as: :administrator, wrapper: :admin do |f|
+      = render partial: "form", object: f, as: :f

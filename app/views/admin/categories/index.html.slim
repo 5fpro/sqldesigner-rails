@@ -27,8 +27,6 @@
               - if category.deleted?
                 = link_to 'Restore', restore_admin_category_path(category), method: :post, 'data-confirm' => 'Restore?'
               - else
-                = link_to 'Show', admin_category_path(category)
-                | &nbsp; | &nbsp;
-                = link_to 'Edit', edit_admin_category_path(category)
-                | &nbsp; | &nbsp;
-                = link_to 'Delete', admin_category_path(category), method: :delete, 'data-confirm' => 'Delete?'
+                = admin_link_to 'Show', admin_category_path(category)
+                = admin_link_to 'Edit', edit_admin_category_path(category), color: 'success'
+                = admin_link_to 'Delete', admin_category_path(category), method: :delete, 'data-confirm': 'Delete?', color: 'danger'

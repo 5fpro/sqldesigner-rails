@@ -35,5 +35,6 @@ end
 
 FACTORY_NAME_MAP = {
   '已註冊使用者': :user,
-  '分類': :category
+  '分類': :category,
+  '管理員': :administrator
 }.freeze

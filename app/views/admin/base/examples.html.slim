@@ -15,6 +15,7 @@ h3= 'admin_form_for'
   = f.input :name, as: :select2, collection: ['a', 'b'], input_html: { multiple: true }
   = f.input :name, as: :btn_group, collection: ['a', 'b']
   = f.input :name, as: :radios, collection: ['a', 'b']
+  = f.input :name, as: :boolean_radios, label: '是管理員'
   = f.submit_cancel 'Go', cancel: root_path
 
 = admin_form_for User.new(name: 'a'), url: admin_root_path, rwd: [11, 10, 12] do |f|

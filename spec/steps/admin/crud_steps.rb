@@ -3,7 +3,7 @@ step '後台建立 :model_name:' do |model_name, last_params = nil|
   set_previous_count(model_name)
   to_params_list(last_params).each do |hash|
     params = build_params(model_name, hash, traits: [:admin_creation])
-    post Bdd::AdminRouter.build_url("/#{model_name.to_s.pluralize}"), params: params
+    post Bdd::AdminRouter.build_url("/#{model_name.to_s.pluralize}"), params: { model_name.to_sym => params }
   end
 end
 
@@ -11,8 +11,7 @@ step '後台更新 :model_finder:' do |instance, last_params|
   sign_in_admin
   model_name = to_model_name(instance.class)
   instance_variable_set("@#{model_name}", instance)
-  hash = to_params_list(last_params)[0]
-  params = build_params(model_name, hash)
+  params = { model_name => to_params_list(last_params)[0] }
   put Bdd::AdminRouter.build_url("/#{model_name.to_s.pluralize}/#{instance.id}"), params: params
 end
 

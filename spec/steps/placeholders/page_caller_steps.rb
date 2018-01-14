@@ -1,4 +1,12 @@
 placeholder :page_caller do
+  match /管理員頁面/ do
+    ->(u) { "/administrators/#{u.id}" }
+  end
+
+  match /管理員編輯頁面/ do
+    ->(u) { "/administrators/#{u.id}/edit" }
+  end
+
   match /使用者頁面/ do
     ->(u) { "/users/#{u.id}" }
   end

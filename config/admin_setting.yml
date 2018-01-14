@@ -62,6 +62,16 @@ defaults: &defaults
               link: '/sidekiq'
               target: '_blank'
         -
+          icon: 'user'
+          label: 'Administrators'
+          subitems:
+            -
+              label: 'List'
+              link: admin_administrators
+            -
+              label: 'New'
+              link: new_admin_administrator
+        -
           icon: 'users'
           label: 'Users'
           subitems:
