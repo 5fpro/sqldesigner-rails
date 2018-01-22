@@ -15,14 +15,15 @@ end
 
 namespace :sidekiq do
   task :restart do
-    invoke 'sidekiq:stop'
-    # invoke 'sidekiq:start'
+    invoke 'sidekiq:stop' # systemd
   end
+
+  # task :start do
+  #   puts 'use systemd to start'
+  # end
 end
 
 after 'deploy:starting', 'sidekiq:quiet'
 after 'deploy:updated', 'sidekiq:stop'
 after 'deploy:reverted', 'sidekiq:stop'
 after 'deploy:published', 'sidekiq:stop'
-# monit will auto start it
-# after 'deploy:published', 'sidekiq:start'
