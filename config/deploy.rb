@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.10.0'
+lock '3.10.1'
 
 # Config@initial
 set :application, ENV.fetch('APP_NAME') { '5FPRO' }
@@ -36,7 +36,9 @@ set :linked_files, fetch(:linked_files, []).push(*fetch(:config_files))
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 
 # Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+set :default_env, {
+  'EXECJS_RUNTIME' => 'Node'
+}
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
@@ -47,11 +49,6 @@ after 'deploy:published', 'bundler:clean'
 namespace :deploy do
   task :restart do
     invoke 'unicorn:restart'
-    # invoke 'unicorn:restart'
-
-    # passenger
-    # execute :mkdir, '-p', release_path.join('tmp')
-    # execute :touch, release_path.join('tmp/restart.txt')
   end
 end
 
