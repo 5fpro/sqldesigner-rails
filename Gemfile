@@ -67,6 +67,7 @@ group :development do
 
   gem 'annotate'
   gem 'http_logger'
+  gem 'listen'
   gem 'rubocop'
 
   gem 'rails_real_favicon'
