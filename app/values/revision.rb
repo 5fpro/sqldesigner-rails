@@ -14,7 +14,7 @@ class Revision
   end
 
   def log
-    @log ||= print_file(Rails.root.join('..', 'revisions.log'), "|grep #{sha}|tail -n 1")
+    @log ||= print_file(Rails.root.join('..', '..', 'revisions.log'), "|grep #{sha}|tail -n 1")
   end
 
   def deployer
@@ -42,7 +42,7 @@ class Revision
 
   def print_file(file_path, postfix = nil)
     return nil unless File.exist?(file_path)
-    `cat #{file_path} #{postfix}`.to_s.force_encoding('UTF-8')
+    `cat #{file_path} #{postfix}`.to_s.force_encoding('UTF-8').tr("\n", '')
   end
 
   def file_exists?(*paths)
