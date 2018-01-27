@@ -20,6 +20,7 @@ module MetaTagHelper
     )
     data[:canonical] = url_for(request.params.merge(host: Setting.host))
     data[:image_src] = data[:og][:image][:url] = default_og_image_url
+    data[:revision] = Revision.to_h unless Rails.env.production?
     data
   end
 
