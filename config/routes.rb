@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   devise_for :administrators, controllers: {
     sessions: 'administrators/sessions'
   }
-
+  get '/version', to: 'base#version' unless Rails.env.production?
   get '/authorizations/:provider/callback', to: 'authorizations#callback'
   get '/authorizations/failure' => 'authorizations#failue', as: :auth_failure
   Setting.omniauth.providers.keys.each do |provider|
