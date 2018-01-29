@@ -223,12 +223,12 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   seo_helper (~> 1.0)
   settingslogic
-  simple_form (= 2.0.3)
+  simple_form (~> 2.0)
   test-unit
   turbo-sprockets-rails3
   uglifier (= 3.0.3)
   unicorn
-  will_paginate (= 3.0.3)
+  will_paginate (~> 3.0)
 
 BUNDLED WITH
    1.16.1
