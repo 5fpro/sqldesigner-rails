@@ -67,7 +67,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
-    devise (2.2.3)
+    devise (2.2.8)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (~> 3.1)
@@ -179,7 +179,7 @@ GEM
       railties (> 3.2.8, < 4.0.0)
       sprockets (>= 2.2.0)
     tzinfo (0.3.53)
-    uglifier (3.0.3)
+    uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
     unicorn (5.4.0)
       kgio (~> 2.6)
@@ -199,7 +199,7 @@ DEPENDENCIES
   capistrano-rvm
   capistrano3-unicorn
   coffee-rails (~> 3.2.1)
-  devise (= 2.2.3)
+  devise (~> 2.2)
   execjs
   haml (~> 4.0)
   high_voltage
@@ -218,7 +218,7 @@ DEPENDENCIES
   simple_form (~> 2.0)
   test-unit
   turbo-sprockets-rails3
-  uglifier (= 3.0.3)
+  uglifier (~> 3.0)
   unicorn
   will_paginate (~> 3.0)
 

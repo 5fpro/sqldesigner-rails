@@ -17,13 +17,13 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'execjs'
 
-  gem 'uglifier', '3.0.3'
+  gem 'uglifier', '~> 3.0'
   gem 'turbo-sprockets-rails3'
 end
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 5.0'
-gem 'devise', '2.2.3'
+gem 'devise', '~> 2.2'
 
 gem "seo_helper", "~> 1.0"
 gem "open_graph_helper"
