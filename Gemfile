@@ -10,18 +10,19 @@ gem 'mysql2', '0.3.18'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
+  gem 'sass', '~> 3.4'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'execjs'
 
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier', '3.0.3'
   gem 'turbo-sprockets-rails3'
 end
 
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', '~> 5.0'
 gem 'devise', '2.2.3'
 
 gem "seo_helper", "~> 1.0"
@@ -79,7 +80,7 @@ gem 'unicorn'
 # To use debugger
 # gem 'debugger'
 
-gem 'haml'
+gem 'haml', '~> 4.0'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'paper_trail', '~> 2'

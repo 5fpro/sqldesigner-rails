@@ -77,8 +77,7 @@ GEM
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
-    haml (5.0.4)
-      temple (>= 0.8.0)
+    haml (4.0.7)
       tilt
     hashie (3.5.7)
     high_voltage (3.0.0)
@@ -89,7 +88,7 @@ GEM
     jquery-rails (3.1.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (6.0.1)
+    jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (1.8.6)
     jwt (1.5.6)
@@ -177,7 +176,6 @@ GEM
     sshkit (1.15.1)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    temple (0.8.0)
     test-unit (3.2.7)
       power_assert
     thor (0.20.0)
@@ -189,7 +187,7 @@ GEM
       railties (> 3.2.8, < 4.0.0)
       sprockets (>= 2.2.0)
     tzinfo (0.3.53)
-    uglifier (4.1.5)
+    uglifier (3.0.3)
       execjs (>= 0.3.0, < 3)
     unicorn (5.4.0)
       kgio (~> 2.6)
@@ -211,23 +209,24 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise (= 2.2.3)
   execjs
-  haml
+  haml (~> 4.0)
   high_voltage
   jquery-rails
-  jquery-ui-rails
+  jquery-ui-rails (~> 5.0)
   mysql2 (= 0.3.18)
   omniauth
   omniauth-facebook
   open_graph_helper
   paper_trail (~> 2)
   rails (= 3.2.22.5)
+  sass (~> 3.4)
   sass-rails (~> 3.2.3)
   seo_helper (~> 1.0)
   settingslogic
   simple_form (= 2.0.3)
   test-unit
   turbo-sprockets-rails3
-  uglifier (>= 1.0.3)
+  uglifier (= 3.0.3)
   unicorn
   will_paginate (= 3.0.3)
 

@@ -1,5 +1,5 @@
 # config valid only for Capistrano 3.1
-lock '3.6.1'
+lock '3.10.1'
 
 set :application, 'gh-musou'
 set :repo_url, 'git@github.com:5fpro/sqldesigner-rails.git'
@@ -19,7 +19,7 @@ ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 # set :deploy_to, '/var/www/my_app'
 
 # Default value for :scm is :git
-set :scm, :git
+# set :scm, :git
 
 # Default value for :format is :pretty
 # set :format, :pretty
