@@ -53,7 +53,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'capistrano-rails'
+  gem 'capistrano-rails', '1.2.0'
   gem 'capistrano-rvm'
   gem 'capistrano'
   gem 'capistrano3-unicorn'
