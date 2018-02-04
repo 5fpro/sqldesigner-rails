@@ -81,7 +81,7 @@ class ChartsPresenter
       end
       '[' + array_elements.join(',') + ']'
     when String
-      if element =~ /^\s*function.*}\s*$/m
+      if element.match?(/^\s*function.*}\s*$/m)
         # Raw-copy function definitions to the output without surrounding quotes.
         element
       else

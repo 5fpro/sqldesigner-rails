@@ -142,7 +142,7 @@ Lint/AmbiguousBlockAssociation:
 Style/SymbolArray:
   EnforcedStyle: brackets
 
-Lint/RescueWithoutErrorClass:
+Style/RescueStandardError:
   Enabled: false
 
 Lint/AmbiguousRegexpLiteral:
@@ -170,3 +170,8 @@ Lint/Debugger:
 
 Rails/UnknownEnv:
   Environments: development, test, production, staging
+
+Style/MixinUsage:
+  Exclude:
+    - 'spec/turnip_helper.rb'
+    - 'spec/rails_helper.rb'
