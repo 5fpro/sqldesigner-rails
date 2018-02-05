@@ -30,3 +30,5 @@
 /.env.production
 /node_modules
 /yarn-error.log
+/stdout
+dump.rdb
