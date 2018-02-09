@@ -22,8 +22,8 @@ class BodyExtractor
   end
 
   def extract_meta_desc
-    (@body.scan(/<meta content="(.*?)" name="description" \/>/)[0] ||
-      @body.scan(/<meta name="description" content="(.*?)" \/>/)[0]
+    (@body.scan(/<meta content="(.*?)" name="description"[^>]*>/)[0] ||
+      @body.scan(/<meta name="description" content="(.*?)"[^>]*>/)[0]
     )[0]
   end
 

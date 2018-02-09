@@ -2,8 +2,8 @@ module Omniauthable
   extend ActiveSupport::Concern
 
   module ClassMethods
-    def omniauthable
-      has_many :authorizations, dependent: :destroy, as: :auth
+    def omniauthable(opts = {})
+      has_many :authorizations, opts.merge(dependent: :destroy, as: :auth)
     end
   end
 

@@ -34,7 +34,7 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 
 # background jobs
-gem 'sidekiq'
+gem 'sidekiq', '~> 5.0.5'
 gem 'sidekiq-limit_fetch'
 gem 'sidekiq-scheduler'
 gem 'sinatra', '~> 2.0'
