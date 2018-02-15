@@ -16,10 +16,10 @@ placeholder :string_matcher do
   end
 
   match /符合/ do
-    'expect(str).to match(Regexp.new(regexp))'
+    'expect(str).to match(Regexp.new(value))'
   end
 
   match /不符/ do
-    'expect(str).not_to match(Regexp.new(regexp))'
+    'expect(str).not_to match(Regexp.new(value))'
   end
 end

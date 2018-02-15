@@ -1,5 +1,15 @@
-step ':model_finder 的 :attr 為 \':value\'' do |instance, attr, value|
+step ':model_finder 的 :attr 為 :value' do |instance, attr, value|
   expect(instance.public_send(attr).to_s).to eq(value)
+end
+
+step ':model_finder 的 :attr :string_matcher( )' do |instance, attr, matcher_bind_str|
+  str = instance.public_send(attr).to_s
+  eval(matcher_bind_str)
+end
+
+step ':model_finder 的 :attr :string_matcher :value' do |instance, attr, matcher_bind_str, value|
+  str = instance.public_send(attr).to_s
+  eval(matcher_bind_str)
 end
 
 step ':model_finder :have存在' do |instance, have|
