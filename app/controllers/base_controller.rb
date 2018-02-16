@@ -5,9 +5,9 @@ class BaseController < ApplicationController
 
   def version
     respond_to do |f|
-      f.html { render html: Revision.log.to_s }
-      f.text { render text: Revision.log.to_s }
-      f.json { render json: Revision.to_h }
+      f.html { render html: AppRevision.log.to_s }
+      f.text { render text: AppRevision.log.to_s }
+      f.json { render json: AppRevision.to_h }
     end
   end
 end

@@ -1,7 +1,7 @@
 require 'forwardable'
 require 'singleton'
 
-class Revision
+class AppRevision
   include Singleton
 
   class << self
