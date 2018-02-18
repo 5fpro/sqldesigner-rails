@@ -45,69 +45,69 @@ defaults: &defaults
   nav_items:
     # to see more icons: https://colorlib.com/polygon/gentelella/icons.html
     -
-      title: General
+      title: '.general'
       items:
         -
           icon: 'home'
-          label: 'Home'
+          label: '.home'
           subitems:
             -
-              label: '前台首頁'
+              label: '.root'
               link: root
             -
-              label: '後台首頁'
+              label: '.admin_root'
               link: admin_root
             -
-              label: 'Sidekiq 後台'
+              label: '.sidekiq'
               link: '/sidekiq'
               target: '_blank'
         -
           icon: 'user'
-          label: 'Administrators'
+          label: '.administrators.label'
           subitems:
             -
-              label: 'List'
+              label: '.administrators.index'
               link: admin_administrators
             -
-              label: 'New'
+              label: '.administrators.new'
               link: new_admin_administrator
         -
           icon: 'users'
-          label: 'Users'
+          label: '.users.label'
           subitems:
             -
-              label: 'List'
+              label: '.users.index'
               link: admin_users
             -
-              label: 'New'
+              label: '.users.new'
               link: new_admin_user
         -
           icon: 'wheelchair'
-          label: 'Categories'
+          label: '.categories.label'
           subitems:
             -
-              label: 'Categories'
+              label: '.categories.label-2'
               subitems:
                 -
-                  label: 'List'
+                  label: '.categories.index'
                   link: admin_categories
                 -
-                  label: 'New'
+                  label: '.categories.new'
                   link: '/admin/categories/new'
 
     -
-      title: Live On
+      title: '.title-2'
       items:
         -
           icon: 'bar-chart-o'
-          label: Examples
+          label: '.examples'
           link: admin_examples
           tag:
-            name: 'Hot!'
+            name: '.tags.hot'
             style: 'success'
         -
           icon: 'bell'
-          label: Erorr Page
+          label: '.error-page'
           link: admin_error
 
 development:

@@ -7,6 +7,12 @@ module AdminHelper
     render partial: 'admin/base/widget_box', locals: { body: capture(&block), title: title, sizes: sizes }
   end
 
+  def t_admin_menu_text(text)
+    text = text.to_s
+    return text unless text[0] == '.'
+    t("admin.menu_text#{text}")
+  end
+
   def append_page_button(body, link, options = {})
     klasses = ['btn', 'btn-default', 'btn-lg'] + options[:class].to_s.split(' ')
     options[:class] = klasses.select(&:present?).uniq
