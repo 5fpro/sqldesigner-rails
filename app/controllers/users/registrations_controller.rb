@@ -4,7 +4,6 @@ module Users
     # before_action :configure_account_update_params, only: [:update]
 
     def new
-      set_meta(title: '註冊')
       super
     end
 

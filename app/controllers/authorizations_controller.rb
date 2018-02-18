@@ -4,7 +4,7 @@ class AuthorizationsController < ApplicationController
     context = UserAuthContext.new(request.env['omniauth.auth'], user)
     if result = context.perform
       sign_in(result[:user])
-      redirect_to root_path(host: Setting.host), flash: { success: 'oauth signed in' }
+      redirect_to root_path(host: Setting.host), flash: { success: t('.success') }
     else
       redirect_to root_path(host: Setting.host), flash: { error: context.error_message }
     end

@@ -9,7 +9,7 @@ class PicPreviewInput < SimpleForm::Inputs::FileInput
     if object.send("#{attribute_name}?")
       remove_chk = @builder.check_box("remove_#{attribute_name}", class: 'flat') # carrierwave: remove_xxx
       out << '<br />'.html_safe
-      remove_text = I18n.t('simple_form.buttons.remove', default: 'Remove')
+      remove_text = I18n.t('simple_form.labels.defaults.remove')
       out << "<label>#{remove_chk} #{remove_text}</label>".html_safe
       out << '<br />'.html_safe
       img_path = object.send(attribute_name).tap { |o| break o.send(version) if version }.send('url')

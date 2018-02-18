@@ -1,40 +1,43 @@
 class Admin::CategoriesController < Admin::BaseController
   before_action :category
-  add_breadcrumb('Categories', :admin_categories_path)
-  before_action do
-    add_breadcrumb(@category.name, admin_category_path(@category)) if @category.try(:id)
+
+  add_breadcrumb(breadcrumb_text, :admin_categories_path)
+
+  before_action only: [:show, :edit, :revisions] do
+    add_breadcrumb(@category.name, admin_category_path(@category))
   end
 
   def index
     @q = Admin::Category.ransack(params[:q])
     @categories = @q.result.sorted.page(params[:page]).per(30)
-    set_meta(title: 'Categories')
     respond_with @categories
   end
 
   def show
-    set_meta(title: "##{@category.id} #{@category.name}")
+    set_meta(title: locale_vars)
   end
 
   def new
-    set_meta(title: 'New Category')
-    add_breadcrumb 'New'
+    self.action_name = 'new'
+    set_meta
+    add_breadcrumb t('.breadcrumb')
   end
 
   def edit
-    set_meta(title: 'Edit Category')
-    add_breadcrumb 'Edit'
+    self.action_name = 'edit'
+    set_meta(title: locale_vars)
+    add_breadcrumb t('.breadcrumb')
   end
 
   def revisions
-    set_meta(title: "##{@category.id} #{@category.name} - revisions")
-    add_breadcrumb 'Revisions'
+    set_meta(title: locale_vars)
+    add_breadcrumb t('.breadcrumb')
     @versions = @category.versions
   end
 
   def create
     if category.save
-      redirect_to params[:redirect_to] || admin_category_path(category), flash: { success: 'category created' }
+      redirect_to params[:redirect_to] || admin_category_path(category), flash: { success: t('.success') }
     else
       new
       flash.now[:error] = category.errors.full_messages
@@ -44,7 +47,7 @@ class Admin::CategoriesController < Admin::BaseController
 
   def update
     if category.update_attributes(category_params)
-      redirect_to params[:redirect_to] || admin_category_path(category), flash: { success: 'category updated' }
+      redirect_to params[:redirect_to] || admin_category_path(category), flash: { success: t('.success') }
     else
       edit
       flash.now[:error] = category.errors.full_messages
@@ -54,7 +57,7 @@ class Admin::CategoriesController < Admin::BaseController
 
   def destroy
     if category.destroy
-      redirect_to params[:redirect_to] || admin_categories_path, flash: { success: 'category deleted' }
+      redirect_to params[:redirect_to] || admin_categories_path, flash: { success: t('.success') }
     else
       redirect_to :back, flash: { error: category.errors.full_messages }
     end
@@ -62,9 +65,9 @@ class Admin::CategoriesController < Admin::BaseController
 
   def restore
     flash_message = if category.restore
-                      { success: 'category restored' }
+                      { success: t('.success', locale_vars) }
                     else
-                      { error: 'already restored' }
+                      { error: t('.error', locale_vars.merge(message: category.errors.full_messages.to_sentence)) }
                     end
     redirect_to request.referer || admin_categories_path, flash: flash_message
   end
@@ -79,4 +82,9 @@ class Admin::CategoriesController < Admin::BaseController
     params.fetch(:category, {}).permit([:name, { tag_list: [] }, :sort])
   end
 
+  def locale_vars
+    {
+      identity: @category ? "##{@category.id} #{@category.name}" : nil
+    }
+  end
 end
