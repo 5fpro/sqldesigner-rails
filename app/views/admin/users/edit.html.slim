@@ -1,6 +1,6 @@
 = render partial: 'btns', object: @user, as: :user
 
 .row
-  = admin_widget_box "Edit User" do
+  = admin_widget_box tv('widget-edit', model: @user, id: @user.id) do
     = admin_form_for @user, as: :user, wrapper: :admin do |f|
       = render partial: "form", object: f, as: :f

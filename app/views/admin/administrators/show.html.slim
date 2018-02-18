@@ -1,23 +1,24 @@
 = render partial: 'btns', object: @administrator, as: :administrator
 
 .row
-  = admin_widget_box "Administrator ##{@administrator.id}" do
+  = admin_widget_box tv('widget-show', model: @administrator, id: @administrator.id) do
     = render_admin_table(bordered: true) do
       tr
-        th width="20%" ID
+        th width="20%"
+          = tv('administrator.id')
         td= @administrator.id
       tr
-        th Name
+        th= tv('administrator.name')
         td= @administrator.name
       tr
-        th Email
+        th= tv('administrator.email')
         td= @administrator.email
       tr
-        th Avatar
+        th= tv('administrator.avatar')
         td= image_tag(@administrator.gavatar_url(200), size: '200x200')
       tr
-        th Last Sign In
+        th= tv('administrator.last_sign_in_at')
         td= @administrator.last_sign_in_at
       tr
-        th Last IP
+        th= tv('administrator.last_sign_in_ip')
         td= @administrator.last_sign_in_ip

@@ -1,4 +1,4 @@
-- append_page_button 'Show', admin_category_path(category)
-- append_page_button 'Revisions', revisions_admin_category_path(category)
-- append_page_button 'Edit', edit_admin_category_path(category, redirect_to: url_for(request.params)), class: 'btn-success'
-- append_page_button 'Delete', admin_category_path(category, redirect_to: ENV['HTTP_REFERER'] || admin_categories_path), class: 'btn-danger', method: :delete, 'data-confirm' => 'Delete?'
+- append_page_button tv('show'), admin_category_path(category)
+- append_page_button tv('button-revisions'), revisions_admin_category_path(category)
+- append_page_button tv('edit'), edit_admin_category_path(category, redirect_to: url_for(request.params)), class: 'btn-success'
+- append_page_button tv('delete'), admin_category_path(category, redirect_to: ENV['HTTP_REFERER'] || admin_categories_path), class: 'btn-danger', method: :delete, 'data-confirm' => tv('delete-confirm')

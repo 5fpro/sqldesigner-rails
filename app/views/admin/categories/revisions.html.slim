@@ -1,14 +1,14 @@
 = render partial: 'btns', object: @category, as: :category
 
 .row
-  = admin_widget_box "Revisions (Total versions: #{@versions.size} )" do
+  = admin_widget_box tv('widget-revisions', total: @versions.size) do
     = render_admin_data_table(data: @versions) do
       thead
         tr
-          th= 'Event'
-          th= 'When'
-          th= 'Who'
-          th= 'What'
+          th= tv('revisions.event')
+          th= tv('revisions.when')
+          th= tv('revisions.who')
+          th= tv('revisions.what')
       tbody
         - @versions.reverse.each do |version|
           tr

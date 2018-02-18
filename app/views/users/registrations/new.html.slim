@@ -1,7 +1,7 @@
 = admin_form_for resource, as: resource_name, url: registration_path(resource_name), wrapper: :admin_landing do |f|
-  = f.input :email, placeholder: 'Email', required: true, autofocus: true
-  = f.input :password, placeholder: '密碼', required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-  = f.input :password_confirmation, placeholder: '密碼確認', required: true
-  = f.full_size_submit '註冊'
+  = f.input :email, required: true, autofocus: true
+  = f.input :password, required: true, hint: (tv('hint-password', minimum: @minimum_password_length) if @minimum_password_length)
+  = f.input :password_confirmation, required: true
+  = f.full_size_submit tv('submit')
 
 = render partial: 'users/shared/links'
