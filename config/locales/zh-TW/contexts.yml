@@ -1,0 +1,11 @@
+zh-TW:
+  activemodel:
+    errors:
+      models:
+        user_auth_context:
+          attributes:
+            email:
+              not_found: "無法在此帳號中取得 Email"
+              taken: "此 Email 已註冊"
+            authorization:
+              taken: "此帳號已綁定於其他帳號"

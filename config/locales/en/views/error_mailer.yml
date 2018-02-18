@@ -1,0 +1,4 @@
+en:
+  error_mailer:
+    notify:
+      subject: "Critical Error! %{klass}: %{message}"

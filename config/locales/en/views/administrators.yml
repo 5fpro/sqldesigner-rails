@@ -1,0 +1,8 @@
+en:
+  administrators:
+    sessions:
+      new:
+        meta:
+          title: 'Administrator sign in'
+          description: 'Administrator sign in page'
+

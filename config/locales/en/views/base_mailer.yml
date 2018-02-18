@@ -1,0 +1,5 @@
+en:
+  base_mailer:
+    notify:
+      subject: 'Hello'
+      hello: 'Hello'

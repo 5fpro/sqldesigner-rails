@@ -1,0 +1,32 @@
+en:
+  admin:
+    categories:
+      breadcrumb: 'Categories'
+      index:
+        meta:
+          title: 'Categories'
+      show:
+        meta:
+          title: "Category %{identity}"
+      new:
+        meta:
+          title: 'New Category'
+        breadcrumb: 'New'
+      edit:
+        meta:
+          title: "Edit Category %{identity}"
+        breadcrumb: "Edit"
+      revisions:
+        meta:
+          title: "Category %{identity} revisions"
+        breadcrumb: "Revisions"
+      create:
+        success: 'Category %{identity} created'
+      update:
+        success: 'Category %{identity} updated'
+      destroy:
+        success: 'Category %{identity} destroyed'
+      restore:
+        success: 'Category %{identity} restored'
+        error: 'Category %{identity} restore fail: %{message}'
+
