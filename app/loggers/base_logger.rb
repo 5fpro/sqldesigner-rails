@@ -41,6 +41,6 @@ class BaseLogger < ApplicationLogger
   end
 
   def escape_text(text)
-    text.to_s.gsub("\n", '\n').gsub("\r", '\r')
+    text.to_s.force_encoding('UTF-8').gsub("\n", '\n').gsub("\r", '\r')
   end
 end
