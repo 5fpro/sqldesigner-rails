@@ -1,3 +1,5 @@
+require_relative 'base_router'
+
 module Bdd
   class ApplicationRouter < BaseRouter
     def build_url(path)

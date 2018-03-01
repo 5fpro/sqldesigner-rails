@@ -2,10 +2,6 @@ class BaseUploader < CarrierWave::Uploader::Base
   class << self
     private
 
-    def enable_background_upload!
-      include ::CarrierWave::Backgrounder::Delay
-    end
-
     def enable_image_processor!
       include CarrierWave::MiniMagick
     end

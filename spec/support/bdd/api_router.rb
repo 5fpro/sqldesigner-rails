@@ -1,3 +1,5 @@
+require_relative 'base_router'
+
 module Bdd
 
   class ApiRouter < BaseRouter
