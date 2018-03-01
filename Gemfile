@@ -88,10 +88,6 @@ group :test do
   gem 'webmock'
 end
 
-group :doc do
-  gem 'sdoc', '~> 0.4.0'
-end
-
 gem 'kaminari'
 gem 'lograge', require: true
 gem 'rollbar'
