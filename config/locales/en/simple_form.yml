@@ -1,0 +1,62 @@
+en:
+  helpers:
+    submit:
+      q: # ransack search form
+        create: 'Search'
+      administrator:
+        update: 'Update %{model}'
+  simple_form:
+    required:
+      text: 'required'
+      mark: '*'
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Please review the problems below:"
+    options:
+      defaults:
+        "yes": 'Yes'
+        "no": 'No'
+        all: 'All'
+        not_deleted: 'Not Deleted'
+        deleted: 'Deleted'
+    labels:
+      defaults: &label_default
+        is_deleted: 'Delted state'
+        remove: 'Remove'
+        email: 'Email'
+        tag_list: 'Tags'
+      q: &label_ransack
+        name_cont: 'Name contains'
+        email_cont: 'Email contains'
+        root_true: 'Is root administrator'
+        tagged: 'Tagged with'
+        has_avatar: 'Has avatar picture'
+      administrator: &label_administrator
+        name: 'Full Name'
+        current_password: Current password
+        password: New Password
+        password_confirmation: New password confirmation
+        root: 'Is root administrator'
+      user: &label_user
+        name: 'Full Name'
+        avatar: 'Avatar picture'
+        current_password: Current password
+        password: 'Password'
+        password_confirmation: New password confirmation
+      category: &label_category
+        name: 'Name'
+    placeholders:
+      defaults:
+        <<: *label_default
+      q:
+        <<: *label_ransack
+      administrator:
+        <<: *label_administrator
+        password: password for sign in
+        remember_me: remember me
+      category:
+        <<: *label_category
+        tag_list: 'comma to separate'
+      user:
+        <<: *label_user
+        password: 'New password'

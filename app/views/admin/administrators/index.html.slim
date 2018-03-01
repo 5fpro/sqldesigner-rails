@@ -1,21 +1,21 @@
-- append_page_button('Export', url_for(request.params.merge(format: :csv)))
-- append_page_button('New Administraor', new_admin_administrator_path)
+- append_page_button(tv('button-export', model: Administrator), url_for(request.params.merge(format: :csv)))
+- append_page_button(tv('button-new', model: Administrator), new_admin_administrator_path)
 
 .row
-  = admin_widget_box 'Filtering' do
+  = admin_widget_box tv('widget-filtering', model: Administrator) do
     = render partial: 'filtering', as: :q, object: @q
 
 .row
-  = admin_widget_box 'Administraors' do
+  = admin_widget_box tv('widget-list', model: Administrator) do
     = render_admin_data_table(data: @administrators) do
       thead
         tr
-          th= '#'
-          th= 'Avatar'
-          th= 'Name'
-          th= 'Email'
-          th= 'Root'
-          th= 'actions'
+          th= tv('administrator.id')
+          th= tv('administrator.avatar')
+          th= tv('administrator.name')
+          th= tv('administrator.email')
+          th= tv('administrator.root')
+          th= tv('actions')
       tbody
         - @administrators.each do |administrator|
           tr class="pointer #{cycle('odd', 'even')}"
@@ -23,8 +23,8 @@
             td= image_tag(administrator.gavatar_url, size: '50x50')
             td= administrator.name
             td= administrator.email
-            td= 'Y' if administrator.root?
+            td= tv('yes') if administrator.root?
             td
-              = admin_link_to 'Show', admin_administrator_path(administrator)
-              = admin_link_to 'Edit', edit_admin_administrator_path(administrator), color: 'success'
-              = admin_link_to 'Delete', admin_administrator_path(administrator), method: :delete, 'data-confirm': 'Delete?', color: 'danger'
+              = admin_link_to tv('show'), admin_administrator_path(administrator)
+              = admin_link_to tv('edit'), edit_admin_administrator_path(administrator), color: 'success'
+              = admin_link_to tv('delete'), admin_administrator_path(administrator), method: :delete, 'data-confirm': tv('delete-confirm'), color: 'danger'

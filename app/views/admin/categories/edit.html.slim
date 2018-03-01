@@ -1,6 +1,6 @@
 = render partial: 'btns', object: @category, as: :category
 
 .row
-  = admin_widget_box 'Edit Category' do
+  = admin_widget_box tv('widget-edit', model: @category, id: @category.id) do
     = admin_form_for @category, as: :category do |f|
       = render partial: 'form', object: f, as: :f

@@ -1,34 +1,37 @@
 class Admin::UsersController < Admin::BaseController
   before_action :user
-  add_breadcrumb('Users', :admin_users_path)
-  before_action do
-    add_breadcrumb(@user.name, admin_user_path(@user)) if @user.try(:id)
+
+  add_breadcrumb(breadcrumb_text, :admin_users_path)
+
+  before_action only: [:show, :edit] do
+    add_breadcrumb(@user.name, admin_user_path(@user))
   end
 
   def index
-    set_meta(title: 'Users')
     @q = Admin::User.ransack(params[:q])
     @users = @q.result.order('id DESC').page(params[:page]).per(30)
     respond_with @users
   end
 
   def show
-    set_meta(title: "User ##{@user.id}")
+    set_meta(title: locale_vars)
   end
 
   def new
-    set_meta(title: 'New User')
-    add_breadcrumb 'New'
+    self.action_name = 'new'
+    set_meta
+    add_breadcrumb t('.breadcrumb')
   end
 
   def edit
-    set_meta(title: 'Edit User')
-    add_breadcrumb 'Edit'
+    self.action_name = 'edit'
+    set_meta(title: locale_vars)
+    add_breadcrumb t('.breadcrumb')
   end
 
   def create
     if user.save
-      redirect_to params[:redirect_to] || admin_user_path(user), flash: { success: 'user created' }
+      redirect_to params[:redirect_to] || admin_user_path(user), flash: { success: t('.success') }
     else
       new
       flash.now[:error] = user.errors.full_messages
@@ -38,7 +41,7 @@ class Admin::UsersController < Admin::BaseController
 
   def update
     if user.update_attributes(user_params)
-      redirect_to params[:redirect_to] || admin_user_path(user), flash: { success: 'user updated' }
+      redirect_to params[:redirect_to] || admin_user_path(user), flash: { success: t('.success') }
     else
       edit
       flash.now[:error] = user.errors.full_messages
@@ -48,7 +51,7 @@ class Admin::UsersController < Admin::BaseController
 
   def destroy
     if user.destroy
-      redirect_to params[:redirect_to] || admin_users_path, flash: { success: 'user deleted' }
+      redirect_to params[:redirect_to] || admin_users_path, flash: { success: t('.success') }
     else
       redirect_to :back, flash: { error: user.errors.full_messages }
     end
@@ -62,5 +65,11 @@ class Admin::UsersController < Admin::BaseController
 
   def user_params
     params.fetch(:user, {}).permit(:name, :email, :password, :avatar, :remove_avatar)
+  end
+
+  def locale_vars
+    {
+      identity: @user ? "##{@user.id} #{@user.name}" : nil
+    }
   end
 end

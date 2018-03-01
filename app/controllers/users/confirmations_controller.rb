@@ -2,7 +2,6 @@ module Users
   class ConfirmationsController < Devise::ConfirmationsController
     # GET /resource/confirmation/new
     def new
-      set_meta(title: '補寄認證信')
       super
     end
 

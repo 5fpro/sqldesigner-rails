@@ -1,0 +1,5 @@
+p= tv('p1', email: @email)
+- if @resource.try(:unconfirmed_email?)
+  p= tv('p2', unconfirmed_email: @resource.unconfirmed_email)
+- else
+  p= tv('p3', email: @resource.email)

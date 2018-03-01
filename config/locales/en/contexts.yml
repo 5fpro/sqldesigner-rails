@@ -1,0 +1,11 @@
+en:
+  activemodel:
+    errors:
+      models:
+        user_auth_context:
+          attributes:
+            email:
+              not_found: "Can't fetch email not found from open ID"
+              taken: "Email was taken by other users"
+            authorization:
+              taken: "Account was taken by other users"

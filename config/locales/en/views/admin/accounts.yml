@@ -1,0 +1,13 @@
+en:
+  admin:
+    accounts:
+      breadcrumb: 'Account'
+      show:
+        meta:
+          title: 'Account'
+        view:
+          my_profile: 'My profile'
+          submit: 'Update profile'
+      update:
+        success: 'Account updated'
+

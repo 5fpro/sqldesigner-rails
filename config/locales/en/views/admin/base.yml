@@ -1,0 +1,44 @@
+en:
+  admin:
+    base:
+      breadcrumb: 'Admin'
+      index:
+        meta:
+          title: "%{app_name} admin panel"
+        view:
+          hi: 'Hi'
+      examples:
+        meta:
+          title: 'Template Examples'
+        breadcrumb: 'Template Examples'
+        view:
+          include_blank: 'Please select'
+          submit-1: 'Go'
+          submit-2: 'GoGo'
+      error:
+        meta:
+          title: 'Error raised'
+        view:
+          h2: 'This is h2 title'
+          p: 'This is paragraph'
+          h3: 'This is h3 title'
+      # partials
+      topnav:
+        view:
+          account: 'My account'
+          logout: 'Logout'
+      leftnav:
+        view:
+          title: 5FPRO Admin Panel
+          logout: Logout
+          logout-confirm: 'Logout?'
+          home: Admin Panel
+          website: Web site
+          account: My account
+          welcome: 'Welcome,'
+      pagination:
+        view:
+          total: 'Total'
+      footer:
+        view:
+          title: '5FPRO'

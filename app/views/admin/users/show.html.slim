@@ -1,23 +1,24 @@
 = render partial: 'btns', object: @user, as: :user
 
 .row
-  = admin_widget_box "User ##{@user.id}" do
+  = admin_widget_box tv('widget-show', model: @user, id: @user.id) do
     = render_admin_table(bordered: true) do
       tr
-        th width="20%" ID
+        th width="20%"
+          = tv('user.id')
         td= @user.id
       tr
-        th Name
+        th= tv('user.name')
         td= @user.name
       tr
-        th Email
+        th= tv('user.email')
         td= @user.email
       tr
-        th Is Confirmed
-        td= "Y" if @user.confirmed?
+        th= tv('user.confirmed')
+        td= tv('yes') if @user.confirmed?
       tr
-        th Last Sign In
+        th= tv('user.last_sign_in_at')
         td= @user.last_sign_in_at
       tr
-        th Last IP
+        th= tv('user.last_sign_in_ip')
         td= @user.last_sign_in_ip

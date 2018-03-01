@@ -11,19 +11,20 @@ h3= 'admin_accordion'
 h3= 'admin_form_for'
 = admin_form_for User.new(name: 'a'), url: admin_root_path do |f|
   = f.input :name, as: :select2, collection: ['a', 'b'], include_blank: false
-  = f.input :name, as: :select2, collection: ['a', 'b'], include_blank: '請選擇'
+  = f.input :name, as: :select2, collection: ['a', 'b'], include_blank: tv('include_blank')
   = f.input :name, as: :select2, collection: ['a', 'b'], input_html: { multiple: true }
   = f.input :name, as: :btn_group, collection: ['a', 'b']
   = f.input :name, as: :radios, collection: ['a', 'b']
-  = f.input :name, as: :boolean_radios, label: '是管理員'
-  = f.submit_cancel 'Go', cancel: root_path
+  = f.input :name, as: :boolean_radios
+  = f.input :name, as: :is_deleted
+  = f.submit_cancel tv('submit-1'), cancel: root_path
 
 = admin_form_for User.new(name: 'a'), url: admin_root_path, rwd: [11, 10, 12] do |f|
   = f.input :name, as: :redactor2
   = f.input :name, as: :switch
   = f.input :name, as: :boolean
   = f.input :name, as: :tags
-  = f.submit_cancel 'Go', cancel: root_path
+  = f.submit_cancel tv('submit-2'), cancel: root_path
 
 h3= 'admin_widget_box'
 .row

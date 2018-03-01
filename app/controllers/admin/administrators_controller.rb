@@ -3,35 +3,33 @@ module Admin
     before_action :authenticate_root_administrator!
 
     before_action :administrator
-    add_breadcrumb('Administrators', :admin_administrators_path)
-    before_action do
-      add_breadcrumb(@administrator.name, admin_administrator_path(@administrator)) if @administrator.try(:id)
+    add_breadcrumb(breadcrumb_text, :admin_administrators_path)
+    before_action only: [:show, :edit] do
+      add_breadcrumb(@administrator.name, admin_administrator_path(@administrator))
     end
 
     def index
-      set_meta(title: 'Administrators')
       @q = Admin::Administrator.ransack(params[:q])
       @administrators = @q.result.order('id DESC').page(params[:page]).per(30)
       respond_with @administrators
     end
 
     def show
-      set_meta(title: "Administrator ##{@administrator.id}")
+      set_meta(title: { id: @administrator.id })
     end
 
     def new
-      set_meta(title: 'New Administrator')
-      add_breadcrumb 'New'
+      add_breadcrumb t('.breadcrumb')
     end
 
     def edit
-      set_meta(title: 'Edit Administrator')
-      add_breadcrumb 'Edit'
+      set_meta(title: { id: @administrator.id })
+      add_breadcrumb t('.breadcrumb')
     end
 
     def create
       if administrator.save
-        redirect_to params[:redirect_to] || admin_administrator_path(administrator), flash: { success: 'administrator created' }
+        redirect_to params[:redirect_to] || admin_administrator_path(administrator), flash: { success: t('.success', id: administrator.id) }
       else
         new
         flash.now[:error] = administrator.errors.full_messages
@@ -42,7 +40,7 @@ module Admin
     def update
       delete_password_params_if_blank
       if administrator.update_attributes(administrator_params)
-        redirect_to params[:redirect_to] || admin_administrator_path(administrator), flash: { success: 'administrator updated' }
+        redirect_to params[:redirect_to] || admin_administrator_path(administrator), flash: { success: t('.success', id: administrator.id) }
       else
         edit
         flash.now[:error] = administrator.errors.full_messages
@@ -52,7 +50,7 @@ module Admin
 
     def destroy
       if administrator.destroy
-        redirect_to params[:redirect_to] || admin_administrators_path, flash: { success: 'administrator deleted' }
+        redirect_to params[:redirect_to] || admin_administrators_path, flash: { success: t('.success', id: administrator.id) }
       else
         redirect_to :back, flash: { error: administrator.errors.full_messages }
       end

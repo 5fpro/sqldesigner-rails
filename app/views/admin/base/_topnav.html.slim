@@ -11,7 +11,7 @@ ul.nav.navbar-nav.navbar-right
       li
         = link_to admin_account_path do
           i.fa.fa-user.pull-right
-          | Account
+          = tv('account')
       / li
       /   a[href="javascript:;"]
       /     span.badge.bg-red.pull-right
@@ -19,7 +19,7 @@ ul.nav.navbar-nav.navbar-right
       /     span
       /       | Settings
       li
-        = link_to(destroy_administrator_session_path, method: :delete, 'data-confirm': 'Logout?') do
+        = link_to(destroy_administrator_session_path, method: :delete, 'data-confirm': tv('sign-out-confirm')) do
           i.fa.fa-sign-out.pull-right
-          |  Log Out
+          = tv('button-sign-out')
   /= render partial: 'topnav_notifications'

@@ -1,20 +1,20 @@
-- append_page_button('Export', url_for(request.params.merge(format: :csv)))
-- append_page_button('New User', new_admin_user_path)
+- append_page_button(tv('button-export', model: User), url_for(request.params.merge(format: :csv)))
+- append_page_button(tv('button-new', model: User), new_admin_user_path)
 
 .row
-  = admin_widget_box 'Filtering' do
+  = admin_widget_box tv('widget-filtering', model: User) do
     = render partial: 'filtering', as: :q, object: @q
 
 .row
-  = admin_widget_box 'Users' do
+  = admin_widget_box tv('widget-list', model: User) do
     = render_admin_data_table(data: @users) do
       thead
         tr
-          th= '#'
-          th= 'Name'
-          th= 'Email'
-          th= 'Confirmed'
-          th= 'actions'
+          th= tv('user.id')
+          th= tv('user.name')
+          th= tv('user.email')
+          th= tv('user.confirmed')
+          th= tv('actions')
       tbody
         - @users.each do |user|
           tr class="pointer #{cycle('odd', 'even')}"
@@ -22,8 +22,8 @@
             td= user.name
             td= user.email
             td
-              = 'Y' if user.try(:confirmed?)
+              = tv('yes') if user.try(:confirmed?)
             td
-              = admin_link_to 'Show', admin_user_path(user)
-              = admin_link_to 'Edit', edit_admin_user_path(user), color: 'success'
-              = admin_link_to 'Delete', admin_user_path(user), method: :delete, 'data-confirm': 'Delete?', color: 'danger'
+              = admin_link_to tv('show'), admin_user_path(user)
+              = admin_link_to tv('edit'), edit_admin_user_path(user), color: 'success'
+              = admin_link_to tv('delete'), admin_user_path(user), method: :delete, 'data-confirm': tv('delete-confirm'), color: 'danger'

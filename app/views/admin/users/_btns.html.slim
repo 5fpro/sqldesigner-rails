@@ -1,3 +1,3 @@
-- append_page_button "Show", admin_user_path(user)
-- append_page_button "Edit", edit_admin_user_path(user, redirect_to: url_for(request.params)), class: 'btn-success'
-- append_page_button "Delete", admin_user_path(user, redirect_to: ENV['HTTP_REFERER'] || admin_users_path), class: 'btn-danger', method: :delete, 'data-confirm' => 'Delete?'
+- append_page_button tv('show'), admin_user_path(user)
+- append_page_button tv('edit'), edit_admin_user_path(user, redirect_to: url_for(request.params)), class: 'btn-success'
+- append_page_button tv('delete'), admin_user_path(user, redirect_to: ENV['HTTP_REFERER'] || admin_users_path), class: 'btn-danger', method: :delete, 'data-confirm' => tv('delete-confirm')

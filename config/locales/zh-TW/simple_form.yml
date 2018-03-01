@@ -1,0 +1,30 @@
+zh-TW:
+  simple_form:
+    required:
+      text: '必填'
+      mark: '*'
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "請檢視下方訊息:"
+    options:
+      defaults:
+        "yes": '是'
+        "no": '否'
+        All: '全部'
+        not_deleted: '未刪除'
+        deleted: '已刪除'
+    labels:
+      defaults:
+        is_deleted: '刪除狀態'
+        remove: '移除'
+      q:
+        name_cont: '名稱包含'
+        email_cont: 'Email 包含'
+        root_true: '超級管理員'
+        tagged: '標籤包含'
+  helpers:
+    submit:
+      q: # ransack search form
+        create: '搜尋'
+      administrator:
+        update: '更新 %{model}'

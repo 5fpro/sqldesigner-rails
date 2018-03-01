@@ -1,13 +1,14 @@
 class IsDeletedInput < BtnGroupInput
-  # TODO: i18n
 
   private
 
   def collection
-    [['Not Deleted', ''], ['Deleted', :only_deleted], ['All', :with_deleted]]
+    { not_deleted: '', deleted: :only_deleted, all: :with_deleted }.map do |key, value|
+      [I18n.t("simple_form.options.defaults.#{key}"), value]
+    end
   end
 
   def label_text(*_args)
-    'Deleted'
+    I18n.t('simple_form.labels.defaults.is_deleted')
   end
 end

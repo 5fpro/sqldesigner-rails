@@ -1,19 +1,19 @@
-- append_page_button 'New Category', new_admin_category_path, class: 'btn-primary'
+- append_page_button tv('button-new', model: Category), new_admin_category_path, class: 'btn-primary'
 
 .row
-  = admin_widget_box 'Filtering' do
+  = admin_widget_box tv('widget-filtering', model: Category) do
     = render partial: 'filtering', as: :q, object: @q
 
 .row
-  = admin_widget_box 'Categories' do
+  = admin_widget_box tv('widget-list', model: Category) do
     = render_admin_data_table(data: @categories) do
       thead
         tr
-          th= '#'
-          th= 'Name'
-          th= 'Sort'
-          th= 'Sorting'
-          th= 'actions'
+          th= tv('category.id')
+          th= tv('category.name')
+          th= tv('category.sort')
+          th= tv('action-sort')
+          th= tv('actions')
       tbody
         - @categories.each do |category|
           tr
@@ -25,8 +25,8 @@
                 = render_admin_sorting_buttons(category)
             td
               - if category.deleted?
-                = link_to 'Restore', restore_admin_category_path(category), method: :post, 'data-confirm' => 'Restore?'
+                = admin_link_to tv('restore'), restore_admin_category_path(category), method: :post, 'data-confirm': tv('restore-confirm')
               - else
-                = admin_link_to 'Show', admin_category_path(category)
-                = admin_link_to 'Edit', edit_admin_category_path(category), color: 'success'
-                = admin_link_to 'Delete', admin_category_path(category), method: :delete, 'data-confirm': 'Delete?', color: 'danger'
+                = admin_link_to tv('show'), admin_category_path(category)
+                = admin_link_to tv('edit'), edit_admin_category_path(category), color: 'success'
+                = admin_link_to tv('delete'), admin_category_path(category), method: :delete, 'data-confirm': tv('delete-confirm'), color: 'danger'

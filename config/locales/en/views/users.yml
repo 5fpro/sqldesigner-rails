@@ -1,0 +1,80 @@
+en:
+  users:
+    confirmations:
+      new:
+        meta:
+          title: 'Resend confirmation to user'
+          description: 'Resend confirmation email to user'
+        view:
+          submit: 'Re-send email'
+    mailer:
+      confirmation_instructions:
+        p1: "Welcome %{email}!"
+        p2: "You can confirm your account email through the link below:"
+        link-confirmation: 'Confirm my account'
+      email_changed:
+        p1: "Hello %{email}!"
+        p2: "We're contacting you to notify you that your email is being changed to %{unconfirmed_email}."
+        p3: "We're contacting you to notify you that your email has been changed to %{email}."
+      password_change:
+        p1: "Welcome %{email}!"
+        p2: "We're contacting you to notify you that your password has been changed."
+      reset_password_instructions:
+        p1: "Welcome %{email}!"
+        p2: "Someone has requested a link to change your password. You can do this through the link below."
+        link-edit-password: 'Edit password'
+        p3: "If you didn't request this, please ignore this email."
+        p4: "Your password won't change until you access the link above and create a new one."
+      unlock_instructions:
+        p1: "Hello %{email}!"
+        p2: "Your account has been locked due to an excessive number of unsuccessful sign in attempts."
+        p3: "Click the link below to unlock your account:"
+        link-unlock: 'Unlock my account'
+    passwords:
+      new:
+        meta:
+          title: 'Forgot password'
+          description: 'Resend password reset email to user'
+        view:
+          submit: 'Send'
+      edit:
+        meta:
+          title: 'Change sign in password'
+          description: 'Change sign in password'
+        view:
+          submit: 'Change password'
+          hint-password: '%{minimum} characters minimum'
+    registrations:
+      new:
+        meta:
+          title: 'Sign up user account'
+          description: 'Sign up user account'
+        view:
+          hint-password: '%{minimum} characters minimum'
+          submit: 'Sing Up'
+      edit:
+        meta:
+          title: 'Edit user profile'
+        view:
+          waiting-confirmation: "Currently waiting confirmation for: %{email}"
+          sbmit: 'Update'
+          link-delete-account: 'Delete my account'
+          delete-account-confirm: 'Delete?'
+          link-back: 'Back'
+    sessions:
+      new:
+        meta:
+          title: 'User sign in'
+          description: 'User sign in page'
+    unlocks:
+      new:
+        meta:
+          title: 'Unlock user account'
+          description: 'Unlock user account by submit email'
+    # partials
+    shared:
+      links:
+        link-sign-up: 'Sign Up'
+        link-forget-password: 'Forget password'
+        link-resend-confirmation: 'Resend confirmation'
+        link-resend-unlock: 'Resen unlock'

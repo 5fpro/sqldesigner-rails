@@ -4,7 +4,6 @@ module Administrators
 
     # GET /resource/sign_in
     def new
-      set_meta(title: '管理者登入', description: '管理者登入頁面')
       super
     end
 

@@ -1,4 +1,4 @@
 .row
-  = admin_widget_box 'New Category' do
+  = admin_widget_box tv('widget-new', model: @category) do
     = admin_form_for @category, as: :category do |f|
       = render partial: 'form', object: f, as: :f

@@ -1,15 +1,15 @@
 = render partial: 'btns', object: @category, as: :category
 .row
-  = admin_widget_box "Category ##{@category.id}" do
+  = admin_widget_box tv('widget-show', model: @category, id: @category.id) do
     = render_admin_table(bordered: true) do
       tr
-        th ID
+        th= tv('category.id')
         td= @category.id
       tr
-        th Name
+        th= tv('category.name')
         td= @category.name
       tr
-        th Tags
+        th= tv('category.tags')
         td
           - @category.tag_list.each do |tag_name|
             - class_name = cycle('default', 'primary', 'success', 'info', 'warning', 'danger')
@@ -18,11 +18,11 @@
                 = tag_name
             | &nbsp;
       tr
-        th Sort
+        th= tv('category.sort')
         td= @category.sort
       tr
-        th Created at
+        th= tv('category.created_at')
         td= @category.created_at
       tr
-        th Updated at
+        th= tv('category.updated_at')
         td= @category.updated_at

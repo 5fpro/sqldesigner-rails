@@ -3,9 +3,15 @@ module DeliverFilterConcern
 
   def mail(headers = {}, *args)
     headers = headers.with_indifferent_access
+    locale_subject(headers)
     convert_headers_subject!(headers)
     convert_headers_target!(headers)
     super(headers, *args)
+  end
+
+  def locale_subject(headers)
+    headers[:subject] ||= t('.subject')
+    headers[:subject] = t('.subject', headers[:subject]) if headers[:subject].is_a?(Hash)
   end
 
   def convert_headers_subject!(headers)

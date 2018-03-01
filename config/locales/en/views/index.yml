@@ -1,0 +1,30 @@
+en:
+  views:
+    defaults:
+      show: 'Show'
+      edit: 'Edit'
+      delete: 'Remove'
+      delete-confirm: Delete?
+      restore: Restore
+      restore-confirm: Restore?
+      action-sort: Sort
+      actions: 'Actions'
+      "yes": 'Y'
+      widget-filtering: 'Filtering %{model}'
+      widget-list: '%{model} list'
+      widget-show: '%{model} #%{id}'
+      widget-edit: 'Edit %{model} #%{id}'
+      widget-new: 'New %{model}'
+      widget-revisions: 'Revisions (Total: %{total})'
+      button-export: 'Export'
+      button-new: 'New %{model}'
+      button-revisions: 'Revisions'
+      button-sign-in: 'Sign In'
+      button-oauth: "Sign in with %{provider}"
+      button-sign-out: 'Sign out'
+      sign-out-confirm: 'Sign out?'
+      revisions:
+        event: 'action'
+        when: 'time'
+        who: 'actor'
+        what: 'diff'
