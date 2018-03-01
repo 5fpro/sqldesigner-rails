@@ -41,7 +41,6 @@ gem 'sinatra', '~> 2.0'
 
 # file upload
 gem 'carrierwave'
-gem 'carrierwave_backgrounder', git: 'git@github.com:lardawge/carrierwave_backgrounder.git'
 gem 'fog-aws'
 gem 'mini_magick'
 
