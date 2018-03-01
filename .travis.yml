@@ -1,0 +1,7 @@
+language: ruby
+before_install:
+  - cp .env.example .env
+script:
+  - bundle exec rake spec
+  - bundle exec rake spec:features
+  - bundle exec rubocop
