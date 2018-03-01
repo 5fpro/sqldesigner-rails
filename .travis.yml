@@ -1,6 +1,20 @@
 language: ruby
+addons:
+  postgresql: '9.6'
+  apt:
+    packages:
+      - postgresql-9.6-postgis-2.3
+services:
+  - postgresql
+  - redis
+  - memcached
 before_install:
   - cp .env.example .env
+  - cp config/application.yml.example config/application.yml
+before_script:
+  - psql -U postgres -c "create extension postgis"
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
 script:
   - bundle exec rake spec
   - bundle exec rake spec:features
