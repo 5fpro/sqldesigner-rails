@@ -1,5 +1,9 @@
 class BaseForm
-  extend ActiveModel::Callbacks
+  extend  ActiveModel::Callbacks
+  include ActiveModel::AttributeAssignment
+  include ActiveModel::Validations
+  include ActiveModel::Validations::Callbacks
+
   include ObjectErrorsConcern
 
   define_model_callbacks :save

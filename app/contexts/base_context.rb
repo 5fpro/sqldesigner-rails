@@ -1,6 +1,11 @@
 class BaseContext
-  include Rails.application.routes.url_helpers
+  extend  ActiveModel::Callbacks
+  include ActiveModel::AttributeAssignment
+  include ActiveModel::Validations
+  include ActiveModel::Validations::Callbacks
+
   include ObjectErrorsConcern
+  include Rails.application.routes.url_helpers
 
   define_model_callbacks :perform
 
