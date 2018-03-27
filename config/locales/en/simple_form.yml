@@ -1,10 +1,10 @@
 en:
   helpers:
     submit:
+      create: 'Create %{model}'
+      update: 'Update %{model}'
       q: # ransack search form
         create: 'Search'
-      administrator:
-        update: 'Update %{model}'
   simple_form:
     required:
       text: 'required'
