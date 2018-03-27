@@ -27,6 +27,8 @@ defaults: &defaults
       - "/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"
       - "/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"
       - "//cdnjs.cloudflare.com/ajax/libs/country-select-js/2.0.1/js/countrySelect.min.js"
+      - "//cdn.jsdelivr.net/npm/intl-tel-input@12.1.12/build/js/intlTelInput.min.js"
+      - "//cdn.jsdelivr.net/npm/intl-tel-input@12.1.12/build/js/utils.js"
       - "/vendors/gentelella/js/custom.min.js"
     stylesheets:
       - "/vendors/bootstrap/dist/css/bootstrap.min.css"
@@ -42,6 +44,7 @@ defaults: &defaults
       - "/vendors/iCheck/skins/flat/green.css"
       - "/vendors/select2/dist/css/select2.min.css"
       - "//cdnjs.cloudflare.com/ajax/libs/country-select-js/2.0.1/css/countrySelect.min.css"
+      - "//cdn.jsdelivr.net/npm/intl-tel-input@12.1.12/build/css/intlTelInput.css"
       - "/vendors/gentelella/css/custom.min.css"
 
   nav_items:

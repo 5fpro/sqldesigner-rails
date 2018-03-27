@@ -26,6 +26,7 @@ h3= 'admin_form_for'
   = f.input :name, as: :tags
   = f.input :name, as: :country_select, js_options: { preferredCountries: [:tw, :hk] }, input_html: { value: '' }
   = f.input :name, as: :country_select, input_html: { value: 'nl' }
+  = f.input :name, as: :telephone, js_options: { preferredCountries: [:tw, :hk], nationalMode: false, autoHideDialCode: false, formatOnDisplay: false }, input_html: { value: '+8860988123456' }
   = f.submit_cancel tv('submit-2'), cancel: root_path
 
 h3= 'admin_widget_box'
