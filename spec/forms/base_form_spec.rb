@@ -3,6 +3,7 @@ require 'rails_helper'
 describe BaseForm, type: :form do
   class ExampleForm < BaseForm
     attr_accessor :name, :ha
+    attr_reader   :xx
     validates :name, :ha, presence: true
 
     before_validation :default_ha
@@ -15,6 +16,8 @@ describe BaseForm, type: :form do
     private
 
     def default_ha
+      @ho = 1
+      @xx = 2
       @ha ||= '123'
     end
 
@@ -31,6 +34,9 @@ describe BaseForm, type: :form do
     form = ExampleForm.new(name: '123', ha: 'x')
     expect(form.save).to eq(false)
     expect(form.error?(:ha, :invalid)).to eq(true)
+    expect(form.attributes[:ho]).to eq(nil)
+    expect(form.attributes[:ha]).to eq('x')
+    expect(form.attributes[:xx]).to eq(2)
 
     expect {
       ExampleForm.new(name: '123', ha: 'x', zz: '123')
