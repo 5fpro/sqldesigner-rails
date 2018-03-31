@@ -1,36 +1,12 @@
 class BaseForm
   extend  ActiveModel::Callbacks
-  include ActiveModel::AttributeAssignment
   include ActiveModel::Validations
   include ActiveModel::Validations::Callbacks
 
+  include AttributesConcern
   include ObjectErrorsConcern
 
   define_model_callbacks :save
-
-  class << self
-    def attr_accessor(*args)
-      merge_attributes!(args)
-      super(*args)
-    end
-
-    def attr_reader(*args)
-      merge_attributes!(args)
-      super(*args)
-    end
-
-    def attributes
-      @_attributes.map(&:to_sym)
-    end
-
-    private
-
-    def merge_attributes!(args)
-      @_attributes ||= []
-      @_attributes += args
-      @_attributes.uniq!
-    end
-  end
 
   # validates_with ExampleValidator
 
@@ -45,10 +21,6 @@ class BaseForm
 
   def save
     raise NotImplementedError
-  end
-
-  def attributes
-    as_json.with_indifferent_access.select { |k, _v| self.class.attributes.include?(k.to_sym) }
   end
 
   # override

@@ -1,6 +1,6 @@
 class BaseStorage
-  include ActiveModel::AttributeAssignment
   extend ActiveModel::Callbacks
+  include AttributesConcern
 
   define_model_callbacks :save, :destroy
 
@@ -128,10 +128,6 @@ class BaseStorage
   def update(attrs)
     assign_attributes(attrs.with_indifferent_access.except(:id))
     save
-  end
-
-  def attributes
-    as_json.with_indifferent_access
   end
 
   def ttl
