@@ -7,5 +7,4 @@ class BooleanRadiosInput < BtnGroupInput
       [I18n.t("simple_form.options.defaults.#{key}"), value]
     end
   end
-
 end
