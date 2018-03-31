@@ -15,10 +15,10 @@ class BaseStorage
     end
 
     def find(id)
-      data = JSON.parse(get_value(id).to_s)
-      new(data.merge(id: id))
-    rescue JSON::ParserError
-      nil
+      data = YAML.load(get_value(id).to_s)
+      if data.is_a?(Hash)
+        new(data.merge(id: id))
+      end
     end
 
     def exists?(id)
@@ -64,9 +64,9 @@ class BaseStorage
       return false if id.blank?
       case @store_type
       when 'set' then redis.sadd(redis_key, id)
-      when 'hash' then redis.hset(redis_key, id, data.to_json)
+      when 'hash' then redis.hset(redis_key, id, data.to_yaml)
       else
-        redis.set(redis_key(id), data.to_json, ex: ex || @ex)
+        redis.set(redis_key(id), data.to_yaml, ex: ex || @ex)
       end
     end
 
@@ -83,7 +83,7 @@ class BaseStorage
     def get_value(id)
       return false if id.blank?
       case @store_type
-      when 'set' then redis.sismember(redis_key, id) ? {}.to_json : nil
+      when 'set' then redis.sismember(redis_key, id) ? {}.to_yaml : nil
       when 'hash' then redis.hget(redis_key, id)
       else
         redis.get(redis_key(id))
@@ -128,6 +128,10 @@ class BaseStorage
   def update(attrs)
     assign_attributes(attrs.with_indifferent_access.except(:id))
     save
+  end
+
+  def reload
+    self.class.find(id)
   end
 
   def ttl
