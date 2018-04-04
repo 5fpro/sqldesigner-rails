@@ -2,15 +2,15 @@ defaults: &defaults
   assets:
     cdn_host: 'assets.5fpro.com'
     javascripts:
-      - "/vendors/autosize/dist/autosize.min.js"
       - "/vendors/bootstrap/dist/js/bootstrap.min.js"
+      - "/vendors/autosize/dist/autosize.min.js"
+      - "/vendors/moment/min/moment.min.js"
       - "/vendors/bootstrap-daterangepicker/daterangepicker.js"
       - "/vendors/fastclick/lib/fastclick.js"
       - "/vendors/nprogress/nprogress.js"
       - "/vendors/Chart.js/dist/Chart.min.js"
       - "/vendors/jquery-sparkline/dist/jquery.sparkline.min.js"
       - "/vendors/iCheck/icheck.min.js"
-      - "/vendors/moment/min/moment.min.js"
       - "/vendors/nprogress/nprogress.js"
       - "/vendors/switchery/dist/switchery.min.js"
       - "/vendors/select2/dist/js/select2.full.min.js"
