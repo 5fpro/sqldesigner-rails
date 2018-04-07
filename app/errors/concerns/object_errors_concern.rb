@@ -2,11 +2,7 @@ module ObjectErrorsConcern
   extend ActiveSupport::Concern
 
   included do
-    extend  ActiveModel::Callbacks
     include ActiveModel::Model
-    include ActiveModel::AttributeAssignment
-    include ActiveModel::Validations
-    include ActiveModel::Validations::Callbacks
   end
 
   def error_message(attr = nil)

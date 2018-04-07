@@ -35,12 +35,12 @@ class BaseLogger < ApplicationLogger
   def nomalize_data(data, merged_data)
     data = LogData.new(data).to_h unless data.is_a?(Hash)
     data = { logger: self.class.to_s }.merge(data) if self.class != ::BaseLogger
-    data.with_indifferent_access.merge(merged_data).inject({}) do |a, e|
+    data.with_indifferent_access.merge(merged_data).to_utf8.inject({}) do |a, e|
       a.merge(e[0] => escape_text(e[1]))
     end
   end
 
   def escape_text(text)
-    text.to_s.force_encoding('UTF-8').gsub("\n", '\n').gsub("\r", '\r')
+    text.to_s.gsub("\n", '\n').gsub("\r", '\r')
   end
 end

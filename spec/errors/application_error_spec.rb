@@ -3,7 +3,7 @@ require 'rails_helper'
 describe ApplicationError, type: :error do
   let(:exception) { described_class.new(message: message, context: context, original: original) }
   let(:message) { 'test message' }
-  let(:context) { { haha: Time.now } }
+  let(:context) { { haha: Time.now, k: '喔'.force_encoding('ASCII-8BIT') } }
   let(:original) { StandardError.new }
 
   it '#log, #message, #mail_deliver' do

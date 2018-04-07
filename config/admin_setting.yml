@@ -2,15 +2,15 @@ defaults: &defaults
   assets:
     cdn_host: 'assets.5fpro.com'
     javascripts:
-      - "/vendors/autosize/dist/autosize.min.js"
       - "/vendors/bootstrap/dist/js/bootstrap.min.js"
+      - "/vendors/autosize/dist/autosize.min.js"
+      - "/vendors/moment/min/moment.min.js"
       - "/vendors/bootstrap-daterangepicker/daterangepicker.js"
       - "/vendors/fastclick/lib/fastclick.js"
       - "/vendors/nprogress/nprogress.js"
       - "/vendors/Chart.js/dist/Chart.min.js"
       - "/vendors/jquery-sparkline/dist/jquery.sparkline.min.js"
       - "/vendors/iCheck/icheck.min.js"
-      - "/vendors/moment/min/moment.min.js"
       - "/vendors/nprogress/nprogress.js"
       - "/vendors/switchery/dist/switchery.min.js"
       - "/vendors/select2/dist/js/select2.full.min.js"
@@ -26,6 +26,9 @@ defaults: &defaults
       - "/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"
       - "/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"
       - "/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"
+      - "//cdnjs.cloudflare.com/ajax/libs/country-select-js/2.0.1/js/countrySelect.min.js"
+      - "//cdn.jsdelivr.net/npm/intl-tel-input@12.1.12/build/js/intlTelInput.min.js"
+      - "//cdn.jsdelivr.net/npm/intl-tel-input@12.1.12/build/js/utils.js"
       - "/vendors/gentelella/js/custom.min.js"
     stylesheets:
       - "/vendors/bootstrap/dist/css/bootstrap.min.css"
@@ -40,6 +43,8 @@ defaults: &defaults
       - "/vendors/switchery/dist/switchery.min.css"
       - "/vendors/iCheck/skins/flat/green.css"
       - "/vendors/select2/dist/css/select2.min.css"
+      - "//cdnjs.cloudflare.com/ajax/libs/country-select-js/2.0.1/css/countrySelect.min.css"
+      - "//cdn.jsdelivr.net/npm/intl-tel-input@12.1.12/build/css/intlTelInput.css"
       - "/vendors/gentelella/css/custom.min.css"
 
   nav_items:

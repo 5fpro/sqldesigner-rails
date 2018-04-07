@@ -50,13 +50,13 @@ class ApplicationError < RuntimeError
       class_name: self.class.to_s,
       message: message,
       backtrace: backtrace,
-      context: safe_to_h(@context),
+      context: normalize_hash(@context),
       logger: {
         class_name: logger.class.to_s,
         file_path: logger.file_path.to_s
       },
       original: original_to_h
-    }.deep_merge(safe_to_h(custom_to_h)).with_indifferent_access
+    }.deep_merge(normalize_hash(custom_to_h)).with_indifferent_access
   end
 
   def to_json
@@ -73,8 +73,8 @@ class ApplicationError < RuntimeError
   # you can overwrite this
   def custom_initialize(*args); end
 
-  def safe_to_h(h)
-    JSON.parse(h.to_json).with_indifferent_access
+  def normalize_hash(h)
+    h.to_h.to_utf8.with_indifferent_access
   end
 
   def i18n_path

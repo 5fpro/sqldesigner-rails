@@ -55,18 +55,18 @@ module AdminHelper
   end
 
   def load_admin_stylesheets
-    files = AdminSetting.assets.stylesheets.map { |path| "//#{AdminSetting.assets.cdn_host}#{path}" } + ['admin']
+    files = AdminSetting.assets.stylesheets.map { |path| path[0..1] == '//' ? path : "//#{AdminSetting.assets.cdn_host}#{path}" } + ['admin']
     files.map { |link| stylesheet_link_tag(link, media: 'all') }.join.html_safe
   end
 
   def load_admin_javascripts
-    files = ['admin'] + AdminSetting.assets.javascripts.map { |path| "//#{AdminSetting.assets.cdn_host}#{path}" }
+    files = ['admin'] + AdminSetting.assets.javascripts.map { |path| path[0..1] == '//' ? path : "//#{AdminSetting.assets.cdn_host}#{path}" }
     files.map { |link| javascript_include_tag(link) }.join.html_safe
   end
 
   def admin_search_form_for(obj, options, &block)
     options ||= {}
-    options.deep_merge!(builder: AdminFormBuilder, html: { class: 'form-horizontal' }, wrapper: (options[:wrapper] || :admin))
+    options.deep_merge!(builder: AdminFormBuilder, html: { class: 'form-horizontal' }, wrapper: (options[:wrapper] || :admin), defaults: { required: false })
     search_form_for(obj, options, &block)
   end
 

@@ -135,6 +135,7 @@ Rails/SkipsModelValidations:
 Security/YAMLLoad:
   Exclude:
     - 'spec/**/**'
+    - 'app/storages/base_storage.rb'
 
 Lint/AmbiguousBlockAssociation:
   Enabled: false

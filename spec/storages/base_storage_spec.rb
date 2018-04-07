@@ -3,14 +3,14 @@ require 'rails_helper'
 describe BaseStorage, type: :storage do
   class ExampleStorage < BaseStorage
     default_expires 20.seconds
-    attr_accessor :name
+    attr_accessor :name, :date
   end
 
   let(:klass) { ExampleStorage }
 
   it do
     expect {
-      @id = klass.new(name: 'abc').save
+      @id = klass.new(name: 'abc', date: Time.now).save
     }.to change { klass.all.count }.by(1)
     expect(described_class.all.count).to eq(0)
     instance = klass.find(@id)
@@ -20,6 +20,7 @@ describe BaseStorage, type: :storage do
     }.to change { klass.find(@id).name }.to('QQ')
 
     expect(instance.ttl).to be > 0
+    expect(instance.reload.date).to be_a_kind_of(Time)
 
     expect {
       instance.destroy
@@ -65,6 +66,9 @@ describe BaseStorage, type: :storage do
 
     it do
       instance = klass.new(name: 'abc')
+      expect(klass.attributes).to include(:name)
+      expect(klass.attributes).to include(:hi)
+
       @id = instance.save
       expect(@id).to be_present
       expect(instance.hi).to eq(1)
@@ -108,13 +112,13 @@ describe BaseStorage, type: :storage do
     describe 'hash' do
       class HashStorage < BaseStorage
         store_type :hash
-        attr_accessor :name
+        attr_accessor :name, :date
       end
 
       let(:klass) { HashStorage }
 
       it do
-        instance = klass.new(id: '123', name: 'aloha')
+        instance = klass.new(id: '123', name: 'aloha', date: Time.now)
         instance2 = klass.new
         expect(instance.save).to eq('123')
         expect(instance2.save).to be_present
@@ -123,6 +127,7 @@ describe BaseStorage, type: :storage do
         expect(klass.exists?('456')).to eq(false)
         expect(klass.exists?(instance2.id)).to eq(true)
         expect(klass.find('123').name).to eq('aloha')
+        expect(klass.find('123').date).to be_a_kind_of(Time)
         expect {
           instance2.destroy
         }.to change { klass.all.count }.by(-1)

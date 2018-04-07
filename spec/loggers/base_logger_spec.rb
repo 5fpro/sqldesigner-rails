@@ -3,7 +3,7 @@ require 'rails_helper'
 describe BaseLogger, type: :logger do
 
   it do
-    expect(described_class.log(a: 1, b: 2)).to be_present
+    expect(described_class.log(a: 1, b: 2, c: '哈'.force_encoding('ASCII-8BIT'))).to be_present
     expect(described_class.error(a: 1, b: 2)).to be_present
     expect(described_class.error('haha')).to be_present
     expect(described_class.info(a: 1, b: 2)).to be_present
