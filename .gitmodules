@@ -1,0 +1,3 @@
+[submodule "tyr"]
+	path = tyr
+	url = git@github.com:5fpro/tyr.git
