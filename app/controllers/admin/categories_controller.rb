@@ -1,8 +1,7 @@
 class Admin::CategoriesController < Admin::BaseController
   before_action :category
 
-  add_breadcrumb(breadcrumb_text, :admin_categories_path)
-
+  before_action :set_default_breadcrumb
   before_action only: [:show, :edit, :revisions] do
     add_breadcrumb(@category.name, admin_category_path(@category))
   end

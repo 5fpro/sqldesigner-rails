@@ -1,9 +1,9 @@
 module Admin
   class AccountsController < BaseController
 
-    add_breadcrumb breadcrumb_text, :admin_account_path
-
-    def show; end
+    def show
+      add_breadcrumb(t('.breadcrumb'))
+    end
 
     def update
       context = ChangePasswordContext.new(current_administrator, administrator_params)

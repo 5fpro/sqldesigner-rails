@@ -3,7 +3,7 @@ module Admin
     before_action :authenticate_root_administrator!
 
     before_action :administrator
-    add_breadcrumb(breadcrumb_text, :admin_administrators_path)
+    before_action :set_default_breadcrumb
     before_action only: [:show, :edit] do
       add_breadcrumb(@administrator.name, admin_administrator_path(@administrator))
     end

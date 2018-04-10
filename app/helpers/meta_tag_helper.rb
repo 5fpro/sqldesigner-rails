@@ -1,13 +1,10 @@
 module MetaTagHelper
   extend ActiveSupport::Concern
 
-  module ClassMethods
-    def breadcrumb_text(key = nil)
-      key_path = to_s.underscore.gsub('_controller', '').tr('/', '.')
-      key_path = "#{key_path}.breadcrumb"
-      key_path = "#{key_path}.#{key}" if key.present?
-      I18n.t(key_path, default: '')
-    end
+  def set_default_breadcrumb(text = nil, path = nil)
+    text ||= t(params[:controller].split('/').join('.') + '.breadcrumb')
+    path ||= url_for(controller: params[:controller], action: :index)
+    add_breadcrumb(text, path)
   end
 
   def set_meta(data = {})
@@ -15,11 +12,11 @@ module MetaTagHelper
     default_data = default_meta
     url = data.delete(:url) || data.delete(:canonical)
     image = append_og_image_protocol(data.delete(:image) || data.delete(:image_src))
+    data = apply_meta_values(data)
     data.select! { |_k, v| v.present? }
     default_data[:canonical] = url || default_data[:canonical]
     default_data[:image_src] = image || default_data[:image_src]
     default_data[:og][:image] = image || default_data[:og][:image]
-    data = apply_meta_values(data)
     set_meta_tags(default_data.deep_merge(data))
   end
 
@@ -41,9 +38,9 @@ module MetaTagHelper
       site_name: :site,
       description: :description
     )
-    data[:title] = t('.meta.title', default: '')
-    data[:description] = t('.meta.description', default: '')
-    data[:keywords] = t('.meta.keywords', default: '')
+    data[:title] = t('.meta.title', default: data[:title])
+    data[:description] = t('.meta.description', default: data[:description])
+    data[:keywords] = t('.meta.keywords', default: data[:keywords])
     data[:canonical] = url_for(request.params.merge(host: Setting.host))
     data[:image_src] = data[:og][:image][:url] = default_og_image_url
     data[:revision] = AppRevision.to_h unless Rails.env.production?

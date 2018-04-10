@@ -1,8 +1,7 @@
 class Admin::UsersController < Admin::BaseController
   before_action :user
 
-  add_breadcrumb(breadcrumb_text, :admin_users_path)
-
+  before_action :set_default_breadcrumb
   before_action only: [:show, :edit] do
     add_breadcrumb(@user.name, admin_user_path(@user))
   end

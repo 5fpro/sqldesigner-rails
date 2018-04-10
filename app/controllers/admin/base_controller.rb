@@ -5,7 +5,7 @@ class Admin::BaseController < ApplicationController
   before_action :authenticate_administrator!
   before_action :set_meta
 
-  add_breadcrumb breadcrumb_text, :admin_root_path
+  before_action { set_default_breadcrumb(t('admin.base.breadcrumb'), admin_root_path) }
 
   def index
     set_meta(title: { app_name: ENV['APP_NAME'] })
