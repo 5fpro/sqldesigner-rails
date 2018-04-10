@@ -41,7 +41,7 @@ module MetaTagHelper
     data[:title] = t('.meta.title', default: '')
     data[:description] = t('.meta.description', default: data[:description])
     data[:keywords] = t('.meta.keywords', default: data[:keywords])
-    data[:canonical] = url_for(request.params.merge(host: Setting.host))
+    data[:canonical] = request.original_url
     data[:image_src] = data[:og][:image][:url] = default_og_image_url
     data[:revision] = AppRevision.to_h unless Rails.env.production?
     data
