@@ -38,7 +38,7 @@ module MetaTagHelper
       site_name: :site,
       description: :description
     )
-    data[:title] = t('.meta.title', default: data[:title])
+    data[:title] = t('.meta.title', default: '')
     data[:description] = t('.meta.description', default: data[:description])
     data[:keywords] = t('.meta.keywords', default: data[:keywords])
     data[:canonical] = url_for(request.params.merge(host: Setting.host))
