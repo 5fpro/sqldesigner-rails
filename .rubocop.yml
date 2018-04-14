@@ -12,6 +12,7 @@ AllCops:
     - node_modules/**/*
     - Guardfile
     - .gems/**/*
+    - tyr/**/*
 
 Metrics/BlockLength:
   Max: 250

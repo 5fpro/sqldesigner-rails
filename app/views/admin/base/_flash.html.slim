@@ -1,8 +1,0 @@
-.clearfix
-- flash.each do |k, message|
-  - k = 'danger' if k.to_s == 'error'
-  - k = 'warning' if k.to_s == 'alert'
-  div.alert-dismissible.alert.fade.in class="alert-#{k}"
-    button.close type="button" data-dismiss="alert" aria-label="Close"
-      span aria-hidden="true" x
-    = message.is_a?(Array) ? message.to_sentence : message

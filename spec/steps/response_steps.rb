@@ -28,13 +28,3 @@ step ':response_body_type :string_matcher( ):str_value' do |body_type, matcher_b
   str = BodyExtractor.new(response.body).extract(body_type)
   eval(matcher_bind_str)
 end
-
-placeholder :str_value do
-  match /.+/ do |str|
-    str
-  end
-
-  match /.{0}/ do
-    ''
-  end
-end

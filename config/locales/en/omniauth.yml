@@ -1,6 +1,0 @@
-en:
-  omniauth:
-    providers:
-      facebook: 'Facebook'
-      google_oauth2: 'Google'
-      github: 'GitHub'

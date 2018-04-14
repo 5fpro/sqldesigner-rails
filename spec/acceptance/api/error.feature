@@ -7,8 +7,8 @@ Feature: 錯誤頁面
         """
         {
           error: {
-            class_name: 'Api::ClientAuthError',
-            message: /authenticate fail/,
+            class_name: 'Tyr::Api::ClientAuthError',
+            message: /(authenticate fail|驗證)/,
             backtrace: Array,
             context: {},
             original: nil

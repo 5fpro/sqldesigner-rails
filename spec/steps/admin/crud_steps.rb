@@ -1,5 +1,6 @@
 step '後台建立 :model_name:' do |model_name, last_params = nil|
   sign_in_admin
+  model_name = model_name.to_s.split('/').last
   set_previous_count(model_name)
   to_params_list(last_params).each do |hash|
     params = build_params(model_name, hash, traits: [:admin_creation])

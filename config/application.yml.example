@@ -1,14 +1,9 @@
 defaults: &defaults
-  host: <%= ENV['APP_HOST'] %>
-  default_protocol: 'https'
-  assets_host: <%= ENV['ASSET_HOST'] %>
-  redis:
-    url: <%= ENV['REDIS_URL'] %>
   dalli:
     servers:
     - "<%= ENV['MEMCACHED_SERVER'] %>"
     options:
-      namespace: "<%= ENV['MEMCACHED_NAMESPACE'] %>"
+      namespace: "<%= ENV['MEMCACHED_NAMESPACE'] || ENV['APP_NAME'] %>"
       expires_in: 0
       threadsafe: true
       failover: true
@@ -17,18 +12,6 @@ defaults: &defaults
       username:
       password:
       pool_size: 1
-  aws:
-    access_key_id: "<%= ENV['AWS_ACCESS_KEY_ID'] %>"
-    secret_access_key: "<%= ENV['AWS_SECRET_ACCESS_KEY'] %>"
-    region: "<%= ENV['AWS_REGION'] %>"
-  sidekiq:
-    url: "<%= ENV['REDIS_URL'] %>"
-  carrierwave:
-    region: "<%= ENV['AWS_REGION'] %>"
-    bucket: "<%= ENV['ASSET_AWS_BUCKET'] %>"
-    host: "<%= ENV['ASSET_HOST'] %>"
-  mailer:
-    default_sender: "<%= ENV['MAILER_SENDER'] %>"
   omniauth:
     providers:
       facebook:
@@ -45,16 +28,9 @@ defaults: &defaults
       google_oauth2:
         token: "<%= ENV['OAUTH_GOOGLE_TOKEN'] %>"
         secret: "<%= ENV['OAUTH_GOOGLE_SECRET'] %>"
-  sitemap:
-    path: "sitemaps/"
-  ga_id: "<%= ENV['GA_ID'] %>"
 
 development:
   <<: *defaults
-  carrierwave:
-    region: "<%= ENV['AWS_REGION'] %>"
-    bucket: "<%= ENV['ASSET_AWS_BUCKET'] %>"
-    host: "assets-demo-5fpro-com.s3.amazonaws.com"
 
 test:
   <<: *defaults

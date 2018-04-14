@@ -1,7 +1,0 @@
-= f.input :name
-= f.input :email, required: true
-= f.input :password, as: :password
-- unless f.object.new_record?
-  = f.input :password_confirmation, as: :password
-= f.input :root, as: :switch
-= f.submit_cancel cancel: admin_administrators_path

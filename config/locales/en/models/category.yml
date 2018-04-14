@@ -1,0 +1,29 @@
+en:
+  admin:
+    menu_text:
+      categories:
+        label: Category
+        label-2: Categories(lv 2)
+        index: List
+        new: Create
+  activerecord:
+    attributes:
+      category: &label_category
+        id: '#'
+        created_at: Created at
+        updated_at: Updated at
+        deleted_at: Deleted at
+        sort: Index
+        tag_list: Tags
+        tags: Tags
+        name: Name
+    models:
+      category: Category
+  simple_form:
+    labels:
+      name: 'Name'
+      tag_list: 'Tag'
+    placeholders:
+      category:
+        <<: *label_category
+        tag_list: 'comma to separate'

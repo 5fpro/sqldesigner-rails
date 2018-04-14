@@ -1,4 +1,4 @@
-class Admin::CategoriesController < Admin::BaseController
+class Admin::CategoriesController < Tyr::Admin::BaseController
   before_action :category
 
   before_action :set_default_breadcrumb

@@ -1,8 +1,3 @@
-class ApplicationRecord < ActiveRecord::Base
-  include ::Sortable
-  include ::Restorable
-  include ::Taggable
-  include ::Omniauthable
-
+class ApplicationRecord < Tyr::ApplicationRecord
   self.abstract_class = true
 end

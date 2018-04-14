@@ -1,7 +1,7 @@
 MODEL_FINDER_MAP = {
-  'User':          [:name, :email, :id],
-  'Category':      [:name, :id],
-  'Administrator': [:name, :email, :id]
+  'User':               [:name, :email, :id],
+  'Category':           [:name, :id],
+  'Tyr::Administrator': [:name, :email, :id]
 }.freeze
 
 placeholder :model_finder do

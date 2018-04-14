@@ -1,4 +1,0 @@
-en:
-  controllers:
-    custom:
-      authenticate_root_administrator: 'No permission'

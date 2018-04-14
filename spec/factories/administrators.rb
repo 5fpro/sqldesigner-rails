@@ -24,7 +24,7 @@
 #
 
 FactoryBot.define do
-  factory :administrator do
+  factory :administrator, class: 'Tyr::Administrator' do
     name '5Fpro'
     sequence(:email) { |n| "admin#{n}@5fpro.com" }
     password '12341234'

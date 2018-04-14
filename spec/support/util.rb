@@ -18,6 +18,7 @@ module Util
   end
 
   def to_klass(model_name)
+    model_name = 'tyr/administrator' if model_name.to_s == 'administrator'
     model_name.to_s.camelize.constantize
   end
 

@@ -5,12 +5,12 @@ placeholder :user_role do
   end
 
   match /(超級管理者)/ do
-    @role_admin = create(:administrator, :root) unless @role_admin && Administrator.exists?(@role_admin.id)
+    @role_admin = create(:administrator, :root) unless @role_admin && Tyr::Administrator.exists?(@role_admin.id)
     @role_admin
   end
 
   match /(admin|管理者)/ do
-    @role_admin = create(:administrator) unless @role_admin && Administrator.exists?(@role_admin.id)
+    @role_admin = create(:administrator) unless @role_admin && Tyr::Administrator.exists?(@role_admin.id)
     @role_admin
   end
 end

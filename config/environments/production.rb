@@ -32,9 +32,6 @@ Rails.application.configure do
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
-  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = ->(source){ "//#{Setting.assets_host}" }
-
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
@@ -53,9 +50,6 @@ Rails.application.configure do
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
-
-  # Use a different cache store in production.
-  config.cache_store = :dalli_store, *(Setting.dalli.servers + [ Setting.dalli.options.symbolize_keys ])
 
   config.action_mailer.perform_caching = false
 

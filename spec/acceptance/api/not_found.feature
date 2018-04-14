@@ -8,7 +8,7 @@ Feature: 各種 404
         {
           error: {
             class_name: 'RoutingError',
-            message: /Routing error/,
+            message: /(Routing error|找不到)/,
             backtrace: Array,
             context: Hash,
             original: {
@@ -31,7 +31,7 @@ Feature: 各種 404
         {
           error: {
             class_name: 'RoutingError',
-            message: /Routing error/,
+            message: /(Routing error|找不到)/,
             backtrace: Array,
             context: Hash,
             original: {
@@ -55,7 +55,7 @@ Feature: 各種 404
         {
           error: {
             class_name: 'RoutingError',
-            message: /Routing error/,
+            message: /(Routing error|找不到)/,
             backtrace: Array,
             context: Hash,
             original: {

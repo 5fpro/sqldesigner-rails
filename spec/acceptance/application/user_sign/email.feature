@@ -6,8 +6,8 @@ Feature: Email 登入 / 登出
   Scenario: 未登入情況下，登入頁面正常載入
     When  瀏覽 /users/sign_in
     Then  頁面回應 正常
-     And  Meta Title 包含 登入
-     And  Meta Desc 包含 登入
+     And  Meta Title 包含 "sign in"
+     And  Meta Desc 包含 "sign in"
   Scenario: 已登入情況下，登入頁面會轉跳
     Given User(marsz) 登入
     When  瀏覽 /users/sign_in
@@ -30,6 +30,6 @@ Feature: Email 登入 / 登出
           """
     Then  頁面回應 正常
     And   頁面 包含 "mars@5fpro.com"
-    And   Meta Title 包含 登入
-    And   Flash Message 有值
+    And   Meta Title 包含 'sign in'
+    And   Flash Message 有值 ""
     And   User 未登入

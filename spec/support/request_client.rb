@@ -1,7 +1,7 @@
 module RequestClient
 
   def signin(role)
-    role_name = role.class.to_s.underscore
+    role_name = role.class.to_s.underscore.split('/').last
     post "/#{role_name.pluralize}/sign_in", params: { role_name => { email: role.email, password: role.password || default_password } }
     instance_variable_set("@current_#{role_name}", role) if response.status == 302
   end
@@ -19,7 +19,7 @@ module RequestClient
   end
 
   def file_data
-    fixture_file_upload('spec/fixtures/5fpro.png', 'image/png')
+    fixture_file_upload('files/5fpro.png', 'image/png')
   end
 
   def sign_in_admin
@@ -47,6 +47,7 @@ module RequestClient
 
   def build_params(model_name, hash, traits: [])
     traits = [traits] if traits && !traits.is_a?(Array)
+    model_name = model_name.to_s.split('/').last
     params = attributes_for(model_name, *traits, hash.symbolize_keys)
     params.each { |k, v| params[k] = public_send(v) if data_methods.include?(v.to_s.to_sym) }
     params

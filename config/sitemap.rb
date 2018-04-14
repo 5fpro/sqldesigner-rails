@@ -1,7 +1,7 @@
-SitemapGenerator::Sitemap.default_host = "#{Setting.default_protocol}://#{Setting.host}"
+SitemapGenerator::Sitemap.default_host = "#{TyrSetting.default_protocol}://#{TyrSetting.host}"
 # mapping to robots.txt
-SitemapGenerator::Sitemap.sitemaps_host = "#{Setting.default_protocol}://#{Setting.assets_host}/"
-SitemapGenerator::Sitemap.sitemaps_path = Setting.sitemap.path
+SitemapGenerator::Sitemap.sitemaps_host = "#{TyrSetting.default_protocol}://#{TyrSetting.assets_host}/"
+SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
 SitemapGenerator::Sitemap.public_path = "public/"
 SitemapGenerator::Sitemap.adapter = SitemapGenerator::WaveAdapter.new
 SitemapGenerator::Sitemap.include_index = true
