@@ -1,7 +1,7 @@
 zh-TW:
   admin:
     users:
-      breadcrumb: 'Users'
+      breadcrumb: '使用者'
       index:
         meta:
           title: 'Users'
