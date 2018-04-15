@@ -1,0 +1,26 @@
+test:
+  models:
+    分類:
+      namespace: category
+      factorybot_name: category
+      class_name: Category
+      route_pluralize: categories
+      finders:
+        - name
+        - id
+    使用者: &user
+      namespace: user
+      factorybot_name: user
+      class_name: User
+      route_pluralize: users
+      finders:
+        - name
+        - email
+        - id
+        -
+          - id
+          - email
+    User:
+      <<: *user
+    已註冊使用者:
+      <<: *user
