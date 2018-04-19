@@ -1,0 +1,24 @@
+zh-TW:
+  admin:
+    menu_text:
+      users:
+        label: 使用者
+        index: 列表
+        new: 新增
+  activerecord:
+    attributes:
+      user: &label_user
+        id: '#'
+        created_at: 建立時間
+        updated_at: 更新時間
+        name: 名稱
+        avatar: 頭像
+        confirmed: 已認證
+    models:
+      user: 使用者
+  simple_form:
+    labels:
+      name: 名稱
+    placeholders:
+      user:
+        <<: *label_user
