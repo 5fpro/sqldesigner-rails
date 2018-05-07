@@ -1,7 +1,0 @@
-= admin_form_for resource, as: resource_name, url: session_path(resource_name), wrapper: :admin_landing do |f|
-  = f.input :email, required: false, autofocus: true
-  = f.input :password, required: false
-  = f.input :remember_me, as: :nested_switch if devise_mapping.rememberable?
-  = f.full_size_submit tv('button-sign-in')
-
-= render partial: 'users/shared/links'

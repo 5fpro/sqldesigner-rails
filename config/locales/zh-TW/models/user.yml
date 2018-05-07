@@ -1,0 +1,32 @@
+zh-TW:
+  admin:
+    menu_text:
+      users:
+        label: 使用者
+        index: 列表
+        new: 新增
+  activerecord:
+    attributes:
+      user: &user
+        id: '#'
+        created_at: 建立時間
+        updated_at: 更新時間
+        name: 名稱
+        avatar: 頭像
+        confirmed: 已認證
+        email: email
+        last_sign_in_at: "上次登入於"
+        last_sign_in_ip: "上次登入的IP位址"
+    models:
+      user: 使用者
+  simple_form:
+    labels:
+      q:
+        name_cont: 名稱包含
+        email_cont: Email 包含
+        has_avatar: 有頭像
+      user:
+        <<: *user
+    placeholders:
+      user:
+        <<: *user

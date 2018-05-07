@@ -1,6 +1,6 @@
 Feature: 從後台更新分類
   Background:
-    Given 管理者 登入
+    Given 管理員 登入
       And 已有 分類:
           | name |
           | marsz |

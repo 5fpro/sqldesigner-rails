@@ -1,9 +1,0 @@
-zh-TW:
-  errors:
-    application:
-      message: '錯誤訊息'
-    routing:
-      message: '找不到頁面'
-    api:
-      client_auth:
-        message: '用戶端驗證失敗'

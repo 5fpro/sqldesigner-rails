@@ -1,10 +1,10 @@
 .hello= tv('hello')
 - false?(123) # test `false?` method
 - if user_signed_in?
-  = link_to tv('button-sign-out'), destroy_user_session_path, method: :delete
+  = link_to tv('button-sign-out'), tyr.destroy_user_session_path, method: :delete
 - else
   .sign-in
-    = link_to tv('button-sign-in'), new_user_session_path
+    = link_to tv('button-sign-in'), tyr.new_user_session_path
   - Setting.omniauth.providers.keys.each do |provider|
     br/
-    = link_to tv('button-oauth', provider: t("omniauth.providers.#{provider}")), send("auth_#{provider}_path")
+    = link_to tv('button-oauth', provider: t("omniauth.providers.#{provider}")), tyr.send("auth_#{provider}_path")

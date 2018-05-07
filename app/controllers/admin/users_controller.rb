@@ -1,6 +1,5 @@
-class Admin::UsersController < Admin::BaseController
+class Admin::UsersController < Tyr::Admin::BaseController
   before_action :user
-
   before_action :set_default_breadcrumb
   before_action only: [:show, :edit] do
     add_breadcrumb(@user.name, admin_user_path(@user))

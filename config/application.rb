@@ -32,6 +32,7 @@ module Myapp
     # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
     # the I18n.default_locale when a translation cannot be found).
     config.i18n.fallbacks = true
+    config.i18n.default_locale = :'zh-TW'
 
     # Disable some file generators
     config.generators.stylesheets = false
@@ -43,13 +44,5 @@ module Myapp
 
     # serve error pages from the Rails app itself (routes.rb)
     config.exceptions_app = self.routes
-
-    # rack-cors
-    config.middleware.insert_before 0, Rack::Cors do
-      allow do
-        origins '*'
-        resource '*', headers: :any, methods: [:get, :post, :put, :delete, :options]
-      end
-    end
   end
 end

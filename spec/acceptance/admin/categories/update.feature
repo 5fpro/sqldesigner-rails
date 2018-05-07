@@ -1,12 +1,12 @@
 Feature: 從後台更新分類
   Background:
-    Given 管理者 登入
+    Given 管理員 登入
       And 已有 分類:
           | name |
           | marsz |
           | venus |
   Scenario: 編輯頁面可正常載入
-    When 到後台 GET 分類(marsz) 的 分類編輯頁面
+    When 到後台 GET 分類(marsz) 的 "/categories/:id/edit"
     Then 頁面回應 正常
   Scenario: 不能把 name 更新為已存在的分類
     When 後台更新 分類(marsz):
@@ -30,6 +30,6 @@ Feature: 從後台更新分類
     Given 後台更新 分類(marsz):
          | name |
          | jupiter |
-    When 到後台 GET 分類(jupiter) 的 分類版本記錄頁面
+    When 到後台 GET 分類(jupiter) 的 "/categories/:id/revisions"
     Then 頁面回應 200
      And 頁面 包含 marsz

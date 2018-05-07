@@ -1,0 +1,25 @@
+zh-TW:
+  admin:
+    users:
+      breadcrumb: '使用者'
+      index:
+        meta:
+          title: 'Users'
+      show:
+        meta:
+          title: "User %{identity}"
+      new:
+        meta:
+          title: 'New User'
+        breadcrumb: 'New'
+      edit:
+        meta:
+          title: "Edit User %{identity}"
+        breadcrumb: "Edit"
+      create:
+        success: 'User %{identity} created'
+      update:
+        success: 'User %{identity} updated'
+      destroy:
+        success: 'User %{identity} destroyed'
+

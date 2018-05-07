@@ -1,52 +1,9 @@
 defaults: &defaults
   assets:
-    cdn_host: 'assets.5fpro.com'
     javascripts:
-      - "/vendors/bootstrap/dist/js/bootstrap.min.js"
-      - "/vendors/autosize/dist/autosize.min.js"
-      - "/vendors/moment/min/moment.min.js"
-      - "/vendors/bootstrap-daterangepicker/daterangepicker.js"
-      - "/vendors/fastclick/lib/fastclick.js"
-      - "/vendors/nprogress/nprogress.js"
-      - "/vendors/Chart.js/dist/Chart.min.js"
-      - "/vendors/jquery-sparkline/dist/jquery.sparkline.min.js"
-      - "/vendors/iCheck/icheck.min.js"
-      - "/vendors/nprogress/nprogress.js"
-      - "/vendors/switchery/dist/switchery.min.js"
-      - "/vendors/select2/dist/js/select2.full.min.js"
-      - "/vendors/datatables.net/js/jquery.dataTables.min.js"
-      - "/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"
-      - "/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"
-      - "/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"
-      - "/vendors/datatables.net-buttons/js/buttons.flash.min.js"
-      - "/vendors/datatables.net-buttons/js/buttons.html5.min.js"
-      - "/vendors/datatables.net-buttons/js/buttons.print.min.js"
-      - "/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"
-      - "/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"
-      - "/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"
-      - "/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"
-      - "/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"
-      - "//cdnjs.cloudflare.com/ajax/libs/country-select-js/2.0.1/js/countrySelect.min.js"
-      - "//cdn.jsdelivr.net/npm/intl-tel-input@12.1.12/build/js/intlTelInput.min.js"
-      - "//cdn.jsdelivr.net/npm/intl-tel-input@12.1.12/build/js/utils.js"
-      - "/vendors/gentelella/js/custom.min.js"
+      -
     stylesheets:
-      - "/vendors/bootstrap/dist/css/bootstrap.min.css"
-      - "/vendors/bootstrap-daterangepicker/daterangepicker.css"
-      - "/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css"
-      - "/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
-      - "/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
-      - "/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css"
-      - "/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
-      - "/vendors/font-awesome/css/font-awesome.min.css"
-      - "/vendors/nprogress/nprogress.css"
-      - "/vendors/switchery/dist/switchery.min.css"
-      - "/vendors/iCheck/skins/flat/green.css"
-      - "/vendors/select2/dist/css/select2.min.css"
-      - "//cdnjs.cloudflare.com/ajax/libs/country-select-js/2.0.1/css/countrySelect.min.css"
-      - "//cdn.jsdelivr.net/npm/intl-tel-input@12.1.12/build/css/intlTelInput.css"
-      - "/vendors/gentelella/css/custom.min.css"
-
+      -
   nav_items:
     # to see more icons: https://colorlib.com/polygon/gentelella/icons.html
     -

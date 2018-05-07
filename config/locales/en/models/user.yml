@@ -1,0 +1,24 @@
+en:
+  admin:
+    menu_text:
+      users:
+        label: User
+        index: List
+        new: Create
+  activerecord:
+    attributes:
+      user: &label_user
+        id: '#'
+        created_at: Created At
+        updated_at: Updated At
+        name: Name
+        avatar: Avatar
+        confirmed: Confirmed
+    models:
+      user: User
+  simple_form:
+    labels:
+      name: Name
+    placeholders:
+      user:
+        <<: *label_user

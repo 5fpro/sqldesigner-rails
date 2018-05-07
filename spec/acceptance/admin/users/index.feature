@@ -1,6 +1,6 @@
 Feature: 使用者後台列表
   Background:
-    Given 管理者 登入
+    Given 管理員 登入
       And 已有 已註冊使用者:
           | name  |
           | Mars  |

@@ -1,7 +1,0 @@
-.row
-  .col-sm-4
-    .dataTables_info
-      = "#{tv('total')} #{collection.try(:total_count) || collection.size}"
-  .col-sm-8.pull-right
-    .dataTables_paginate.paging_simple_numbers
-      = paginate collection, theme: :admin if collection.respond_to?(:total_count)

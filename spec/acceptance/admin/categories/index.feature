@@ -1,6 +1,6 @@
 Feature: 分類後台列表
   Background:
-    Given 管理者 登入
+    Given 管理員 登入
       And 已有 category:
           | name  | tag_list |
           | Mars  | aa,bb |
