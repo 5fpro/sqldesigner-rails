@@ -38,7 +38,7 @@ class Admin::UsersController < Tyr::Admin::BaseController
   end
 
   def update
-    if user.update_attributes(user_params)
+    if user.update(user_params)
       redirect_to params[:redirect_to] || admin_user_path(user), flash: { success: t('.success') }
     else
       edit
