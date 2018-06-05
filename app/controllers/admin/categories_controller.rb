@@ -45,7 +45,7 @@ class Admin::CategoriesController < Tyr::Admin::BaseController
   end
 
   def update
-    if category.update_attributes(category_params)
+    if category.update(category_params)
       redirect_to params[:redirect_to] || admin_category_path(category), flash: { success: t('.success') }
     else
       edit
