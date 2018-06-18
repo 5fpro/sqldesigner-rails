@@ -31,6 +31,7 @@ group :development do
   gem 'capistrano-rbenv'
   gem 'capistrano-sidekiq'
   gem 'capistrano3-unicorn'
+  gem 'capistrano-git-with-submodules'
   # slack
   gem 'slackistrano', require: false
 
