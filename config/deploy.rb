@@ -24,13 +24,8 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails unicorn sidekiq sidekiqctl}
 # Default value for :pty is false
 # set :pty, true
 
-set :config_files, [
-  '.env',
-  'config/application.yml'
-]
-
 # Default value for :linked_files is []
-set :linked_files, fetch(:linked_files, []).push(*fetch(:config_files))
+set :linked_files, fetch(:linked_files, []).push('.env', 'config/application.yml')
 
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
@@ -53,4 +48,4 @@ namespace :deploy do
 end
 
 # capistrano-rails => https://github.com/capistrano/rails/blob/master/lib/capistrano/tasks/assets.rake
-set :assets_roles, [:web, :worker, :assets_sync_server]
+set :assets_roles, [:web, :worker]

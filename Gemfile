@@ -27,6 +27,7 @@ group :development do
   # capistrano
   gem 'capistrano'
   gem 'capistrano-bundler'
+  gem 'capistrano-git-with-submodules'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-sidekiq'
