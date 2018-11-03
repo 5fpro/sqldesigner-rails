@@ -1,0 +1,41 @@
+- append_page_button '匯出', root_path, class: 'btn-primary'
+
+.row
+  = admin_widget_box '篩選條件' do
+    = admin_search_form_for @q, nil do |f|
+      = f.input :name_cont, label: '城市', as: :select2, collection: ['新北市'], include_blank: false
+      = f.input :delete_state, label: '土地狀態', as: :btn_group, collection: ['現今', '已分割', '已合併', '已變更']
+      = f.input :tagged, as: :tags
+      = f.input :name_cont, label: '最後變更日期早於', as: :string, input_html: { type: 'date' }
+      = f.input :name_cont, label: '最後變更日期晚於', as: :string, input_html: { type: 'date' }
+      = f.input :name_cont, label: '顯示欄位', as: :tags, collection: ['編號', '城市', '鄉鎮區', '地段', '地號']
+      = f.input :name_cont, label: '排序方式', as: :select, collection: ['最後變更日期新到舊']
+      = f.submit_cancel 'Search'
+
+.row
+  = admin_widget_box "土地資料" do
+    = render_admin_data_table do
+      thead
+        tr
+          th 編號
+          th 城市
+          th 鄉鎮區
+          th 地段
+          th 小段
+          th 地號
+          th 操作
+      tbody
+        - 20.times do
+          tr
+            td 123
+            td 新北市
+            td 板橋區
+            td 介壽
+            td
+            td 123-1
+            td
+              = admin_link_to "變更記錄", '/admin/lands/show', size: :s
+              | &nbsp;
+              = admin_link_to "編輯", root_path, size: :s
+              | &nbsp;
+              = admin_link_to "刪除", root_path, size: :s, color: :danger

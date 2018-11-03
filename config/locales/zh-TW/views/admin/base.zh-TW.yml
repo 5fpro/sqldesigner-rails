@@ -1,0 +1,7 @@
+zh-TW:
+  admin:
+    base:
+      breadcrumb: '後台'
+      index:
+        meta:
+          title: "%{app_name} 後台"
