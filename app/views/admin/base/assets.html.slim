@@ -1,0 +1,52 @@
+- append_page_button '匯出', root_path, class: 'btn-primary'
+
+.row
+  = admin_widget_box '篩選條件' do
+    = admin_search_form_for @q, nil do |f|
+      = f.input :name_cont, label: '城市', as: :select2, collection: ['新北市'], include_blank: false
+      = f.input :delete_state, label: '取得原因', as: :btn_group, collection: ['出售', '贈予', '轉讓']
+      = f.input :tagged, as: :tags
+      = f.input :name_cont, label: '取得日期', as: :string, input_html: { type: 'date' }
+      = f.input :name_cont, label: '顯示欄位', as: :tags, collection: ['編號', '城市', '鄉鎮區', '地段', '地號']
+      = f.input :name_cont, label: '排序方式', as: :select, collection: ['取得日期新到舊']
+      = f.submit_cancel 'Search'
+
+.row
+  = admin_widget_box "黨產資料" do
+    = render_admin_data_table do
+      thead
+        tr
+          th 編號
+          th 城市
+          th 鄉鎮區
+          th 地段
+          th 小段
+          th 地號
+          th 權利範圍
+          th 持分面積
+          th 取得名義
+          th 取得對象
+          th 取得日期
+          th 取得原因
+          th 操作
+      tbody
+        - 20.times do
+          tr
+            td 123
+            td 新北市
+            td 板橋區
+            td 介壽
+            td
+            td 123-1
+            td 1
+            td 234
+            td 中國國民黨台灣省委員會
+            td 王OO
+            td 2012-12-12
+            td 出售
+            td
+              = admin_link_to "明細", '/admin/assets/show', size: :s
+              | &nbsp;
+              = admin_link_to "編輯", root_path, size: :s
+              | &nbsp;
+              = admin_link_to "刪除", root_path, size: :s, color: :danger

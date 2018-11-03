@@ -1,0 +1,53 @@
+.row
+  = admin_widget_box "土地(#123)詳細資料" do
+    = render_admin_data_table do
+      tr
+        th 編號
+        td 123
+      tr
+        th 地圖
+        td
+          iframe width='100%' height='300' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src="https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=台北市新生南路三段90號&z=16&output=embed&t=""
+      tr
+        th 城市
+        td 新北市
+      tr
+        th 鄉鎮區
+        td 板橋區
+      tr
+        th 地段
+        td 介壽
+      tr
+        th 小段
+        td
+      tr
+        th 地號
+        td 123
+
+
+  = admin_widget_box "土地(#123)變更記錄" do
+    = render_admin_data_table do
+      thead
+        tr
+          th 時間
+          th 來源
+          th 類型
+          th 目標
+      tbody
+        tr
+          td 民國100年1月1日
+          td
+            = link_to '#11', '/admin/lands/show'
+            | ,
+            = link_to '#22', '/admin/lands/show'
+          td 合併
+          td #123
+        tr
+          td 民國101年2月1日
+          td #123
+          td 分割
+          td
+            = link_to '#33', '/admin/lands/show'
+            | ,
+            = link_to '#44', '/admin/lands/show'
+
