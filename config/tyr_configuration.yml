@@ -1,0 +1,142 @@
+default:
+  setting_yml_path: 'config/application.yml'
+  omniauth:
+    enable: true
+    path_prefix: '/authorizations'
+    resource: user
+  revision:
+    enable: <%= Rails.env.production? ? false : true %>
+    path: '/revision'
+  seo_robots:
+    enable: true
+    view_path: 'tyr/services/robots'
+    sitemap_url: '<%= "#{TyrSetting.default_protocol}://#{TyrSetting.assets_host}/sitemaps/sitemap.xml.gz" %>'
+  comments:
+    enable: true
+  sidekiq:
+    enable: true
+    path: '/sidekiq'
+  sidekiq_scheduler:
+    enable: true
+    yaml_path: 'config/sidekiq_scheduler.yml'
+  tappay:
+    enable: true
+  devise:
+    enable: true
+    resource: user
+    parent_controller: 'Tyr::DeviseBaseController'
+    mailer: 'Tyr::DeviseBaseMailer'
+    layouts:
+      user: tyr_admin_landing
+      administrator: tyr_admin_landing
+  devise_async:
+    enable: true
+  meta_tags:
+    enable: true
+  admin:
+    enable: true
+    route:
+      path: '/admin'
+  asset_sync:
+    enable: true
+  asset_host:
+    enable: true
+  carrierwave:
+    enable: true
+  locale:
+    enable: true
+    default: en
+    available:
+      - en
+      - zh-TW
+  lograge:
+    enable: true
+    log_request_body: false
+    base_controller_class: 'ActionController::Base'
+  api:
+    enable: true
+    route:
+      path: '/api'
+    error:
+      view: tyr/api/base/error
+      partial: tyr/api/base/error
+    error_class_name: 'Tyr::Api::RespondError'
+    layout: tyr_api
+  mailer:
+    enable: true
+    layout: mailer
+    helpers:
+      -
+  staging_authorize:
+    enable: true
+  redis:
+    enable: true
+  rollbar:
+    enable: true
+    options:
+      instance_method: 'current_user'
+      id_method: 'id'
+      name_method: 'name'
+      email_method: 'email'
+    sidekiq_queue: 'rollbar'
+    use_sidekiq: true
+  paper_trail:
+    enable: true
+  dalli:
+    enable: true
+  transaction_log:
+    class_name: 'Tyr::TransactionLog'
+  attachment:
+    enable: true
+    uploader: 'AttachmentUploader'
+    class_name: 'Tyr::Attachment'
+  renderers:
+    enable: true
+    default_exporter: 'BaseExporter'
+  sortable:
+    enable: true
+  restorable:
+    enable: true
+  taggable:
+    enable: true
+  charts:
+    enable: true
+  phonelib:
+    enable: true
+    default_country: 'TW'
+  activity:
+    enable: true
+    class_name: Tyr::Activity
+  redactor:
+    enable: true
+    default_js_options:
+      imageUpload: '/tyr_redactor/images'
+      imageManagerJson: '/tyr_redactor/images'
+      imageUploadFields: '[name="authenticity_token"]'
+      fileUpload: '/tyr_redactor/files'
+      fileManagerJson: '/tyr_redactor/files'
+      fileUploadFields: '[name="authenticity_token"]'
+      plugins:
+        - 'fullscreen'
+        - 'textdirection'
+        - 'video'
+        - 'table'
+        - 'imagemanager'
+        - 'filemanager'
+        - 'fontcolor'
+        - 'fontsize'
+      buttons:
+        - 'html'
+        - 'fullscreen'
+        - 'format'
+        - 'fontcolor'
+        - 'fontsize'
+        - 'bold'
+        - 'italic'
+        - 'deleted'
+        - 'lists'
+        - 'link'
+        - 'image'
+        - 'file'
+        - 'video'
+        - 'table'
