@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  root to: 'base#index'
+  constraints Tyr.config.api_constraints do
+    scope module: 'api' do
+      root to: 'base#index', as: :api_root
+      get '/error', to: 'base#error'
+    end
+  end
 
   namespace :admin do
     root to: 'base#index'
@@ -11,6 +16,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  root to: 'base#index'
 
   mount Tyr::Engine => '/'
 
