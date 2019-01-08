@@ -6,15 +6,15 @@ See [Requirements](REQUIREMENTS.md) to install required programs in your MAC.
 ## Git clone
 
 ```
-git clone git@github.com:5fpro/rails-template.git
-cd norn
-git submodule add -f git@github.com:5fpro/tyr.git
+git clone -b develop --recursive git@github.com:5fpro/rails-template.git
+cd rails-template/tyr
+git checkout develop
+cd ..
 git clone git@github.com:5fpro/rails-template.git -b gh-pages --single-branch api-doc
 ```
 
 Build
 ==========
-
 
 ```
 bundle install
