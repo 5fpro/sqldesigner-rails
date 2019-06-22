@@ -53,6 +53,10 @@ defaults: &defaults
               label: '.administrators'
               link: admin_administrators
         -
+          icon: file
+          label: .articles
+          link: admin_articles
+        -
           icon: 'wheelchair'
           label: '.categories.label'
           subitems:

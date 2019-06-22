@@ -152,21 +152,23 @@ default:
     blocks:
       # name: label
   article:
-    enable: false
+    enable: true
     enable_restore: false
-    enable_category: false
-    default_class_name: 'Tyr::Article'
-    default_category_class_name: 'Tyr::ArticleCategory'
-    default_cover_class_name: Tyr::Attachment
-    default_image_class_name: Tyr::Attachment
-    default_attachment_class_name: Tyr::Attachment
+    enable_category: true
+    default_class_name: 'Article'
+    default_category_class_name: 'ArticleCategory'
+    default_cover_class_name: ImageAttachment
+    default_image_class_name: ImageAttachment
+    default_attachment_class_name: Attachment
     layouts:
       default:
         category_max_deeps: 1
-        article_class_name: Tyr::Article
-        category_class_name: Tyr::ArticleCategory
+        article_class_name: Article
+        category_class_name: ArticleCategory
+      blog:
+        category_max_deeps: 2
     admin:
-      enable: false
+      enable: true
       articles_table_view_path: table
   redactor:
     enable: true

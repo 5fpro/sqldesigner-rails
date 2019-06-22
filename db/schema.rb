@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_22_031928) do
+ActiveRecord::Schema.define(version: 2019_06_22_053846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -56,6 +56,60 @@ ActiveRecord::Schema.define(version: 2019_06_22_031928) do
     t.index ["confirmation_token"], name: "index_administrators_on_confirmation_token", unique: true
     t.index ["email"], name: "index_administrators_on_email", unique: true
     t.index ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true
+  end
+
+  create_table "article_categories", force: :cascade do |t|
+    t.string "layout", comment: "版位"
+    t.string "name", comment: "名稱"
+    t.boolean "enabled", default: true, comment: "是否顯示"
+    t.integer "sort", comment: "排序"
+    t.integer "parent_id", comment: "上層分類"
+    t.integer "deep", default: 0, comment: "目前分層的深度"
+    t.integer "articles_count", default: 0, comment: "文章數"
+    t.datetime "deleted_at"
+    t.jsonb "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["layout", "deep"], name: "index_article_categories_on_layout_and_deep"
+    t.index ["layout", "enabled", "sort"], name: "index_article_categories_on_layout_and_enabled_and_sort"
+    t.index ["layout", "enabled"], name: "index_article_categories_on_layout_and_enabled"
+    t.index ["layout", "parent_id"], name: "index_article_categories_on_layout_and_parent_id"
+    t.index ["layout"], name: "index_article_categories_on_layout"
+    t.index ["name"], name: "trgm_article_categories_name_idx", opclass: :gist_trgm_ops, using: :gist
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.string "layout", comment: "版位"
+    t.integer "article_category_id", comment: "文章分類"
+    t.string "subject", comment: "標題"
+    t.string "summary", comment: "摘要"
+    t.text "body", comment: "內文"
+    t.integer "cover_id", comment: "封面照片，attachment id"
+    t.date "published_on", comment: "發佈日期"
+    t.datetime "published_at", comment: "發佈日期+時間"
+    t.string "author_name", comment: "作者名稱"
+    t.string "author_type"
+    t.integer "author_id"
+    t.integer "status", comment: "狀態"
+    t.boolean "top", default: false
+    t.string "meta_title", comment: "SEO 標題"
+    t.string "meta_description", comment: "SEO 描述"
+    t.string "meta_keywords", comment: "SEO 關鍵字"
+    t.datetime "deleted_at"
+    t.jsonb "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_name"], name: "trgm_articles_author_name_idx", opclass: :gist_trgm_ops, using: :gist
+    t.index ["body"], name: "trgm_articles_body_idx", opclass: :gist_trgm_ops, using: :gist
+    t.index ["layout", "article_category_id"], name: "index_articles_on_layout_and_article_category_id"
+    t.index ["layout", "author_name"], name: "index_articles_on_layout_and_author_name"
+    t.index ["layout", "author_type", "author_id"], name: "index_articles_on_layout_and_author_type_and_author_id"
+    t.index ["layout", "published_on"], name: "index_articles_on_layout_and_published_on"
+    t.index ["layout", "status"], name: "index_articles_on_layout_and_status"
+    t.index ["layout", "top"], name: "index_articles_on_layout_and_top"
+    t.index ["layout"], name: "index_articles_on_layout"
+    t.index ["subject"], name: "trgm_articles_subject_idx", opclass: :gist_trgm_ops, using: :gist
+    t.index ["summary"], name: "trgm_articles_summary_idx", opclass: :gist_trgm_ops, using: :gist
   end
 
   create_table "attachments", force: :cascade do |t|

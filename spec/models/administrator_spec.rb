@@ -4,7 +4,7 @@
 #
 # Table name: administrators
 #
-#  id                     :integer          not null, primary key
+#  id                     :bigint(8)        not null, primary key
 #  name                   :string
 #  root                   :boolean          default(FALSE)
 #  email                  :string           default(""), not null
