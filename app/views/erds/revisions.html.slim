@@ -1,25 +1,18 @@
-h1
-  = "ERD(#{@erd.keyword}) 歷史紀錄"
-= link_to '返回', erds_path, class: 'btn'
-= link_to erds_path, class: 'btn btn-success' do
-  i.icon-white.icon-info-sign
-  = '載入目前版本'
+= admin_link_to '返回', erds_path, size: :l
+= admin_link_to '載入目前最新版本', erd_path(@erd), color: :success, size: :l, icon: :info
 
-table.table.table-hover
-  thead
-    tr
-      th #
-      th 修改者
-      th 最後修改
-      th
-  tbody
-    - @erds.each_with_index do |hash, i|
+.row
+  = render_admin_data_table(data: @erds) do
+    thead
       tr
-        td
-          = hash[:index]
-        td= hash[:editor].name
-        td= "#{time_ago_in_words(hash[:updated_at])} (#{hash[:updated_at]})"
-        td.last
-          = link_to erd_path(@erd, keyword: @erd.keyword, version: hash[:index]), class: 'btn btn-mini btn-success' do
-            i.icon-white.icon-info-sign
-            | 載入
+        th #
+        th 最後修改
+        th 載入
+    tbody
+      - @erds.each_with_index do |hash, i|
+        tr
+          td
+            = hash[:index]
+          td= "#{time_ago_in_words(hash[:updated_at])} ( #{hash[:updated_at].strftime('%Y/%m/%d %H:%M')} )"
+          td.last
+            = admin_link_to '載入', erd_path(@erd, keyword: @erd.keyword, version: hash[:index]), color: :success, size: :s, icon: :info

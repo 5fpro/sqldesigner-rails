@@ -2,6 +2,7 @@ class ErdsController < ApplicationController
 
   skip_before_action :verify_authenticity_token, raise: false
   before_action :authenticate_user!, only: [:index, :edit, :new, :create, :update, :destroy]
+  before_action :set_meta
   layout 'tyr_admin_landing'
 
   def new
@@ -10,10 +11,12 @@ class ErdsController < ApplicationController
 
   def edit
     @erd = current_user.erds.find(params[:id])
+    set_meta(title: { keyword: @erd.keyword })
   end
 
   def revisions
     @erd = current_user.erds.find(params[:id])
+    set_meta(title: { keyword: @erd.keyword })
     @erds = @erd.full_history
   end
 
@@ -43,7 +46,7 @@ class ErdsController < ApplicationController
 
   def update
     @erd = current_user.erds.find(params[:id])
-    if @erd.update(params.require(:erd).permit(:keyword))
+    if @erd.update(params.require(:erd).permit(:keyword, :is_published))
       flash[:message] = 'Updated'
       redirect_to erds_path
     else

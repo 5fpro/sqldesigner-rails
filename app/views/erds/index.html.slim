@@ -1,31 +1,25 @@
-h1 ERD 列表
+= link_to '新增', new_erd_path, class: 'btn btn-primary', style: 'width: 100%'
 
-= link_to '新增', new_erd_path, class: 'btn btn-primary'
-
-table.table.table-hover
-  thead
-    tr
-      th #
-      th keyword
-      th 公開
-      th 最後修改
-      th
-  tbody
-    - @erds.each do |erd|
+br/
+br/
+.row
+  = render_admin_data_table(data: @erds) do
+    thead
       tr
-        td= erd.id
-        td= erd.keyword
-        td= "是" if erd.published?
-        td= erd.updated_at
-        td.last
-          = link_to erd_path(erd, keyword: erd.keyword) do
-            i.icon-white.icon-info-sign
-            | 載入
-          = link_to revisions_erd_path(erd) do
-            | 版本列表
-          = link_to edit_erd_path(erd) do
-            i.icon-pencil
-            | 編輯
-          = link_to erd_path(erd), 'data-method': :delete, 'data-confirm': '確認刪除' do
-            i.icon-white.icon-remove
-            | 刪除
+        th #
+        th 名稱
+        th 公開
+        th 最後修改
+        th 操作
+    tbody
+      - @erds.each do |erd|
+        tr
+          td= erd.id
+          td= erd.keyword
+          td= "是" if erd.published?
+          td= erd.updated_at.strftime('%Y/%m/%d %H:%M')
+          td.last
+            = admin_link_to '載入', erd_path(erd, keyword: erd.keyword), size: :s, icon: 'info', color: :success do
+            = admin_link_to '版本列表', revisions_erd_path(erd), size: :s, icon: 'file-o'
+            = admin_link_to '編輯', edit_erd_path(erd), size: :s, icon: :pencil, color: :warning
+            = admin_link_to '刪除', erd_path(erd), 'data-method': :delete, 'data-confirm': '確認刪除', size: :s, color: :danger, icon: :remove

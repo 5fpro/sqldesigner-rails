@@ -1,3 +1,26 @@
 /*
  *= require_self
  */
+
+.admin-landing {
+  background: #F7F7F7;
+  .login_content {
+    text-shadow: none !important;
+  }
+}
+
+.login_wrapper {
+  max-width: 480px !important;
+}
+
+table.table td {
+  text-align: left !important;
+}
+
+.checkbox {
+  text-align: left !important;
+}
+
+.text-align-left {
+  text-align: left;
+}
