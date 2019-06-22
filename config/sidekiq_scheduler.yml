@@ -1,19 +1,6 @@
-example1:
-  # https://github.com/jmettraux/rufus-scheduler
-  every: '1h'
-  class: 'ExampleScheduler'
-  description: 'Example 1'
+dbbackup:
+  cron: '0 4 * * *'
+  class: Tyr::DbBackupScheduler
+  decription: 'Backup database'
   queue: 'default'
-  enabled: true
-  include_metadata: true
-  dynamic: true
-  dynamic_every: '60s'
-example2:
-  every: '1d'
-  class: 'ExampleScheduler'
-  description: 'Example 2'
-  queue: 'default'
-  enabled: true
-  include_metadata: true
-  dynamic: true
-  dynamic_every: '60s'
+  enable: true
