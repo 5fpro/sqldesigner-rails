@@ -101,6 +101,8 @@ default:
     layout: tyr_api
   mailer:
     enable: true
+    enable_blacklist: true
+    notification_email: 'noreply@5fpro.com'
     layout: mailer
     helpers:
       -

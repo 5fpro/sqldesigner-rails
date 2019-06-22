@@ -36,6 +36,9 @@ defaults: &defaults
               label: '.event_logs.label'
               link: admin_event_logs
             -
+              label: '.blacklist_emails.label'
+              link: admin_blacklist_emails
+            -
               label: '.sidekiq'
               link: '/sidekiq'
               target: '_blank'
