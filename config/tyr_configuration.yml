@@ -1,5 +1,32 @@
 default:
   setting_yml_path: 'config/application.yml'
+  db_dump:
+    enable: true
+  db_backup:
+    enable: true
+    available_rails_envs:
+      - production
+    job_class_name: 'Tyr::DbBackupJob'
+    s3_bucket: "<%= ENV['APP_NAME'] %>-backup"
+    s3_path: database
+  notification:
+    enable: true
+    table_name: notifications
+    class_name: Notification
+  rack:
+    middlewares:
+      cloudflare:
+        enable: false
+      utf8_sanitizer:
+        enable: true
+  aws:
+    enable: true
+    ses:
+      enable: true
+      notification_emails:
+        - hi@5fpro.com
+    s3:
+      enable: false # 目前沒有影響
   omniauth:
     enable: true
     path_prefix: '/authorizations'
@@ -11,6 +38,9 @@ default:
     enable: true
     view_path: 'tyr/services/robots'
     sitemap_url: '<%= "#{TyrSetting.default_protocol}://#{TyrSetting.assets_host}/sitemaps/sitemap.xml.gz" %>'
+  event_log:
+    enable_admin_panel: true
+    class_name: 'Tyr::EventLog'
   comments:
     enable: true
   sidekiq:
@@ -37,6 +67,13 @@ default:
     enable: true
     route:
       path: '/admin'
+    notifications:
+      enable: trye
+      readed_context_class_name: 'Tyr::Notifications::ReadContext'
+      read_all_context_class_name: 'Tyr::Notifications::ReadAllContext'
+      sender_name_method: name
+      default_sender_avatar: 'icon-100px.png'
+      body_input: redactor
   asset_sync:
     enable: true
   asset_host:
@@ -89,7 +126,7 @@ default:
   attachment:
     enable: true
     uploader: 'AttachmentUploader'
-    class_name: 'Tyr::Attachment'
+    class_name: 'Attachment'
   renderers:
     enable: true
     default_exporter: 'BaseExporter'
@@ -106,7 +143,31 @@ default:
     default_country: 'TW'
   activity:
     enable: true
-    class_name: Tyr::Activity
+    class_name: Activity
+  page_block:
+    enable: true
+    class_name: 'PageBlock'
+    table_name: 'page_blocks'
+    body_input: text
+    blocks:
+      # name: label
+  article:
+    enable: false
+    enable_restore: false
+    enable_category: false
+    default_class_name: 'Tyr::Article'
+    default_category_class_name: 'Tyr::ArticleCategory'
+    default_cover_class_name: Tyr::Attachment
+    default_image_class_name: Tyr::Attachment
+    default_attachment_class_name: Tyr::Attachment
+    layouts:
+      default:
+        category_max_deeps: 1
+        article_class_name: Tyr::Article
+        category_class_name: Tyr::ArticleCategory
+    admin:
+      enable: false
+      articles_table_view_path: table
   redactor:
     enable: true
     default_js_options:

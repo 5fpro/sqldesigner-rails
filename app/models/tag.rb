@@ -7,5 +7,5 @@
 #  taggings_count :integer          default(0)
 #
 
-class Tag < ApplicationRecord
+class Tag < Tyr::Tag
 end

@@ -10,14 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_01_14_020737) do
+ActiveRecord::Schema.define(version: 2019_06_22_031928) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "fuzzystrmatch"
   enable_extension "hstore"
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "activities", force: :cascade do |t|
+    t.string "actor_type"
+    t.integer "actor_id"
+    t.string "action"
+    t.string "target_type"
+    t.integer "target_id"
+    t.date "acted_on"
+    t.json "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["acted_on"], name: "index_activities_on_acted_on"
+    t.index ["action"], name: "index_activities_on_action"
+    t.index ["actor_type", "actor_id"], name: "index_activities_on_actor_type_and_actor_id"
+    t.index ["target_type", "target_id"], name: "index_activities_on_target_type_and_target_id"
+  end
 
   create_table "administrators", force: :cascade do |t|
     t.string "name"
@@ -43,6 +58,32 @@ ActiveRecord::Schema.define(version: 2018_01_14_020737) do
     t.index ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true
   end
 
+  create_table "attachments", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "creator_type"
+    t.integer "creator_id"
+    t.string "item_type"
+    t.integer "item_id"
+    t.string "scope"
+    t.integer "sort"
+    t.string "original_filename"
+    t.string "stored_filename"
+    t.string "file_content_type"
+    t.integer "file_size"
+    t.integer "image_width"
+    t.integer "image_height"
+    t.json "image_exif"
+    t.json "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_type", "creator_id"], name: "index_attachments_on_creator_type_and_creator_id"
+    t.index ["item_type", "item_id", "scope", "sort"], name: "index_attachments_on_item_type_and_item_id_and_scope_and_sort"
+    t.index ["item_type", "item_id", "scope"], name: "index_attachments_on_item_type_and_item_id_and_scope"
+    t.index ["item_type", "item_id", "sort"], name: "index_attachments_on_item_type_and_item_id_and_sort"
+    t.index ["item_type", "item_id"], name: "index_attachments_on_item_type_and_item_id"
+  end
+
   create_table "authorizations", force: :cascade do |t|
     t.integer "provider"
     t.string "uid"
@@ -65,6 +106,54 @@ ActiveRecord::Schema.define(version: 2018_01_14_020737) do
     t.integer "sort"
     t.index ["name"], name: "index_categories_on_name"
     t.index ["sort"], name: "index_categories_on_sort"
+  end
+
+  create_table "event_logs", force: :cascade do |t|
+    t.string "event_type"
+    t.string "description"
+    t.string "identity"
+    t.date "created_on"
+    t.json "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_on"], name: "index_event_logs_on_created_on"
+    t.index ["event_type", "identity"], name: "index_event_logs_on_event_type_and_identity"
+    t.index ["event_type"], name: "index_event_logs_on_event_type"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "sender_type"
+    t.string "sender_id"
+    t.string "receiver_type"
+    t.string "receiver_id"
+    t.string "object_type"
+    t.string "object_id"
+    t.string "notify_type"
+    t.boolean "readed", default: false
+    t.string "subject"
+    t.string "body"
+    t.date "created_on"
+    t.json "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["body"], name: "trgm_notifications_body_idx", opclass: :gist_trgm_ops, using: :gist
+    t.index ["created_on"], name: "index_notifications_on_created_on"
+    t.index ["notify_type"], name: "index_notifications_on_notify_type"
+    t.index ["object_type", "object_id"], name: "index_notifications_on_object_type_and_object_id"
+    t.index ["readed", "receiver_type", "receiver_id"], name: "index_notifications_on_readed_and_receiver_type_and_receiver_id"
+    t.index ["receiver_type", "receiver_id"], name: "index_notifications_on_receiver_type_and_receiver_id"
+    t.index ["sender_type", "sender_id"], name: "index_notifications_on_sender_type_and_sender_id"
+    t.index ["subject"], name: "trgm_notifications_subject_idx", opclass: :gist_trgm_ops, using: :gist
+  end
+
+  create_table "page_blocks", force: :cascade do |t|
+    t.string "name"
+    t.text "body"
+    t.boolean "enabled", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["enabled"], name: "index_page_blocks_on_enabled"
+    t.index ["name"], name: "index_page_blocks_on_name"
   end
 
   create_table "redactor2_assets", force: :cascade do |t|
