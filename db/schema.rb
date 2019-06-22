@@ -10,14 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_01_14_020737) do
+ActiveRecord::Schema.define(version: 2019_06_22_053846) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "fuzzystrmatch"
   enable_extension "hstore"
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "activities", force: :cascade do |t|
+    t.string "actor_type"
+    t.integer "actor_id"
+    t.string "action"
+    t.string "target_type"
+    t.integer "target_id"
+    t.date "acted_on"
+    t.json "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["acted_on"], name: "index_activities_on_acted_on"
+    t.index ["action"], name: "index_activities_on_action"
+    t.index ["actor_type", "actor_id"], name: "index_activities_on_actor_type_and_actor_id"
+    t.index ["target_type", "target_id"], name: "index_activities_on_target_type_and_target_id"
+  end
 
   create_table "administrators", force: :cascade do |t|
     t.string "name"
@@ -43,6 +58,86 @@ ActiveRecord::Schema.define(version: 2018_01_14_020737) do
     t.index ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true
   end
 
+  create_table "article_categories", force: :cascade do |t|
+    t.string "layout", comment: "版位"
+    t.string "name", comment: "名稱"
+    t.boolean "enabled", default: true, comment: "是否顯示"
+    t.integer "sort", comment: "排序"
+    t.integer "parent_id", comment: "上層分類"
+    t.integer "deep", default: 0, comment: "目前分層的深度"
+    t.integer "articles_count", default: 0, comment: "文章數"
+    t.datetime "deleted_at"
+    t.jsonb "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["layout", "deep"], name: "index_article_categories_on_layout_and_deep"
+    t.index ["layout", "enabled", "sort"], name: "index_article_categories_on_layout_and_enabled_and_sort"
+    t.index ["layout", "enabled"], name: "index_article_categories_on_layout_and_enabled"
+    t.index ["layout", "parent_id"], name: "index_article_categories_on_layout_and_parent_id"
+    t.index ["layout"], name: "index_article_categories_on_layout"
+    t.index ["name"], name: "trgm_article_categories_name_idx", opclass: :gist_trgm_ops, using: :gist
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.string "layout", comment: "版位"
+    t.integer "article_category_id", comment: "文章分類"
+    t.string "subject", comment: "標題"
+    t.string "summary", comment: "摘要"
+    t.text "body", comment: "內文"
+    t.integer "cover_id", comment: "封面照片，attachment id"
+    t.date "published_on", comment: "發佈日期"
+    t.datetime "published_at", comment: "發佈日期+時間"
+    t.string "author_name", comment: "作者名稱"
+    t.string "author_type"
+    t.integer "author_id"
+    t.integer "status", comment: "狀態"
+    t.boolean "top", default: false
+    t.string "meta_title", comment: "SEO 標題"
+    t.string "meta_description", comment: "SEO 描述"
+    t.string "meta_keywords", comment: "SEO 關鍵字"
+    t.datetime "deleted_at"
+    t.jsonb "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_name"], name: "trgm_articles_author_name_idx", opclass: :gist_trgm_ops, using: :gist
+    t.index ["body"], name: "trgm_articles_body_idx", opclass: :gist_trgm_ops, using: :gist
+    t.index ["layout", "article_category_id"], name: "index_articles_on_layout_and_article_category_id"
+    t.index ["layout", "author_name"], name: "index_articles_on_layout_and_author_name"
+    t.index ["layout", "author_type", "author_id"], name: "index_articles_on_layout_and_author_type_and_author_id"
+    t.index ["layout", "published_on"], name: "index_articles_on_layout_and_published_on"
+    t.index ["layout", "status"], name: "index_articles_on_layout_and_status"
+    t.index ["layout", "top"], name: "index_articles_on_layout_and_top"
+    t.index ["layout"], name: "index_articles_on_layout"
+    t.index ["subject"], name: "trgm_articles_subject_idx", opclass: :gist_trgm_ops, using: :gist
+    t.index ["summary"], name: "trgm_articles_summary_idx", opclass: :gist_trgm_ops, using: :gist
+  end
+
+  create_table "attachments", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "creator_type"
+    t.integer "creator_id"
+    t.string "item_type"
+    t.integer "item_id"
+    t.string "scope"
+    t.integer "sort"
+    t.string "original_filename"
+    t.string "stored_filename"
+    t.string "file_content_type"
+    t.integer "file_size"
+    t.integer "image_width"
+    t.integer "image_height"
+    t.json "image_exif"
+    t.json "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_type", "creator_id"], name: "index_attachments_on_creator_type_and_creator_id"
+    t.index ["item_type", "item_id", "scope", "sort"], name: "index_attachments_on_item_type_and_item_id_and_scope_and_sort"
+    t.index ["item_type", "item_id", "scope"], name: "index_attachments_on_item_type_and_item_id_and_scope"
+    t.index ["item_type", "item_id", "sort"], name: "index_attachments_on_item_type_and_item_id_and_sort"
+    t.index ["item_type", "item_id"], name: "index_attachments_on_item_type_and_item_id"
+  end
+
   create_table "authorizations", force: :cascade do |t|
     t.integer "provider"
     t.string "uid"
@@ -65,6 +160,54 @@ ActiveRecord::Schema.define(version: 2018_01_14_020737) do
     t.integer "sort"
     t.index ["name"], name: "index_categories_on_name"
     t.index ["sort"], name: "index_categories_on_sort"
+  end
+
+  create_table "event_logs", force: :cascade do |t|
+    t.string "event_type"
+    t.string "description"
+    t.string "identity"
+    t.date "created_on"
+    t.json "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_on"], name: "index_event_logs_on_created_on"
+    t.index ["event_type", "identity"], name: "index_event_logs_on_event_type_and_identity"
+    t.index ["event_type"], name: "index_event_logs_on_event_type"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "sender_type"
+    t.string "sender_id"
+    t.string "receiver_type"
+    t.string "receiver_id"
+    t.string "object_type"
+    t.string "object_id"
+    t.string "notify_type"
+    t.boolean "readed", default: false
+    t.string "subject"
+    t.string "body"
+    t.date "created_on"
+    t.json "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["body"], name: "trgm_notifications_body_idx", opclass: :gist_trgm_ops, using: :gist
+    t.index ["created_on"], name: "index_notifications_on_created_on"
+    t.index ["notify_type"], name: "index_notifications_on_notify_type"
+    t.index ["object_type", "object_id"], name: "index_notifications_on_object_type_and_object_id"
+    t.index ["readed", "receiver_type", "receiver_id"], name: "index_notifications_on_readed_and_receiver_type_and_receiver_id"
+    t.index ["receiver_type", "receiver_id"], name: "index_notifications_on_receiver_type_and_receiver_id"
+    t.index ["sender_type", "sender_id"], name: "index_notifications_on_sender_type_and_sender_id"
+    t.index ["subject"], name: "trgm_notifications_subject_idx", opclass: :gist_trgm_ops, using: :gist
+  end
+
+  create_table "page_blocks", force: :cascade do |t|
+    t.string "name"
+    t.text "body"
+    t.boolean "enabled", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["enabled"], name: "index_page_blocks_on_enabled"
+    t.index ["name"], name: "index_page_blocks_on_name"
   end
 
   create_table "redactor2_assets", force: :cascade do |t|

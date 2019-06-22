@@ -1,0 +1,14 @@
+zh-TW:
+  admin:
+    menu_text:
+      articles:
+        label: 文章列表
+  article:
+    layouts:
+      default:
+        label: '預設'
+        description: ''
+      blog:
+        label: 部落格
+        description: 部落格文章
+

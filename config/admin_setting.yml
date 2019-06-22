@@ -19,30 +19,46 @@ defaults: &defaults
             -
               label: '.admin_root'
               link: admin_root
+        -
+          icon: 'gear'
+          label: .system
+          subitems:
+            -
+              label: '.page_blocks.label'
+              link: admin_page_blocks
+            -
+              label: '.notifications.label'
+              link: admin_notifications
+            -
+              label: '.activities.label'
+              link: admin_activities
+            -
+              label: '.event_logs.label'
+              link: admin_event_logs
+            -
+              label: '.blacklist_emails.label'
+              link: admin_blacklist_emails
             -
               label: '.sidekiq'
               link: '/sidekiq'
               target: '_blank'
-        -
-          icon: 'user'
-          label: '.administrators.label'
-          subitems:
             -
-              label: '.administrators.index'
-              link: admin_administrators
-            -
-              label: '.administrators.new'
-              link: new_admin_administrator
+              label: '.db_dump'
+              link: 'admin_db_dump'
         -
           icon: 'users'
-          label: '.users.label'
+          label: '.roles'
           subitems:
             -
-              label: '.users.index'
+              label: '.users.label'
               link: admin_users
             -
-              label: '.users.new'
-              link: new_admin_user
+              label: '.administrators.label'
+              link: admin_administrators
+        -
+          icon: file
+          label: .articles.label
+          link: admin_articles
         -
           icon: 'wheelchair'
           label: '.categories.label'

@@ -2,10 +2,10 @@ zh-TW:
   admin:
     menu_text:
       categories:
-        label: Category
-        label-2: Categories(lv 2)
-        index: List
-        new: Create
+        label: 分類
+        label-2: 分類(lv 2)
+        index: 列表
+        new: 新增
   activerecord:
     attributes:
       category: &label_category
