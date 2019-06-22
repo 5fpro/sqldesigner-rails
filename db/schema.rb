@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_22_053846) do
+ActiveRecord::Schema.define(version: 2019_06_22_103329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -161,6 +161,18 @@ ActiveRecord::Schema.define(version: 2019_06_22_053846) do
     t.integer "sort"
     t.index ["name"], name: "index_categories_on_name"
     t.index ["sort"], name: "index_categories_on_sort"
+  end
+
+  create_table "erds", force: :cascade do |t|
+    t.integer "user_id"
+    t.boolean "is_published", default: true
+    t.string "keyword"
+    t.text "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["is_published"], name: "index_erds_on_is_published"
+    t.index ["keyword"], name: "index_erds_on_keyword"
+    t.index ["user_id"], name: "index_erds_on_user_id"
   end
 
   create_table "event_logs", force: :cascade do |t|

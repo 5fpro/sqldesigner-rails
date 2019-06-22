@@ -69,10 +69,7 @@ Metrics/LineLength:
 
 Metrics/MethodLength:
   CountComments: false  # count full line comments?
-  Max: 20
-
-Metrics/AbcSize:
-  Max: 30
+  Max: 50
 
 Rails/HasAndBelongsToMany:
   Enabled: false
@@ -91,9 +88,6 @@ Style/RegexpLiteral:
 
 Naming/PredicateName:
   Enabled: false
-
-Metrics/MethodLength:
-  Max: 50
 
 Lint/AssignmentInCondition:
   Enabled: false

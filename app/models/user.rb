@@ -26,4 +26,6 @@
 class User < Tyr::ApplicationRecord
   omniauthable
   mount_uploader :avatar, AvatarUploader
+
+  has_many :erds, -> { order(id: :desc) }, inverse_of: :user
 end

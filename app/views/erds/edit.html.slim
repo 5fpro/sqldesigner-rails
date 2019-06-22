@@ -1,0 +1,8 @@
+h1= "編輯ERD"
+= simple_form_for(@erd, html: { class: 'form-horizontal' } ) do |f|
+  .form-inputs
+    = f.input :keyword, label: '名稱', plceholder: '不得與其他erd重複'
+    = f.input :is_published, label: '開放連結分享'
+  .form-actions
+    = f.submit class: 'btn btn-primary'
+    = link_to "取消", erds_path, class: 'btn'
