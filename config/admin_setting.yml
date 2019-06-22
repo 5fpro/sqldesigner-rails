@@ -24,16 +24,16 @@ defaults: &defaults
           label: .system
           subitems:
             -
-              label: '.page_block'
+              label: '.page_blocks.label'
               link: admin_page_blocks
             -
-              label: '.notifications'
+              label: '.notifications.label'
               link: admin_notifications
             -
-              label: '.activities'
+              label: '.activities.label'
               link: admin_activities
             -
-              label: '.event_logs'
+              label: '.event_logs.label'
               link: admin_event_logs
             -
               label: '.sidekiq'
@@ -47,14 +47,14 @@ defaults: &defaults
           label: '.roles'
           subitems:
             -
-              label: '.users'
+              label: '.users.label'
               link: admin_users
             -
-              label: '.administrators'
+              label: '.administrators.label'
               link: admin_administrators
         -
           icon: file
-          label: .articles
+          label: .articles.label
           link: admin_articles
         -
           icon: 'wheelchair'

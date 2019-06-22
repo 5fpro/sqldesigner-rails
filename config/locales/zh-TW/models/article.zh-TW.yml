@@ -1,4 +1,8 @@
 zh-TW:
+  admin:
+    menu_text:
+      articles:
+        label: 文章列表
   article:
     layouts:
       default:

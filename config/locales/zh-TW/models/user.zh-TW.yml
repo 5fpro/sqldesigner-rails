@@ -3,8 +3,6 @@ zh-TW:
     menu_text:
       users:
         label: 使用者
-        index: 列表
-        new: 新增
   activerecord:
     attributes:
       user: &user
