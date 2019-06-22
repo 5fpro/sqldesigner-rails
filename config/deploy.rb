@@ -3,7 +3,7 @@ lock '3.11.0'
 
 # Config@initial
 set :application, ENV.fetch('APP_NAME') { '5FPRO' }
-set :repo_url, 'git@github.com:5fpro/rails-template.git'
+set :repo_url, 'git@github.com:5fpro/sqldesigner-rails.git'
 
 # Default branch is :master
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call

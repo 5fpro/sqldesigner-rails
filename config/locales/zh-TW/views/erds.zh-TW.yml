@@ -1,0 +1,11 @@
+zh-TW:
+  erds:
+    index:
+      meta:
+        title: ERD 列表
+    edit:
+      meta:
+        title: "編輯 %{keyword}"
+    revisions:
+      meta:
+        title: "%{keyword} 版本列表"

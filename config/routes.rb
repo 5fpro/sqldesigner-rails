@@ -17,9 +17,19 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'base#index'
+  root to: 'erds#new'
+
+  devise_scope :user do
+    get '/logout' => 'devise/sessions#destroy', as: :user_logout
+  end
 
   mount Tyr::Engine => '/'
+
+  resources :erds do
+    member do
+      get :revisions
+    end
+  end
 
   instance_exec(&Tyr.catch_not_found_route)
 end

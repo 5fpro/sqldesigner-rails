@@ -1,0 +1,10 @@
+= admin_form_for @erd, url: erd_path(@erd), method: :put do |f|
+  = f.input :keyword, label: '名稱', plceholder: '不得與其他erd重複'
+  = f.input :is_published, label: '開放連結分享'
+  .form-group
+    .ln_solid
+    .col-md-3.col-sm-3.col-xs-12
+    .col-md-9.col-sm-9.col-xs-12.text-align-left
+      = f.submit '更新', class: 'btn btn-primary'
+      | &nbsp;&nbsp;&nbsp;&nbsp;
+      = link_to '取消', erds_path

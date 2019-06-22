@@ -7,6 +7,6 @@ namespace :load do
   end
 end
 
-set :slackistrano, channel: '#rails-template-notify',
+set :slackistrano, channel: '#sqldesigner-rails',
                    webhook: ENV['DEPLOY_SLACK_WEBHOOK'],
                    klass: Capistrano::DeployMessaging
