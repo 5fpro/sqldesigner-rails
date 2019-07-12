@@ -1,8 +1,8 @@
 .row
   - if Rails.env.production? || Rails.env.staging?
-    = admin_app_button_to 'FB 登入', tyr.auth_facebook_path, icon: 'facebook-official'
+    = admin_app_button_to 'FB 登入', tyr.auth_facebook_path, icon: 'facebook-official', method: :post
   - else
-    = admin_app_button_to 'GitHub 登入', tyr.auth_github_path, icon: 'github'
+    = admin_app_button_to 'GitHub 登入', tyr.auth_github_path, icon: 'github', method: :post
   = admin_app_button_to 'Email 登入', new_session_path(resource_name), icon: 'sign-in' if controller_name != 'sessions'
 
   = admin_app_button_to 'Email 註冊', new_registration_path(resource_name), icon: 'user' if devise_mapping.registerable? && controller_name != 'registrations'
